@@ -1,6 +1,9 @@
-name: Unit and Testing
+name: Deploy
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   test:
@@ -22,3 +25,5 @@ jobs:
         with:
           build: npm run build
           start: npm run dev
+      - name: Deploy
+        run: npx run deploy
