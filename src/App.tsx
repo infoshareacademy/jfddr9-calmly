@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const Contener = styled.div`
-  background-color: blue;
+  font-size: 36px;
 `;
 
 function App() {
