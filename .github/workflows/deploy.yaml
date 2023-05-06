@@ -26,4 +26,6 @@ jobs:
           build: npm run build
           start: npm run dev
       - name: Deploy
-        run: npx run deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
