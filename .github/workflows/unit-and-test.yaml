@@ -18,7 +18,7 @@ jobs:
       - name: Run units
         run: npx jest --coverage
       - name: Run e2e tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
           build: npm run build
           start: npm run dev
