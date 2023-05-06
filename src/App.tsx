@@ -1,14 +1,14 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import styled from "styled-components"
-import {useSelector} from "react-redux";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const Contener = styled.div`
   background-color: blue;
-`
+`;
 
 function App() {
-  const text: any = useSelector(state => state)
+  const text: any = useSelector((state) => state);
 
   return (
     <Contener>

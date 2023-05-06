@@ -1,20 +1,18 @@
-
-import {createSlice} from "@reduxjs/toolkit"
-
+import { createSlice } from "@reduxjs/toolkit";
 
 export const exampleSlice = createSlice({
-    name: "example",
-    initialState: {
-        text: "Hi guys :)"
+  name: "example",
+  initialState: {
+    text: "Hi guys :)",
+  },
+  reducers: {
+    updateString: (state, action) => {
+      const text = action.payload;
+      state.text = text;
     },
-    reducers: {
-        updateString: (state, action) => {
-            const text = action.payload
-            state.text = text
-        }
-    }
-})
+  },
+});
 
-export const {updateString} = exampleSlice.actions
+export const { updateString } = exampleSlice.actions;
 
-export const exampleReducer = exampleSlice.reducer
+export const exampleReducer = exampleSlice.reducer;
