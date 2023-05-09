@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 //import styled from 'styled-components';
 //import { useSelector } from 'react-redux';
 
-import { FeelBetter } from "./components/FeelBetter";
+import { FeelBetter } from "./components/routes/FeelBetter";
 
 // const Contener = styled.div`
 //   font-size: 36px;
