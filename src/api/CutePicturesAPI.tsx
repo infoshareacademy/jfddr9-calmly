@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const API_URL_CAT = `https://api.thecatapi.com/v1/`;
 const API_URL_DOG = `https://api.thedogapi.com/v1/`;
@@ -7,10 +8,62 @@ const API_URL_FOX = `https://randomfox.ca/floof`;
 // const API_URL_DUCK = `https://random-d.uk/api/v2/random`;
 const API_KEY = "DEMO-API-KEY";
 
+const StyledAnimalButton = styled.button`
+  background: rgba(255, 255, 255, 0.45);
+  color: #797bec;
+  border: transparent;
+  border-radius: 50px;
+  margin: 0 auto;
+  width: 60px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+const StyledNewPicButton = styled.button`
+  background: rgba(255, 255, 255, 0.45);
+  color: #797bec;
+  border: transparent;
+  border-radius: 50px;
+  margin: 0 auto;
+  width: 60;
+  height: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+`;
+
+const StyledImg = styled.img`
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+`;
+
+const StyledCategoryButton = styled.button`
+  background: rgba(255, 255, 255, 0.45);
+  color: #797bec;
+  border: transparent;
+  border-radius: 50px;
+  margin: 0 auto;
+  width: 60px;
+  height: 20px;
+  cursor: pointer;
+  margin: 10px;
+`;
+
 export const CutePictures = () => {
   return (
     <>
-      <div>
+      <div
+        style={{
+          display: "flex",
+          alignSelf: "center",
+          height: "100%",
+        }}
+      >
         <Dropdown />
       </div>
     </>
@@ -171,64 +224,48 @@ export const Dropdown = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
-          gap: "100px",
+          flexDirection: "column-reverse",
+          margin: "0 auto",
+          gap: "20px",
         }}
       >
         <div>
-          <button
+          <div
             style={{
-              width: "100%",
               display: "flex",
-              justifyContent: "center",
-              background: "#CEC6C0",
-              color: "#B2B3F0",
-              border: "transparent",
-              padding: "25px",
-              borderRadius: "4px",
+              flexDirection: "column-reverse",
+              paddingBottom: "10px",
             }}
-            onClick={() => setIsOpen((prev) => !prev)}
           >
-            Animals
-          </button>
-          {isOpen && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                background: "#E1B3AD",
-              }}
-            >
-              {list.map((item) => (
-                <div>
-                  <button
-                    style={{
-                      background: "#CEC6C0",
-                      color: "#B2B3F0",
-                      borderRadius: "4px",
-                      border: "transparent",
-                    }}
-                    onClick={() => getCutePicture(item.animal)}
-                  >
-                    {item.label}
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
+            <StyledAnimalButton onClick={() => setIsOpen((prev) => !prev)}>
+              Animals
+            </StyledAnimalButton>
+            {isOpen && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
+                {list.map((item) => (
+                  <div>
+                    <StyledCategoryButton
+                      onClick={() => getCutePicture(item.animal)}
+                    >
+                      {item.label}
+                    </StyledCategoryButton>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <StyledNewPicButton onClick={() => getCutePicture(category)}>
+            New Picture
+          </StyledNewPicButton>
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <img
-            src={img}
-            style={{
-              width: "500px",
-              height: "500px",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-          <button onClick={() => getCutePicture(category)}>New Picture</button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <StyledImg src={img} />
         </div>
       </div>
     </>
