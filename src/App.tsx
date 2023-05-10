@@ -2,6 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { Breathing } from "./components/Breathing";
 
 const Contener = styled.div`
   font-size: 36px;
@@ -12,8 +13,9 @@ function App() {
 
   return (
     <Contener>
-      {text.exampleReducer.text}
+      {/* {text.exampleReducer.text} */}
       <Routes>
+        <Route path={"/breath"} element={<Breathing />} />
         <Route path={"/home"} element={<div>home</div>} />
         <Route path={"/login"} element={<div>login</div>} />
       </Routes>
