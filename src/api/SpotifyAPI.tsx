@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { SpotifyTrack } from "../components/SpotifyTrack";
+import { LoaderComponent } from "../components/Loader";
 
 const client_id = "18d4de0e32314d02b42308e9357cbb2e"; // client id
 const client_secret = "b286a9f61c344b79b96eaee2c58c3b68"; // secret
@@ -10,6 +11,7 @@ let token = "";
 export const SpotifyAPI = () => {
   const [tracks, setTracks] = useState([]);
   const [list, setList] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://accounts.spotify.com/api/token", {
@@ -59,6 +61,7 @@ export const SpotifyAPI = () => {
         console.log(tracksArray);
         tracksArray = shuffleArray(tracksArray);
         setTracks(tracksArray);
+        setIsLoading(false);
       })
       .catch((error) => console.error(error));
   };
@@ -66,12 +69,15 @@ export const SpotifyAPI = () => {
   if (list > 90) {
     setTracks([]);
     setList(0);
+    setIsLoading(true);
     getRandomTracks(token);
   }
 
   return (
     <>
-      {tracks.length !== 0 && (
+      {isLoading ? (
+        <LoaderComponent />
+      ) : (
         <>
           <SpotifyTrack track={tracks[list]} />
           <SpotifyTrack track={tracks[list + 1]} />
