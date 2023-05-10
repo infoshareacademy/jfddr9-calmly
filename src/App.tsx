@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 //import { useSelector } from 'react-redux';
 
 import { FeelBetter } from "./components/routes/FeelBetter";
+import { TestResultPage } from "./components/testResultPage/testresultpage";
 
 // const Contener = styled.div`
 //   font-size: 36px;
@@ -19,6 +20,7 @@ function App() {
       <Route path={"/home"} element={<div>home</div>} />
       <Route path={"/login"} element={<div>login</div>} />
       <Route path={"/feelbetter"} element={<FeelBetter />} />
+      <Route path={"/testresult"} element={<TestResultPage />} />
     </Routes>
     //</Contener>
   );
