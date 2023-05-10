@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
+import { SpotifyAPI } from "../api/SpotifyAPI";
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -61,7 +63,7 @@ export const FeelBetter = () => {
         <>
           <StyledStepContainer>
             <StyledStep key={step}>
-              {step === 1 && "Spotify API"}
+              {step === 1 && <SpotifyAPI />}
               {step === 2 && "Breathing Exercise"}
               {step === 3 && "Cute Pictures"}
             </StyledStep>
