@@ -6,6 +6,7 @@ import { Breathing } from "./components/Breathing";
 import { FeelBetter } from "./routes/FeelBetter";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
+import { About } from "./components/About";
 
 // const Contener = styled.div`
 //   font-size: 36px;
@@ -24,6 +25,7 @@ function App() {
       <Route path={"/login"} element={<Login />} />
       <Route path={"/feelbetter"} element={<FeelBetter />} />
       <Route path={"/breathing"} element={<Breathing />} />
+      <Route path={"/about"} element={<About />} />
     </Routes>
     //</Contener>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MainDiv = styled.div`
   height: 100%;
@@ -7,10 +7,21 @@ const MainDiv = styled.div`
 interface MainCircleProps {
   state: boolean;
 }
-const MainCircle = styled.div<MainCircleProps>`
+const Instructions = styled.p`
+  z-index: 999;
   text-align: center;
-  font-size: 20px;
+  font-size: 24px;
   color: #797bec;
+`;
+const Information = styled.p`
+  position: relative;
+  top: 120px;
+  z-index: 999;
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff;
+`;
+const MainCircle = styled.div<MainCircleProps>`
   z-index: 998;
   position: absolute;
   margin: auto;
@@ -22,7 +33,7 @@ const MainCircle = styled.div<MainCircleProps>`
   width: 140px;
   height: 140px;
   background-color: white;
-  animation: animation 8s 15 normal backwards;
+  animation: animation 8s 14 normal backwards;
   animation-play-state: ${(props) => (props.state ? "running" : "paused")};
   @keyframes animation {
     10%,
@@ -50,7 +61,7 @@ const Body = styled.body<BodyProps>`
   );
   align-items: center;
   justify-content: center;
-  animation: anim 8s 15 0.2s alternate backwards;
+  animation: anim 8s 14 0.1s alternate backwards;
   animation-play-state: ${(props) => (props.dark ? "running" : "paused")};
   @keyframes anim {
     0% {
@@ -191,8 +202,8 @@ z-index:999;
   margin-top: 120px;
   border: none;
   border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 18px;
+  padding: 8px 12px;
+  font-size: 14px;
   font-family: "Outfit", sans-serif;
   background-color: #ffffff84;
   &:hover {
@@ -205,17 +216,37 @@ z-index:999;
 export function Breathing() {
   const [state, setState] = useState(false);
   const [dark, setDark] = useState(false);
-
+  const [inhale, setInhale] = useState("inhale");
+  const [count, setCount] = useState(0);
+  const [instru, setInstru] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [display, setDispaly] = useState(true);
+  useEffect(() => {
+    if (visible && instru && count < 28) {
+      const timer = setTimeout(() => {
+        setInhale((inhState) => (inhState === "inhale" ? "exhale" : "inhale"));
+        setCount((prevCount) => prevCount + 1);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [count, instru]);
   const handleClick = () => {
     setState(!state);
     setDark(!dark);
+    setInhale(inhale);
+    setInstru((is) => !is);
+    setVisible(true);
+    setDispaly(false);
   };
+
   return (
     <Body dark={dark}>
       <MainDiv>
-        <MainCircle state={state}>inhale</MainCircle>
+        <MainCircle state={state} />
       </MainDiv>
+      {visible && <Instructions>{inhale}</Instructions>}
       <ButtonDiv>
+        {display && <Information>Let's breath together</Information>}
         <StartButton onClick={handleClick}>
           {dark ? "Pause" : "Start"}
         </StartButton>
