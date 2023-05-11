@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 //import styled from 'styled-components';
 //import { useSelector } from 'react-redux';
-
+import { Breathing } from "./components/Breathing";
 import { FeelBetter } from "./routes/FeelBetter";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
@@ -23,6 +23,7 @@ function App() {
       <Route path={"/register"} element={<Register />} />
       <Route path={"/login"} element={<Login />} />
       <Route path={"/feelbetter"} element={<FeelBetter />} />
+      <Route path={"/breathing"} element={<Breathing />} />
     </Routes>
     //</Contener>
   );
