@@ -5,6 +5,8 @@ import { updateBg } from "../store/slice";
 import { useDispatch } from "react-redux";
 
 import { SpotifyAPI } from "../api/SpotifyAPI";
+import { CutePictures } from "../api/CutePicturesAPI";
+import { Breathing } from "../components/Breathing";
 
 const fadeIn = keyframes`
   from {
@@ -29,6 +31,7 @@ const StyledStep = styled.div`
 `;
 
 const StyledDiv = styled.div`
+  margin: auto;
   width: 90vw;
   height: 100vh;
   display: flex;
@@ -99,8 +102,8 @@ export const FeelBetter = () => {
           <StyledStepContainer>
             <StyledStep key={step}>
               {step === 1 && <SpotifyAPI />}
-              {step === 2 && "Breathing Exercise"}
-              {step === 3 && "Cute Pictures"}
+              {step === 2 && <Breathing />}
+              {step === 3 && <CutePictures />}
             </StyledStep>
           </StyledStepContainer>
           <StepperContainer>
