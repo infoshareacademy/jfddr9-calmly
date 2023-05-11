@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: "Outfit", sans-serif;
 `;
 export const WrapperContent = styled.div`
   display: flex;

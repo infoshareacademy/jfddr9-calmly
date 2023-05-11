@@ -14,8 +14,8 @@ export const LandingPage = () => {
           repellat quod tempore perspiciatis.
         </Styled.Paragraph>
         <Styled.WrapperButtons>
-          <Styled.Button>Button 1</Styled.Button>
-          <Styled.Button>Button 2</Styled.Button>
+          <Styled.Button>SIGN UP</Styled.Button>
+          <Styled.Button>SIGN IN</Styled.Button>
         </Styled.WrapperButtons>
       </Styled.WrapperContent>
     </Styled.Wrapper>
