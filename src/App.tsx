@@ -1,26 +1,39 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-//import styled from 'styled-components';
-//import { useSelector } from 'react-redux';
+import { createGlobalStyle } from "styled-components";
+import { useSelector } from "react-redux";
 
 import { FeelBetter } from "./routes/FeelBetter";
 
-// const Contener = styled.div`
-//   font-size: 36px;
-// `;
-
 function App() {
-  //const text: any = useSelector((state) => state);
+  const text: any = useSelector((state) => state);
+
+  type GlobalStyleProps = {
+    bg: string;
+    children?: React.ReactNode;
+  };
+
+  const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
+  body {
+    background: ${({ bg }) =>
+      bg === "bgDefault"
+        ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
+        : bg === "bgHome"
+        ? "linear-gradient(153.92deg, #F6C59C 9.05%, #E3B4AB 37.88%, #B3B4EF 79.44%)"
+        : "#222"};
+  }
+`;
+  console.log(text.reducer.text);
 
   return (
-    //<Contener>
-    //{text.exampleReducer.text}
-    <Routes>
-      <Route path={"/home"} element={<div>home</div>} />
-      <Route path={"/login"} element={<div>login</div>} />
-      <Route path={"/feelbetter"} element={<FeelBetter />} />
-    </Routes>
-    //</Contener>
+    <>
+      <GlobalStyle bg={text.reducer.text} />
+      <Routes>
+        <Route path={"/home"} element={<div>home</div>} />
+        <Route path={"/login"} element={<div>login</div>} />
+        <Route path={"/feelbetter"} element={<FeelBetter />} />
+      </Routes>
+    </>
   );
 }
 
