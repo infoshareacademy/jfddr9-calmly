@@ -4,7 +4,13 @@ import { useState } from "react";
 const MainDiv = styled.div`
   height: 100%;
 `;
-const MainCircle = styled.div`
+interface MainCircleProps {
+  state: boolean;
+}
+const MainCircle = styled.div<MainCircleProps>`
+  text-align: center;
+  font-size: 20px;
+  color: #797bec;
   z-index: 998;
   position: absolute;
   margin: auto;
@@ -29,37 +35,10 @@ const MainCircle = styled.div`
     }
   }
 `;
-const LessImportantCircle = styled.div`
-  z-index: 997;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 50%;
-  width: 140px;
-  height: 140px;
-  margin: auto;
-  background-color: rgba(227, 180, 171, 1);
-  animation: anotheranimation 8s 15 normal backwards;
-  animation-play-state: ${(props) => (props.state ? "running" : "paused")};
-  @keyframes anotheranimation {
-    10% {
-      transform: scale(1);
-    }
-    40%,
-    60% {
-      transform: scale(2);
-    }
-    80% {
-      transform: scale(6);
-      opacity: 50%;
-    }
-  }
-`;
-
-const Body = styled.body`
+interface BodyProps {
+  dark: boolean;
+}
+const Body = styled.body<BodyProps>`
   display: flex;
   flex-direction: column;
   background: rgb(246, 197, 156);
@@ -231,12 +210,10 @@ export function Breathing() {
     setState(!state);
     setDark(!dark);
   };
-
   return (
     <Body dark={dark}>
       <MainDiv>
-        <MainCircle state={state} />
-        {/* <LessImportantCircle state={state} /> */}
+        <MainCircle state={state}>inhale</MainCircle>
       </MainDiv>
       <ButtonDiv>
         <StartButton onClick={handleClick}>

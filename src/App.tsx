@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Breathing } from "./components/Breathing";
 
 const Contener = styled.div`
@@ -9,7 +9,7 @@ const Contener = styled.div`
 `;
 
 function App() {
-  const text: any = useSelector((state) => state);
+  // const text: any = useSelector((state) => state);
 
   return (
     <Contener>
