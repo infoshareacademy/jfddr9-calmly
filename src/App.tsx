@@ -2,8 +2,10 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
-
+import { Breathing } from "./components/Breathing";
 import { FeelBetter } from "./routes/FeelBetter";
+import { Register } from "./auth/Register";
+import { Login } from "./auth/Login";
 
 function App() {
   const text: any = useSelector((state) => state);
@@ -28,10 +30,13 @@ function App() {
   return (
     <>
       <GlobalStyle bg={text.reducer.text} />
+
       <Routes>
         <Route path={"/home"} element={<div>home</div>} />
-        <Route path={"/login"} element={<div>login</div>} />
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/login"} element={<Login />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
+        <Route path={"/breathing"} element={<Breathing />} />
       </Routes>
     </>
   );
