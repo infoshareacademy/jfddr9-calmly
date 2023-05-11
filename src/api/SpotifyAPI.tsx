@@ -1,15 +1,50 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import { SpotifyTrack } from "../components/SpotifyTrack";
+import { LoaderComponent } from "../components/Loader";
+import { useDispatch } from "react-redux";
+import { updateBg } from "../store/slice";
 
 const client_id = "18d4de0e32314d02b42308e9357cbb2e"; // client id
 const client_secret = "b286a9f61c344b79b96eaee2c58c3b68"; // secret
 
 let token = "";
 
+const StyledTracksContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 80%;
+`;
+
+const StyledButtonText = styled.span`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  color: #797bec;
+`;
+
+const StyledLoadButton = styled.button`
+  width: 217px;
+  height: 41px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 50px;
+  border: none;
+`;
+
 export const SpotifyAPI = () => {
   const [tracks, setTracks] = useState([]);
   const [list, setList] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
 
   useEffect(() => {
     fetch("https://accounts.spotify.com/api/token", {
@@ -53,12 +88,19 @@ export const SpotifyAPI = () => {
             url: track.track.external_urls.spotify,
             imgUrl: track.track.album.images[1].url,
             trackName: track.track.name,
+            artists: track.track.artists.map((artist: any) => {
+              return {
+                artistName: artist.name,
+                artistUrl: artist.external_urls.spotify,
+              };
+            }),
             previewUrl: track.track.preview_url,
           };
         });
         console.log(tracksArray);
         tracksArray = shuffleArray(tracksArray);
         setTracks(tracksArray);
+        setIsLoading(false);
       })
       .catch((error) => console.error(error));
   };
@@ -66,17 +108,27 @@ export const SpotifyAPI = () => {
   if (list > 90) {
     setTracks([]);
     setList(0);
+    setIsLoading(true);
     getRandomTracks(token);
   }
 
   return (
     <>
-      {tracks.length !== 0 && (
+      {isLoading ? (
+        <LoaderComponent />
+      ) : (
         <>
-          <SpotifyTrack track={tracks[list]} />
-          <SpotifyTrack track={tracks[list + 1]} />
-          <SpotifyTrack track={tracks[list + 2]} />
-          <button onClick={() => setList(list + 3)}>Load Next 3 Songs</button>
+          <StyledTracksContainer>
+            <SpotifyTrack track={tracks[list]} />
+            <SpotifyTrack track={tracks[list + 1]} />
+            <SpotifyTrack track={tracks[list + 2]} />
+          </StyledTracksContainer>
+          <StyledLoadButton
+            onClick={() => setList(list + 3)}
+            style={{ marginTop: "70px" }}
+          >
+            <StyledButtonText>load next songs</StyledButtonText>
+          </StyledLoadButton>
         </>
       )}
     </>
