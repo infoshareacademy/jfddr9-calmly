@@ -1,0 +1,42 @@
+export const json = {
+  elements: [
+    {
+      type: "checkbox",
+      name: "multiselect",
+      title: "How are you feeling? Pick 3 options",
+      isRequired: true,
+      colCount: 3,
+      itemComponent: "custom-choice-item",
+      showOtherItem: false,
+      validators: [
+        {
+          type: "answercount",
+          minCount: 3,
+          maxCount: 3,
+        },
+      ],
+      choices: [
+        "angry",
+        "wonderful",
+        "uptight",
+        "bored",
+        "inert",
+        "sad",
+        "excited",
+        "content",
+        "calm",
+        "cheerful",
+        "mad",
+        "fine",
+        "anxious",
+        "relaxed",
+        "defeated",
+        "hopeful",
+        "worried",
+        "depressed",
+      ],
+      maxSelectedChoices: 3,
+    },
+  ],
+  showQuestionNumbers: false,
+};
