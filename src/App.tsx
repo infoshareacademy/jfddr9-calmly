@@ -4,10 +4,12 @@ import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
 import { LandingPage } from "./routes/LandingPage/LandingPage";
+import { Home } from "./routes/Home/Home";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
 import { Quiz } from "./components//stressQuiz/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
+import { About } from "./components/About";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
@@ -37,7 +39,7 @@ function App() {
         : "white"};
         ${({ bg }) =>
           bg === "bgCircle" &&
-          `animation: anim 8s 15 0.2s alternate backwards;animation-play-state: paused;`}
+          `animation: anim 8s 14 0.1s alternate backwards;animation-play-state: paused;`}
         ${({ animation }) =>
           animation
             ? "animation-play-state: running;"
@@ -57,13 +59,14 @@ function App() {
       />
 
       <Routes>
-        <Route path={"/home"} element={<div>home</div>} />
+        <Route path={"/home"} element={<Home />} />
         <Route path={"/register"} element={<Register />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/quiz"} element={<Quiz />} />
         <Route path={"/quiz2"} element={<SurveyComponent />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
         <Route path={"/"} element={<LandingPage />} />
+        <Route path={"/about"} element={<About />} />
       </Routes>
     </>
   );
