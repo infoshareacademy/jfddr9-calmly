@@ -1,6 +1,87 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateBg } from "../store/slice";
+import styled from "styled-components";
+
+const StyledBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 20px 25px 35px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 50px 100px;
+  width: 807px;
+  height: 298px;
+  margin: 0 auto;
+  gap: 20px;
+`;
+
+const StyledQuestionText = styled.div`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 45px;
+  color: #797bec;
+`;
+
+const StyledAnswerButton = styled.button`
+  background: rgba(179, 180, 239, 0.27);
+  border-radius: 50px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  color: #797bec;
+  border: transparent;
+  padding: 5px 25px;
+`;
+
+const StyledAnswerSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+`;
+
+const StyledBackButton = styled.button`
+  background: rgba(179, 180, 239, 0.27);
+  border-radius: 50px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #797bec;
+  border: transparent;
+  padding: 3px 15px;
+  width: 100px;
+  text-align: center;
+  margin: 0 auto;
+`;
+
+// const StyledStaticQuestion = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+// `;
+
+const StyledStaticQuestionSpan = styled.span`
+  position: relative;
+  top: -200px;
+  right: 210px;
+  color: #ffffff;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+`;
 
 export function Quiz() {
+  const dispatch = useDispatch();
+
+  dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
+
   const questions = [
     {
       questionText: "Rate your physical effort today?",
@@ -8,7 +89,6 @@ export function Quiz() {
         { answerText: "Low", worth: 1 },
         { answerText: "Average", worth: 2 },
         { answerText: "High", worth: 3 },
-        // { answerText: "D", worth: 4 },
       ],
     },
     {
@@ -16,8 +96,6 @@ export function Quiz() {
       answerOptions: [
         { answerText: "Yes", worth: 1 },
         { answerText: "No", worth: 2 },
-        // { answerText: "C", worth: 3 },
-        // { answerText: "D", worth: 4 },
       ],
     },
     {
@@ -26,8 +104,6 @@ export function Quiz() {
       answerOptions: [
         { answerText: "Yes", worth: 1 },
         { answerText: "No", worth: 2 },
-        // { answerText: "C", worth: 3 },
-        // { answerText: "D", worth: 4 },
       ],
     },
     {
@@ -72,7 +148,6 @@ export function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  // const [stateWorth, setStateWorth] = useState(0);
   const [question0Worth, setQuestion0Worth] = useState(0);
   const [question1Worth, setQuestion1Worth] = useState(0);
   const [question2Worth, setQuestion2Worth] = useState(0);
@@ -114,6 +189,11 @@ export function Quiz() {
         break;
       case 6:
         setScore(score - question5Worth);
+        setCurrentQuestion(currentQuestion - 1);
+        console.log(score);
+        break;
+      case 7:
+        setScore(score - question6Worth);
         setCurrentQuestion(currentQuestion - 1);
         console.log(score);
         break;
@@ -238,7 +318,11 @@ export function Quiz() {
     }
   };
   return (
-    <div className="app">
+    // <StyledStaticQuestion>
+    // <StyledStaticQuestionSpan>
+    //   How are you feeling today?
+    // </StyledStaticQuestionSpan>
+    <StyledBoxDiv className="app">
       {showScore ? (
         <div className="score-section">
           {score} / {questions.length - 1}
@@ -246,25 +330,27 @@ export function Quiz() {
       ) : (
         <>
           <div className="question-section">
-            <div className="question-count">
-              {/* <span>Question {currentQuestion + 1}</span>/{questions.length - 1} */}
-            </div>
-            <div className="question-text">
+            <StyledStaticQuestionSpan>
+              How are you feeling today?
+            </StyledStaticQuestionSpan>
+            {/* <div className="question-count"></div> */}
+            <StyledQuestionText className="question-text">
               {questions[currentQuestion].questionText}
-            </div>
+            </StyledQuestionText>
           </div>
-          <div className="answer-section">
+          <StyledAnswerSection className="answer-section">
             {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <button
+              <StyledAnswerButton
                 onClick={() => handleAnswerOptionClick(answerOption.worth)}
               >
                 {answerOption.answerText}
-              </button>
+              </StyledAnswerButton>
             ))}
-          </div>
-          <button onClick={handleBackButton}>Back</button>
+          </StyledAnswerSection>
+          <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
         </>
       )}
-    </div>
+    </StyledBoxDiv>
+    // </StyledStaticQuestion>
   );
 }
