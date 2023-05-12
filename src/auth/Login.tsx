@@ -15,6 +15,7 @@ export const Login = ({ isPasswordHidden = false }) => {
       .then((jwt) => {
         form.reset();
         console.log(jwt);
+        //redux lub UserProvider lub localStorage
       })
 
       .catch((e: any) => {
