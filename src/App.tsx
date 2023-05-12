@@ -7,6 +7,8 @@ import { LandingPage } from "./components/routes/LandingPage/LandingPage";
 import { AreYou } from "./components/routes/AreYou/AreYou";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
+import { Quiz } from "./components/quiz";
+import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
@@ -24,6 +26,8 @@ function App() {
         ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
         : bg === "bgHome"
         ? "linear-gradient(153.92deg, #F6C59C 9.05%, #E3B4AB 37.88%, #B3B4EF 79.44%)"
+        : bg === "bgQuiz"
+        ? "linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);"
         : bg === "bgCircle"
         ? `radial-gradient(
           circle,
@@ -57,6 +61,8 @@ function App() {
         <Route path={"/home"} element={<div>home</div>} />
         <Route path={"/register"} element={<Register />} />
         <Route path={"/login"} element={<Login />} />
+        <Route path={"/quiz"} element={<Quiz />} />
+        <Route path={"/quiz2"} element={<SurveyComponent />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
         <Route path={"/areyou"} element={<AreYou />} />
         <Route path={"/"} element={<LandingPage />} />
