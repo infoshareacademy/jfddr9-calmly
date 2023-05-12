@@ -3,9 +3,14 @@ div {
 }
 :root {
   --dark-purple: #797bec;
+  --dark-purple: #7072d8;
+
   --ligth-purple: #b2b3f0;
   --ligth-pink: #e1b3ad;
   --ligth-orange: #f3c2a0;
   --white: #ffffff84;
   --white: #00ff1a;
+  background-image: url(vectorXd.png);
+}
+img {
 }
