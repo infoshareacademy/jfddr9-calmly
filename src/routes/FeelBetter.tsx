@@ -6,7 +6,9 @@ import { useDispatch } from "react-redux";
 
 import { SpotifyAPI } from "../api/SpotifyAPI";
 import { CutePictures } from "../api/CutePicturesAPI";
-import { Breathing } from "../components/Breathing";
+import { Breathing } from "../components/Breathing/Breathing";
+
+import { AreYou } from "../components/AreYou/AreYou";
 
 const fadeIn = keyframes`
   from {
@@ -93,10 +95,14 @@ export const FeelBetter = () => {
     dispatch(updateBg("bgDefault"));
   }, [dispatch]);
 
+  const handleStepChange = () => {
+    setStep(1);
+  };
+
   return (
     <StyledDiv>
       {step === 4 ? (
-        "Are you feeling better?"
+        <AreYou stepReset={handleStepChange} />
       ) : (
         <>
           <StyledStepContainer>

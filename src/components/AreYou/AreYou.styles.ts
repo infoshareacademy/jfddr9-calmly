@@ -43,6 +43,7 @@ export const Text = styled.div`
 `;
 
 export const Button = styled.div`
+  cursor: pointer;
   box-sizing: border-box;
   padding: 10px;
   border: 3px solid #ffffff;

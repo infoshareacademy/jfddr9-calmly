@@ -3,8 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
-import { LandingPage } from "./components/routes/LandingPage/LandingPage";
-import { AreYou } from "./components/routes/AreYou/AreYou";
+import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
 
@@ -31,7 +30,7 @@ function App() {
           rgba(227, 180, 171, 1) 45%,
           rgba(179, 180, 239, 1) 100%
         )`
-        : "#222"};
+        : "white"};
         ${({ bg }) =>
           bg === "bgCircle" &&
           `animation: anim 8s 15 0.2s alternate backwards;animation-play-state: paused;`}
@@ -58,7 +57,6 @@ function App() {
         <Route path={"/register"} element={<Register />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
-        <Route path={"/areyou"} element={<AreYou />} />
         <Route path={"/"} element={<LandingPage />} />
       </Routes>
     </>
