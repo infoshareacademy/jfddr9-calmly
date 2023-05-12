@@ -5,6 +5,8 @@ import { updateBg, updateBreathing } from "../store/slice";
 
 const MainDiv = styled.div`
   height: 100%;
+  display: flex;
+  align-items: flex-end;
 `;
 interface MainCircleProps {
   state: boolean;
@@ -23,9 +25,8 @@ const Instructions = styled.p`
 
 const Information = styled.p`
   position: relative;
-  top: 120px;
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   color: #ffffff;
 `;
 const MainCircle = styled.div<MainCircleProps>`
@@ -64,12 +65,17 @@ const ButtonDiv = styled.div`
   align-items: center;
 `;
 const StartButton = styled.button`
-  z-index: 999;
+  background-color: white;
   color: #797bec;
   border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 14px;
+  border-radius: 24px;
+  cursor: pointer;
+  z-index: 999;
+  height: 41px;
+  width: 217px;
+  margin-bottom: 12px;
+  font-weigth: 400;
+  font-size: 20px;
   font-family: "Outfit", sans-serif;
   background-color: #ffffff84;
   &:hover {
@@ -118,10 +124,10 @@ export function Breathing() {
           </InstructionDiv>
         </MainCircle>
         <ButtonDiv>
-          <StartButton onClick={handleClick}>
-            {dark ? "Pause" : "Start"}
-          </StartButton>
           {display && <Information>Let's breath together</Information>}
+          <StartButton onClick={handleClick}>
+            {dark ? "pause" : "start"}
+          </StartButton>
         </ButtonDiv>
       </MainDiv>
     </>
