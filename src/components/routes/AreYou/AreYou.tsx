@@ -1,5 +1,5 @@
 import * as Styled from "./AreYou.styles";
-import { Footer } from "../footer/Footer";
+// import { Footer } from "../footer/Footer"; //
 
 export const AreYou = () => {
   return (
