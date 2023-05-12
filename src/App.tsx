@@ -3,8 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
-import { LandingPage } from "./components/routes/LandingPage/LandingPage";
-import { AreYou } from "./components/routes/AreYou/AreYou";
+import { LandingPage } from "./routes/LandingPage/LandingPage";
+import { AreYou } from "./routes/AreYou/AreYou";
+import { Home } from "./routes/Home/Home";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
 
@@ -54,7 +55,7 @@ function App() {
       />
 
       <Routes>
-        <Route path={"/home"} element={<div>home</div>} />
+        <Route path={"/home"} element={<Home />} />
         <Route path={"/register"} element={<Register />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
