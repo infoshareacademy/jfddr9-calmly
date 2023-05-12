@@ -33,7 +33,7 @@ function App() {
         : "#222"};
         ${({ bg }) =>
           bg === "bgCircle" &&
-          `animation: anim 8s 15 0.2s alternate backwards;animation-play-state: paused;`}
+          `animation: anim 8s 14 0.1s alternate backwards;animation-play-state: paused;`}
         ${({ animation }) =>
           animation
             ? "animation-play-state: running;"
