@@ -224,39 +224,52 @@ Error generating stack: `+o.message+`
   border: transparent;
   border-radius: 50px;
   margin: 0 auto;
-  width: 60px;
-  height: 20px;
   cursor: pointer;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  padding: 5px 40px;
 `,JI=ae.button`
   background: rgba(255, 255, 255, 0.45);
   color: #797bec;
   border: transparent;
   border-radius: 50px;
-  margin: 0 auto;
-  width: 60;
-  height: 20px;
   cursor: pointer;
   margin-bottom: 20px;
-`,ZI=ae.img`
-  width: 100px;
-  height: 100px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  border-radius: 4px;
-  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
-`,eC=ae.button`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 25px;
+  text-align: center;
+  padding: 2px 10px;
+`,ZI=ae.button`
   background: rgba(255, 255, 255, 0.45);
   color: #797bec;
   border: transparent;
   border-radius: 50px;
-  margin: 0 auto;
-  width: 60px;
-  height: 20px;
   cursor: pointer;
   margin: 10px;
-`,tC=()=>k.jsx(k.Fragment,{children:k.jsx("div",{style:{display:"flex",alignSelf:"center",height:"100%"},children:k.jsx(rC,{})})}),nC=[{animal:"Dog",label:"Dog 🐶"},{animal:"Cat",label:"Cat 🐱"},{animal:"Fox",label:"Fox 🦊"}],rC=()=>{const[e,t]=C.useState(!1),[n,r]=C.useState(""),[i,o]=C.useState("Dog");Il()(Cl("bgDefault")),C.useEffect(()=>{a("Dog")},[]);const a=l=>{if(console.log(l),l==="Dog"){console.log("step 1");const u=`${YI}images/search?limit=1`;fetch(u,{headers:{"x-api-key":cg}}).then(c=>c.json()).then(c=>{console.log(c),c.map(function(h){r(h.url),o("Dog"),t(!1)})}).catch(function(c){console.log(c)})}else if(l==="Cat"){console.log("step 2");const u=`${XI}images/search?limit=1`;fetch(u,{headers:{"x-api-key":cg}}).then(c=>c.json()).then(c=>{console.log(c),c.map(function(h){r(h.url),o("Cat"),t(!1)})}).catch(function(c){console.log(c)})}else l==="Fox"&&(console.log("step 3"),fetch(qI,{}).then(c=>c.json()).then(c=>{console.log(c),r(c.image),o("Fox"),t(!1)}).catch(function(c){console.log(c)}))};return k.jsx(k.Fragment,{children:k.jsxs("div",{style:{display:"flex",flexDirection:"column-reverse",margin:"0 auto",gap:"20px"},children:[k.jsxs("div",{children:[k.jsxs("div",{style:{display:"flex",flexDirection:"column-reverse",paddingBottom:"10px"},children:[k.jsx(QI,{onClick:()=>t(l=>!l),children:"Animals"}),e&&k.jsx("div",{style:{display:"flex",flexDirection:"row",justifyContent:"center"},children:nC.map(l=>k.jsx("div",{children:k.jsx(eC,{onClick:()=>a(l.animal),children:l.label})}))})]}),k.jsx(JI,{onClick:()=>a(i),children:"New Picture"})]}),k.jsx("div",{style:{display:"flex",justifyContent:"center"},children:k.jsx(ZI,{src:n})})]})})},iC=ae.div`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  padding: 5px 40px;
+`,eC=ae.img`
+  width: 500px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+`,tC=()=>k.jsx(k.Fragment,{children:k.jsx("div",{style:{display:"flex",alignSelf:"center",height:"100%"},children:k.jsx(rC,{})})}),nC=[{animal:"Dog",label:"dog"},{animal:"Cat",label:"cat"},{animal:"Fox",label:"fox"}],rC=()=>{const[e,t]=C.useState(!1),[n,r]=C.useState(""),[i,o]=C.useState("Dog");Il()(Cl("bgDefault")),C.useEffect(()=>{a("Dog")},[]);const a=l=>{if(console.log(l),l==="Dog"){console.log("step 1");const u=`${YI}images/search?limit=1`;fetch(u,{headers:{"x-api-key":cg}}).then(c=>c.json()).then(c=>{console.log(c),c.map(function(h){r(h.url),o("Dog"),t(!1)})}).catch(function(c){console.log(c)})}else if(l==="Cat"){console.log("step 2");const u=`${XI}images/search?limit=1`;fetch(u,{headers:{"x-api-key":cg}}).then(c=>c.json()).then(c=>{console.log(c),c.map(function(h){r(h.url),o("Cat"),t(!1)})}).catch(function(c){console.log(c)})}else l==="Fox"&&(console.log("step 3"),fetch(qI,{}).then(c=>c.json()).then(c=>{console.log(c),r(c.image),o("Fox"),t(!1)}).catch(function(c){console.log(c)}))};return k.jsx(k.Fragment,{children:k.jsxs("div",{style:{display:"flex",flexDirection:"column-reverse",margin:"0 auto",gap:"15px",alignSelf:"center"},children:[k.jsxs("div",{children:[k.jsx(JI,{onClick:()=>a(i),children:"generate new picture"}),k.jsxs("div",{style:{display:"flex",flexDirection:"column",paddingBottom:"10px"},children:[k.jsx(QI,{onClick:()=>t(l=>!l),children:"animals"}),e&&k.jsx("div",{style:{display:"flex",flexDirection:"row",justifyContent:"center"},children:nC.map(l=>k.jsx("div",{children:k.jsx(ZI,{onClick:()=>a(l.animal),children:l.label})}))})]})]}),k.jsx("div",{style:{display:"flex",justifyContent:"center"},children:k.jsx(eC,{src:n})})]})})},iC=ae.div`
   height: 100%;
 `,oC=ae.div`
   text-align: center;
