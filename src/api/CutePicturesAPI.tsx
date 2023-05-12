@@ -6,8 +6,6 @@ import { updateBg } from "../store/slice";
 const API_URL_CAT = `https://api.thecatapi.com/v1/`;
 const API_URL_DOG = `https://api.thedogapi.com/v1/`;
 const API_URL_FOX = `https://randomfox.ca/floof`;
-// const API_URL_MONKEY = `https://www.placemonkeys.com/500/350?random=1`;
-// const API_URL_DUCK = `https://random-d.uk/api/v2/random`;
 const API_KEY = "DEMO-API-KEY";
 
 const StyledAnimalButton = styled.button`
@@ -16,9 +14,14 @@ const StyledAnimalButton = styled.button`
   border: transparent;
   border-radius: 50px;
   margin: 0 auto;
-  width: 60px;
-  height: 20px;
   cursor: pointer;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  padding: 5px 40px;
 `;
 
 const StyledNewPicButton = styled.button`
@@ -26,22 +29,15 @@ const StyledNewPicButton = styled.button`
   color: #797bec;
   border: transparent;
   border-radius: 50px;
-  margin: 0 auto;
-  width: 60;
-  height: 20px;
   cursor: pointer;
   margin-bottom: 20px;
-`;
-
-const StyledImg = styled.img`
-  width: 100px;
-  height: 100px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  border-radius: 4px;
-  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 25px;
+  text-align: center;
+  padding: 2px 10px;
 `;
 
 const StyledCategoryButton = styled.button`
@@ -49,11 +45,26 @@ const StyledCategoryButton = styled.button`
   color: #797bec;
   border: transparent;
   border-radius: 50px;
-  margin: 0 auto;
-  width: 60px;
-  height: 20px;
   cursor: pointer;
   margin: 10px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  padding: 5px 40px;
+`;
+
+const StyledImg = styled.img`
+  width: 500px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
 `;
 
 export const CutePictures = () => {
@@ -75,24 +86,16 @@ export const CutePictures = () => {
 const list = [
   {
     animal: "Dog",
-    label: "Dog 🐶",
+    label: "dog",
   },
   {
     animal: "Cat",
-    label: "Cat 🐱",
+    label: "cat",
   },
   {
     animal: "Fox",
-    label: "Fox 🦊",
+    label: "fox",
   },
-  //   {
-  //     animal: "Monkey",
-  //     label: "Monkey 🐒",
-  //   },
-  //   {
-  //     animal: "Duck",
-  //     label: "Duck 🐒",
-  //   },
 ];
 
 export const Dropdown = () => {
@@ -110,7 +113,6 @@ export const Dropdown = () => {
 
   const getCutePicture = (animal: string) => {
     console.log(animal);
-    // START OF DOG
     if (animal === "Dog") {
       console.log("step 1");
       const url = `${API_URL_DOG}images/search?limit=1`;
@@ -135,7 +137,6 @@ export const Dropdown = () => {
         .catch(function (error) {
           console.log(error);
         });
-      // START OF CAT
     } else if (animal === "Cat") {
       console.log("step 2");
       const url = `${API_URL_CAT}images/search?limit=1`;
@@ -160,7 +161,6 @@ export const Dropdown = () => {
         .catch(function (error) {
           console.log(error);
         });
-      // START OF FOX
     } else if (animal === "Fox") {
       console.log("step 3");
       const url = API_URL_FOX;
@@ -178,51 +178,7 @@ export const Dropdown = () => {
         .catch(function (error) {
           console.log(error);
         });
-      // START OF MONKEY
     }
-    // else if (animal === "Monkey") {
-    //   console.log("step 4");
-    //   const url = API_URL_MONKEY;
-
-    //   fetch(url, {
-    //     mode: "no-cors",
-    //   })
-    //     .then((data) => {
-    //       console.log(data);
-    //       setImg(url);
-    //       setCategory("Monkey");
-    //       setIsOpen(false);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
-    // else if (animal === "Duck") {
-    //   console.log("step 5");
-    //   const url = API_URL_DUCK;
-
-    //   fetch(API_URL_DUCK, {
-    //     // method: "GET",
-    //     mode: "no-cors",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((response) => {
-    //       //   console.log(response.text());
-    //       //   console.log(response);
-    //       return response;
-    //     })
-    //     .then((data) => {
-    //       console.log(data);
-    //       setImg(data.url || "");
-    //       setCategory("Duck");
-    //       setIsOpen(false);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
   };
 
   return (
@@ -232,19 +188,23 @@ export const Dropdown = () => {
           display: "flex",
           flexDirection: "column-reverse",
           margin: "0 auto",
-          gap: "20px",
+          gap: "15px",
+          alignSelf: "center",
         }}
       >
         <div>
+          <StyledNewPicButton onClick={() => getCutePicture(category)}>
+            generate new picture
+          </StyledNewPicButton>
           <div
             style={{
               display: "flex",
-              flexDirection: "column-reverse",
+              flexDirection: "column",
               paddingBottom: "10px",
             }}
           >
             <StyledAnimalButton onClick={() => setIsOpen((prev) => !prev)}>
-              Animals
+              animals
             </StyledAnimalButton>
             {isOpen && (
               <div
@@ -266,9 +226,9 @@ export const Dropdown = () => {
               </div>
             )}
           </div>
-          <StyledNewPicButton onClick={() => getCutePicture(category)}>
+          {/* <StyledNewPicButton onClick={() => getCutePicture(category)}>
             New Picture
-          </StyledNewPicButton>
+          </StyledNewPicButton> */}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <StyledImg src={img} />
