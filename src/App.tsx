@@ -9,6 +9,7 @@ import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
 import { Quiz } from "./components/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
+import { About } from "./components/About";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
@@ -38,7 +39,7 @@ function App() {
         : "#222"};
         ${({ bg }) =>
           bg === "bgCircle" &&
-          `animation: anim 8s 15 0.2s alternate backwards;animation-play-state: paused;`}
+          `animation: anim 8s 14 0.1s alternate backwards;animation-play-state: paused;`}
         ${({ animation }) =>
           animation
             ? "animation-play-state: running;"
@@ -66,6 +67,7 @@ function App() {
         <Route path={"/feelbetter"} element={<FeelBetter />} />
         <Route path={"/areyou"} element={<AreYou />} />
         <Route path={"/"} element={<LandingPage />} />
+        <Route path={"/about"} element={<About />} />
       </Routes>
     </>
   );

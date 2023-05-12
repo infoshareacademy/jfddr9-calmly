@@ -28,6 +28,10 @@ const StyledStep = styled.div`
   height: 100%;
 
   animation: ${fadeIn} 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StyledDiv = styled.div`
