@@ -1,5 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+
+import { updateBg } from "../store/slice";
+import { useDispatch } from "react-redux";
+
+import { SpotifyAPI } from "../api/SpotifyAPI";
+import { CutePictures } from "../api/CutePicturesAPI";
+import { Breathing } from "../components/Breathing";
 
 const fadeIn = keyframes`
   from {
@@ -11,10 +18,9 @@ const fadeIn = keyframes`
 `;
 
 const StyledStepContainer = styled.div`
-  width: 80%;
+  width: 90%;
   height: 70%;
-  background-color: green;
-  margin-top: 5%;
+  border: 0;
 `;
 
 const StyledStep = styled.div`
@@ -25,17 +31,37 @@ const StyledStep = styled.div`
 `;
 
 const StyledDiv = styled.div`
-  width: 70vw;
-  height: 60vh;
-  background-color: gray;
+  margin: auto;
+  width: 90vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const StepperContainer = styled.div`
   display: flex;
-  margin-top: 5%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 1px;
+`;
+
+const StepButton = styled.button`
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 50px;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  margin-inline: 10px;
+  color: #797bec;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
 `;
 
 type StepButtonType = {
@@ -43,15 +69,29 @@ type StepButtonType = {
 };
 
 const StyledStepButton = styled.button<StepButtonType>`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 0;
-  background-color: ${(props) => (props.currentStep ? "blue" : "black")};
+  background-color: ${(props) =>
+    props.currentStep ? "white" : "rgba(255, 255, 255, 0.45)"};
+  color: #797bec;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
 `;
 
 export const FeelBetter = () => {
   const [step, setStep] = useState(1);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
 
   return (
     <StyledDiv>
@@ -61,15 +101,15 @@ export const FeelBetter = () => {
         <>
           <StyledStepContainer>
             <StyledStep key={step}>
-              {step === 1 && "Spotify API"}
-              {step === 2 && "Breathing Exercise"}
-              {step === 3 && "Cute Pictures"}
+              {step === 1 && <SpotifyAPI />}
+              {step === 2 && <Breathing />}
+              {step === 3 && <CutePictures />}
             </StyledStep>
           </StyledStepContainer>
           <StepperContainer>
-            <button onClick={() => setStep(step - 1)} disabled={step === 1}>
-              Back
-            </button>
+            <StepButton onClick={() => setStep(step - 1)} disabled={step === 1}>
+              {"<"}
+            </StepButton>
             <StyledStepButton
               currentStep={step === 1}
               onClick={() => setStep(1)}
@@ -88,9 +128,7 @@ export const FeelBetter = () => {
             >
               3
             </StyledStepButton>
-            <button onClick={() => setStep(step + 1)}>
-              {step === 3 ? "Finish" : "Next"}
-            </button>
+            <StepButton onClick={() => setStep(step + 1)}>{">"}</StepButton>
           </StepperContainer>
         </>
       )}

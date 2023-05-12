@@ -1,0 +1,11 @@
+div {
+  background-color: aqua;
+}
+:root {
+  --dark-purple: #797bec;
+  --ligth-purple: #b2b3f0;
+  --ligth-pink: #e1b3ad;
+  --ligth-orange: #f3c2a0;
+  --white: #ffffff84;
+  --white: #00ff1a;
+}
