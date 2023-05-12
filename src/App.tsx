@@ -6,7 +6,7 @@ import { FeelBetter } from "./routes/FeelBetter";
 import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
-import { Quiz } from "./components/quiz";
+import { Quiz } from "./components//stressQuiz/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 
 function App() {

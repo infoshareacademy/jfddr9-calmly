@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBg } from "../store/slice";
+import { updateBg } from "../../store/slice";
 import styled from "styled-components";
 
 const StyledBoxDiv = styled.div`
