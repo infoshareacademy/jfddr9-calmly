@@ -9,35 +9,68 @@ import { db } from "../api/firebase";
 import { setDoc, doc } from "firebase/firestore";
 // import {useState} from 'react'
 
+const Header = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  margin-top: 80px;
+  color: #797bec;
+`;
+
 const FormRegister = styled.form`
+  font-family: "Outfit";
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
 
 const InputRegister = styled.input`
-  width: 518px;
   height: 50px;
-
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
+  border: 0;
+  color: #797bec;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+
+  ::placeholder {
+    color: #797bec;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    padding-left: 10px;
+  }
 `;
 
 const ButtonRegister = styled.button`
+  cursor: pointer;
   width: 299px;
   height: 67px;
   background: #e3b4ab;
   border-radius: 50px;
-
-  // font-family: 'Outfit';
+  border: 0;
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 25px;
   line-height: 32px;
-  /* identical to box height */
-
+  margin: 70px auto 0 auto;
   text-align: center;
-
+  text-transform: uppercase;
   color: #ffffff;
 `;
 
@@ -82,12 +115,11 @@ export const Register = ({ isPasswordHidden = false }) => {
       });
   };
 
-  //wyrzucic id
-
   return (
     <>
+      <Header>Create Account</Header>
       <FormRegister onSubmit={handleRegister}>
-        <div>
+        <InputWrapper>
           <InputRegister
             type="text"
             name="fullName"
@@ -100,29 +132,23 @@ export const Register = ({ isPasswordHidden = false }) => {
             id="email"
             placeholder="Email"
           />
-        </div>
-        {/* <select name="country">
 
-        {countries.map(({  }, index) => (
-        <option value={} name={name}  index={index} key={name} />{}</option>
-      ))}
-
+          {/* <select name="country">
           <option value={defaultCountry}></option>
           <option value='PL'>PL</option>
           <option value='GB' selected>GB</option>
           <option value='DE'>DE</option>
         </select> */}
-        {!isPasswordHidden && (
-          <div>
+          {!isPasswordHidden && (
             <InputRegister
               type="password"
               name="password"
               id="password"
               placeholder="Password"
             />
-          </div>
-        )}
-        <ButtonRegister>SING UP</ButtonRegister>
+          )}
+        </InputWrapper>
+        <ButtonRegister>Sign up</ButtonRegister>
       </FormRegister>
     </>
   );

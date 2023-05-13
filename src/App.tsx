@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
 import { LandingPage } from "./components/routes/LandingPage/LandingPage";
 import { AreYou } from "./components/routes/AreYou/AreYou";
-import { Register } from "./auth/Register";
-import { Login } from "./auth/Login";
+import { RegisterPage } from "./components/RegisterPage";
+import { LoginPage } from "./components/LoginPage";
 import { Quiz } from "./components/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 import { About } from "./components/About";
@@ -60,8 +60,8 @@ function App() {
 
       <Routes>
         <Route path={"/home"} element={<div>home</div>} />
-        <Route path={"/register"} element={<Register />} />
-        <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<RegisterPage />} />
+        <Route path={"/login"} element={<LoginPage />} />
         <Route path={"/quiz"} element={<Quiz />} />
         <Route path={"/quiz2"} element={<SurveyComponent />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
