@@ -8,7 +8,6 @@ import { Home } from "./routes/Home/Home";
 import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
 import { Quiz } from "./components//stressQuiz/quiz";
-import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 import { About } from "./components/About";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -98,7 +97,6 @@ function App() {
           <Route path={"/register"} element={<Register />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={"/quiz"} element={<Quiz />} />
-          <Route path={"/quiz2"} element={<SurveyComponent />} />
           <Route path={"/feelbetter"} element={<FeelBetter />} />
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/about"} element={<About />} />

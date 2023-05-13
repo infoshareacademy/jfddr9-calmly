@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { updateBg } from "../../store/slice";
 import styled from "styled-components";
 
+import { SurveyComponent } from "../MultiSelectQuiz/multiselectquiz";
+
 const StyledBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -141,12 +143,12 @@ export function Quiz() {
     },
     {
       questionText: "Finished",
-      answerOptions: [{ answerText: "Submit", worth: 0 }],
+      answerOptions: [{ answerText: "Next", worth: 0 }],
     },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+  const [showSurvey, setShowSurvey] = useState(false);
   const [score, setScore] = useState(0);
   const [question0Worth, setQuestion0Worth] = useState(0);
   const [question1Worth, setQuestion1Worth] = useState(0);
@@ -314,7 +316,7 @@ export function Quiz() {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setShowScore(true);
+      setShowSurvey(true);
     }
   };
   return (
@@ -322,13 +324,14 @@ export function Quiz() {
     // <StyledStaticQuestionSpan>
     //   How are you feeling today?
     // </StyledStaticQuestionSpan>
-    <StyledBoxDiv className="app">
-      {showScore ? (
-        <div className="score-section">
-          {score} / {questions.length - 1}
-        </div>
+    <>
+      {showSurvey ? (
+        // <div className="score-section">
+        //   {score} / {questions.length - 1}
+        // </div>
+        <SurveyComponent />
       ) : (
-        <>
+        <StyledBoxDiv className="app">
           <div className="question-section">
             <StyledStaticQuestionSpan>
               How are you feeling today?
@@ -348,9 +351,10 @@ export function Quiz() {
             ))}
           </StyledAnswerSection>
           <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
-        </>
+        </StyledBoxDiv>
       )}
-    </StyledBoxDiv>
+    </>
+
     // </StyledStaticQuestion>
   );
 }
