@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";
 
-import { Login } from "../auth/Login";
-import { GraphicsCard } from "./GraphicsCard";
+import { GraphicsCard } from "../components/GraphicsCard";
+import { ForgotPassword } from "../auth/ForgotPassword";
 
 const MainWrapper = styled.div`
   font-family: "Outfit";
@@ -11,8 +11,8 @@ const MainWrapper = styled.div`
   justify-content: center;
 `;
 
-const LoginCardWrapper = styled.div`
-  max-width: 435px;
+const ForgotPasswordCardWrapper = styled.div`
+  max-width: 301px;
   height: 688px;
   margin: 15px;
   padding: 0px 60px;
@@ -21,14 +21,14 @@ const LoginCardWrapper = styled.div`
   border-radius: 30px;
 `;
 
-const FooterWrapperLoginCard = styled.div`
+const FooterWrapperForgotPasswordCard = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   margin-top: 120px;
 `;
 
-const FooterParagraphLoginCard = styled.p`
+const FooterParagraphForgotPasswordCard = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -52,18 +52,18 @@ font-size: 16px;
 `;
 //do zmiany kolor hover i active
 
-export const LoginPage = () => {
+export const ForgotPasswordPage = () => {
   return (
     <MainWrapper>
-      <LoginCardWrapper>
-        <Login />
-        <FooterWrapperLoginCard>
-          <FooterParagraphLoginCard>
+      <ForgotPasswordCardWrapper>
+        <ForgotPassword />
+        <FooterWrapperForgotPasswordCard>
+          <FooterParagraphForgotPasswordCard>
             Do not have an account?
-          </FooterParagraphLoginCard>
+          </FooterParagraphForgotPasswordCard>
           <NavBarLink to="/register">Sign up</NavBarLink>
-        </FooterWrapperLoginCard>
-      </LoginCardWrapper>
+        </FooterWrapperForgotPasswordCard>
+      </ForgotPasswordCardWrapper>
       <GraphicsCard />
     </MainWrapper>
   );

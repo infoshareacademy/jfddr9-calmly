@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
 import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Home } from "./routes/Home/Home";
-import { RegisterPage } from "./components/RegisterPage";
-import { LoginPage } from "./components/LoginPage";
+import { RegisterPage } from "./routes/RegisterPage";
+import { LoginPage } from "./routes/LoginPage";
 import { Quiz } from "./components//stressQuiz/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 import { About } from "./components/About";
@@ -15,7 +15,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
 
 import { auth } from "./api/firebase";
-import { ForgotPasswordPage } from "./components/ForgotPasswordPage";
+import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
