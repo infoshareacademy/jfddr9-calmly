@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
 import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Home } from "./routes/Home/Home";
@@ -13,12 +13,18 @@ import { About } from "./components/About";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
+import { signOut, updateAuthStateChanged } from "./store/authSlice";
+
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./api/firebase";
 
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 
 function App() {
-  const bgStates: any = useSelector((state) => state);
+  const reduxStore: any = useSelector((state) => state);
+
+  const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -58,26 +64,26 @@ function App() {
   
   }
 `;
-  console.log(bgStates.reducer.text);
-  console.log(bgStates.reducer.breathingAnimation);
+
+  console.log(reduxStore.bg.text);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        console.log(uid);
 
-        ////tutaj update stanu w redux z informacjami o użytkowniku
-
-        navigate("/home");
-        setIsLoading(false);
-
-        // ...
+        const docRef = doc(db, `users/${uid}`);
+        getDoc(docRef)
+          .then((userData) => {
+            const userNewData = userData.data();
+            console.log(userNewData);
+            dispatch(updateAuthStateChanged(userNewData));
+            navigate("/home");
+            setIsLoading(false);
+          })
+          .catch((e) => console.error(e));
       } else {
-        // User is signed out
-        // ...
+        dispatch(signOut());
         navigate("/");
         setIsLoading(false);
       }
@@ -87,8 +93,8 @@ function App() {
   return (
     <>
       <GlobalStyle
-        bg={bgStates.reducer.text}
-        animation={bgStates.reducer.breathingAnimation}
+        bg={reduxStore.bg.text}
+        animation={reduxStore.bg.breathingAnimation}
       />
 
       {isLoading ? (
