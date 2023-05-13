@@ -10,6 +10,7 @@ import { LoginPage } from "./components/LoginPage";
 import { Quiz } from "./components/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 import { About } from "./components/About";
+import { ForgotPasswordPage } from "./components/ForgotPasswordPage";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
@@ -62,6 +63,7 @@ function App() {
         <Route path={"/home"} element={<div>home</div>} />
         <Route path={"/register"} element={<RegisterPage />} />
         <Route path={"/login"} element={<LoginPage />} />
+        <Route path={"/forgotPassword"} element={<ForgotPasswordPage />} />
         <Route path={"/quiz"} element={<Quiz />} />
         <Route path={"/quiz2"} element={<SurveyComponent />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
