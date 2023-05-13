@@ -25,6 +25,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(
+    141.59deg,
+    #f6c59c 11.57%,
+    #e3b4ab 53.27%,
+    #b3b4ef 123.37%
+  );
 }
 
 @keyframes anim {
