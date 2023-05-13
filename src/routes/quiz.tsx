@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBg } from "../../store/slice";
+import { updateBg } from "../store/slice";
 import styled from "styled-components";
 
-import { SurveyComponent } from "../MultiSelectQuiz/multiselectquiz";
+import { SurveyComponent } from "../components/MultiSelectQuiz/multiselectquiz";
 
 const StyledBoxDiv = styled.div`
   display: flex;
@@ -82,8 +82,9 @@ const StyledStaticQuestionSpan = styled.span`
 export function Quiz() {
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
-
+  useEffect(() => {
+    dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
+  }, [dispatch]);
   const questions = [
     {
       questionText: "Rate your physical effort today?",
@@ -342,13 +343,16 @@ export function Quiz() {
             </StyledQuestionText>
           </div>
           <StyledAnswerSection className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <StyledAnswerButton
-                onClick={() => handleAnswerOptionClick(answerOption.worth)}
-              >
-                {answerOption.answerText}
-              </StyledAnswerButton>
-            ))}
+            {questions[currentQuestion].answerOptions.map(
+              (answerOption, index) => (
+                <StyledAnswerButton
+                  key={index}
+                  onClick={() => handleAnswerOptionClick(answerOption.worth)}
+                >
+                  {answerOption.answerText}
+                </StyledAnswerButton>
+              )
+            )}
           </StyledAnswerSection>
           <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
         </StyledBoxDiv>

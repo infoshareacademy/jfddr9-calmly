@@ -7,8 +7,8 @@ import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Home } from "./routes/Home/Home";
 import { RegisterPage } from "./routes/RegisterPage";
 import { LoginPage } from "./routes/LoginPage";
-import { Quiz } from "./components//stressQuiz/quiz";
-import { About } from "./components/About";
+import { Quiz } from "./routes/quiz";
+import { About } from "./routes/About";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
@@ -59,6 +59,7 @@ function App() {
           animation
             ? "animation-play-state: running;"
             : "animation-play-state: paused;"}
+
         
   
   }

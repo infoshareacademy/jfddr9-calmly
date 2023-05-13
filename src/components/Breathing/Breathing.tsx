@@ -103,7 +103,11 @@ export function Breathing() {
   }, [count, instru]);
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgCircle")); //zmiana samego tła
+  useEffect(() => {
+    dispatch(updateBg("bgCircle"));
+  }, [dispatch]);
+
+  //zmiana samego tła
 
   const handleClick = () => {
     setState(!state);
