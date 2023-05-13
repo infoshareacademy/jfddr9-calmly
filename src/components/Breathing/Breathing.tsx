@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBg, updateBreathing } from "../store/slice";
+import { updateBg, updateBreathing } from "../../store/slice";
 
 const MainDiv = styled.div`
   height: 100%;

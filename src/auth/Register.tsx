@@ -16,6 +16,7 @@ export const Register = ({ isPasswordHidden = false }) => {
       .then((jwt) => {
         form.reset();
         console.log(jwt);
+        return jwt;
       })
 
       .catch((e: FirebaseError) => {

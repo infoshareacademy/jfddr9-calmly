@@ -14,7 +14,8 @@ export const Login = ({ isPasswordHidden = false }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((jwt) => {
         form.reset();
-        console.log(jwt);
+        //console.log(jwt);
+        return jwt;
       })
 
       .catch((e: any) => {
