@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { FeelBetter } from "./routes/FeelBetter";
@@ -10,9 +10,18 @@ import { Login } from "./auth/Login";
 import { Quiz } from "./components//stressQuiz/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
 import { About } from "./components/About";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { LoaderComponent } from "./components/Loader";
+
+import { auth } from "./api/firebase";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   type GlobalStyleProps = {
     bg: string;
@@ -51,6 +60,29 @@ function App() {
   console.log(bgStates.reducer.text);
   console.log(bgStates.reducer.breathingAnimation);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        console.log(uid);
+
+        ////tutaj update stanu w redux z informacjami o użytkowniku
+
+        navigate("/home");
+        setIsLoading(false);
+
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        navigate("/");
+        setIsLoading(false);
+      }
+    });
+  }, []);
+
   return (
     <>
       <GlobalStyle
@@ -58,16 +90,20 @@ function App() {
         animation={bgStates.reducer.breathingAnimation}
       />
 
-      <Routes>
-        <Route path={"/home"} element={<Home />} />
-        <Route path={"/register"} element={<Register />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/quiz"} element={<Quiz />} />
-        <Route path={"/quiz2"} element={<SurveyComponent />} />
-        <Route path={"/feelbetter"} element={<FeelBetter />} />
-        <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/about"} element={<About />} />
-      </Routes>
+      {isLoading ? (
+        <LoaderComponent />
+      ) : (
+        <Routes>
+          <Route path={"/home"} element={<Home />} />
+          <Route path={"/register"} element={<Register />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/quiz"} element={<Quiz />} />
+          <Route path={"/quiz2"} element={<SurveyComponent />} />
+          <Route path={"/feelbetter"} element={<FeelBetter />} />
+          <Route path={"/"} element={<LandingPage />} />
+          <Route path={"/about"} element={<About />} />
+        </Routes>
+      )}
     </>
   );
 }
