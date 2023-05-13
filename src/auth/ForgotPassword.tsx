@@ -1,22 +1,33 @@
-import { NavLink } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../api/firebase";
 
 import styled from "styled-components";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../api/firebase";
 import { firebaseErrors } from "../utils/firebaseErrors";
+import { FirebaseError } from "firebase/app";
 
 const Header = styled.p`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
-  font-size: 42px;
-  line-height: 53px;
+  font-size: 36px;
+  line-height: 45px;
   text-align: center;
   margin-top: 90px;
   color: #797bec;
 `;
-const FormLogin = styled.form`
+
+const ParagraphHeader = styled.p`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #797bec;
+`;
+
+const FormForgotPassword = styled.form`
   font-family: "Outfit";
   display: flex;
   flex-direction: column;
@@ -29,7 +40,7 @@ const InputWrapper = styled.div`
   gap: 15px;
 `;
 
-const InputLogin = styled.input`
+const InputForgotPassword = styled.input`
   height: 50px;
 
   background: #ffffff;
@@ -42,7 +53,6 @@ const InputLogin = styled.input`
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 25px;
 
   ::placeholder {
     color: #797bec;
@@ -54,26 +64,8 @@ const InputLogin = styled.input`
     padding-left: 10px;
   }
 `;
-const NavBarLink = styled(NavLink)`
-color: #797BEC;
-text-decoration: none;
-font-family: 'Outfit';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-margin-left: auto;
-margin-top: 15px;
 
-&:hover,
-&:focus{
-   color: blue; 
-}
-&:active{
-   color: blue; 
-`;
-//do zmiany focus i active
-
-const ButtonLogin = styled.button`
+const ButtonForgotPassword = styled.button`
   cursor: pointer;
   width: 299px;
   height: 67px;
@@ -90,23 +82,20 @@ const ButtonLogin = styled.button`
   color: #ffffff;
 `;
 
-export const Login = ({ isPasswordHidden = false }) => {
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+export const ForgotPassword = () => {
+  const handlePasswordReset = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
 
     const email = form.email.value;
-    const password = form.password.value;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((jwt) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
         form.reset();
-        console.log(jwt);
-        //redux lub UserProvider lub localStorage
+        console.log("udalo sie!!!!!!!!");
       })
-
-      .catch((e: any) => {
+      .catch((e: FirebaseError) => {
         console.dir(e);
         alert(firebaseErrors[e.code]);
       });
@@ -114,28 +103,21 @@ export const Login = ({ isPasswordHidden = false }) => {
 
   return (
     <>
-      <Header>Sign in</Header>
-      <FormLogin onSubmit={handleLogin}>
+      <Header>Forgotten password?</Header>
+      <ParagraphHeader>
+        We will send you a password reset link to your e-mail address
+      </ParagraphHeader>
+      <FormForgotPassword onSubmit={handlePasswordReset}>
         <InputWrapper>
-          <InputLogin
+          <InputForgotPassword
             type="email"
             name="email"
             id="email"
             placeholder="Email"
           />
-
-          {!isPasswordHidden && (
-            <InputLogin
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-            />
-          )}
         </InputWrapper>
-        <NavBarLink to="/forgotPassword">Forgot password?</NavBarLink>
-        <ButtonLogin>Sign in</ButtonLogin>
-      </FormLogin>
+        <ButtonForgotPassword>Send</ButtonForgotPassword>
+      </FormForgotPassword>
     </>
   );
 };
