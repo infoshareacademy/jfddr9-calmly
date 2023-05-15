@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBg } from "../../store/slice";
+import { updateBg } from "../store/slice";
 import styled from "styled-components";
+
+import { SurveyComponent } from "../components/MultiSelectQuiz/multiselectquiz";
 
 const StyledBoxDiv = styled.div`
   display: flex;
@@ -80,8 +82,9 @@ const StyledStaticQuestionSpan = styled.span`
 export function Quiz() {
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
-
+  useEffect(() => {
+    dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
+  }, [dispatch]);
   const questions = [
     {
       questionText: "Rate your physical effort today?",
@@ -141,12 +144,12 @@ export function Quiz() {
     },
     {
       questionText: "Finished",
-      answerOptions: [{ answerText: "Submit", worth: 0 }],
+      answerOptions: [{ answerText: "Next", worth: 0 }],
     },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+  const [showSurvey, setShowSurvey] = useState(false);
   const [score, setScore] = useState(0);
   const [question0Worth, setQuestion0Worth] = useState(0);
   const [question1Worth, setQuestion1Worth] = useState(0);
@@ -314,7 +317,7 @@ export function Quiz() {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setShowScore(true);
+      setShowSurvey(true);
     }
   };
   return (
@@ -322,13 +325,14 @@ export function Quiz() {
     // <StyledStaticQuestionSpan>
     //   How are you feeling today?
     // </StyledStaticQuestionSpan>
-    <StyledBoxDiv className="app">
-      {showScore ? (
-        <div className="score-section">
-          {score} / {questions.length - 1}
-        </div>
+    <>
+      {showSurvey ? (
+        // <div className="score-section">
+        //   {score} / {questions.length - 1}
+        // </div>
+        <SurveyComponent />
       ) : (
-        <>
+        <StyledBoxDiv className="app">
           <div className="question-section">
             <StyledStaticQuestionSpan>
               How are you feeling today?
@@ -339,18 +343,22 @@ export function Quiz() {
             </StyledQuestionText>
           </div>
           <StyledAnswerSection className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <StyledAnswerButton
-                onClick={() => handleAnswerOptionClick(answerOption.worth)}
-              >
-                {answerOption.answerText}
-              </StyledAnswerButton>
-            ))}
+            {questions[currentQuestion].answerOptions.map(
+              (answerOption, index) => (
+                <StyledAnswerButton
+                  key={index}
+                  onClick={() => handleAnswerOptionClick(answerOption.worth)}
+                >
+                  {answerOption.answerText}
+                </StyledAnswerButton>
+              )
+            )}
           </StyledAnswerSection>
           <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
-        </>
+        </StyledBoxDiv>
       )}
-    </StyledBoxDiv>
+    </>
+
     // </StyledStaticQuestion>
   );
 }

@@ -7,9 +7,8 @@ import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Home } from "./routes/Home/Home";
 import { RegisterPage } from "./routes/RegisterPage";
 import { LoginPage } from "./routes/LoginPage";
-import { Quiz } from "./components//stressQuiz/quiz";
-import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
-import { About } from "./components/About";
+import { Quiz } from "./routes/quiz";
+import { About } from "./routes/About";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
@@ -60,6 +59,7 @@ function App() {
           animation
             ? "animation-play-state: running;"
             : "animation-play-state: paused;"}
+
         
   
   }
@@ -106,7 +106,6 @@ function App() {
           <Route path={"/login"} element={<LoginPage />} />
           <Route path={"/forgotPassword"} element={<ForgotPasswordPage />} />
           <Route path={"/quiz"} element={<Quiz />} />
-          <Route path={"/quiz2"} element={<SurveyComponent />} />
           <Route path={"/feelbetter"} element={<FeelBetter />} />
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/about"} element={<About />} />
