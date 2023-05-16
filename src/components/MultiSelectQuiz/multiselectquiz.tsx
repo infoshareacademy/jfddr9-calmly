@@ -6,6 +6,42 @@ import "survey-core/defaultV2.min.css";
 import "./multi.css";
 import { json } from "./json";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledYesButton = styled.button`
+  background: rgba(179, 180, 239, 0.27);
+  border-radius: 50px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  color: #fffff;
+  border: transparent;
+  padding: 5px 25px;
+  margin-right: 20px;
+  cursor: pointer;
+  &:hover {
+    background: #797bec;
+    color: #ffff;
+  }
+`;
+
+const StyledNoButton = styled.button`
+  background: rgba(179, 180, 239, 0.27);
+  border-radius: 50px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  color: #fffff;
+  border: transparent;
+  padding: 5px 25px;
+  cursor: pointer;
+  &:hover {
+    background: #797bec;
+    color: #ffff;
+  }
+`;
 
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../../api/firebase";
@@ -85,9 +121,13 @@ export function SurveyComponent({ score }: { score: number }) {
   });
   return isDone ? (
     <>
-      <h1>Do you want to go through Let's Feel Better?</h1>
-      <button onClick={() => navigate("/feelbetter")}>Yes</button>
-      <button onClick={() => navigate("/home")}>No, return to home</button>
+      <h1>Would you like to go through the "Lets Feel Better" activites?</h1>
+      <StyledYesButton onClick={() => navigate("/feelbetter")}>
+        Yes, lets do it
+      </StyledYesButton>
+      <StyledNoButton onClick={() => navigate("/home")}>
+        No, return to home
+      </StyledNoButton>
     </>
   ) : (
     <Survey model={survey} />

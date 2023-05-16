@@ -37,6 +37,11 @@ const StyledAnswerButton = styled.button`
   color: #797bec;
   border: transparent;
   padding: 5px 25px;
+  cursor: pointer;
+  &:hover {
+    background: #797bec;
+    color: #ffff;
+  }
 `;
 
 const StyledAnswerSection = styled.div`
@@ -60,18 +65,17 @@ const StyledBackButton = styled.button`
   width: 100px;
   text-align: center;
   margin: 0 auto;
+  cursor: pointer;
+  &:hover {
+    background: #797bec;
+    color: #ffff;
+  }
 `;
 
-// const StyledStaticQuestion = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-// `;
-
 const StyledStaticQuestionSpan = styled.span`
-  position: relative;
-  top: -200px;
-  right: 210px;
+  position: absolute;
+  top: 15%;
+  right: 35%;
   color: #ffffff;
   font-family: "Outfit";
   font-style: normal;
@@ -83,8 +87,9 @@ export function Quiz() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
+    dispatch(updateBg("bgQuiz"));
   }, [dispatch]);
+
   const questions = [
     {
       questionText: "Rate your physical effort today?",
@@ -202,35 +207,6 @@ export function Quiz() {
         break;
     }
   };
-  //   if (currentQuestion === 0) {
-  //     // setStateWorth(worth);
-  //     // setScore(score + worth);
-  //   } else if (currentQuestion === 1) {
-  //     setScore(score - question0Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 2) {
-  //     setScore(score - question1Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 3) {
-  //     setScore(score - question2Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 4) {
-  //     setScore(score - question3Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 5) {
-  //     setScore(score - question4Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 6) {
-  //     setScore(score - question5Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   }
-  // };
 
   const handleAnswerOptionClick = (worth: number) => {
     switch (currentQuestion) {
@@ -277,41 +253,6 @@ export function Quiz() {
         console.log(question6Worth + " q6");
         break;
     }
-    // if (currentQuestion === 0) {
-    //   // setStateWorth(worth);
-    //   // setScore(score + worth);
-    //   setQuestion0Worth(worth);
-    // } else if (currentQuestion === 1) {
-    //   setQuestion1Worth(worth);
-    // } else if (currentQuestion === 2) {
-    //   setQuestion2Worth(worth);
-    // } else if (currentQuestion === 3) {
-    //   setQuestion3Worth(worth);
-    // } else if (currentQuestion === 4) {
-    //   setQuestion4Worth(worth);
-    // } else if (currentQuestion === 5) {
-    //   setQuestion5Worth(worth);
-    // } else if (currentQuestion === 6) {
-    //   setQuestion6Worth(worth);
-    // } else if (currentQuestion === 7) {
-    //   const total =
-    //     question0Worth +
-    //     question1Worth +
-    //     question2Worth +
-    //     question3Worth +
-    //     question4Worth +
-    //     question5Worth +
-    //     question6Worth;
-    //   setScore(total);
-    //   console.log(total);
-    //   console.log(question0Worth + " q0");
-    //   console.log(question1Worth + " q1");
-    //   console.log(question2Worth + " q2");
-    //   console.log(question3Worth + " q3");
-    //   console.log(question4Worth + " q4");
-    //   console.log(question5Worth + " q5");
-    //   console.log(question6Worth + " q6");
-    // }
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
@@ -321,23 +262,15 @@ export function Quiz() {
     }
   };
   return (
-    // <StyledStaticQuestion>
-    // <StyledStaticQuestionSpan>
-    //   How are you feeling today?
-    // </StyledStaticQuestionSpan>
     <>
       {showSurvey ? (
-        // <div className="score-section">
-        //   {score} / {questions.length - 1}
-        // </div>
         <SurveyComponent score={score} />
       ) : (
         <StyledBoxDiv className="app">
+          <StyledStaticQuestionSpan>
+            How are you feeling today?
+          </StyledStaticQuestionSpan>
           <div className="question-section">
-            <StyledStaticQuestionSpan>
-              How are you feeling today?
-            </StyledStaticQuestionSpan>
-            {/* <div className="question-count"></div> */}
             <StyledQuestionText className="question-text">
               {questions[currentQuestion].questionText}
             </StyledQuestionText>
@@ -358,7 +291,5 @@ export function Quiz() {
         </StyledBoxDiv>
       )}
     </>
-
-    // </StyledStaticQuestion>
   );
 }
