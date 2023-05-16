@@ -330,7 +330,7 @@ export function Quiz() {
         // <div className="score-section">
         //   {score} / {questions.length - 1}
         // </div>
-        <SurveyComponent />
+        <SurveyComponent score={score} />
       ) : (
         <StyledBoxDiv className="app">
           <div className="question-section">

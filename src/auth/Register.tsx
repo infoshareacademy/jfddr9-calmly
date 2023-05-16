@@ -106,7 +106,14 @@ export const Register = ({ isPasswordHidden = false }) => {
           fullName,
           // country,
           id: userId,
-        }).then(() => console.log("udalo sie"));
+        })
+          .then(() => console.log("udalo sie"))
+          .then(() => {
+            const docRef = doc(db, "journal", userId);
+            setDoc(docRef, {
+              entries: [],
+            }).then(() => console.log("udalo sie journal"));
+          });
       })
 
       .catch((e: FirebaseError) => {

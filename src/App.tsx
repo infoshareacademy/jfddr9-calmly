@@ -7,6 +7,7 @@ import { LandingPage } from "./routes/LandingPage/LandingPage";
 import { Home } from "./routes/Home/Home";
 import { RegisterPage } from "./routes/RegisterPage";
 import { LoginPage } from "./routes/LoginPage";
+import { Journal } from "./routes/Journal";
 import { Quiz } from "./routes/quiz";
 import { About } from "./routes/About";
 import { useEffect, useState } from "react";
@@ -109,6 +110,7 @@ function App() {
           <Route path={"/feelbetter"} element={<FeelBetter />} />
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/about"} element={<About />} />
+          <Route path={"/journal"} element={<Journal />} />
         </Routes>
       )}
     </>
