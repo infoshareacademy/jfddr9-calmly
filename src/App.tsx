@@ -9,7 +9,7 @@ import { Register } from "./auth/Register";
 import { Login } from "./auth/Login";
 import { Quiz } from "./components/quiz";
 import { SurveyComponent } from "./components/MultiSelectQuiz/multiselectquiz";
-import { About } from "./components/About";
+import { Contact } from "./auth/Contact";
 
 function App() {
   const bgStates: any = useSelector((state) => state);
@@ -67,7 +67,7 @@ function App() {
         <Route path={"/feelbetter"} element={<FeelBetter />} />
         <Route path={"/areyou"} element={<AreYou />} />
         <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/about"} element={<About />} />
+        <Route path={"/contact"} element={<Contact />} />
       </Routes>
     </>
   );
