@@ -42,7 +42,7 @@ function App() {
       bg === "bgDefault"
         ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
         : bg === "bgHome"
-        ? "linear-gradient(153.92deg, #F6C59C 9.05%, #E3B4AB 37.88%, #B3B4EF 79.44%)"
+        ? "rgb(255,255,255)"
         : bg === "bgRevert"
         ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
         : bg === "bgQuiz"
