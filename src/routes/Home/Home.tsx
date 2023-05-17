@@ -40,7 +40,9 @@ export const Home = () => {
         </Styled.Paragraph>
         <Styled.WrapperButtons>
           <Styled.Button onClick={() => navigate("/quiz")}>START</Styled.Button>
-          <Styled.Button>JOURNAL</Styled.Button>
+          <Styled.Button onClick={() => navigate("/journal")}>
+            JOURNAL
+          </Styled.Button>
         </Styled.WrapperButtons>
       </Styled.WrapperContent>
     </Styled.Wrapper>

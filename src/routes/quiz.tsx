@@ -264,7 +264,7 @@ export function Quiz() {
   return (
     <>
       {showSurvey ? (
-        <SurveyComponent />
+        <SurveyComponent score={score} />
       ) : (
         <StyledBoxDiv className="app">
           <StyledStaticQuestionSpan>
