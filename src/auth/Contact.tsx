@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import calmly from "../assets/logo-white.png";
-import { FormEvent, useState } from "react";
-import { db } from "../api/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { updateBg } from "../store/slice";
 
 const Body = styled.body`
   max-height: 100vh;
@@ -103,32 +104,37 @@ const Form = styled.form`
 `;
 
 export function Contact() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgHome"));
+  }, [dispatch]);
   const [mail, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleFeedback = async (e: FormEvent<HTMLFormElement>) => {
-    console.log("Jeeeeeeebzdzidy");
+  // const handleFeedback = async (e: FormEvent<HTMLFormElement>) => {
+  //   console.log("Jeeeeeeebzdzidy");
 
-    e.preventDefault();
-    const form = e.currentTarget;
-    const feedbackData = {
-      mail: form.elements.email.value,
-      name: form.elements.name.value,
-      message: form.elements.message.value,
-    };
+  //   e.preventDefault();
+  //   const form = e.currentTarget;
+  //   const feedbackData = {
+  //     mail: form.elements.email.value,
+  //     name: form.elements.name.value,
+  //     message: form.elements.message.value,
+  //   };
 
-    // Wysyłanie danych do bazy danych
-    try {
-      const docRef = await addDoc(collection(db, "feedback"), feedbackData);
-      setEmail("");
-      setName("");
-      setMessage("");
-      console.log("Wiadomość została wysłana. ID dokumentu:", docRef.id);
-    } catch (error) {
-      console.error("Błąd podczas wysyłania wiadomości:", error);
-    }
-  };
+  // Wysyłanie danych do bazy danych
+  //   try {
+  //     const docRef = await addDoc(collection(db, "feedback"), feedbackData);
+  //     setEmail("");
+  //     setName("");
+  //     setMessage("");
+  //     console.log("Wiadomość została wysłana. ID dokumentu:", docRef.id);
+  //   } catch (error) {
+  //     console.error("Błąd podczas wysyłania wiadomości:", error);
+  //   }
+  // };
 
   return (
     <Body>
@@ -147,7 +153,7 @@ export function Contact() {
         <RigthDiv>
           <GetInTouch>Get in touch</GetInTouch>
           <Hr />
-          <Form onSubmit={handleFeedback}>
+          <Form>
             <Input
               placeholder="Name"
               type="text"

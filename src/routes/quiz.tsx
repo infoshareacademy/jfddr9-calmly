@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBg } from "../store/slice";
 import styled from "styled-components";
+
+import { SurveyComponent } from "../components/MultiSelectQuiz/multiselectquiz";
 
 const StyledBoxDiv = styled.div`
   display: flex;
@@ -35,6 +37,11 @@ const StyledAnswerButton = styled.button`
   color: #797bec;
   border: transparent;
   padding: 5px 25px;
+  cursor: pointer;
+  &:hover {
+    background: #797bec;
+    color: #ffff;
+  }
 `;
 
 const StyledAnswerSection = styled.div`
@@ -58,18 +65,17 @@ const StyledBackButton = styled.button`
   width: 100px;
   text-align: center;
   margin: 0 auto;
+  cursor: pointer;
+  &:hover {
+    background: #797bec;
+    color: #ffff;
+  }
 `;
 
-// const StyledStaticQuestion = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-// `;
-
 const StyledStaticQuestionSpan = styled.span`
-  position: relative;
-  top: -200px;
-  right: 210px;
+  position: absolute;
+  top: 15%;
+  right: 35%;
   color: #ffffff;
   font-family: "Outfit";
   font-style: normal;
@@ -80,7 +86,9 @@ const StyledStaticQuestionSpan = styled.span`
 export function Quiz() {
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgQuiz")); //upewnienie się, że tło jest odpowiednie
+  useEffect(() => {
+    dispatch(updateBg("bgQuiz"));
+  }, [dispatch]);
 
   const questions = [
     {
@@ -141,12 +149,12 @@ export function Quiz() {
     },
     {
       questionText: "Finished",
-      answerOptions: [{ answerText: "Submit", worth: 0 }],
+      answerOptions: [{ answerText: "Next", worth: 0 }],
     },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+  const [showSurvey, setShowSurvey] = useState(false);
   const [score, setScore] = useState(0);
   const [question0Worth, setQuestion0Worth] = useState(0);
   const [question1Worth, setQuestion1Worth] = useState(0);
@@ -199,35 +207,6 @@ export function Quiz() {
         break;
     }
   };
-  //   if (currentQuestion === 0) {
-  //     // setStateWorth(worth);
-  //     // setScore(score + worth);
-  //   } else if (currentQuestion === 1) {
-  //     setScore(score - question0Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 2) {
-  //     setScore(score - question1Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 3) {
-  //     setScore(score - question2Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 4) {
-  //     setScore(score - question3Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 5) {
-  //     setScore(score - question4Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   } else if (currentQuestion === 6) {
-  //     setScore(score - question5Worth);
-  //     setCurrentQuestion(currentQuestion - 1);
-  //     console.log(score);
-  //   }
-  // };
 
   const handleAnswerOptionClick = (worth: number) => {
     switch (currentQuestion) {
@@ -274,83 +253,43 @@ export function Quiz() {
         console.log(question6Worth + " q6");
         break;
     }
-    // if (currentQuestion === 0) {
-    //   // setStateWorth(worth);
-    //   // setScore(score + worth);
-    //   setQuestion0Worth(worth);
-    // } else if (currentQuestion === 1) {
-    //   setQuestion1Worth(worth);
-    // } else if (currentQuestion === 2) {
-    //   setQuestion2Worth(worth);
-    // } else if (currentQuestion === 3) {
-    //   setQuestion3Worth(worth);
-    // } else if (currentQuestion === 4) {
-    //   setQuestion4Worth(worth);
-    // } else if (currentQuestion === 5) {
-    //   setQuestion5Worth(worth);
-    // } else if (currentQuestion === 6) {
-    //   setQuestion6Worth(worth);
-    // } else if (currentQuestion === 7) {
-    //   const total =
-    //     question0Worth +
-    //     question1Worth +
-    //     question2Worth +
-    //     question3Worth +
-    //     question4Worth +
-    //     question5Worth +
-    //     question6Worth;
-    //   setScore(total);
-    //   console.log(total);
-    //   console.log(question0Worth + " q0");
-    //   console.log(question1Worth + " q1");
-    //   console.log(question2Worth + " q2");
-    //   console.log(question3Worth + " q3");
-    //   console.log(question4Worth + " q4");
-    //   console.log(question5Worth + " q5");
-    //   console.log(question6Worth + " q6");
-    // }
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setShowScore(true);
+      setShowSurvey(true);
     }
   };
   return (
-    // <StyledStaticQuestion>
-    // <StyledStaticQuestionSpan>
-    //   How are you feeling today?
-    // </StyledStaticQuestionSpan>
-    <StyledBoxDiv className="app">
-      {showScore ? (
-        <div className="score-section">
-          {score} / {questions.length - 1}
-        </div>
+    <>
+      {showSurvey ? (
+        <SurveyComponent score={score} />
       ) : (
-        <>
+        <StyledBoxDiv className="app">
+          <StyledStaticQuestionSpan>
+            How are you feeling today?
+          </StyledStaticQuestionSpan>
           <div className="question-section">
-            <StyledStaticQuestionSpan>
-              How are you feeling today?
-            </StyledStaticQuestionSpan>
-            {/* <div className="question-count"></div> */}
             <StyledQuestionText className="question-text">
               {questions[currentQuestion].questionText}
             </StyledQuestionText>
           </div>
           <StyledAnswerSection className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <StyledAnswerButton
-                onClick={() => handleAnswerOptionClick(answerOption.worth)}
-              >
-                {answerOption.answerText}
-              </StyledAnswerButton>
-            ))}
+            {questions[currentQuestion].answerOptions.map(
+              (answerOption, index) => (
+                <StyledAnswerButton
+                  key={index}
+                  onClick={() => handleAnswerOptionClick(answerOption.worth)}
+                >
+                  {answerOption.answerText}
+                </StyledAnswerButton>
+              )
+            )}
           </StyledAnswerSection>
           <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
-        </>
+        </StyledBoxDiv>
       )}
-    </StyledBoxDiv>
-    // </StyledStaticQuestion>
+    </>
   );
 }
