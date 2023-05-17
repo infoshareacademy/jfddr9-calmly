@@ -23,7 +23,7 @@ export const Home = () => {
           <ul>
             <li onClick={() => navigate("/feelbetter")}>Let's feel better</li>
             <li>Support</li>
-            <li onClick={() => navigate("/about")}>About us</li>
+            <li onClick={() => navigate("/contact")}>Contact</li>
             <li>
               <Styled.Button onClick={() => signOut(auth)}>
                 Log out

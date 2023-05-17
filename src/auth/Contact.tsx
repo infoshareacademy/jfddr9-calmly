@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import calmly from "../assets/logo-white.png";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { updateBg } from "../store/slice";
+
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../api/firebase";
+import { ChangeEvent } from "react";
 
 const Body = styled.body`
   max-height: 100vh;
@@ -24,32 +28,38 @@ const MainDiv = styled.div`
   justify-content: space-between;
 `;
 const LeftDiv = styled.div`
-  max-width: 30%;
+  max-width: 26%;
   display: flex;
   flex-direction: column;
-  margin-left: 80px;
+  margin-left: 120px;
 `;
 const RigthDiv = styled.div`
-  max-width: 45%;
+  max-width: 40%;
   display: flex;
   flex-direction: column;
-  margin-right: 220px;
+  margin-right: 240px;
 `;
-
 const Calmly = styled.img`
-  max-width: 480px;
+  max-width: 350px;
 `;
 const Authors = styled.p`
+  margin-top: 80px;
   text-align: left;
   color: white;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 30px;
 `;
-
+const Teachers = styled.p`
+  text-align: left;
+  color: white;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+`;
 const GetInTouch = styled.p`
   font-weight: 600;
-  font-size: 54px;
+  font-size: 44px;
   color: white;
   text-align: left;
   margin-bottom: 0;
@@ -64,22 +74,30 @@ const Input = styled.input`
     font-weight: 400;
     font-size: 16px;
   }
+  // &:focus {
+  //   color: pink;
+  // }
+  // &:valid {
+  //   color: red;
+  // }
 `;
+//////////////////////////////////////////////// naprawić inputy ////////////////////////////////////////////////////////
 const TextArea = styled.textarea`
-max-width: 400px;
-max-height: 180px;
-min-width: 360px;
-min-height: 160px;
-border: none;
-border-radius: 10px;
-padding: 16px;
-margin-bottom: 24px;
+  max-width: 400px;
+  max-height: 180px;
+  min-width: 360px;
+  min-height: 160px;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
 
-&::placeholder{
-font-family: 'Outfit';
-color: hsla(239, 65%, 82%, 1);
-font-weight: 300;
-font-size: 16px;
+  &::placeholder {
+    font-family: "Outfit";
+    color: hsla(239, 65%, 82%, 1);
+    font-weight: 300;
+    font-size: 16px;
+  }
 `;
 const SubmitButton = styled.button`
   background-color: #797bec;
@@ -94,8 +112,8 @@ const SubmitButton = styled.button`
   }
 `;
 const Hr = styled.hr`
-  border: solid 5px white;
-  width: 135px;
+  border: solid 4px white;
+  width: 115px;
   margin: -8px 0 75px 0;
 `;
 const Form = styled.form`
@@ -109,32 +127,40 @@ export function Contact() {
   useEffect(() => {
     dispatch(updateBg("bgHome"));
   }, [dispatch]);
-  const [mail, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-
-  // const handleFeedback = async (e: FormEvent<HTMLFormElement>) => {
-  //   console.log("Jeeeeeeebzdzidy");
-
-  //   e.preventDefault();
-  //   const form = e.currentTarget;
-  //   const feedbackData = {
-  //     mail: form.elements.email.value,
-  //     name: form.elements.name.value,
-  //     message: form.elements.message.value,
-  //   };
-
-  // Wysyłanie danych do bazy danych
-  //   try {
-  //     const docRef = await addDoc(collection(db, "feedback"), feedbackData);
-  //     setEmail("");
-  //     setName("");
-  //     setMessage("");
-  //     console.log("Wiadomość została wysłana. ID dokumentu:", docRef.id);
-  //   } catch (error) {
-  //     console.error("Błąd podczas wysyłania wiadomości:", error);
-  //   }
-  // };
+  const [thankYou, setThankYou] = useState(true);
+  const [kontent, setKontent] = useState("Get in touch");
+  const [content, setContent] = useState({
+    email: "",
+    name: "",
+    message: "",
+  });
+  const { email, name, message } = content;
+  const handleInputChange = (e: ChangeEvent<HTMLFormElement> | any) => {
+    setContent({
+      ...content,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleFeedback = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("wtf");
+    addDoc(collection(db, "feedback"), {
+      email: content.email,
+      name: content.name,
+      message: content.message,
+    })
+      .then(() => {
+        console.log("Wszystko OK");
+        setContent({
+          email: "",
+          name: "",
+          message: "",
+        });
+        setThankYou(false);
+        setKontent("Thank you!");
+      })
+      .catch((error) => console.error("Something went wrong", error));
+  };
 
   return (
     <Body>
@@ -142,42 +168,82 @@ export function Contact() {
         <LeftDiv>
           <Calmly src={calmly}></Calmly>
           <Authors>
-            was created by a group of beginner programmers: Ania, Marietta,
-            Nikoletta, Sylwia, Bartek and Dawid
+            was created by a group of beginner programmers:{" "}
+            <b>Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid</b>
           </Authors>
-          <Authors>
-            with the invaluable help of trainers from InfoShare Academy: Tomek,
-            Darek, Krystian and Filip
-          </Authors>
+          <Teachers>
+            with the invaluable help of trainers from InfoShare Academy:{" "}
+            <b>Tomek, Darek, Krystian and Filip</b>
+          </Teachers>
         </LeftDiv>
-        <RigthDiv>
-          <GetInTouch>Get in touch</GetInTouch>
-          <Hr />
-          <Form>
-            <Input
-              placeholder="Name"
-              type="text"
-              name="name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></Input>
-            <Input
-              placeholder="Email"
-              type="email"
-              name="email"
-              id="email"
-              value={mail}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Input>
-            <TextArea
-              placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            ></TextArea>
-            <SubmitButton type="submit">SUBMIT</SubmitButton>
-          </Form>
-        </RigthDiv>
+        {thankYou ? (
+          <RigthDiv>
+            <GetInTouch>{kontent}</GetInTouch>
+            <Hr />
+            <Form>
+              <Input
+                placeholder="Name"
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={handleInputChange}
+              ></Input>
+              <Input
+                placeholder="Email"
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleInputChange}
+              ></Input>
+              <TextArea
+                placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                name="message"
+                id="message"
+                value={message}
+                onChange={handleInputChange}
+              ></TextArea>
+              <SubmitButton onClick={handleFeedback} type="submit">
+                SUBMIT
+              </SubmitButton>
+            </Form>
+          </RigthDiv>
+        ) : (
+          <RigthDiv>
+            <GetInTouch>{kontent}</GetInTouch>
+            <Hr style={{ width: "115px" }} />
+            <Teachers>We will do our best to improve Calmly</Teachers>
+            <Form style={{ visibility: "hidden" }}>
+              <Input
+                placeholder="Name"
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={handleInputChange}
+              ></Input>
+              <Input
+                placeholder="Email"
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleInputChange}
+              ></Input>
+              <TextArea
+                placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                name="message"
+                id="message"
+                value={message}
+                onChange={handleInputChange}
+              ></TextArea>
+              <SubmitButton onClick={handleFeedback} type="submit">
+                SUBMIT
+              </SubmitButton>
+            </Form>
+          </RigthDiv>
+        )}
       </MainDiv>
     </Body>
   );
