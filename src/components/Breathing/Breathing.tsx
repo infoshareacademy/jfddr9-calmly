@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBg, updateBreathing } from "../store/slice";
+import { updateBg, updateBreathing } from "../../store/slice";
 
 const MainDiv = styled.div`
   height: 100%;
@@ -103,7 +103,11 @@ export function Breathing() {
   }, [count, instru]);
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgCircle")); //zmiana samego tła
+  useEffect(() => {
+    dispatch(updateBg("bgCircle"));
+  }, [dispatch]);
+
+  //zmiana samego tła
 
   const handleClick = () => {
     setState(!state);

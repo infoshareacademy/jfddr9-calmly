@@ -41,6 +41,11 @@
   background: rgba(179, 180, 239, 0.27);
   border: transparent;
   border-radius: 100px;
+  cursor: pointer;
+}
+
+.item-label:hover {
+  background: #d0d0dd;
 }
 
 .item-text--selected {

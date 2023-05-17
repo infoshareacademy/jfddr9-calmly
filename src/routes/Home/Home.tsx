@@ -1,7 +1,20 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as Styled from "./Home.styles";
+import { useEffect } from "react";
+import { updateBg } from "../../store/slice";
+import { auth } from "../../api/firebase";
+import { signOut } from "firebase/auth";
 //import { Footer } from "../footer/Footer"; //
 
 export const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(updateBg("bgHome"));
+  }, [dispatch]);
+
   return (
     <Styled.Wrapper>
       <Styled.LogoWhite src="src/assets/logo-white.png" />
