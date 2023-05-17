@@ -8,46 +8,50 @@ import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
 import { ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../api/firebase";
 
 const Body = styled.body`
   max-height: 100vh;
-  background: linear-gradient(
-    150.25deg,
-    #f6c59c 5.67%,
-    #e3b4ab 33.27%,
-    #b3b4ef 73.04%
-  );
   background: url(/src/assets/vectorXd.png) 100% 100% / cover no-repeat;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 `;
 const MainDiv = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+`;
+const Menu = styled.div`
+  display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin-top: 15px;
 `;
 const LeftDiv = styled.div`
   max-width: 26%;
   display: flex;
   flex-direction: column;
-  margin-left: 120px;
+  margin-right: 60px;
 `;
 const RigthDiv = styled.div`
   max-width: 40%;
   display: flex;
   flex-direction: column;
-  margin-right: 240px;
 `;
 const Calmly = styled.img`
-  max-width: 350px;
+  max-width: 240px;
+  margin: 10px 500px 0 0;
 `;
 const Authors = styled.p`
-  margin-top: 80px;
+  margin-top: 40px;
   text-align: left;
   color: white;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 30px;
 `;
 const Teachers = styled.p`
@@ -84,9 +88,9 @@ const Input = styled.input`
 //////////////////////////////////////////////// naprawić inputy ////////////////////////////////////////////////////////
 const TextArea = styled.textarea`
   max-width: 400px;
-  max-height: 180px;
+  max-height: 150px;
   min-width: 360px;
-  min-height: 160px;
+  min-height: 140px;
   border: none;
   border-radius: 10px;
   padding: 16px;
@@ -114,19 +118,56 @@ const SubmitButton = styled.button`
 const Hr = styled.hr`
   border: solid 4px white;
   width: 115px;
-  margin: -8px 0 75px 0;
+  margin: -8px 0 55px 0;
 `;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+const Button = styled.button`
+  cursor: pointer;
+  padding: 14px 16px 10px;
+  border-radius: 50px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+
+  &:hover {
+    transition: 0.3s ease-in;
+    opacity: 0.9;
+    color: #797bec;
+  }
+`;
+const Navigation = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-weight: 500;
+  align-items: center;
+  margin: 20px 0;
+`;
+const ListItem = styled.p`
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 26px;
+  &:hover {
+    transition: 0.2s ease-in;
+    cursor: pointer;
+    color: #797bec;
+  }
 `;
 
 export function Contact() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateBg("bgHome"));
+    dispatch(updateBg("bgRevert"));
   }, [dispatch]);
+  const navigate = useNavigate();
   const [thankYou, setThankYou] = useState(true);
   const [kontent, setKontent] = useState("Get in touch");
   const [content, setContent] = useState({
@@ -165,85 +206,99 @@ export function Contact() {
   return (
     <Body>
       <MainDiv>
-        <LeftDiv>
-          <Calmly src={calmly}></Calmly>
-          <Authors>
-            was created by a group of beginner programmers:{" "}
-            <b>Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid</b>
-          </Authors>
-          <Teachers>
-            with the invaluable help of trainers from InfoShare Academy:{" "}
-            <b>Tomek, Darek, Krystian and Filip</b>
-          </Teachers>
-        </LeftDiv>
-        {thankYou ? (
-          <RigthDiv>
-            <GetInTouch>{kontent}</GetInTouch>
-            <Hr />
-            <Form>
-              <Input
-                placeholder="Name"
-                type="text"
-                name="name"
-                id="name"
-                value={name}
-                onChange={handleInputChange}
-              ></Input>
-              <Input
-                placeholder="Email"
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={handleInputChange}
-              ></Input>
-              <TextArea
-                placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-                name="message"
-                id="message"
-                value={message}
-                onChange={handleInputChange}
-              ></TextArea>
-              <SubmitButton onClick={handleFeedback} type="submit">
-                SUBMIT
-              </SubmitButton>
-            </Form>
-          </RigthDiv>
-        ) : (
-          <RigthDiv>
-            <GetInTouch>{kontent}</GetInTouch>
-            <Hr style={{ width: "115px" }} />
-            <Teachers>We will do our best to improve Calmly</Teachers>
-            <Form style={{ visibility: "hidden" }}>
-              <Input
-                placeholder="Name"
-                type="text"
-                name="name"
-                id="name"
-                value={name}
-                onChange={handleInputChange}
-              ></Input>
-              <Input
-                placeholder="Email"
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={handleInputChange}
-              ></Input>
-              <TextArea
-                placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-                name="message"
-                id="message"
-                value={message}
-                onChange={handleInputChange}
-              ></TextArea>
-              <SubmitButton onClick={handleFeedback} type="submit">
-                SUBMIT
-              </SubmitButton>
-            </Form>
-          </RigthDiv>
-        )}
+        <Menu>
+          <Navigation>
+            <Calmly src={calmly} />
+            <ListItem onClick={() => navigate("/feelbetter")}>
+              Let's feel better
+            </ListItem>
+            <ListItem>Support</ListItem>
+            <ListItem onClick={() => navigate("/contact")}>Contact</ListItem>
+            <ListItem>
+              <Button onClick={() => signOut(auth)}>Log out</Button>
+            </ListItem>
+          </Navigation>
+        </Menu>
+        <Menu>
+          <LeftDiv>
+            <Authors>
+              was created by a group of beginner programmers:{" "}
+              <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
+            </Authors>
+            <Teachers>
+              with the invaluable help of trainers from InfoShare Academy:{" "}
+              <b>Tomek, Darek, Krystian and Filip</b>
+            </Teachers>
+          </LeftDiv>
+          {thankYou ? (
+            <RigthDiv>
+              <GetInTouch>{kontent}</GetInTouch>
+              <Hr />
+              <Form>
+                <Input
+                  placeholder="Name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={name}
+                  onChange={handleInputChange}
+                ></Input>
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={email}
+                  onChange={handleInputChange}
+                ></Input>
+                <TextArea
+                  placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                  name="message"
+                  id="message"
+                  value={message}
+                  onChange={handleInputChange}
+                ></TextArea>
+                <SubmitButton onClick={handleFeedback} type="submit">
+                  SUBMIT
+                </SubmitButton>
+              </Form>
+            </RigthDiv>
+          ) : (
+            <RigthDiv>
+              <GetInTouch>{kontent}</GetInTouch>
+              <Hr style={{ width: "115px" }} />
+              <Teachers>We will do our best to improve Calmly</Teachers>
+              <Form style={{ visibility: "hidden" }}>
+                <Input
+                  placeholder="Name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={name}
+                  onChange={handleInputChange}
+                ></Input>
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={email}
+                  onChange={handleInputChange}
+                ></Input>
+                <TextArea
+                  placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                  name="message"
+                  id="message"
+                  value={message}
+                  onChange={handleInputChange}
+                ></TextArea>
+                <SubmitButton onClick={handleFeedback} type="submit">
+                  SUBMIT
+                </SubmitButton>
+              </Form>
+            </RigthDiv>
+          )}
+        </Menu>
       </MainDiv>
     </Body>
   );
