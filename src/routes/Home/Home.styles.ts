@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-image: url("src/assets/g page.png");
+  background-image: url("src/assets/h page.png");
   background-size: auto 100%;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: center;
   width: 100vw;
   height: 100vh;
   font-family: "Outfit", sans-serif;
