@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import calmly from "./logo-white.png";
-const Body = styled.body`
-  max-height: 100vh;
+import calmly from "../assets/logo-white.png";
+const Body = styled.div`
+  height: 100vh;
+  width: 100vw;
   background: linear-gradient(
     150.25deg,
     #f6c59c 5.67%,
     #e3b4ab 33.27%,
     #b3b4ef 73.04%
   );
-  background: url(/src/components/vectorXd.png) 100% 100% / cover no-repeat;
+  background: url(/src/assets/vectorXd.png) 100% 100% / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
