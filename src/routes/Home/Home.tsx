@@ -24,7 +24,7 @@ export const Home = () => {
           <Styled.Nav>
             <a onClick={() => navigate("/feelbetter")}>Let's feel better</a>
             <a onClick={() => navigate("/support")}>Support</a>
-            <a onClick={() => navigate("/about")}>About us</a>
+            <a onClick={() => navigate("/contact")}>Contact</a>
             <Styled.ButtonLogOut onClick={() => signOut(auth)}>
               Log out
             </Styled.ButtonLogOut>
