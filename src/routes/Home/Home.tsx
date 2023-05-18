@@ -17,7 +17,7 @@ export const Home = () => {
 
   return (
     <Styled.Wrapper>
-      <Styled.LogoWhite src="src/assets/logo-white.png" />
+      <Styled.LogoWhite src="src/assets/logo.png" />
       <Styled.WrapperContent>
         <Styled.Nav>
           <a>Let's feel better</a>
