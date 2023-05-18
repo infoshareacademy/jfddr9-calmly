@@ -20,6 +20,8 @@ import { db } from "./api/firebase";
 
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
+import { SupportPage } from "./routes/SupportPage/SupportPage";
+import { TestResultPage } from "./routes/TestResultPage/TestResultPage";
 
 function App() {
   const reduxStore: any = useSelector((state) => state);
@@ -68,28 +70,28 @@ function App() {
 
   console.log(reduxStore.bg.text);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const uid = user.uid;
 
-        const docRef = doc(db, `users/${uid}`);
-        getDoc(docRef)
-          .then((userData) => {
-            const userNewData = userData.data();
-            console.log(userNewData);
-            dispatch(updateAuthStateChanged(userNewData));
-            navigate("/home");
-            setIsLoading(false);
-          })
-          .catch((e) => console.error(e));
-      } else {
-        dispatch(signOut());
-        navigate("/");
-        setIsLoading(false);
-      }
-    });
-  }, []);
+  //       const docRef = doc(db, `users/${uid}`);
+  //       getDoc(docRef)
+  //         .then((userData) => {
+  //           const userNewData = userData.data();
+  //           console.log(userNewData);
+  //           dispatch(updateAuthStateChanged(userNewData));
+  //           navigate("/home");
+  //           setIsLoading(false);
+  //         })
+  //         .catch((e) => console.error(e));
+  //     } else {
+  //       dispatch(signOut());
+  //       navigate("/");
+  //       setIsLoading(false);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <>
@@ -98,7 +100,7 @@ function App() {
         animation={reduxStore.bg.breathingAnimation}
       />
 
-      {isLoading ? (
+      {!isLoading ? (
         <LoaderComponent />
       ) : (
         <Routes>
@@ -111,6 +113,11 @@ function App() {
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/about"} element={<About />} />
           <Route path={"/journal"} element={<Journal />} />
+          <Route path={"/supportpage"} element={<SupportPage />} />
+          <Route
+            path={"/testresult"}
+            element={<TestResultPage stressLevel="middle" />}
+          />
         </Routes>
       )}
     </>
