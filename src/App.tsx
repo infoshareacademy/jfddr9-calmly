@@ -20,6 +20,7 @@ import { db } from "./api/firebase";
 
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
+import { NatureSound } from "./components/NatureSound";
 
 function App() {
   const reduxStore: any = useSelector((state) => state);
@@ -110,6 +111,7 @@ function App() {
           <Route path={"/feelbetter"} element={<FeelBetter />} />
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/about"} element={<About />} />
+          <Route path={"/sound"} element={<NatureSound />} />
         </Routes>
       )}
     </>
