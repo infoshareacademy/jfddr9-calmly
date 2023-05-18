@@ -9,7 +9,7 @@ import { RegisterPage } from "./routes/RegisterPage";
 import { LoginPage } from "./routes/LoginPage";
 import { Journal } from "./routes/Journal";
 import { Quiz } from "./routes/quiz";
-import { About } from "./routes/About";
+import { Contact } from "./auth/Contact";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
@@ -42,7 +42,9 @@ function App() {
       bg === "bgDefault"
         ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
         : bg === "bgHome"
-        ? "white url('src/assets/h page.png') center center / cover no-repeat fixed;"
+        ? "rgb(255,255,255)"
+        : bg === "bgRevert"
+        ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
         : bg === "bgQuiz"
         ? "linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);"
         : bg === "bgCircle"
@@ -107,7 +109,7 @@ function App() {
           <Route path={"/quiz"} element={<Quiz />} />
           <Route path={"/feelbetter"} element={<FeelBetter />} />
           <Route path={"/"} element={<LandingPage />} />
-          <Route path={"/about"} element={<About />} />
+          <Route path={"/contact"} element={<Contact />} />
           <Route path={"/journal"} element={<Journal />} />
         </Routes>
       )}

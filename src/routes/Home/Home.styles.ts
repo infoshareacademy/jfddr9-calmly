@@ -29,7 +29,7 @@ export const Nav = styled.nav`
 
   & a {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
   }
 `;
@@ -95,8 +95,8 @@ export const ButtonLogOut = styled.button`
   justify-content: center;
   align-items: center;
   color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 18px;
 
   &:hover {
     transition: 0.3s ease-in;
