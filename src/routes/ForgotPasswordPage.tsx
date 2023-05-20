@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
-
 import { GraphicsCard } from "../components/GraphicsCard";
 import { ForgotPassword } from "../auth/ForgotPassword";
+
+import { updateBg } from "../store/slice";
+import { useDispatch } from "react-redux";
 
 const MainWrapper = styled.div`
   font-family: "Outfit";
@@ -11,8 +14,9 @@ const MainWrapper = styled.div`
   justify-content: center;
 `;
 
-const ForgotPasswordCardWrapper = styled.div`
+const LeftCardWrapper = styled.div`
   max-width: 301px;
+  min-width: 325px;
   height: 688px;
   margin: 15px;
   padding: 0px 60px;
@@ -21,14 +25,14 @@ const ForgotPasswordCardWrapper = styled.div`
   border-radius: 30px;
 `;
 
-const FooterWrapperForgotPasswordCard = styled.div`
+const FooterWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   margin-top: 120px;
 `;
 
-const FooterParagraphForgotPasswordCard = styled.p`
+const TextFooter = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -53,18 +57,22 @@ font-size: 16px;
 //do zmiany kolor hover i active
 
 export const ForgotPasswordPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
+
   return (
     <MainWrapper>
-      <ForgotPasswordCardWrapper>
+      <LeftCardWrapper>
         <ForgotPassword />
-        <FooterWrapperForgotPasswordCard>
-          <FooterParagraphForgotPasswordCard>
-            Do not have an account?
-          </FooterParagraphForgotPasswordCard>
+        <FooterWrapper>
+          <TextFooter>Do not have an account?</TextFooter>
           <NavBarLink to="/register">Sign up</NavBarLink>
-        </FooterWrapperForgotPasswordCard>
-      </ForgotPasswordCardWrapper>
-      <GraphicsCard />
+        </FooterWrapper>
+      </LeftCardWrapper>
+      <GraphicsCard src="../src/assets/catti_forgot.svg" />
     </MainWrapper>
   );
 };

@@ -29,20 +29,19 @@ const FormRegister = styled.form`
 const AllInputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  // align-items: center;
   gap: 15px;
   text-align: left;
 `;
 
 const InputRegister = styled.input`
   height: 50px;
-  width: calc(100% - 50px);
+  width: calc(100% - 45px);
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   border: 0;
   color: #797bec;
-  padding-left: 50px;
+  padding-left: 45px;
   font-family: "Outfit";
   font-style: normal;
   font-weight: 400;
@@ -59,6 +58,19 @@ const InputRegister = styled.input`
     font-weight: 400;
     font-size: 20px;
   }
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
+`;
+
+const IconWrapper = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
 `;
 
 const ButtonRegister = styled.button`
@@ -78,19 +90,6 @@ const ButtonRegister = styled.button`
   text-align: center;
   text-transform: uppercase;
   color: #ffffff;
-`;
-
-const InputWrapper = styled.div`
-  position: relative;
-`;
-
-const IconWrapper = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  width: 25px;
-  height: 25px;
 `;
 
 // const useCountry = () => {

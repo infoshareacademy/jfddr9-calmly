@@ -14,7 +14,7 @@ const MainWrapper = styled.div`
 `;
 
 const LeftCardWrapper = styled.div`
-  width: 635px;
+  width: 530px;
   height: 688px;
   margin: 15px;
   padding: 0 60px;
@@ -57,7 +57,7 @@ const NavButton = styled.button`
   margin-top: 5px;
   font-family: "Outfit";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 12px;
   text-align: center;
   color: #797bec;
@@ -103,7 +103,7 @@ export const RegisterPage = () => {
       </LeftCardWrapper>
       <RightCardWrapper>
         <LogoMain src="src/assets/logo.png" />
-        <Graphic src="src/assets/catti.svg" />
+        <Graphic src="src/assets/catti_register.svg" />
         <TextFooter>let your stress drop</TextFooter>
       </RightCardWrapper>
     </MainWrapper>
