@@ -20,7 +20,7 @@ import imgRiver from "../../assets/natureIcons/River.svg";
 const ToggleButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  // gap: 15px;
+  flex-wrap: wrap;
 `;
 
 const ToggleButton = styled.button<{ isActive: boolean }>`
@@ -35,7 +35,7 @@ const ToggleButton = styled.button<{ isActive: boolean }>`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin: 0 10px;
+  margin: 10px;
 
   &:active {
     transform: scale(0.9);
@@ -83,7 +83,6 @@ interface Item {
 export const NatureSound = () => {
   const [currentSound, setCurrentSound] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  console.log(`to jest pierwsze ${isVisible}`);
 
   const [items, setItems] = useState<Array<Item>>([
     { id: 1, isActive: false, imgSource: imgRain, soundSource: soundRain },
