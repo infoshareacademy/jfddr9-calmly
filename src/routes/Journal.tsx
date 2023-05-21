@@ -9,6 +9,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Dot,
 } from "recharts";
 import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
@@ -26,7 +27,10 @@ const ChartContainer = styled.div`
 export const Journal = () => {
   const { authUser }: any = useSelector((state) => state);
 
+  const [isDisplayDays, setIsDisplayDays] = useState(true);
+
   const [data, setData] = useState([]);
+  const [daysData, setDaysData] = useState([]);
   const [displayedData, setDisplayedData] = useState([]);
   const [entryCounter, setEntryCounter] = useState(7);
 
@@ -60,23 +64,63 @@ export const Journal = () => {
         });
         console.log(entries);
         setData(entries);
-        if (entries.length < 7) {
-          setDisplayedData(entries);
+        const days: any = dataToDays(entries);
+        setDaysData(days);
+        if (days.length < 7) {
+          setDisplayedData(days);
         } else {
-          setDisplayedData(entries.splice(0, 7));
+          setDisplayedData(entries.slice(entries.length - 7, entries.length));
+          setEntryCounter(entries.length);
         }
       })
+
       .catch((e) => console.error(e));
   }, []);
+
+  const goToDay = (line: string) => {
+    console.log(line);
+    if (isDisplayDays) {
+      const dayStartIndex = data.findIndex(
+        (item: any) => item.date.slice(0, 10) === line
+      );
+      console.log(dayStartIndex);
+      if (dayStartIndex + 7 > data.length) {
+        setDisplayedData(data.slice(dayStartIndex, data.length));
+        setEntryCounter(data.length);
+        setIsDisplayDays(false);
+      } else {
+        setDisplayedData(data.slice(dayStartIndex, dayStartIndex + 7));
+        setEntryCounter(dayStartIndex + 7);
+        setIsDisplayDays(false);
+      }
+    }
+  };
+
+  const nextData = () => {
+    const nextEntryCounter = entryCounter + 7;
+    setDisplayedData(data.slice(entryCounter, nextEntryCounter));
+    setEntryCounter(nextEntryCounter);
+  };
+
+  const backData = () => {
+    if (entryCounter - 7 < 7) {
+      setDisplayedData(data.slice(0, 7));
+      setEntryCounter(7);
+    } else {
+      const nextEntryCounter = entryCounter - displayedData.length;
+      setDisplayedData(data.slice(nextEntryCounter - 7, nextEntryCounter));
+      setEntryCounter(nextEntryCounter);
+    }
+  };
 
   const renderCustomTick = (tickProps: any) => {
     const { x, y, payload } = tickProps;
     const isFirstTick = payload.index === 0;
     const isLastTick = payload.index === displayedData.length - 1;
 
-    console.log(displayedData.length);
-    console.log("first" + isFirstTick);
-    console.log("last" + isLastTick);
+    // console.log(displayedData.length);
+    // console.log('first' + isFirstTick);
+    // console.log('last' + isLastTick);
 
     const tickText = payload.value.toString();
 
@@ -105,10 +149,14 @@ export const Journal = () => {
             key={index}
             x={0}
             y={10}
+            display={"block"}
+            height={20}
             dy={index === 0 ? verticalOffset : 0}
             textAnchor={isFirstTick ? "right" : isLastTick ? "end" : "middle"}
             fill="#666"
             fontSize={12}
+            cursor={"pointer"}
+            onClick={() => goToDay(line)}
           >
             {line}
           </text>
@@ -117,31 +165,107 @@ export const Journal = () => {
     );
   };
 
-  useEffect(() => {
-    if (entryCounter + 7 <= data.length) {
-      setDisplayedData(data.slice(entryCounter, entryCounter + 7));
-    } else {
-      setDisplayedData(data.slice(entryCounter));
-    }
-  }, [entryCounter]);
+  const dataToDays = (entries: any) => {
+    const dayData = entries.reduce((acc: any, obj: any) => {
+      const date = obj.date;
+      const day = date.slice(0, 10);
 
-  const nextData = () => {
-    const nextEntryCounter = entryCounter + 7;
+      if (!acc[day]) {
+        acc[day] = [];
+      }
 
-    setEntryCounter(nextEntryCounter);
+      acc[day].push(obj);
+
+      return acc;
+    }, {});
+
+    const newDayData = Object.entries(dayData).map((arr) => {
+      const date = arr[0];
+      const dayData: any = arr[1];
+
+      let moodsValues: { [key: string]: number } = {
+        angry: 0,
+        bored: 0,
+        excited: 0,
+        cheerful: 0,
+        anxious: 0,
+        hopeful: 0,
+        wonderful: 0,
+        inert: 0,
+        content: 0,
+        mad: 0,
+        relaxed: 0,
+        worried: 0,
+        uptight: 0,
+        sad: 0,
+        calm: 0,
+        fine: 0,
+        defeated: 0,
+        depressed: 0,
+      };
+
+      console.log(dayData);
+
+      let scoreSum = 0;
+      let moods: any = [];
+
+      dayData.forEach((entry: any) => {
+        scoreSum += entry.score;
+        moods.push(entry.mood);
+      });
+
+      moods.forEach((mood: any) => {
+        mood.forEach((moodName: string) => {
+          moodsValues[moodName] += 1;
+        });
+      });
+
+      let moodArray = Object.entries(moodsValues);
+
+      moodArray.sort((a, b) => b[1] - a[1]);
+
+      let topThree = moodArray.slice(0, 3).map((moodNameWithValue) => {
+        return moodNameWithValue[0];
+      });
+
+      console.log(moods);
+      console.log(topThree);
+
+      const score = parseFloat((scoreSum / dayData.length).toFixed(2));
+
+      //console.log(dayData);
+      return {
+        date: date,
+        score: score,
+        mood: topThree,
+      };
+    });
+
+    console.log(newDayData);
+    //let date = entries[0].date.slice(0, 10);
+    //console.log(date);
+
+    return newDayData;
   };
 
   console.log(displayedData);
+  console.log(entryCounter);
+  console.log(data);
+
+  const backToDaysDisplay = () => {
+    setIsDisplayDays(true);
+    const days: any = dataToDays(data);
+    setDisplayedData(days);
+    setEntryCounter(7);
+  };
 
   return data.length !== 0 ? (
     <>
       <ChartContainer>
-        <LineChart
-          key={"CHART_KEY"}
-          width={800}
-          height={300}
-          data={displayedData}
-        >
+        {!isDisplayDays && (
+          <button onClick={() => backToDaysDisplay()}>Back to days</button>
+        )}
+        <LineChart width={800} height={300} data={displayedData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
           <YAxis />
@@ -158,12 +282,25 @@ export const Journal = () => {
           <Line type="monotone" dataKey="mood" stroke="#82ca9d" />
         </LineChart>
       </ChartContainer>
-      <button onClick={nextData}>Next</button>
+      <button onClick={backData} disabled={entryCounter === 7 ? true : false}>
+        Back
+      </button>
+      <button
+        onClick={nextData}
+        disabled={
+          displayedData.length < 7 || entryCounter === data.length
+            ? true
+            : false
+        }
+      >
+        Next
+      </button>
     </>
   ) : (
     <LoaderComponent />
   );
-};
+}; //kuba dał pomysł, zeby defaultowo wyświetlać punkty w
+//postaci średniej z dnia. opcja wybrania konkretnego dnia wyswietla ten dzien na srodku (3 wstecz 3 w przód). po kliknieciu w konkretny dzien, wyswietla wykres z tego dnia. mozliwosc wybrania pogladu punktow w postaci sredniej z tygodnia.
 
 // const data = [
 //   { name: 'January', uv: 4000, pv: 2400, amt: 2400 },
