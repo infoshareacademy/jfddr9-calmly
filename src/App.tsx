@@ -47,6 +47,8 @@ function App() {
         ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
         : bg === "bgQuiz"
         ? "linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);"
+        : bg === "bgViolet"
+        ? "linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%)"
         : bg === "bgCircle"
         ? `radial-gradient(
           circle,

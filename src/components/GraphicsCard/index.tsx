@@ -7,6 +7,9 @@ const GraphicCardWrapper = styled.div`
   background: rgba(255, 255, 255, 0.55);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+  @media (max-width: 950px) {
+    width: 445px;
+  }
 `;
 const LogoMain = styled.img`
   width: 270px;
@@ -23,11 +26,11 @@ const HeaderGraphicCard = styled.p`
   color: #797bec;
 `;
 
-const Graphic = styled.div`
-  background: #e3b4ab;
-  width: 450px;
-  height: 350px;
-  margin: 50px auto 0;
+const Graphic = styled.img`
+  // background: #e3b4ab;
+  width: 390px;
+  height: 390px;
+  margin: 0 auto 0;
 `;
 
 const ParagraphGraphicCard = styled.p`
@@ -38,22 +41,13 @@ const ParagraphGraphicCard = styled.p`
   color: #797bec;
 `;
 
-const LogoFooter = styled.img`
-  width: 70px;
-  height: 22.11px;
-  display: flex;
-  margin-left: auto;
-  margin-right: 50px;
-`;
-
-export const GraphicsCard = () => {
+export const GraphicsCard = ({ src }: any) => {
   return (
     <GraphicCardWrapper>
       <LogoMain src="src/assets/logo.png" />
       <HeaderGraphicCard>welcome again</HeaderGraphicCard>
-      <Graphic />
+      <Graphic src={src} />
       <ParagraphGraphicCard>let your stress drop</ParagraphGraphicCard>
-      <LogoFooter src="src/assets/logo.png" />
     </GraphicCardWrapper>
   );
 };
