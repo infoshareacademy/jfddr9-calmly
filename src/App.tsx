@@ -9,7 +9,6 @@ import { RegisterPage } from "./routes/RegisterPage";
 import { LoginPage } from "./routes/LoginPage";
 import { Journal } from "./routes/Journal";
 import { Quiz } from "./routes/quiz";
-import { About } from "./routes/About";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 import Tips from "./routes/Tips/Tips";
 
@@ -90,7 +89,6 @@ function App() {
         <Route path={"/quiz"} element={<Quiz />} />
         <Route path={"/feelbetter"} element={<FeelBetter />} />
         <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/about"} element={<About />} />
         <Route path={"/journal"} element={<Journal />} />
         <Route path={"/tips"} element={<Tips />} />
       </Routes>
