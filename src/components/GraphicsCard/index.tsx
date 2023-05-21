@@ -7,6 +7,9 @@ const GraphicCardWrapper = styled.div`
   background: rgba(255, 255, 255, 0.55);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+  @media (max-width: 950px) {
+    width: 445px;
+  }
 `;
 const LogoMain = styled.img`
   width: 270px;

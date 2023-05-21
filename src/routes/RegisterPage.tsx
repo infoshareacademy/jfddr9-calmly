@@ -11,6 +11,10 @@ const MainWrapper = styled.div`
   font-family: "Outfit";
   display: flex;
   justify-content: center;
+  @media (max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const LeftCardWrapper = styled.div`
@@ -21,6 +25,9 @@ const LeftCardWrapper = styled.div`
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+  @media (max-width: 950px) {
+    width: 325px;
+  }
 `;
 
 const RightCardWrapper = styled.div`

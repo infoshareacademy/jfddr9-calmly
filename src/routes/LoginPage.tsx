@@ -12,6 +12,10 @@ const MainWrapper = styled.div`
   font-family: "Outfit";
   display: flex;
   justify-content: center;
+  @media (max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const LeftCardWrapper = styled.div`
@@ -72,7 +76,9 @@ export const LoginPage = () => {
           <NavBarLink to="/register">Sign up</NavBarLink>
         </FooterWrapper>
       </LeftCardWrapper>
+      {/* <RightCardWrapper> */}
       <GraphicsCard src="../src/assets/catti_login.svg" />
+      {/* </RightCardWrapper> */}
     </MainWrapper>
   );
 };
