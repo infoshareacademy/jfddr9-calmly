@@ -76,9 +76,7 @@ export const LoginPage = () => {
           <NavBarLink to="/register">Sign up</NavBarLink>
         </FooterWrapper>
       </LeftCardWrapper>
-      {/* <RightCardWrapper> */}
       <GraphicsCard src="../src/assets/catti_login.svg" />
-      {/* </RightCardWrapper> */}
     </MainWrapper>
   );
 };

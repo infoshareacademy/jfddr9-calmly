@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../api/firebase";
 import { firebaseErrors } from "../utils/firebaseErrors";
+import { FirebaseError } from "firebase/app";
 
 const Header = styled.p`
   font-family: "Outfit";
@@ -121,7 +122,7 @@ export const Login = ({ isPasswordHidden = false }) => {
         console.log(jwt);
       })
 
-      .catch((e: any) => {
+      .catch((e: FirebaseError) => {
         console.dir(e);
         alert(firebaseErrors[e.code]);
       });

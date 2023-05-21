@@ -73,10 +73,17 @@ const PlayerWrapper = styled.div`
   padding: 40px;
 `;
 
-export const NatureSound = () => {
-  const [currentSound, setCurrentSound] = useState(null);
+interface Item {
+  id: number;
+  isActive: boolean;
+  imgSource: string;
+  soundSource: string;
+}
 
-  const [items, setItems] = useState([
+export const NatureSound = () => {
+  const [currentSound, setCurrentSound] = useState<string | null>(null);
+
+  const [items, setItems] = useState<Array<Item>>([
     { id: 1, isActive: false, imgSource: imgRain, soundSource: soundRain },
     { id: 2, isActive: false, imgSource: imgBirds, soundSource: soundBirds },
     { id: 3, isActive: false, imgSource: imgFire, soundSource: soundFire },
@@ -90,7 +97,7 @@ export const NatureSound = () => {
     dispatch(updateBg("bgViolet"));
   }, [dispatch]);
 
-  const toggleClick = (id: number, soundSource: any) => {
+  const toggleClick = (id: number, soundSource: string) => {
     const updatedItems = items.map((item) => {
       if (item.id === id) {
         let newActive = !item.isActive;
