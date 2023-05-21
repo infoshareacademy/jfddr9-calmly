@@ -27,7 +27,9 @@ function App() {
       bg === "bgDefault"
         ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
         : bg === "bgHome"
-        ? "linear-gradient(153.92deg, #F6C59C 9.05%, #E3B4AB 37.88%, #B3B4EF 79.44%)"
+        ? "white url('src/assets/h page.png') center center / cover no-repeat fixed;"
+        : bg === "bgRevert"
+        ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
         : bg === "bgQuiz"
         ? "linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);"
         : bg === "bgCircle"
@@ -46,8 +48,6 @@ function App() {
             ? "animation-play-state: running;"
             : "animation-play-state: paused;"}
 
-        
-  
   }
 `;
 
