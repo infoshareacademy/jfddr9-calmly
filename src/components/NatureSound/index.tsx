@@ -82,6 +82,8 @@ interface Item {
 
 export const NatureSound = () => {
   const [currentSound, setCurrentSound] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  console.log(`to jest pierwsze ${isVisible}`);
 
   const [items, setItems] = useState<Array<Item>>([
     { id: 1, isActive: false, imgSource: imgRain, soundSource: soundRain },
@@ -102,7 +104,10 @@ export const NatureSound = () => {
       if (item.id === id) {
         let newActive = !item.isActive;
         let newSoundSource = newActive ? soundSource : null;
+        let newIsVisible = newActive ? true : false;
         setCurrentSound(newSoundSource);
+        setIsVisible(newIsVisible);
+        console.log(isVisible);
         return { ...item, isActive: newActive };
       } else {
         return { ...item, isActive: false };
@@ -110,6 +115,7 @@ export const NatureSound = () => {
     });
 
     setItems(updatedItems);
+    // setIsVisible(!isVisible)
   };
 
   return (
@@ -127,14 +133,21 @@ export const NatureSound = () => {
           </ToggleButton>
         ))}
       </ToggleButtonContainer>
-      <PlayerWrapper>
-        {currentSound ? (
+      {isVisible ? (
+        <PlayerWrapper style={{ visibility: "visible" }}>
+          <CustomAudioPlayer
+            key={currentSound}
+            src={currentSound}
+          ></CustomAudioPlayer>{" "}
+        </PlayerWrapper>
+      ) : (
+        <PlayerWrapper style={{ visibility: "hidden" }}>
           <CustomAudioPlayer
             key={currentSound}
             src={currentSound}
           ></CustomAudioPlayer>
-        ) : null}
-      </PlayerWrapper>
+        </PlayerWrapper>
+      )}
     </>
   );
 };
