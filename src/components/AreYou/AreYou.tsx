@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import * as Styled from "./AreYou.styles";
 
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { updateBg } from "../../store/slice";
 // import { Footer } from "../footer/Footer"; //
 
 type AreYouProps = {
@@ -11,8 +14,14 @@ export const AreYou = (props: AreYouProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    props.stepReset(5);
+    props.stepReset(6);
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
 
   return (
     <Styled.Wrapper>
