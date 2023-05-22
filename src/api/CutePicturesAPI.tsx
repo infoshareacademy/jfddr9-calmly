@@ -23,6 +23,11 @@ const StyledAnimalButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledNewPicButton = styled.button`
@@ -39,6 +44,11 @@ const StyledNewPicButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 2px 10px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledCategoryButton = styled.button`
@@ -55,6 +65,11 @@ const StyledCategoryButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledImg = styled.img`
