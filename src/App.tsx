@@ -70,28 +70,28 @@ function App() {
 
   console.log(reduxStore.bg.text);
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const uid = user.uid;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
 
-  //       const docRef = doc(db, `users/${uid}`);
-  //       getDoc(docRef)
-  //         .then((userData) => {
-  //           const userNewData = userData.data();
-  //           console.log(userNewData);
-  //           dispatch(updateAuthStateChanged(userNewData));
-  //           navigate("/home");
-  //           setIsLoading(false);
-  //         })
-  //         .catch((e) => console.error(e));
-  //     } else {
-  //       dispatch(signOut());
-  //       navigate("/");
-  //       setIsLoading(false);
-  //     }
-  //   });
-  // }, []);
+        const docRef = doc(db, `users/${uid}`);
+        getDoc(docRef)
+          .then((userData) => {
+            const userNewData = userData.data();
+            console.log(userNewData);
+            dispatch(updateAuthStateChanged(userNewData));
+            navigate("/home");
+            setIsLoading(false);
+          })
+          .catch((e) => console.error(e));
+      } else {
+        dispatch(signOut());
+        navigate("/");
+        setIsLoading(false);
+      }
+    });
+  }, []);
 
   return (
     <>
