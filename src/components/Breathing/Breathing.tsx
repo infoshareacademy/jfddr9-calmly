@@ -55,6 +55,10 @@ const MainCircle = styled.div<MainCircleProps>`
       transform: scale(2);
     }
   }
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 const ButtonDiv = styled.div`
   z-index: 999;

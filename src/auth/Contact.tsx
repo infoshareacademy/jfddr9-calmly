@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import calmly from "../assets/logo-white.png";
 import { useDispatch } from "react-redux";
-import React, { useEffect } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import { updateBg } from "../store/slice";
-
-import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
-import { ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../api/firebase";
@@ -18,24 +15,46 @@ const Body = styled.body`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 768px) {
+    background-color: linear-gradient(
+      141.59deg,
+      #f6c59c 11.57%,
+      #e3b4ab 53.27%,
+      #b3b4ef 123.37%
+    );
+    background: none;
+  }
 `;
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Menu = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin-top: 15px;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const LeftDiv = styled.div`
   max-width: 26%;
   display: flex;
   flex-direction: column;
   margin-right: 60px;
+  @media (max-width: 768px) {
+    display: column;
+  }
 `;
 const RigthDiv = styled.div`
   max-width: 40%;
@@ -52,13 +71,6 @@ const Authors = styled.p`
   color: white;
   font-weight: 400;
   font-size: 22px;
-  line-height: 30px;
-`;
-const Teachers = styled.p`
-  text-align: left;
-  color: white;
-  font-weight: 400;
-  font-size: 20px;
   line-height: 30px;
 `;
 const GetInTouch = styled.p`
@@ -149,6 +161,11 @@ const Navigation = styled.div`
   font-weight: 500;
   align-items: center;
   margin: 20px 0;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 const ListItem = styled.p`
   font-size: 20px;
@@ -158,6 +175,9 @@ const ListItem = styled.p`
     transition: 0.2s ease-in;
     cursor: pointer;
     color: #797bec;
+  }
+  @media (max-width: 768px) {
+    margin: 0 4px;
   }
 `;
 
@@ -225,10 +245,6 @@ export function Contact() {
               was created by a group of beginner programmers:{" "}
               <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
             </Authors>
-            <Teachers>
-              with the invaluable help of trainers from InfoShare Academy:{" "}
-              <b>Tomek, Darek, Krystian and Filip</b>
-            </Teachers>
           </LeftDiv>
           {thankYou ? (
             <RigthDiv>
