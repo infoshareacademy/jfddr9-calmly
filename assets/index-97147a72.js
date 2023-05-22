@@ -232,6 +232,11 @@ Error generating stack: `+o.message+`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `,cH=_.button`
   background: rgba(255, 255, 255, 0.45);
   color: #797bec;
@@ -246,6 +251,11 @@ Error generating stack: `+o.message+`
   line-height: 25px;
   text-align: center;
   padding: 2px 10px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `,fH=_.button`
   background: rgba(255, 255, 255, 0.45);
   color: #797bec;
@@ -260,8 +270,13 @@ Error generating stack: `+o.message+`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `,dH=_.img`
-  width: 500px;
+  max-width: 1500px;
   height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -269,7 +284,7 @@ Error generating stack: `+o.message+`
   padding: 20px;
   border-radius: 24px;
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
-`,hH=()=>z.jsx(z.Fragment,{children:z.jsx("div",{style:{display:"flex",alignSelf:"center",height:"100%"},children:z.jsx(gH,{})})}),pH=[{animal:"Dog",label:"dog"},{animal:"Cat",label:"cat"},{animal:"Fox",label:"fox"}],gH=()=>{const[e,t]=k.useState(!1),[n,r]=k.useState(""),[i,o]=k.useState("Dog"),[a,s]=k.useState(!0);Fn()(Jn("bgDefault")),k.useEffect(()=>{v("Dog")},[]);const v=P=>{if(console.log(P),P==="Dog"){console.log("step 1");const O=`${aH}images/search?limit=1`;fetch(O,{headers:{"x-api-key":zw}}).then(C=>C.json()).then(C=>{console.log(C),C.map(function(b){r(b.url),o("Dog"),t(!1),s(!1)})}).catch(function(C){console.log(C)})}else if(P==="Cat"){console.log("step 2");const O=`${sH}images/search?limit=1`;fetch(O,{headers:{"x-api-key":zw}}).then(C=>C.json()).then(C=>{console.log(C),C.map(function(b){r(b.url),o("Cat"),t(!1)})}).catch(function(C){console.log(C)})}else P==="Fox"&&(console.log("step 3"),fetch(lH,{}).then(C=>C.json()).then(C=>{console.log(C),r(C.image),o("Fox"),t(!1)}).catch(function(C){console.log(C)}))};return z.jsx(z.Fragment,{children:z.jsxs("div",{style:{display:"flex",flexDirection:"column-reverse",margin:"0 auto",gap:"15px",alignSelf:"center"},children:[z.jsxs("div",{children:[z.jsx(cH,{onClick:()=>v(i),children:"generate new picture"}),z.jsxs("div",{style:{display:"flex",flexDirection:"column",paddingBottom:"10px"},children:[z.jsx(uH,{onClick:()=>t(P=>!P),children:"animals"}),e&&z.jsx("div",{style:{display:"flex",flexDirection:"row",justifyContent:"center"},children:pH.map(P=>z.jsx("div",{children:z.jsx(fH,{onClick:()=>v(P.animal),children:P.label})}))})]})]}),z.jsx("div",{style:{display:"flex",justifyContent:"center"},children:a?z.jsx(Lm,{}):z.jsx(dH,{src:n})})]})})},mH=_.div`
+`,hH=()=>z.jsx(z.Fragment,{children:z.jsx("div",{style:{display:"flex",alignSelf:"center",height:"100%"},children:z.jsx(gH,{})})}),pH=[{animal:"Dog",label:"dog"},{animal:"Cat",label:"cat"},{animal:"Fox",label:"fox"}],gH=()=>{const[e,t]=k.useState(!1),[n,r]=k.useState(""),[i,o]=k.useState("Dog"),[a,s]=k.useState(!0);Fn()(Jn("bgDefault")),k.useEffect(()=>{v("Dog")},[]);const v=P=>{if(console.log(P),P==="Dog"){console.log("step 1");const O=`${aH}images/search?limit=1`;fetch(O,{headers:{"x-api-key":zw}}).then(C=>C.json()).then(C=>{console.log(C),C.map(function(b){r(b.url),o("Dog"),t(!1),s(!1)})}).catch(function(C){console.log(C)})}else if(P==="Cat"){console.log("step 2");const O=`${sH}images/search?limit=1`;fetch(O,{headers:{"x-api-key":zw}}).then(C=>C.json()).then(C=>{console.log(C),C.map(function(b){r(b.url),o("Cat"),t(!1)})}).catch(function(C){console.log(C)})}else P==="Fox"&&(console.log("step 3"),fetch(lH,{}).then(C=>C.json()).then(C=>{console.log(C),r(C.image),o("Fox"),t(!1)}).catch(function(C){console.log(C)}))};return z.jsx(z.Fragment,{children:z.jsxs("div",{style:{display:"flex",flexDirection:"column-reverse",margin:"0 auto",gap:"15px",alignSelf:"center"},children:[z.jsxs("div",{children:[z.jsx(cH,{onClick:()=>v(i),children:"generate new picture"}),z.jsxs("div",{style:{display:"flex",flexDirection:"column",paddingBottom:"10px"},children:[z.jsx(uH,{onClick:()=>t(P=>!P),children:"animals"}),e&&z.jsx("div",{style:{display:"flex",flexDirection:"row",justifyContent:"center"},children:pH.map(P=>z.jsx("div",{children:z.jsx(fH,{onClick:()=>v(P.animal),children:P.label})}))})]})]}),z.jsx("div",{style:{display:"flex",justifyContent:"center"},children:a?z.jsx(Lm,{}):z.jsx(dH,{src:n,alt:"A picture of either a dog, cat or fox"})})]})})},mH=_.div`
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -4168,7 +4183,7 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
 `,QPe=_.img`
   height: 800px;
   margin-left: 150px;
-`;class zPe extends a1.ReactSurveyElement{constructor(){super(...arguments);_1(this,"isChecked")}renderElement(){const n=this.props,r=n.question,i=n.item,o="item-label"+(r.isItemSelected(i)?" item-label--selected":""),a="item-text"+(r.isItemSelected(i)?" item-text--selected":""),s=d=>{r.clickItemHandler(i,d.currentTarget.checked)};return z.jsx("div",{role:"presentation",className:"item-root",children:z.jsxs("label",{className:o,children:[z.jsx("input",{role:"option",className:"item-input",id:r.getItemId(i),type:"checkbox",name:r.questionName,checked:this.isChecked,value:i.value,onChange:s}),z.jsx("span",{className:"item-image"}),z.jsx("span",{className:a,children:i.text})]})})}}a1.ReactElementFactory.Instance.registerElement("custom-choice-item",e=>Z.createElement(zPe,e));function HPe({score:e}){const[t,n]=k.useState(!1),{authUser:r}=Vm(s=>s),i=qo();Fn()(Jn("bgQuiz2"));const a=new BPe.Model(NPe);return a.onComplete.add(s=>{const d=JSON.stringify(s.data,null,3),v=JSON.parse(d),P=new Date,O=bl(Pl,"journal",r.uid);console.log(v.multiselect),rX(O,{entries:sX({date:At.fromDate(P),score:e,mood:v.multiselect})}).then(()=>console.log("update done")),n(!0)}),t?z.jsxs(z.Fragment,{children:[z.jsx("h1",{children:'Would you like to go through the "Lets Feel Better" activites?'}),z.jsx($Pe,{onClick:()=>i("/feelbetter"),children:"Yes, lets do it"}),z.jsx(UPe,{onClick:()=>i("/home"),children:"No, return to home"})]}):z.jsx(z.Fragment,{children:z.jsxs(WPe,{children:[z.jsx(QPe,{src:FPe}),z.jsx(a1.Survey,{model:a})]})})}const KPe=_.div`
+`;class zPe extends a1.ReactSurveyElement{constructor(){super(...arguments);_1(this,"isChecked")}renderElement(){const n=this.props,r=n.question,i=n.item,o="item-label"+(r.isItemSelected(i)?" item-label--selected":""),a="item-text"+(r.isItemSelected(i)?" item-text--selected":""),s=d=>{r.clickItemHandler(i,d.currentTarget.checked)};return z.jsx("div",{role:"presentation",className:"item-root",children:z.jsxs("label",{className:o,children:[z.jsx("input",{role:"option",className:"item-input",id:r.getItemId(i),type:"checkbox",name:r.questionName,checked:this.isChecked,value:i.value,onChange:s}),z.jsx("span",{className:"item-image"}),z.jsx("span",{className:a,children:i.text})]})})}}a1.ReactElementFactory.Instance.registerElement("custom-choice-item",e=>Z.createElement(zPe,e));function HPe({score:e}){const[t,n]=k.useState(!1),{authUser:r}=Vm(s=>s),i=qo();Fn()(Jn("bgQuiz2"));const a=new BPe.Model(NPe);return a.onComplete.add(s=>{const d=JSON.stringify(s.data,null,3),v=JSON.parse(d),P=new Date,O=bl(Pl,"journal",r.uid);console.log(v.multiselect),rX(O,{entries:sX({date:At.fromDate(P),score:e,mood:v.multiselect})}).then(()=>console.log("update done")),n(!0)}),t?z.jsxs(z.Fragment,{children:[z.jsx("h1",{children:'Would you like to go through the "Lets Feel Better" activites?'}),z.jsx($Pe,{onClick:()=>i("/feelbetter"),children:"Yes, lets do it"}),z.jsx(UPe,{onClick:()=>i("/home"),children:"No, return to home"})]}):z.jsx(z.Fragment,{children:z.jsxs(WPe,{children:[z.jsx(QPe,{src:FPe,alt:"An image of a cartoon cat standing on a tv"}),z.jsx(a1.Survey,{model:a})]})})}const KPe=_.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
