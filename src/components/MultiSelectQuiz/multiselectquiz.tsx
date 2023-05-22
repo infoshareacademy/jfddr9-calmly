@@ -46,6 +46,16 @@ const StyledNoButton = styled.button`
   }
 `;
 
+const StyledWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const StyledImgCat = styled.img`
+  height: 800px;
+  margin-left: 150px;
+`;
+
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../../api/firebase";
 import { useSelector } from "react-redux";
@@ -134,13 +144,10 @@ export function SurveyComponent({ score }: { score: number }) {
     </>
   ) : (
     <>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <img
-          style={{ height: "800px", marginLeft: "150px" }}
-          src={quizpic}
-        ></img>
+      <StyledWrapperDiv>
+        <StyledImgCat src={quizpic}></StyledImgCat>
         <Survey model={survey} />
-      </div>
+      </StyledWrapperDiv>
     </>
   );
 }
