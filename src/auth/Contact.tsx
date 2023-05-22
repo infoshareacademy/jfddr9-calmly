@@ -4,6 +4,7 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import { updateBg } from "../store/slice";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
+import { Navigation } from "../components/Navigation";
 
 const Body = styled.body`
   max-height: 100vh;
@@ -26,6 +27,7 @@ const MainDiv = styled.div`
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  margin-top: 200px;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -36,7 +38,6 @@ const Menu = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 15px;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -47,13 +48,15 @@ const LeftDiv = styled.div`
   max-width: 26%;
   display: flex;
   flex-direction: column;
-  margin-right: 60px;
+  margin-top: 100px;
+  margin-left: 120px;
   @media (max-width: 768px) {
     display: column;
   }
 `;
 const RigthDiv = styled.div`
   max-width: 40%;
+  margin-right: 100px;
   display: flex;
   flex-direction: column;
 `;
@@ -74,6 +77,8 @@ const GetInTouch = styled.p`
   margin-bottom: 0;
 `;
 const Input = styled.input`
+  max-width: 600px;
+  min-width: 400px;
   margin-bottom: 12px;
   border: none;
   border-radius: 10px;
@@ -92,9 +97,9 @@ const Input = styled.input`
 `;
 //////////////////////////////////////////////// naprawić inputy ////////////////////////////////////////////////////////
 const TextArea = styled.textarea`
-  max-width: 400px;
+  max-width: 600px;
+  min-width: 400px;
   max-height: 150px;
-  min-width: 360px;
   min-height: 140px;
   border: none;
   border-radius: 10px;
@@ -182,10 +187,6 @@ export function Contact() {
               was created by a group of beginner programmers:{" "}
               <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
             </Authors>
-            <Teachers>
-              with the invaluable help of trainers from InfoShare Academy:{" "}
-              <b>Tomek, Darek, Krystian and Filip</b>
-            </Teachers>
           </LeftDiv>
           {thankYou ? (
             <RigthDiv>
@@ -224,7 +225,7 @@ export function Contact() {
             <RigthDiv>
               <GetInTouch>{kontent}</GetInTouch>
               <Hr style={{ width: "115px" }} />
-              <Teachers>We will do our best to improve Calmly</Teachers>
+              <Authors>We will do our best to improve Calmly</Authors>
               <Form style={{ visibility: "hidden" }}>
                 <Input
                   placeholder="Name"
