@@ -101,7 +101,7 @@ function App() {
         animation={reduxStore.bg.breathingAnimation}
       />
 
-      {!isLoading ? (
+      {isLoading ? (
         <LoaderComponent />
       ) : (
         <Routes>
