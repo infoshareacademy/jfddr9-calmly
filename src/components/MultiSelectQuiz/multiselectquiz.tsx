@@ -6,7 +6,6 @@ import "survey-core/defaultV2.min.css";
 import "./multi.css";
 import { json } from "./json";
 // import styled from 'styled-components';
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import quizpic from "../../assets/quiz.png";
 import { useDispatch } from "react-redux";
@@ -60,7 +59,7 @@ const StyledImgCat = styled.img`
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../../api/firebase";
 import { useSelector } from "react-redux";
-import { TestResultPage } from "../../routes/TestResultPage/TestResultPage";
+import { TestResultPage } from "../TestResultPage/TestResultPage";
 
 class CustomChoiceItem extends ReactSurveyElement {
   isChecked: boolean | undefined;
@@ -108,7 +107,6 @@ export function SurveyComponent({ score }: { score: number }) {
 
   const { authUser }: any = useSelector((state) => state);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   dispatch(updateBg("bgQuiz2"));
@@ -144,7 +142,11 @@ export function SurveyComponent({ score }: { score: number }) {
     //     No, return to home
     //   </StyledNoButton>
     // </>
-    <TestResultPage stressLevel="middle" />
+    <TestResultPage
+      stressLevel={
+        score < 7 ? "low" : score >= 7 && score < 15 ? "middle" : "high"
+      }
+    />
   ) : (
     <>
       <StyledWrapperDiv>
