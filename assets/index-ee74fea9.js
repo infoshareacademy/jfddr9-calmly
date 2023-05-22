@@ -4180,9 +4180,20 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
 `,WPe=_.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 `,QPe=_.img`
   height: 800px;
   margin-left: 150px;
+
+  @media (max-width: 1200px) {
+    margin-left: 0px;
+    height: 400px;
+    width: 300px;
+    margin: 0 auto;
+  }
 `;class zPe extends a1.ReactSurveyElement{constructor(){super(...arguments);_1(this,"isChecked")}renderElement(){const n=this.props,r=n.question,i=n.item,o="item-label"+(r.isItemSelected(i)?" item-label--selected":""),a="item-text"+(r.isItemSelected(i)?" item-text--selected":""),s=d=>{r.clickItemHandler(i,d.currentTarget.checked)};return z.jsx("div",{role:"presentation",className:"item-root",children:z.jsxs("label",{className:o,children:[z.jsx("input",{role:"option",className:"item-input",id:r.getItemId(i),type:"checkbox",name:r.questionName,checked:this.isChecked,value:i.value,onChange:s}),z.jsx("span",{className:"item-image"}),z.jsx("span",{className:a,children:i.text})]})})}}a1.ReactElementFactory.Instance.registerElement("custom-choice-item",e=>Z.createElement(zPe,e));function HPe({score:e}){const[t,n]=k.useState(!1),{authUser:r}=Vm(s=>s),i=qo();Fn()(Jn("bgQuiz2"));const a=new BPe.Model(NPe);return a.onComplete.add(s=>{const d=JSON.stringify(s.data,null,3),v=JSON.parse(d),P=new Date,O=bl(Pl,"journal",r.uid);console.log(v.multiselect),rX(O,{entries:sX({date:At.fromDate(P),score:e,mood:v.multiselect})}).then(()=>console.log("update done")),n(!0)}),t?z.jsxs(z.Fragment,{children:[z.jsx("h1",{children:'Would you like to go through the "Lets Feel Better" activites?'}),z.jsx($Pe,{onClick:()=>i("/feelbetter"),children:"Yes, lets do it"}),z.jsx(UPe,{onClick:()=>i("/home"),children:"No, return to home"})]}):z.jsx(z.Fragment,{children:z.jsxs(WPe,{children:[z.jsx(QPe,{src:FPe,alt:"An image of a cartoon cat standing on a tv"}),z.jsx(a1.Survey,{model:a})]})})}const KPe=_.div`
   display: flex;
   flex-direction: column;
@@ -4195,12 +4206,38 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   height: 298px;
   margin: 0 auto;
   gap: 20px;
+
+  @media (max-width: 1010px) {
+    padding: 120px 50px;
+  }
+  @media (max-width: 910px) {
+    width: 407px;
+    height: 328px;
+  }
+  @media (max-width: 515px) {
+    width: 267px;
+    height: 330px;
+  }
+  @media (max-width: 375px) {
+    width: 167px;
+    height: 210px;
+  }
 `,qPe=_.div`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 45px;
   color: #797bec;
+
+  @media (max-width: 910px) {
+    font-size: 25px;
+  }
+  @media (max-width: 515px) {
+    font-size: 20px;
+  }
+  @media (max-width: 375px) {
+    font-size: 14px;
+  }
 `,kPe=_.button`
   background: rgba(179, 180, 239, 0.27);
   border-radius: 50px;
@@ -4212,9 +4249,17 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   border: transparent;
   padding: 5px 25px;
   cursor: pointer;
+
   &:hover {
     background: #797bec;
     color: #ffff;
+  }
+
+  @media (max-width: 515px) {
+    font-size: 24px;
+  }
+  @media (max-width: 375px) {
+    font-size: 14px;
   }
 `,GPe=_.div`
   display: flex;
@@ -4222,6 +4267,10 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
+
+  @media (max-width: 1010px) {
+    flex-direction: column;
+  }
 `,JPe=_.button`
   background: rgba(179, 180, 239, 0.27);
   border-radius: 50px;
@@ -4236,20 +4285,37 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
+
   &:hover {
     background: #797bec;
     color: #ffff;
   }
+
+  @media (max-width: 375px) {
+    font-size: 14px;
+  }
 `,YPe=_.span`
   position: absolute;
   top: 15%;
-  right: 35%;
+  right: 0;
+  left: 0;
   color: #ffffff;
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 64px;
-`;function XPe(){const e=Fn();k.useEffect(()=>{e(Jn("bgQuiz"))},[e]);const t=[{questionText:"Rate your physical effort today?",answerOptions:[{answerText:"Low",worth:3},{answerText:"Average",worth:2},{answerText:"High",worth:1}]},{questionText:"Do you feel hungry?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"Does your job require you to spend more than 6 hours in a sitting position?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"How many cups of coffee have you drunk today?",answerOptions:[{answerText:"0 cups",worth:4},{answerText:"1-2 cups",worth:3},{answerText:"3-4 cups",worth:2},{answerText:"5-6 cups",worth:1}]},{questionText:"How many liters of water have you drunk today?",answerOptions:[{answerText:"Less than 8 cups",worth:4},{answerText:"8 cups (1.7 liters)",worth:3},{answerText:"12 cups (2.7 Liters)",worth:2},{answerText:"16 cups (3.7 Liters)",worth:1}]},{questionText:"How many hours of sleep did you get today?",answerOptions:[{answerText:"4 hours or less",worth:3},{answerText:"Between 4 and 8 hours",worth:2},{answerText:"More than 8 hours",worth:1}]},{questionText:"Do you use stimulants (smoking, drinking alcohol)?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"Finished",answerOptions:[{answerText:"Next",worth:0}]}],[n,r]=k.useState(0),[i,o]=k.useState(!1),[a,s]=k.useState(0),[d,v]=k.useState(0),[P,O]=k.useState(0),[C,E]=k.useState(0),[b,c]=k.useState(0),[f,g]=k.useState(0),[l,u]=k.useState(0),[h,y]=k.useState(0),m=()=>{switch(n){default:break;case 0:break;case 1:s(a-d),r(n-1),console.log(a);break;case 2:s(a-P),r(n-1),console.log(a);break;case 3:s(a-C),r(n-1),console.log(a);break;case 4:s(a-b),r(n-1),console.log(a);break;case 5:s(a-f),r(n-1),console.log(a);break;case 6:s(a-l),r(n-1),console.log(a);break;case 7:s(a-h),r(n-1),console.log(a);break}},p=x=>{switch(n){default:break;case 0:v(x);break;case 1:O(x);break;case 2:E(x);break;case 3:c(x);break;case 4:g(x);break;case 5:u(x);break;case 6:y(x);break;case 7:const V=d+P+C+b+f+l+h;s(V),console.log(V),console.log(d+" q0"),console.log(P+" q1"),console.log(C+" q2"),console.log(b+" q3"),console.log(f+" q4"),console.log(l+" q5"),console.log(h+" q6");break}const A=n+1;A<t.length?r(A):o(!0)};return z.jsx(z.Fragment,{children:i?z.jsx(HPe,{score:a}):z.jsxs(KPe,{className:"app",children:[z.jsx(YPe,{children:"How are you feeling today?"}),z.jsx("div",{className:"question-section",children:z.jsx(qPe,{className:"question-text",children:t[n].questionText})}),z.jsx(GPe,{className:"answer-section",children:t[n].answerOptions.map((x,A)=>z.jsx(kPe,{onClick:()=>p(x.worth),children:x.answerText},A))}),z.jsx(JPe,{onClick:m,children:"Back"})]})})}const ZPe="/assets/logo-white-e61e871d.png",_Pe=_.body`
+
+  @media (max-width: 910px) {
+    font-size: 32px;
+  }
+  @media (max-width: 515px) {
+    font-size: 24px;
+  }
+  @media (max-width: 375px) {
+    top: 25%;
+    font-size: 18px;
+  }
+`;function XPe(){const e=Fn();k.useEffect(()=>{e(Jn("bgQuiz"))},[e]);const t=[{questionText:"Rate your physical effort today?",answerOptions:[{answerText:"Low",worth:3},{answerText:"Average",worth:2},{answerText:"High",worth:1}]},{questionText:"Do you feel hungry?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"Does your job require you to spend more than 6 hours in a sitting position?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"How many cups of coffee have you drunk today?",answerOptions:[{answerText:"0 cups",worth:4},{answerText:"1-2 cups",worth:3},{answerText:"3-4 cups",worth:2},{answerText:"5-6 cups",worth:1}]},{questionText:"How many liters of water have you drunk today?",answerOptions:[{answerText:"Less than 8 cups",worth:4},{answerText:"8 cups (1.7 liters)",worth:3},{answerText:"12 cups (2.7 Liters)",worth:2},{answerText:"16 cups (3.7 Liters)",worth:1}]},{questionText:"How many hours of sleep did you get today?",answerOptions:[{answerText:"4 hours or less",worth:3},{answerText:"Between 4 and 8 hours",worth:2},{answerText:"More than 8 hours",worth:1}]},{questionText:"Do you use stimulants (smoking, drinking alcohol)?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"Finished",answerOptions:[{answerText:"Next",worth:0}]}],[n,r]=k.useState(0),[i,o]=k.useState(!1),[a,s]=k.useState(0),[d,v]=k.useState(0),[P,O]=k.useState(0),[C,E]=k.useState(0),[b,c]=k.useState(0),[f,g]=k.useState(0),[l,u]=k.useState(0),[h,y]=k.useState(0),m=()=>{switch(n){default:break;case 0:break;case 1:s(a-d),r(n-1);break;case 2:s(a-P),r(n-1);break;case 3:s(a-C),r(n-1);break;case 4:s(a-b),r(n-1);break;case 5:s(a-f),r(n-1);break;case 6:s(a-l),r(n-1);break;case 7:s(a-h),r(n-1);break}},p=x=>{switch(n){default:break;case 0:v(x);break;case 1:O(x);break;case 2:E(x);break;case 3:c(x);break;case 4:g(x);break;case 5:u(x);break;case 6:y(x);break;case 7:const V=d+P+C+b+f+l+h;s(V);break}const A=n+1;A<t.length?r(A):o(!0)};return z.jsx(z.Fragment,{children:i?z.jsx(HPe,{score:a}):z.jsxs(KPe,{className:"app",children:[z.jsx(YPe,{children:"How are you feeling today?"}),z.jsx("div",{className:"question-section",children:z.jsx(qPe,{className:"question-text",children:t[n].questionText})}),z.jsx(GPe,{className:"answer-section",children:t[n].answerOptions.map((x,A)=>z.jsx(kPe,{onClick:()=>p(x.worth),children:x.answerText},A))}),n!=0?z.jsx(JPe,{onClick:m,children:"Back"}):z.jsx("div",{})]})})}const ZPe="/assets/logo-white-e61e871d.png",_Pe=_.body`
   max-height: 100vh;
   background: url(/src/assets/vectorXd.png) 100% 100% / cover no-repeat;
   display: flex;
