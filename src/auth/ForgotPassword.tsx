@@ -17,7 +17,7 @@ const Header = styled.p`
   color: #797bec;
 `;
 
-const ParagraphHeader = styled.p`
+const TextInfo = styled.p`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 300;
@@ -38,31 +38,43 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  position: relative;
 `;
 
 const InputForgotPassword = styled.input`
   height: 50px;
-
+  width: calc(100% - 45px);
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   border: 0;
-
   color: #797bec;
+  padding-left: 45px;
   font-family: "Outfit";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
 
-  ::placeholder {
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
     color: #797bec;
     font-family: "Outfit";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 25px;
-    padding-left: 10px;
   }
+`;
+
+const IconWrapper = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
 `;
 
 const ButtonForgotPassword = styled.button`
@@ -104,9 +116,9 @@ export const ForgotPassword = () => {
   return (
     <>
       <Header>Forgotten password?</Header>
-      <ParagraphHeader>
+      <TextInfo>
         We will send you a password reset link to your e-mail address
-      </ParagraphHeader>
+      </TextInfo>
       <FormForgotPassword onSubmit={handlePasswordReset}>
         <InputWrapper>
           <InputForgotPassword
@@ -115,6 +127,7 @@ export const ForgotPassword = () => {
             id="email"
             placeholder="Email"
           />
+          <IconWrapper src="src/assets/formIcons/mail.svg" />
         </InputWrapper>
         <ButtonForgotPassword>Send</ButtonForgotPassword>
       </FormForgotPassword>

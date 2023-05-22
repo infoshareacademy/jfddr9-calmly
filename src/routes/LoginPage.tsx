@@ -1,18 +1,26 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
-
 import { Login } from "../auth/Login";
 import { GraphicsCard } from "../components/GraphicsCard";
+
+import { updateBg } from "../store/slice";
+import { useDispatch } from "react-redux";
 
 const MainWrapper = styled.div`
   font-family: "Outfit";
   display: flex;
   justify-content: center;
+  @media (max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-const LoginCardWrapper = styled.div`
-  max-width: 435px;
+const LeftCardWrapper = styled.div`
+  // max-width: 435px;
+  min-width: 325px;
   height: 688px;
   margin: 15px;
   padding: 0px 60px;
@@ -21,14 +29,14 @@ const LoginCardWrapper = styled.div`
   border-radius: 30px;
 `;
 
-const FooterWrapperLoginCard = styled.div`
+const FooterWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   margin-top: 120px;
 `;
 
-const FooterParagraphLoginCard = styled.p`
+const TextFooter = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -53,18 +61,22 @@ font-size: 16px;
 //do zmiany kolor hover i active
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
+
   return (
     <MainWrapper>
-      <LoginCardWrapper>
+      <LeftCardWrapper>
         <Login />
-        <FooterWrapperLoginCard>
-          <FooterParagraphLoginCard>
-            Do not have an account?
-          </FooterParagraphLoginCard>
+        <FooterWrapper>
+          <TextFooter>Do not have an account?</TextFooter>
           <NavBarLink to="/register">Sign up</NavBarLink>
-        </FooterWrapperLoginCard>
-      </LoginCardWrapper>
-      <GraphicsCard />
+        </FooterWrapper>
+      </LeftCardWrapper>
+      <GraphicsCard src="../src/assets/catti_login.svg" />
     </MainWrapper>
   );
 };
