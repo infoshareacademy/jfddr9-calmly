@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import calmly from "../assets/logo-white.png";
+// import calmly from "../assets/logo-white.png";
 import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { updateBg } from "../store/slice";
@@ -8,9 +8,10 @@ import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
 import { ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../api/firebase";
+// import { useNavigate } from "react-router-dom";
+import { Navigation } from "../components/Navigation";
+// import { signOut } from "firebase/auth";
+// import { auth } from "../api/firebase";
 
 const Body = styled.body`
   max-height: 100vh;
@@ -42,10 +43,7 @@ const RigthDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Calmly = styled.img`
-  max-width: 240px;
-  margin: 10px 500px 0 0;
-`;
+
 const Authors = styled.p`
   margin-top: 40px;
   text-align: left;
@@ -124,42 +122,6 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
-const Button = styled.button`
-  cursor: pointer;
-  padding: 14px 16px 10px;
-  border-radius: 50px;
-  border: none;
-  background: rgba(255, 255, 255, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-weight: 500;
-  font-size: 18px;
-
-  &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
-    color: #797bec;
-  }
-`;
-const Navigation = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-weight: 500;
-  align-items: center;
-  margin: 20px 0;
-`;
-const ListItem = styled.p`
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0 26px;
-  &:hover {
-    transition: 0.2s ease-in;
-    cursor: pointer;
-    color: #797bec;
-  }
-`;
 
 export function Contact() {
   const dispatch = useDispatch();
@@ -167,7 +129,7 @@ export function Contact() {
   useEffect(() => {
     dispatch(updateBg("bgRevert"));
   }, [dispatch]);
-  const navigate = useNavigate();
+
   const [thankYou, setThankYou] = useState(true);
   const [kontent, setKontent] = useState("Get in touch");
   const [content, setContent] = useState({
@@ -206,19 +168,7 @@ export function Contact() {
   return (
     <Body>
       <MainDiv>
-        <Menu>
-          <Navigation>
-            <Calmly src={calmly} />
-            <ListItem onClick={() => navigate("/feelbetter")}>
-              Let's feel better
-            </ListItem>
-            <ListItem>Support</ListItem>
-            <ListItem onClick={() => navigate("/contact")}>Contact</ListItem>
-            <ListItem>
-              <Button onClick={() => signOut(auth)}>Log out</Button>
-            </ListItem>
-          </Navigation>
-        </Menu>
+        <Navigation src="src/assets/logo-white.png" />
         <Menu>
           <LeftDiv>
             <Authors>
