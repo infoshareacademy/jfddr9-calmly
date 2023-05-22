@@ -124,7 +124,7 @@ export const Dropdown = () => {
 
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgDefault")); //upewnienie się, że tło jest odpowiednie
+  dispatch(updateBg("bgDefault"));
 
   useEffect(() => {
     getCutePicture("Dog");
@@ -132,7 +132,6 @@ export const Dropdown = () => {
 
   const getCutePicture = (animal: string) => {
     if (animal === "Dog") {
-      console.log("step 1");
       const url = `${API_URL_DOG}images/search?limit=1`;
 
       fetch(url, {
@@ -144,7 +143,6 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           let imagesData = data;
           imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
@@ -154,10 +152,9 @@ export const Dropdown = () => {
           });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else if (animal === "Cat") {
-      console.log("step 2");
       const url = `${API_URL_CAT}images/search?limit=1`;
 
       fetch(url, {
@@ -169,7 +166,6 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           let imagesData = data;
           imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
@@ -179,10 +175,9 @@ export const Dropdown = () => {
           });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else if (animal === "Fox") {
-      console.log("step 3");
       const url = API_URL_FOX;
 
       fetch(url, {})
@@ -190,14 +185,13 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           setImg(data.image);
           setCategory("Fox");
           setIsOpen(false);
           setIsLoading(false);
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     }
   };
