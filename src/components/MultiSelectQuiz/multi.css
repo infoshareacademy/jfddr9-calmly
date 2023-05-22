@@ -8,6 +8,7 @@
 
 .sd-root-modern {
   background-color: transparent;
+  align-self: center;
 }
 
 .item-image {
@@ -84,3 +85,12 @@
 .sd-question__required-text.sd-question__required-text {
   color: white;
 }
+
+.sd-body.sd-body--static {
+  max-width: 1000px;
+}
+
+/* .svc-logic-question-value,
+.sd-element--with-frame {
+  background-color: transparent;
+} */

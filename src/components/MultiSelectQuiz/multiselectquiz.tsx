@@ -7,6 +7,7 @@ import "./multi.css";
 import { json } from "./json";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import quizpic from "../../assets/quiz.png";
 
 const StyledYesButton = styled.button`
   background: rgba(179, 180, 239, 0.27);
@@ -108,6 +109,18 @@ export function SurveyComponent() {
       </StyledNoButton>
     </>
   ) : (
-    <Survey model={survey} />
+    <>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        {/* <div> */}
+        <img
+          style={{ height: "800px", marginLeft: "150px" }}
+          src={quizpic}
+        ></img>
+        {/* </div> */}
+        {/* <div> */}
+        <Survey model={survey} />
+        {/* </div> */}
+      </div>
+    </>
   );
 }

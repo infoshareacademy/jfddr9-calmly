@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
+import { LoaderComponent } from "../components/Loader";
 
 const API_URL_CAT = `https://api.thecatapi.com/v1/`;
 const API_URL_DOG = `https://api.thedogapi.com/v1/`;
@@ -102,6 +103,7 @@ export const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [img, setImg] = useState("");
   const [category, setCategory] = useState("Dog");
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -132,6 +134,7 @@ export const Dropdown = () => {
             setImg(imageData.url);
             setCategory("Dog");
             setIsOpen(false);
+            setIsLoading(false);
           });
         })
         .catch(function (error) {
@@ -231,7 +234,7 @@ export const Dropdown = () => {
           </StyledNewPicButton> */}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <StyledImg src={img} />
+          {isLoading ? <LoaderComponent /> : <StyledImg src={img} />}
         </div>
       </div>
     </>
