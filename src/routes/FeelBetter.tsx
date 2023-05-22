@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { SpotifyAPI } from "../api/SpotifyAPI";
 import { CutePictures } from "../api/CutePicturesAPI";
 import { Breathing } from "../components/Breathing/Breathing";
+import { Tips } from "../components/Tips/Tips";
 
 import { AreYou } from "../components/AreYou/AreYou";
 import { NatureSound } from "../components/NatureSound";
@@ -106,7 +107,7 @@ export const FeelBetter = () => {
 
   return (
     <StyledDiv>
-      {step === 5 ? (
+      {step === 6 ? (
         <AreYou stepReset={handleStepChange} />
       ) : (
         <>
@@ -116,6 +117,7 @@ export const FeelBetter = () => {
               {step === 2 && <Breathing />}
               {step === 3 && <CutePictures />}
               {step === 4 && <NatureSound />}
+              {step === 5 && <Tips />}
             </StyledStep>
           </StyledStepContainer>
           <StepperContainer>
@@ -145,6 +147,12 @@ export const FeelBetter = () => {
               onClick={() => setStep(4)}
             >
               4
+            </StyledStepButton>
+            <StyledStepButton
+              currentStep={step === 5}
+              onClick={() => setStep(5)}
+            >
+              5
             </StyledStepButton>
             <StepButton onClick={() => setStep(step + 1)}>{">"}</StepButton>
           </StepperContainer>

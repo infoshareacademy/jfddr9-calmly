@@ -1,50 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 import { ReactElementFactory, ReactSurveyElement } from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
 import "./multi.css";
 import { json } from "./json";
-import { useNavigate } from "react-router-dom";
+// import styled from 'styled-components';
 import styled from "styled-components";
 import quizpic from "../../assets/quiz.png";
 import { useDispatch } from "react-redux";
 import { updateBg } from "../../store/slice";
 
-const StyledYesButton = styled.button`
-  background: rgba(179, 180, 239, 0.27);
-  border-radius: 50px;
-  font-family: "Outfit";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  color: #fffff;
-  border: transparent;
-  padding: 5px 25px;
-  margin-right: 20px;
-  cursor: pointer;
-  &:hover {
-    background: #797bec;
-    color: #ffff;
-  }
-`;
+// const StyledYesButton = styled.button`
+//   background: rgba(179, 180, 239, 0.27);
+//   border-radius: 50px;
+//   font-family: 'Outfit';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 30px;
+//   color: #fffff;
+//   border: transparent;
+//   padding: 5px 25px;
+//   margin-right: 20px;
+//   cursor: pointer;
+//   &:hover {
+//     background: #797bec;
+//     color: #ffff;
+//   }
+// `;
 
-const StyledNoButton = styled.button`
-  background: rgba(179, 180, 239, 0.27);
-  border-radius: 50px;
-  font-family: "Outfit";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  color: #fffff;
-  border: transparent;
-  padding: 5px 25px;
-  cursor: pointer;
-  &:hover {
-    background: #797bec;
-    color: #ffff;
-  }
-`;
+// const StyledNoButton = styled.button`
+//   background: rgba(179, 180, 239, 0.27);
+//   border-radius: 50px;
+//   font-family: 'Outfit';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 30px;
+//   color: #fffff;
+//   border: transparent;
+//   padding: 5px 25px;
+//   cursor: pointer;
+//   &:hover {
+//     background: #797bec;
+//     color: #ffff;
+//   }
+// `;
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -70,6 +70,7 @@ const StyledImgCat = styled.img`
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../../api/firebase";
 import { useSelector } from "react-redux";
+import { TestResultPage } from "../TestResultPage/TestResultPage";
 
 class CustomChoiceItem extends ReactSurveyElement {
   isChecked: boolean | undefined;
@@ -117,10 +118,11 @@ export function SurveyComponent({ score }: { score: number }) {
 
   const { authUser }: any = useSelector((state) => state);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgQuiz2"));
+  useEffect(() => {
+    dispatch(updateBg("bgQuiz2"));
+  }, [dispatch]);
 
   const survey = new Model(json);
   survey.onComplete.add((sender) => {
@@ -144,15 +146,20 @@ export function SurveyComponent({ score }: { score: number }) {
     setIsDone(true);
   });
   return isDone ? (
-    <>
-      <h1>Would you like to go through the "Lets Feel Better" activites?</h1>
-      <StyledYesButton onClick={() => navigate("/feelbetter")}>
-        Yes, lets do it
-      </StyledYesButton>
-      <StyledNoButton onClick={() => navigate("/home")}>
-        No, return to home
-      </StyledNoButton>
-    </>
+    // <>
+    //   <h1>Would you like to go through the "Lets Feel Better" activites?</h1>
+    //   <StyledYesButton onClick={() => navigate("/feelbetter")}>
+    //     Yes, lets do it
+    //   </StyledYesButton>
+    //   <StyledNoButton onClick={() => navigate("/home")}>
+    //     No, return to home
+    //   </StyledNoButton>
+    // </>
+    <TestResultPage
+      stressLevel={
+        score < 7 ? "low" : score >= 7 && score < 15 ? "middle" : "high"
+      }
+    />
   ) : (
     <>
       <StyledWrapperDiv>
