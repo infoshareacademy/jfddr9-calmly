@@ -5,7 +5,6 @@ import { ReactElementFactory, ReactSurveyElement } from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
 import "./multi.css";
 import { json } from "./json";
-import { useNavigate } from "react-router-dom";
 // import styled from 'styled-components';
 
 // const StyledYesButton = styled.button`
