@@ -94,57 +94,57 @@ export function Quiz() {
     {
       questionText: "Rate your physical effort today?",
       answerOptions: [
-        { answerText: "Low", worth: 1 },
+        { answerText: "Low", worth: 3 },
         { answerText: "Average", worth: 2 },
-        { answerText: "High", worth: 3 },
+        { answerText: "High", worth: 1 },
       ],
     },
     {
       questionText: "Do you feel hungry?",
       answerOptions: [
-        { answerText: "Yes", worth: 1 },
-        { answerText: "No", worth: 2 },
+        { answerText: "Yes", worth: 2 },
+        { answerText: "No", worth: 1 },
       ],
     },
     {
       questionText:
         "Does your job require you to spend more than 6 hours in a sitting position?",
       answerOptions: [
-        { answerText: "Yes", worth: 1 },
-        { answerText: "No", worth: 2 },
+        { answerText: "Yes", worth: 2 },
+        { answerText: "No", worth: 1 },
       ],
     },
     {
       questionText: "How many cups of coffee have you drunk today?",
       answerOptions: [
-        { answerText: "0 cups", worth: 1 },
-        { answerText: "1-2 cups", worth: 2 },
-        { answerText: "3-4 cups", worth: 3 },
-        { answerText: "5-6 cups", worth: 4 },
+        { answerText: "0 cups", worth: 4 },
+        { answerText: "1-2 cups", worth: 3 },
+        { answerText: "3-4 cups", worth: 2 },
+        { answerText: "5-6 cups", worth: 1 },
       ],
     },
     {
       questionText: "How many liters of water have you drunk today?",
       answerOptions: [
-        { answerText: "Less than 8 cups", worth: 1 },
-        { answerText: "8 cups (1.7 liters)", worth: 2 },
-        { answerText: "12 cups (2.7 Liters)", worth: 3 },
-        { answerText: "16 cups (3.7 Liters)", worth: 4 },
+        { answerText: "Less than 8 cups", worth: 4 },
+        { answerText: "8 cups (1.7 liters)", worth: 3 },
+        { answerText: "12 cups (2.7 Liters)", worth: 2 },
+        { answerText: "16 cups (3.7 Liters)", worth: 1 },
       ],
     },
     {
       questionText: "How many hours of sleep did you get today?",
       answerOptions: [
-        { answerText: "4 hours or less", worth: 1 },
+        { answerText: "4 hours or less", worth: 3 },
         { answerText: "Between 4 and 8 hours", worth: 2 },
-        { answerText: "More than 8 hours", worth: 3 },
+        { answerText: "More than 8 hours", worth: 1 },
       ],
     },
     {
       questionText: "Do you use stimulants (smoking, drinking alcohol)?",
       answerOptions: [
-        { answerText: "Yes", worth: 1 },
-        { answerText: "No", worth: 2 },
+        { answerText: "Yes", worth: 2 },
+        { answerText: "No", worth: 1 },
       ],
     },
     {
