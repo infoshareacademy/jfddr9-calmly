@@ -86,6 +86,11 @@
   color: transparent;
 }
 
+.svc-logic-question-value,
+.sd-element--with-frame {
+  padding-bottom: 5px;
+}
+
 .sd-input {
   border-radius: 50px;
 }
