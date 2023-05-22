@@ -26,38 +26,56 @@ const FormRegister = styled.form`
   margin-top: 50px;
 `;
 
-const InputWrapper = styled.div`
+const AllInputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  text-align: left;
 `;
 
 const InputRegister = styled.input`
   height: 50px;
+  width: calc(100% - 45px);
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   border: 0;
   color: #797bec;
+  padding-left: 45px;
   font-family: "Outfit";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 25px;
 
-  ::placeholder {
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
     color: #797bec;
     font-family: "Outfit";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 25px;
-    padding-left: 10px;
   }
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
+`;
+
+const IconWrapper = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
 `;
 
 const ButtonRegister = styled.button`
   cursor: pointer;
+
   width: 299px;
   height: 67px;
   background: #e3b4ab;
@@ -106,7 +124,14 @@ export const Register = ({ isPasswordHidden = false }) => {
           fullName,
           // country,
           id: userId,
-        }).then(() => console.log("udalo sie"));
+        })
+          .then(() => console.log("udalo sie"))
+          .then(() => {
+            const docRef = doc(db, "journal", userId);
+            setDoc(docRef, {
+              entries: [],
+            }).then(() => console.log("udalo sie journal"));
+          });
       })
 
       .catch((e: FirebaseError) => {
@@ -119,20 +144,25 @@ export const Register = ({ isPasswordHidden = false }) => {
     <>
       <Header>Create Account</Header>
       <FormRegister onSubmit={handleRegister}>
-        <InputWrapper>
-          <InputRegister
-            type="text"
-            name="fullName"
-            id="fullName"
-            placeholder="Name"
-          />
-          <InputRegister
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-          />
-
+        <AllInputsWrapper>
+          <InputWrapper>
+            <InputRegister
+              type="text"
+              name="fullName"
+              id="fullName"
+              placeholder="Name"
+            />
+            <IconWrapper src="src/assets/formIcons/user.svg" />
+          </InputWrapper>
+          <InputWrapper>
+            <InputRegister
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+            />
+            <IconWrapper src="src/assets/formIcons/mail.svg" />
+          </InputWrapper>
           {/* <select name="country">
           <option value={defaultCountry}></option>
           <option value='PL'>PL</option>
@@ -140,14 +170,17 @@ export const Register = ({ isPasswordHidden = false }) => {
           <option value='DE'>DE</option>
         </select> */}
           {!isPasswordHidden && (
-            <InputRegister
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-            />
+            <InputWrapper>
+              <InputRegister
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+              />
+              <IconWrapper src="src/assets/formIcons/lock.svg" />
+            </InputWrapper>
           )}
-        </InputWrapper>
+        </AllInputsWrapper>
         <ButtonRegister>Sign up</ButtonRegister>
       </FormRegister>
     </>

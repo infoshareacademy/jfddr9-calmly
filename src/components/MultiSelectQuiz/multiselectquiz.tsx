@@ -46,6 +46,10 @@ const StyledNoButton = styled.button`
   }
 `;
 
+import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
+import { db } from "../../api/firebase";
+import { useSelector } from "react-redux";
+
 class CustomChoiceItem extends ReactSurveyElement {
   isChecked: boolean | undefined;
   renderElement() {
@@ -87,8 +91,10 @@ ReactElementFactory.Instance.registerElement("custom-choice-item", (props) => {
   return React.createElement(CustomChoiceItem, props);
 });
 
-export function SurveyComponent() {
+export function SurveyComponent({ score }: { score: number }) {
   const [isDone, setIsDone] = useState(false);
+
+  const { authUser }: any = useSelector((state) => state);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -97,7 +103,23 @@ export function SurveyComponent() {
 
   const survey = new Model(json);
   survey.onComplete.add((sender) => {
-    console.log(JSON.stringify(sender.data, null, 3));
+    const surveyResult = JSON.stringify(sender.data, null, 3);
+    const result = JSON.parse(surveyResult);
+
+    const currentDate = new Date();
+
+    const docRef = doc(db, "journal", authUser.uid);
+
+    console.log(result.multiselect);
+
+    updateDoc(docRef, {
+      entries: arrayUnion({
+        date: Timestamp.fromDate(currentDate),
+        score: score,
+        mood: result.multiselect,
+      }),
+    }).then(() => console.log("update done"));
+
     setIsDone(true);
   });
   return isDone ? (

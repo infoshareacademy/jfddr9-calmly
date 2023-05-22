@@ -9,6 +9,7 @@ import { CutePictures } from "../api/CutePicturesAPI";
 import { Breathing } from "../components/Breathing/Breathing";
 
 import { AreYou } from "../components/AreYou/AreYou";
+import { NatureSound } from "../components/NatureSound";
 
 const fadeIn = keyframes`
   from {
@@ -105,7 +106,7 @@ export const FeelBetter = () => {
 
   return (
     <StyledDiv>
-      {step === 4 ? (
+      {step === 5 ? (
         <AreYou stepReset={handleStepChange} />
       ) : (
         <>
@@ -114,6 +115,7 @@ export const FeelBetter = () => {
               {step === 1 && <SpotifyAPI />}
               {step === 2 && <Breathing />}
               {step === 3 && <CutePictures />}
+              {step === 4 && <NatureSound />}
             </StyledStep>
           </StyledStepContainer>
           <StepperContainer>
@@ -137,6 +139,12 @@ export const FeelBetter = () => {
               onClick={() => setStep(3)}
             >
               3
+            </StyledStepButton>
+            <StyledStepButton
+              currentStep={step === 4}
+              onClick={() => setStep(4)}
+            >
+              4
             </StyledStepButton>
             <StepButton onClick={() => setStep(step + 1)}>{">"}</StepButton>
           </StepperContainer>
