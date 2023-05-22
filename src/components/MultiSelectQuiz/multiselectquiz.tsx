@@ -72,7 +72,7 @@ class CustomChoiceItem extends ReactSurveyElement {
     const itemName =
       "item-text" +
       (question.isItemSelected(item) ? " item-text--selected" : "");
-    const handleOnChange = (event: { currentTarget: { checked: any } }) => {
+    const handleOnChange = (event: { currentTarget: { checked: boolean } }) => {
       question.clickItemHandler(item, event.currentTarget.checked);
     };
 

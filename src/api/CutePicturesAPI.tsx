@@ -145,7 +145,7 @@ export const Dropdown = () => {
         .then((data) => {
           console.log(data);
           let imagesData = data;
-          imagesData.map(function (imageData: { url: any }) {
+          imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Dog");
             setIsOpen(false);
@@ -170,7 +170,7 @@ export const Dropdown = () => {
         .then((data) => {
           console.log(data);
           let imagesData = data;
-          imagesData.map(function (imageData: { url: any }) {
+          imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Cat");
             setIsOpen(false);
