@@ -9,7 +9,6 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  Dot,
 } from "recharts";
 import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
@@ -66,11 +65,12 @@ export const Journal = () => {
         setData(entries);
         const days: any = dataToDays(entries);
         setDaysData(days);
-        if (days.length < 7) {
+        if (days.length <= 7) {
           setDisplayedData(days);
+          setEntryCounter(7);
         } else {
-          setDisplayedData(entries.slice(entries.length - 7, entries.length));
-          setEntryCounter(entries.length);
+          setDisplayedData(days.slice(days.length - 7, days.length));
+          setEntryCounter(days.length);
         }
       })
 
@@ -259,6 +259,8 @@ export const Journal = () => {
     setEntryCounter(7);
   };
 
+  let daysOrData = isDisplayDays ? daysData : data;
+
   return data.length !== 0 ? (
     <>
       <ChartContainer>
@@ -288,7 +290,7 @@ export const Journal = () => {
       <button
         onClick={nextData}
         disabled={
-          displayedData.length < 7 || entryCounter === data.length
+          displayedData.length < 7 || entryCounter === daysOrData.length
             ? true
             : false
         }
