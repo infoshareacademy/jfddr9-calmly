@@ -73,7 +73,7 @@ class CustomChoiceItem extends ReactSurveyElement {
     const itemName =
       "item-text" +
       (question.isItemSelected(item) ? " item-text--selected" : "");
-    const handleOnChange = (event: { currentTarget: { checked: any } }) => {
+    const handleOnChange = (event: { currentTarget: { checked: boolean } }) => {
       question.clickItemHandler(item, event.currentTarget.checked);
     };
 
@@ -150,7 +150,10 @@ export function SurveyComponent({ score }: { score: number }) {
   ) : (
     <>
       <StyledWrapperDiv>
-        <StyledImgCat src={quizpic}></StyledImgCat>
+        <StyledImgCat
+          src={quizpic}
+          alt="An image of a cartoon cat standing on a tv"
+        ></StyledImgCat>
         <Survey model={survey} />
       </StyledWrapperDiv>
     </>
