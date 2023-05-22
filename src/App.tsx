@@ -20,6 +20,9 @@ import { db } from "./api/firebase";
 
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
+
+import { Tips } from "./routes/Tips/Tips";
+
 import { SupportPage } from "./routes/SupportPage/SupportPage";
 import { TestResultPage } from "./routes/TestResultPage/TestResultPage";
 
@@ -117,6 +120,7 @@ function App() {
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/contact"} element={<Contact />} />
           <Route path={"/journal"} element={<Journal />} />
+          <Route path={"/tips"} element={<Tips />} />
           <Route path={"/supportpage"} element={<SupportPage />} />
           <Route
             path={"/testresult"}
