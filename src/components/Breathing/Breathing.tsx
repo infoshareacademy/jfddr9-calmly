@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBg, updateBreathing } from "../../store/slice";
+import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 const MainDiv = styled.div`
   height: 100%;
@@ -54,6 +55,10 @@ const MainCircle = styled.div<MainCircleProps>`
     60% {
       transform: scale(2);
     }
+  }
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
   }
 `;
 const ButtonDiv = styled.div`
@@ -121,6 +126,7 @@ export function Breathing() {
 
   return (
     <>
+      <PinnedSmallLogo />
       <MainDiv>
         <MainCircle state={state}>
           <InstructionDiv>

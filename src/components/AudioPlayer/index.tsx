@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 const AudioContainer = styled.div`
   display: flex;
@@ -132,36 +133,39 @@ export const CustomAudioPlayer = ({ src }: any) => {
   };
 
   return (
-    <AudioContainer>
-      <PlayButton onClick={togglePlay}>{isPlaying ? "❚❚" : "▶"}</PlayButton>
+    <>
+      <PinnedSmallLogo />
+      <AudioContainer>
+        <PlayButton onClick={togglePlay}>{isPlaying ? "❚❚" : "▶"}</PlayButton>
 
-      <audio
-        src={src}
-        onTimeUpdate={handleTimeUpdate}
-        onDurationChange={handleDurationChange}
-      />
-      <span style={{ color: "#797bec" }}>{formatTime(currentTime)}</span>
-      <ProgressSlider
-        type="range"
-        min={0}
-        max={duration}
-        value={currentTime}
-        onChange={handleProgressChange}
-      />
-
-      <VolumeIcon onClick={() => setShowVolume(showVolume ? false : true)}>
-        🔊
-      </VolumeIcon>
-      {showVolume && (
-        <VolumeSlider
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={volume}
-          onChange={handleVolumeChange}
+        <audio
+          src={src}
+          onTimeUpdate={handleTimeUpdate}
+          onDurationChange={handleDurationChange}
         />
-      )}
-    </AudioContainer>
+        <span style={{ color: "#797bec" }}>{formatTime(currentTime)}</span>
+        <ProgressSlider
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleProgressChange}
+        />
+
+        <VolumeIcon onClick={() => setShowVolume(showVolume ? false : true)}>
+          🔊
+        </VolumeIcon>
+        {showVolume && (
+          <VolumeSlider
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value={volume}
+            onChange={handleVolumeChange}
+          />
+        )}
+      </AudioContainer>
+    </>
   );
 };

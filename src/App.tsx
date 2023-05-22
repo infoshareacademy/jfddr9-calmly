@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
 import { signOut, updateAuthStateChanged } from "./store/authSlice";
-
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./api/firebase";
 
