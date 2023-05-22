@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 import { ReactElementFactory, ReactSurveyElement } from "survey-react-ui";
@@ -109,7 +109,9 @@ export function SurveyComponent({ score }: { score: number }) {
 
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgQuiz2"));
+  useEffect(() => {
+    dispatch(updateBg("bgQuiz2"));
+  }, [dispatch]);
 
   const survey = new Model(json);
   survey.onComplete.add((sender) => {

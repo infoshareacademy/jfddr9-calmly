@@ -21,7 +21,7 @@ import { db } from "./api/firebase";
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 
-import { Tips } from "./routes/Tips/Tips";
+import { Tips } from "./components/Tips/Tips";
 
 import { SupportPage } from "./routes/SupportPage/SupportPage";
 
@@ -47,6 +47,8 @@ function App() {
         ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
         : bg === "bgHome"
         ? "white url('src/assets/h page.png') center center / cover no-repeat fixed;"
+        : bg === "bgSupport"
+        ? "linear-gradient(114.94deg, #F6C59C 1.8%, #E3B4AB 35.2%, #B3B4EF 84.75%);"
         : bg === "bgRevert"
         ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
         : bg === "bgQuiz"
@@ -54,7 +56,7 @@ function App() {
         : bg === "bgQuiz2"
         ? "linear-gradient(180.17deg, #5C5DE3 0%, #8A8CEE 58.41%, #D1D2FA 74.25%);"
         : bg === "bgViolet"
-        ? "linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%)"
+        ? "linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%);"
         : bg === "bgCircle"
         ? `radial-gradient(
           circle,
@@ -120,7 +122,7 @@ function App() {
           <Route path={"/contact"} element={<Contact />} />
           <Route path={"/journal"} element={<Journal />} />
           <Route path={"/tips"} element={<Tips />} />
-          <Route path={"/supportpage"} element={<SupportPage />} />
+          <Route path={"/support"} element={<SupportPage />} />
         </Routes>
       )}
     </>

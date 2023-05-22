@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { updateBg } from "../../store/slice";
+import { useDispatch } from "react-redux";
 
 const Background = styled.div`
   width: 100vw;
@@ -63,6 +65,12 @@ const Wrapper = styled.div`
 export const Tips = () => {
   const [show, setShow] = useState(false);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
+
   const tips = [
     "Spend your last paycheck on Zalando!",
     "Take a walk",
@@ -82,7 +90,7 @@ export const Tips = () => {
   const onClickShow = () => setShow((prev) => !prev);
 
   return (
-    <Background>
+    <>
       {show ? (
         <Wrapper>
           <div>{tips[generatedRandomNumber]}</div>
@@ -93,8 +101,6 @@ export const Tips = () => {
           <Button onClick={onClickShow}>start</Button>
         </Div>
       )}
-    </Background>
+    </>
   );
 };
-
-export default Tips;

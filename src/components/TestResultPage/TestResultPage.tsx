@@ -14,8 +14,7 @@ export const TestResultPage = ({ stressLevel }: TestResultPageProps) => {
       <Styled.Img src="src/assets/logo-white.png"></Styled.Img>
       <Styled.WrapperContent>
         <Styled.Text>
-          Your stress level is in the{" "}
-          <Styled.Span>{stressLevel ? stressLevel : "middle"}</Styled.Span>{" "}
+          Your stress level is in the <Styled.Span>{stressLevel}</Styled.Span>{" "}
           range
         </Styled.Text>
         <Styled.SmallerText>result based on test answers</Styled.SmallerText>
@@ -24,9 +23,7 @@ export const TestResultPage = ({ stressLevel }: TestResultPageProps) => {
           <Styled.Button onClick={() => navigate("/feelbetter")}>
             Let's feel better!
           </Styled.Button>
-          <Styled.Button onClick={() => navigate("/home")}>
-            Home???
-          </Styled.Button>
+          <Styled.Button onClick={() => navigate("/home")}>Home</Styled.Button>
         </Styled.WrapperButtons>
       </Styled.WrapperContent>
       <Styled.ImgMozg src="src/assets/mózg 1.png" />

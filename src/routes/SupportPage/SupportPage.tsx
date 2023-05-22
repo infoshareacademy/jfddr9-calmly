@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import * as Styled from "./SupportPage.styles";
+import { useEffect } from "react";
+import { updateBg } from "../../store/slice";
 
 export const SupportPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgSupport"));
+  }, [dispatch]);
   return (
     <Styled.Background>
       <Styled.Wrapper>
