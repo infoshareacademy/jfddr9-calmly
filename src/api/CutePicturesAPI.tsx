@@ -58,7 +58,7 @@ const StyledCategoryButton = styled.button`
 `;
 
 const StyledImg = styled.img`
-  width: 500px;
+  max-width: 1500px;
   height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
