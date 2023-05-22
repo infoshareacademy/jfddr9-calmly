@@ -4,9 +4,6 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import { updateBg } from "../store/slice";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
-import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../api/firebase";
 
 const Body = styled.body`
   max-height: 100vh;
