@@ -26,7 +26,6 @@ import { Tips } from "./routes/Tips/Tips";
 import { SupportPage } from "./routes/SupportPage/SupportPage";
 import { TestResultPage } from "./routes/TestResultPage/TestResultPage";
 
-
 function App() {
   const reduxStore: any = useSelector((state) => state);
 
