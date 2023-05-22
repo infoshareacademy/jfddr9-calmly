@@ -60,7 +60,7 @@ const StyledCategoryButton = styled.button`
 const StyledImg = styled.img`
   width: 500px;
   height: 500px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background: rgba(255, 255, 255, 0.8);
   padding: 20px;
@@ -229,9 +229,6 @@ export const Dropdown = () => {
               </div>
             )}
           </div>
-          {/* <StyledNewPicButton onClick={() => getCutePicture(category)}>
-            New Picture
-          </StyledNewPicButton> */}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {isLoading ? <LoaderComponent /> : <StyledImg src={img} />}
