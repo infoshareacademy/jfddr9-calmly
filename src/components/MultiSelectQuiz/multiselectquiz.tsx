@@ -7,6 +7,9 @@ import "./multi.css";
 import { json } from "./json";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import quizpic from "../../assets/quiz.png";
+import { useDispatch } from "react-redux";
+import { updateBg } from "../../store/slice";
 
 const StyledYesButton = styled.button`
   background: rgba(179, 180, 239, 0.27);
@@ -41,6 +44,16 @@ const StyledNoButton = styled.button`
     background: #797bec;
     color: #ffff;
   }
+`;
+
+const StyledWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const StyledImgCat = styled.img`
+  height: 800px;
+  margin-left: 150px;
 `;
 
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
@@ -94,9 +107,9 @@ export function SurveyComponent({ score }: { score: number }) {
   const { authUser }: any = useSelector((state) => state);
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // dispatch(updateBg("bgQuiz"));
+  dispatch(updateBg("bgQuiz2"));
 
   const survey = new Model(json);
   survey.onComplete.add((sender) => {
@@ -130,6 +143,11 @@ export function SurveyComponent({ score }: { score: number }) {
       </StyledNoButton>
     </>
   ) : (
-    <Survey model={survey} />
+    <>
+      <StyledWrapperDiv>
+        <StyledImgCat src={quizpic}></StyledImgCat>
+        <Survey model={survey} />
+      </StyledWrapperDiv>
+    </>
   );
 }
