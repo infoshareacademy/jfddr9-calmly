@@ -231,7 +231,11 @@ export const Dropdown = () => {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          {isLoading ? <LoaderComponent /> : <StyledImg src={img} />}
+          {isLoading ? (
+            <LoaderComponent />
+          ) : (
+            <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
+          )}
         </div>
       </div>
     </>

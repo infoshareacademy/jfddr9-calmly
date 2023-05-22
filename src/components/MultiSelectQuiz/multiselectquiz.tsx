@@ -145,7 +145,10 @@ export function SurveyComponent({ score }: { score: number }) {
   ) : (
     <>
       <StyledWrapperDiv>
-        <StyledImgCat src={quizpic}></StyledImgCat>
+        <StyledImgCat
+          src={quizpic}
+          alt="An image of a cartoon cat standing on a tv"
+        ></StyledImgCat>
         <Survey model={survey} />
       </StyledWrapperDiv>
     </>
