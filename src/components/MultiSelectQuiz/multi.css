@@ -39,7 +39,7 @@
   gap: 12px;
   height: 48px;
   text-align: center;
-  background: rgba(179, 180, 239, 0.27);
+  background: rgb(255, 255, 255);
   border: transparent;
   border-radius: 100px;
   cursor: pointer;
@@ -79,18 +79,34 @@
   font-style: normal;
   font-weight: bold;
   font-size: 25px;
-  color: #797bec;
+  color: #ffffff;
 }
 
 .sd-question__required-text.sd-question__required-text {
-  color: white;
+  color: transparent;
+}
+
+.sd-input {
+  border-radius: 50px;
+}
+
+.sd-text {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  color: #797bec;
 }
 
 .sd-body.sd-body--static {
   max-width: 1000px;
 }
 
-/* .svc-logic-question-value,
+.svc-logic-question-value,
 .sd-element--with-frame {
   background-color: transparent;
-} */
+}
+
+.svc-logic-question-value,
+.sd-element--with-frame {
+  box-shadow: none;
+}
