@@ -1,24 +1,36 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 
 import { Register } from "../auth/Register";
+
+import { updateBg } from "../store/slice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MainWrapper = styled.div`
   font-family: "Outfit";
   display: flex;
   justify-content: center;
+  @media (max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-const CreatorCardWrapper = styled.div`
-  width: 635px;
+const LeftCardWrapper = styled.div`
+  width: 530px;
   height: 688px;
   margin: 15px;
   padding: 0 60px;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+  @media (max-width: 950px) {
+    width: 325px;
+  }
 `;
 
-const GraphicCardWrapper = styled.div`
+const RightCardWrapper = styled.div`
   min-width: 445px;
   max-width: 445px;
   height: 688px;
@@ -27,21 +39,21 @@ const GraphicCardWrapper = styled.div`
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
 `;
-const NavWrapperCreatorCard = styled.div`
+const NavWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   margin-top: 30px;
 `;
 
-const NavParagraphCreatorCard = styled.p`
+const NavText = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   color: #797bec;
 `;
 
-const NavButtonCreatorCard = styled.button`
+const NavButton = styled.button`
   cursor: pointer;
   width: 70px;
   height: 30px;
@@ -52,70 +64,55 @@ const NavButtonCreatorCard = styled.button`
   margin-top: 5px;
   font-family: "Outfit";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 12px;
   text-align: center;
-  color: #797bec;
-`;
-
-const HeaderGraphicCard = styled.p`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 26px;
-  text-align: center;
-  margin-top: 105px;
-  margin-bottom: 5px;
   color: #797bec;
 `;
 
 const LogoMain = styled.img`
   width: 270px;
   height: 85.27px;
-  margin-bottom: 50px;
+  margin: 80px auto 80px;
 `;
 
-const Graphic = styled.div`
-  background: #e3b4ab;
-  width: 332px;
-  height: 185px;
+const Graphic = styled.img`
+  width: 310px;
+  height: 310px;
   margin: 0 auto;
 `;
 
-const ParagraphGraphicCard = styled.p`
-  // font-family: 'Outfit';
-  font-style: normal;
+const TextFooter = styled.p`
   font-weight: 400;
   font-size: 28px;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 30px;
   color: #797bec;
 `;
 
-const LogoFooter = styled.img`
-  width: 70px;
-  height: 22.11px;
-  margin-left: 250px;
-`;
-
 export const RegisterPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateBg("bgDefault"));
+  }, [dispatch]);
+
+  const navigate = useNavigate();
+
   return (
     <MainWrapper>
-      <CreatorCardWrapper>
-        <NavWrapperCreatorCard>
-          <NavParagraphCreatorCard>
-            Already have an account?
-          </NavParagraphCreatorCard>
-          <NavButtonCreatorCard>Sign in</NavButtonCreatorCard>
-        </NavWrapperCreatorCard>
+      <LeftCardWrapper>
+        <NavWrapper>
+          <NavText>Already have an account?</NavText>
+          <NavButton onClick={() => navigate("/login")}>Sign in</NavButton>
+        </NavWrapper>
         <Register />
-      </CreatorCardWrapper>
-      <GraphicCardWrapper>
-        <HeaderGraphicCard>Welcome to</HeaderGraphicCard>
+      </LeftCardWrapper>
+      <RightCardWrapper>
         <LogoMain src="src/assets/logo.png" />
-        <Graphic />
-        <ParagraphGraphicCard>let your stress drop</ParagraphGraphicCard>
-        <LogoFooter src="src/assets/logo.png" />
-      </GraphicCardWrapper>
+        <Graphic src="src/assets/catti_register.svg" />
+        <TextFooter>let your stress drop</TextFooter>
+      </RightCardWrapper>
     </MainWrapper>
   );
 };
