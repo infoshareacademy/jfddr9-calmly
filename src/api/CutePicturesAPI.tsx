@@ -74,6 +74,7 @@ const StyledCategoryButton = styled.button`
 
 const StyledImg = styled.img`
   max-width: 1500px;
+  min-width: 500px;
   height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -129,7 +130,6 @@ export const Dropdown = () => {
   }, []);
 
   const getCutePicture = (animal: string) => {
-    console.log(animal);
     if (animal === "Dog") {
       console.log("step 1");
       const url = `${API_URL_DOG}images/search?limit=1`;
@@ -174,6 +174,7 @@ export const Dropdown = () => {
             setImg(imageData.url);
             setCategory("Cat");
             setIsOpen(false);
+            setIsLoading(false);
           });
         })
         .catch(function (error) {
@@ -192,6 +193,7 @@ export const Dropdown = () => {
           setImg(data.image);
           setCategory("Fox");
           setIsOpen(false);
+          setIsLoading(false);
         })
         .catch(function (error) {
           console.log(error);
