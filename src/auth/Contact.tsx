@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import calmly from "../assets/logo-white.png";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState, ChangeEvent } from "react";
 import { updateBg } from "../store/slice";
@@ -224,98 +223,87 @@ export function Contact() {
   };
 
   return (
-    <Body>
-      <MainDiv>
-        <Menu>
-          <Navigation>
-            <Calmly src={calmly} />
-            <ListItem onClick={() => navigate("/feelbetter")}>
-              Let's feel better
-            </ListItem>
-            <ListItem>Support</ListItem>
-            <ListItem onClick={() => navigate("/contact")}>Contact</ListItem>
-            <ListItem>
-              <Button onClick={() => signOut(auth)}>Log out</Button>
-            </ListItem>
-          </Navigation>
-        </Menu>
-        <Menu>
-          <LeftDiv>
-            <Authors>
-              was created by a group of beginner programmers:{" "}
-              <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
-            </Authors>
-          </LeftDiv>
-          {thankYou ? (
-            <RigthDiv>
-              <GetInTouch>{kontent}</GetInTouch>
-              <Hr />
-              <Form>
-                <Input
-                  placeholder="Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={name}
-                  onChange={handleInputChange}
-                ></Input>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={handleInputChange}
-                ></Input>
-                <TextArea
-                  placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-                  name="message"
-                  id="message"
-                  value={message}
-                  onChange={handleInputChange}
-                ></TextArea>
-                <SubmitButton onClick={handleFeedback} type="submit">
-                  SUBMIT
-                </SubmitButton>
-              </Form>
-            </RigthDiv>
-          ) : (
-            <RigthDiv>
-              <GetInTouch>{kontent}</GetInTouch>
-              <Hr style={{ width: "115px" }} />
-              <Teachers>We will do our best to improve Calmly</Teachers>
-              <Form style={{ visibility: "hidden" }}>
-                <Input
-                  placeholder="Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={name}
-                  onChange={handleInputChange}
-                ></Input>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={handleInputChange}
-                ></Input>
-                <TextArea
-                  placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-                  name="message"
-                  id="message"
-                  value={message}
-                  onChange={handleInputChange}
-                ></TextArea>
-                <SubmitButton onClick={handleFeedback} type="submit">
-                  SUBMIT
-                </SubmitButton>
-              </Form>
-            </RigthDiv>
-          )}
-        </Menu>
-      </MainDiv>
-    </Body>
+    <>
+      <Body>
+        <MainDiv>
+          <Menu>
+            <LeftDiv>
+              <Authors>
+                was created by a group of beginner programmers:{" "}
+                <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
+              </Authors>
+            </LeftDiv>
+            {thankYou ? (
+              <RigthDiv>
+                <GetInTouch>{kontent}</GetInTouch>
+                <Hr />
+                <Form>
+                  <Input
+                    placeholder="Name"
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={name}
+                    onChange={handleInputChange}
+                  ></Input>
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={handleInputChange}
+                  ></Input>
+                  <TextArea
+                    placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                    name="message"
+                    id="message"
+                    value={message}
+                    onChange={handleInputChange}
+                  ></TextArea>
+                  <SubmitButton onClick={handleFeedback} type="submit">
+                    SUBMIT
+                  </SubmitButton>
+                </Form>
+              </RigthDiv>
+            ) : (
+              <RigthDiv>
+                <GetInTouch>{kontent}</GetInTouch>
+                <Hr style={{ width: "115px" }} />
+                <Authors>We will do our best to improve Calmly</Authors>
+                <Form style={{ visibility: "hidden" }}>
+                  <Input
+                    placeholder="Name"
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={name}
+                    onChange={handleInputChange}
+                  ></Input>
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={handleInputChange}
+                  ></Input>
+                  <TextArea
+                    placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                    name="message"
+                    id="message"
+                    value={message}
+                    onChange={handleInputChange}
+                  ></TextArea>
+                  <SubmitButton onClick={handleFeedback} type="submit">
+                    SUBMIT
+                  </SubmitButton>
+                </Form>
+              </RigthDiv>
+            )}
+          </Menu>
+        </MainDiv>
+      </Body>
+    </>
   );
 }
