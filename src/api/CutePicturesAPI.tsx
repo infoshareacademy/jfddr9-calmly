@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
+import { LoaderComponent } from "../components/Loader";
 
 const API_URL_CAT = `https://api.thecatapi.com/v1/`;
 const API_URL_DOG = `https://api.thedogapi.com/v1/`;
@@ -22,6 +23,11 @@ const StyledAnimalButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledNewPicButton = styled.button`
@@ -38,6 +44,11 @@ const StyledNewPicButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 2px 10px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledCategoryButton = styled.button`
@@ -54,12 +65,17 @@ const StyledCategoryButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledImg = styled.img`
-  width: 500px;
+  max-width: 1500px;
   height: 500px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background: rgba(255, 255, 255, 0.8);
   padding: 20px;
@@ -102,6 +118,7 @@ export const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [img, setImg] = useState("");
   const [category, setCategory] = useState("Dog");
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -128,10 +145,11 @@ export const Dropdown = () => {
         .then((data) => {
           console.log(data);
           let imagesData = data;
-          imagesData.map(function (imageData: { url: any }) {
+          imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Dog");
             setIsOpen(false);
+            setIsLoading(false);
           });
         })
         .catch(function (error) {
@@ -152,7 +170,7 @@ export const Dropdown = () => {
         .then((data) => {
           console.log(data);
           let imagesData = data;
-          imagesData.map(function (imageData: { url: any }) {
+          imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Cat");
             setIsOpen(false);
@@ -226,12 +244,13 @@ export const Dropdown = () => {
               </div>
             )}
           </div>
-          {/* <StyledNewPicButton onClick={() => getCutePicture(category)}>
-            New Picture
-          </StyledNewPicButton> */}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <StyledImg src={img} />
+          {isLoading ? (
+            <LoaderComponent />
+          ) : (
+            <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
+          )}
         </div>
       </div>
     </>

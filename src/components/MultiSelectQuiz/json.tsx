@@ -3,11 +3,10 @@ export const json = {
     {
       type: "checkbox",
       name: "multiselect",
-      title: "How are you feeling? Pick 3 options",
+      title: "choose three adjectives for your mood today",
       isRequired: true,
       colCount: 3,
       itemComponent: "custom-choice-item",
-      showOtherItem: false,
       validators: [
         {
           type: "answercount",
@@ -35,7 +34,14 @@ export const json = {
         "worried",
         "depressed",
       ],
+      // showOtherItem: true,
+      // otherPlaceholder: "enter your mood on your own words here",
       maxSelectedChoices: 3,
+    },
+    {
+      type: "text",
+      name: "customOption",
+      title: "optional custom feelings",
     },
   ],
   showQuestionNumbers: false,

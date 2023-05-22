@@ -21,6 +21,11 @@ import { db } from "./api/firebase";
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 
+import { Tips } from "./routes/Tips/Tips";
+
+import { SupportPage } from "./routes/SupportPage/SupportPage";
+import { TestResultPage } from "./routes/TestResultPage/TestResultPage";
+
 function App() {
   const reduxStore: any = useSelector((state) => state);
 
@@ -47,6 +52,8 @@ function App() {
         ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
         : bg === "bgQuiz"
         ? "linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);"
+        : bg === "bgQuiz2"
+        ? "linear-gradient(180.17deg, #5C5DE3 0%, #8A8CEE 58.41%, #D1D2FA 74.25%);"
         : bg === "bgViolet"
         ? "linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%)"
         : bg === "bgCircle"
@@ -113,6 +120,12 @@ function App() {
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/contact"} element={<Contact />} />
           <Route path={"/journal"} element={<Journal />} />
+          <Route path={"/tips"} element={<Tips />} />
+          <Route path={"/supportpage"} element={<SupportPage />} />
+          <Route
+            path={"/testresult"}
+            element={<TestResultPage stressLevel="middle" />}
+          />
         </Routes>
       )}
     </>
