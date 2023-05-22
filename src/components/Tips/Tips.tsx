@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { updateBg } from "../../store/slice";
 import { useDispatch } from "react-redux";
 
-const Background = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    141.59deg,
-    #f6c59c 11.57%,
-    #e3b4ab 53.27%,
-    #b3b4ef 123.37%
-  );
-`;
+// const Background = styled.div`
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background: linear-gradient(
+//     141.59deg,
+//     #f6c59c 11.57%,
+//     #e3b4ab 53.27%,
+//     #b3b4ef 123.37%
+//   );
+// `;
 const Div = styled.div`
   display: flex;
   flex-direction: column;
