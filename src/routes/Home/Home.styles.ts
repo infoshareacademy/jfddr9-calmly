@@ -6,33 +6,33 @@ export const Wrapper = styled.div`
   font-family: "Outfit", sans-serif;
 `;
 
-export const LogoWhite = styled.img`
-  position: absolute;
-  width: 250px;
-  height: 78.95px;
-  left: 100px;
-  top: 116px;
-`;
+// export const LogoWhite = styled.img`
+//   position: absolute;
+//   width: 250px;
+//   height: 78.95px;
+//   left: 100px;
+//   top: 116px;
+// `;
 
-export const Nav = styled.nav`
-  width: 100%;
-  height: 50px;
-  font-family: "Outfit";
-  font-style: normal;
-  font-size: 12px;
-  line-height: 30px;
-  align-items: center;
-  text-align: center;
-  color: #ffffff;
-  display: flex;
-  gap: 40px;
+// export const Nav = styled.nav`
+//   width: 100%;
+//   height: 50px;
+//   font-family: "Outfit";
+//   font-style: normal;
+//   font-size: 12px;
+//   line-height: 30px;
+//   align-items: center;
+//   text-align: center;
+//   color: #ffffff;
+//   display: flex;
+//   gap: 40px;
 
-  & a {
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-`;
+//   & a {
+//     font-size: 20px;
+//     font-weight: 500;
+//     cursor: pointer;
+//   }
+// `;
 
 export const WrapperContent = styled.div`
   display: flex;
@@ -84,31 +84,31 @@ export const Paragraph = styled.p`
   text-align: justify;
 `;
 
-export const ButtonLogOut = styled.button`
-  cursor: pointer;
-  border: none;
-  width: 105px;
-  height: 34px;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-weight: 500;
-  font-size: 18px;
+// export const ButtonLogOut = styled.button`
+//   cursor: pointer;
+//   border: none;
+//   width: 105px;
+//   height: 34px;
+//   border-radius: 50px;
+//   background: rgba(255, 255, 255, 0.5);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   color: #fff;
+//   font-weight: 500;
+//   font-size: 18px;
 
-  &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
-    transform: scale(103%);
-  }
+//   &:hover {
+//     transition: 0.3s ease-in;
+//     opacity: 0.9;
+//     transform: scale(103%);
+//   }
 
-  &:active {
-    transition: 0.1s ease-in;
-    transform: scale(99%);
-  }
-`;
+//   &:active {
+//     transition: 0.1s ease-in;
+//     transform: scale(99%);
+//   }
+// `;
 
 export const Button = styled.button`
   border: none;
