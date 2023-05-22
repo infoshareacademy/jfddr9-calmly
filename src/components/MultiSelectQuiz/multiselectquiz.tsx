@@ -49,11 +49,22 @@ const StyledNoButton = styled.button`
 const StyledWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledImgCat = styled.img`
   height: 800px;
   margin-left: 150px;
+
+  @media (max-width: 1200px) {
+    margin-left: 0px;
+    height: 400px;
+    width: 300px;
+    margin: 0 auto;
+  }
 `;
 
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
