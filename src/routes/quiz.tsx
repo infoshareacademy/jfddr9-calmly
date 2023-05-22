@@ -17,6 +17,22 @@ const StyledBoxDiv = styled.div`
   height: 298px;
   margin: 0 auto;
   gap: 20px;
+
+  @media (max-width: 1010px) {
+    padding: 120px 50px;
+  }
+  @media (max-width: 910px) {
+    width: 407px;
+    height: 328px;
+  }
+  @media (max-width: 515px) {
+    width: 267px;
+    height: 330px;
+  }
+  @media (max-width: 375px) {
+    width: 167px;
+    height: 210px;
+  }
 `;
 
 const StyledQuestionText = styled.div`
@@ -25,6 +41,16 @@ const StyledQuestionText = styled.div`
   font-weight: 600;
   font-size: 45px;
   color: #797bec;
+
+  @media (max-width: 910px) {
+    font-size: 25px;
+  }
+  @media (max-width: 515px) {
+    font-size: 20px;
+  }
+  @media (max-width: 375px) {
+    font-size: 14px;
+  }
 `;
 
 const StyledAnswerButton = styled.button`
@@ -38,9 +64,17 @@ const StyledAnswerButton = styled.button`
   border: transparent;
   padding: 5px 25px;
   cursor: pointer;
+
   &:hover {
     background: #797bec;
     color: #ffff;
+  }
+
+  @media (max-width: 515px) {
+    font-size: 24px;
+  }
+  @media (max-width: 375px) {
+    font-size: 14px;
   }
 `;
 
@@ -50,6 +84,10 @@ const StyledAnswerSection = styled.div`
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
+
+  @media (max-width: 1010px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledBackButton = styled.button`
@@ -66,21 +104,38 @@ const StyledBackButton = styled.button`
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
+
   &:hover {
     background: #797bec;
     color: #ffff;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 14px;
   }
 `;
 
 const StyledStaticQuestionSpan = styled.span`
   position: absolute;
   top: 15%;
-  right: 35%;
+  right: 0;
+  left: 0;
   color: #ffffff;
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 64px;
+
+  @media (max-width: 910px) {
+    font-size: 32px;
+  }
+  @media (max-width: 515px) {
+    font-size: 24px;
+  }
+  @media (max-width: 375px) {
+    top: 25%;
+    font-size: 18px;
+  }
 `;
 
 export function Quiz() {
@@ -173,37 +228,30 @@ export function Quiz() {
       case 1:
         setScore(score - question0Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
       case 2:
         setScore(score - question1Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
       case 3:
         setScore(score - question2Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
       case 4:
         setScore(score - question3Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
       case 5:
         setScore(score - question4Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
       case 6:
         setScore(score - question5Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
       case 7:
         setScore(score - question6Worth);
         setCurrentQuestion(currentQuestion - 1);
-        console.log(score);
         break;
     }
   };
@@ -243,14 +291,6 @@ export function Quiz() {
           question5Worth +
           question6Worth;
         setScore(total);
-        console.log(total);
-        console.log(question0Worth + " q0");
-        console.log(question1Worth + " q1");
-        console.log(question2Worth + " q2");
-        console.log(question3Worth + " q3");
-        console.log(question4Worth + " q4");
-        console.log(question5Worth + " q5");
-        console.log(question6Worth + " q6");
         break;
     }
 
@@ -287,7 +327,11 @@ export function Quiz() {
               )
             )}
           </StyledAnswerSection>
-          <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
+          {currentQuestion != 0 ? (
+            <StyledBackButton onClick={handleBackButton}>Back</StyledBackButton>
+          ) : (
+            <div></div>
+          )}
         </StyledBoxDiv>
       )}
     </>
