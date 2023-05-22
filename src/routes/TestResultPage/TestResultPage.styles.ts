@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
+  background: white !important;
 `;
 
 export const Background = styled.div`
@@ -71,7 +72,6 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   color: #fff;
-  text-transform: uppercase;
   font-weight: 700;
 
   &:hover {
