@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-image: url("src/assets/h page.png");
-  background-size: auto 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   font-family: "Outfit", sans-serif;
 `;
 
@@ -33,7 +29,8 @@ export const Nav = styled.nav`
 
   & a {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
+    cursor: pointer;
   }
 `;
 
@@ -98,8 +95,8 @@ export const ButtonLogOut = styled.button`
   justify-content: center;
   align-items: center;
   color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 18px;
 
   &:hover {
     transition: 0.3s ease-in;

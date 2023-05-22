@@ -60,7 +60,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Tips = () => {
+export const Tips = () => {
   const [show, setShow] = useState(false);
 
   const tips = [
