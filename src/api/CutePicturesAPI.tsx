@@ -23,6 +23,11 @@ const StyledAnimalButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledNewPicButton = styled.button`
@@ -39,6 +44,11 @@ const StyledNewPicButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 2px 10px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledCategoryButton = styled.button`
@@ -55,10 +65,15 @@ const StyledCategoryButton = styled.button`
   line-height: 25px;
   text-align: center;
   padding: 5px 40px;
+
+  &:hover {
+    background: #52526b;
+    color: #ffff;
+  }
 `;
 
 const StyledImg = styled.img`
-  width: 500px;
+  max-width: 1500px;
   height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -130,7 +145,7 @@ export const Dropdown = () => {
         .then((data) => {
           console.log(data);
           let imagesData = data;
-          imagesData.map(function (imageData: { url: any }) {
+          imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Dog");
             setIsOpen(false);
@@ -155,7 +170,7 @@ export const Dropdown = () => {
         .then((data) => {
           console.log(data);
           let imagesData = data;
-          imagesData.map(function (imageData: { url: any }) {
+          imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Cat");
             setIsOpen(false);
@@ -231,7 +246,11 @@ export const Dropdown = () => {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          {isLoading ? <LoaderComponent /> : <StyledImg src={img} />}
+          {isLoading ? (
+            <LoaderComponent />
+          ) : (
+            <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
+          )}
         </div>
       </div>
     </>
