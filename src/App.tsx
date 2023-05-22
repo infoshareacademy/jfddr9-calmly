@@ -20,6 +20,8 @@ import { db } from "./api/firebase";
 
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
+import { SupportPage } from "./routes/SupportPage/SupportPage";
+import { TestResultPage } from "./routes/TestResultPage/TestResultPage";
 
 function App() {
   const reduxStore: any = useSelector((state) => state);
@@ -113,6 +115,11 @@ function App() {
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/contact"} element={<Contact />} />
           <Route path={"/journal"} element={<Journal />} />
+          <Route path={"/supportpage"} element={<SupportPage />} />
+          <Route
+            path={"/testresult"}
+            element={<TestResultPage stressLevel="middle" />}
+          />
         </Routes>
       )}
     </>
