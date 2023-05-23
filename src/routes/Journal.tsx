@@ -20,6 +20,9 @@ import { updateBg } from "../store/slice";
 
 const ChartContainer = styled.div``;
 
+let responsiveData: any = [];
+let responsivePoints = 7;
+
 export const Journal = () => {
   const { authUser }: any = useSelector((state) => state);
 
@@ -29,6 +32,9 @@ export const Journal = () => {
   const [daysData, setDaysData] = useState([]);
   const [displayedData, setDisplayedData] = useState([]);
   const [entryCounter, setEntryCounter] = useState(7);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const [responsiveData, setResponsiveData] = useState([]);
 
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
@@ -47,6 +53,10 @@ export const Journal = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
     const docRef = doc(db, `journal/${authUser.uid}`);
     getDoc(docRef)
       .then((userData) => {
@@ -72,6 +82,12 @@ export const Journal = () => {
       })
 
       .catch((e) => console.error(e));
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const goToDay = (line: string) => {
@@ -100,20 +116,31 @@ export const Journal = () => {
   };
 
   const backData = () => {
-    if (entryCounter - 7 < 7) {
-      setDisplayedData(data.slice(0, 7));
-      setEntryCounter(7);
+    if (isDisplayDays) {
+      if (entryCounter - 7 < 7) {
+        setDisplayedData(responsiveData.slice(0, 7));
+        setEntryCounter(7);
+      } else {
+        const nextEntryCounter = entryCounter - displayedData.length;
+        setDisplayedData(data.slice(nextEntryCounter - 7, nextEntryCounter));
+        setEntryCounter(nextEntryCounter);
+      }
     } else {
-      const nextEntryCounter = entryCounter - displayedData.length;
-      setDisplayedData(data.slice(nextEntryCounter - 7, nextEntryCounter));
-      setEntryCounter(nextEntryCounter);
+      if (entryCounter - 7 < 7) {
+        setDisplayedData(data.slice(0, 7));
+        setEntryCounter(7);
+      } else {
+        const nextEntryCounter = entryCounter - displayedData.length;
+        setDisplayedData(data.slice(nextEntryCounter - 7, nextEntryCounter));
+        setEntryCounter(nextEntryCounter);
+      }
     }
   };
 
   const renderCustomTick: any = (tickProps: any) => {
     const { x, y, payload } = tickProps;
     const isFirstTick = payload.index === 0;
-    const isLastTick = payload.index === displayedData.length - 1;
+    const isLastTick = payload.index === responsiveData.length - 1;
 
     // console.log(displayedData.length);
     // console.log('first' + isFirstTick);
@@ -260,11 +287,37 @@ export const Journal = () => {
   const backToDaysDisplay = () => {
     setIsDisplayDays(true);
     const days: any = dataToDays(data);
-    setDisplayedData(days);
-    setEntryCounter(7);
+    if (days.length <= 7) {
+      setDisplayedData(days);
+      setEntryCounter(7);
+    } else {
+      setDisplayedData(days.slice(days.length - 7, days.length));
+      setEntryCounter(days.length);
+    }
+    // setDisplayedData(days);
+    // setEntryCounter(7);
   };
 
   let daysOrData = isDisplayDays ? daysData : data;
+
+  if (windowWidth > 768) {
+    console.log("more");
+    responsiveData = displayedData;
+  } else if (windowWidth <= 768 && windowWidth > 650) {
+    console.log("less");
+    responsiveData = displayedData.slice(0, -1);
+  } else if (windowWidth <= 650 && windowWidth > 520) {
+    console.log("less");
+    responsiveData = displayedData.slice(0, -2);
+  } else if (windowWidth <= 520 && windowWidth > 415) {
+    console.log("less");
+    responsiveData = displayedData.slice(0, -3);
+  } else if (windowWidth <= 415 && windowWidth > 100) {
+    console.log("less");
+    responsiveData = displayedData.slice(0, -4);
+  }
+
+  console.log(responsiveData);
 
   return data.length !== 0 ? (
     <>
@@ -273,7 +326,7 @@ export const Journal = () => {
           <button onClick={() => backToDaysDisplay()}>Back to days</button>
         )}
         <ResponsiveContainer width="90%" height={300}>
-          <LineChart data={displayedData}>
+          <LineChart key={responsiveData} data={responsiveData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
             <YAxis />
