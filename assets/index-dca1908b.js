@@ -628,7 +628,7 @@ Error generating stack: `+o.message+`
     transition: 0.1s ease-in;
     transform: scale(99%);
   }
-`,c7=()=>{const e=Ki(),t=Jt();return k.useEffect(()=>{t(fn("bgLandingPage"))},[t]),z.jsx(o7,{children:z.jsxs(s7,{children:[z.jsx(i7,{src:"src/assets/logo.png"}),z.jsx(l7,{children:"let your stress drop"}),z.jsx(u7,{children:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, facilis officia velit facere libero reprehenderit! Perspiciatis saepe illum repellat labore? Deleniti atque ex qui? Consequatur obcaecati repellat quod tempore perspiciatis."}),z.jsxs(a7,{children:[z.jsx(Gw,{onClick:()=>e("/register"),children:"SIGN UP"}),z.jsx(Gw,{onClick:()=>e("/login"),children:"SIGN IN"})]})]})})},f7=_.div`
+`,c7=()=>{const e=Ki(),t=Jt();return k.useEffect(()=>{t(fn("bgLandingPage"))},[t]),z.jsx(o7,{children:z.jsxs(s7,{children:[z.jsx(i7,{src:"src/assets/logo.png",alt:"Calmly company's logo"}),z.jsx(l7,{children:"let your stress drop"}),z.jsx(u7,{children:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, facilis officia velit facere libero reprehenderit! Perspiciatis saepe illum repellat labore? Deleniti atque ex qui? Consequatur obcaecati repellat quod tempore perspiciatis."}),z.jsxs(a7,{children:[z.jsx(Gw,{onClick:()=>e("/register"),children:"SIGN UP"}),z.jsx(Gw,{onClick:()=>e("/login"),children:"SIGN IN"})]})]})})},f7=_.div`
   width: 100%;
   height: 100%;
   font-family: "Outfit", sans-serif;
@@ -3754,7 +3754,7 @@ This typically indicates that your device does not have a healthy Internet conne
     opacity: 0.9;
     color: #797bec;
   }
-`,gF=({src:e})=>{const t=Ki(),n=Yl(),r=n.pathname==="/feelbetter";console.log(`isFeelBetter ${r}`);const i=n.pathname==="/support";console.log(`isSupport ${i}`);const o=n.pathname==="/contact";return console.log(`isContactPage ${o}`),z.jsxs(z.Fragment,{children:[z.jsx(fX,{children:z.jsx("a",{onClick:()=>t("/home"),children:z.jsx(dX,{src:e,alt:"Calmly Logo"})})}),z.jsxs(hX,{children:[z.jsx(wC,{isActive:r,onClick:()=>t("/feelbetter"),children:"Let's feel better"}),z.jsx(wC,{isActive:i,onClick:()=>t("/support"),children:"Support"}),z.jsx(wC,{isActive:o,onClick:()=>t("/contact"),children:"Contact"}),z.jsx(pX,{onClick:()=>HK(bd),children:"Log out"})]})]})},gX=()=>{const e=Jt(),t=Ki(),{authUser:n}=Am(r=>r);return k.useEffect(()=>{e(fn("bgHome"))},[e]),z.jsxs(z.Fragment,{children:[z.jsx(gF,{src:"src/assets/logo-violet.png"}),z.jsx(f7,{children:z.jsx(z.Fragment,{children:z.jsx(d7,{children:z.jsxs(h7,{children:[z.jsxs(g7,{children:["Hi, ",z.jsxs("span",{children:[n.fullName,"!"]})]}),z.jsxs(m7,{children:["Let your ",z.jsx("span",{children:"stress"})," drop"]}),z.jsx(y7,{children:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, facilis officia velit facere libero reprehenderit! Perspiciatis saepe illum repellat labore? Deleniti atque ex qui? Consequatur obcaecati repellat quod tempore perspiciatis."}),z.jsxs(p7,{children:[z.jsx(Jw,{onClick:()=>t("/quiz"),children:"START"}),z.jsx(Jw,{onClick:()=>t("/journal"),children:"JOURNAL"})]})]})})})})]})},eS={"auth/invalid-email":"E-mail is invalid","auth/weak-password":"Password should be at least 6 characters","auth/email-already-in-use":"Account registered for this e-mail is already in use","auth/user-not-found":"User account does not exist","auth/wrong-password":"Provided wrong password","auth/network-request-failed":"Something went wrong... Check your internet connection."},mX=_.p`
+`,gF=({src:e})=>{const t=Ki(),n=Yl(),r=n.pathname==="/feelbetter";console.log(`isFeelBetter ${r}`);const i=n.pathname==="/support";console.log(`isSupport ${i}`);const o=n.pathname==="/contact";return console.log(`isContactPage ${o}`),z.jsxs(z.Fragment,{children:[z.jsx(fX,{children:z.jsx("a",{onClick:()=>t("/home"),children:z.jsx(dX,{src:e,alt:"Calmly Logo"})})}),z.jsxs(hX,{children:[z.jsx(wC,{isActive:r,onClick:()=>t("/feelbetter"),children:"Let's feel better"}),z.jsx(wC,{isActive:i,onClick:()=>t("/support"),children:"Support"}),z.jsx(wC,{isActive:o,onClick:()=>t("/contact"),children:"Contact"}),z.jsx(pX,{onClick:()=>HK(bd),children:"Log out"})]})]})},gX=()=>{const e=Jt(),t=Ki(),{authUser:n}=Am(r=>r);return k.useEffect(()=>{e(fn("bgHome"))},[e]),z.jsxs(z.Fragment,{children:[z.jsx(gF,{src:"src/assets/logo-violet.png",alt:"Calmly company's logo in violet colour"}),z.jsx(f7,{children:z.jsx(z.Fragment,{children:z.jsx(d7,{children:z.jsxs(h7,{children:[z.jsxs(g7,{children:["Hi, ",z.jsxs("span",{children:[n.fullName,"!"]})]}),z.jsxs(m7,{children:["Let your ",z.jsx("span",{children:"stress"})," drop"]}),z.jsx(y7,{children:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, facilis officia velit facere libero reprehenderit! Perspiciatis saepe illum repellat labore? Deleniti atque ex qui? Consequatur obcaecati repellat quod tempore perspiciatis."}),z.jsxs(p7,{children:[z.jsx(Jw,{onClick:()=>t("/quiz"),children:"START"}),z.jsx(Jw,{onClick:()=>t("/journal"),children:"JOURNAL"})]})]})})})})]})},eS={"auth/invalid-email":"E-mail is invalid","auth/weak-password":"Password should be at least 6 characters","auth/email-already-in-use":"Account registered for this e-mail is already in use","auth/user-not-found":"User account does not exist","auth/wrong-password":"Provided wrong password","auth/network-request-failed":"Something went wrong... Check your internet connection."},mX=_.p`
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -3889,7 +3889,7 @@ This typically indicates that your device does not have a healthy Internet conne
   text-align: center;
   margin-top: 30px;
   color: #797bec;
-`,DX=()=>{const e=Jt();k.useEffect(()=>{e(fn("bgDefault"))},[e]);const t=Ki();return z.jsxs(EX,{children:[z.jsxs(PX,{children:[z.jsxs(xX,{children:[z.jsx(SX,{children:"Already have an account?"}),z.jsx(TX,{onClick:()=>t("/login"),children:"Sign in"})]}),z.jsx(bX,{})]}),z.jsxs(OX,{children:[z.jsx(wX,{src:"src/assets/logo.png"}),z.jsx(IX,{src:"src/assets/catti_register.svg"}),z.jsx(RX,{children:"let your stress drop"})]})]})},MX=_.p`
+`,DX=()=>{const e=Jt();k.useEffect(()=>{e(fn("bgDefault"))},[e]);const t=Ki();return z.jsxs(EX,{children:[z.jsxs(PX,{children:[z.jsxs(xX,{children:[z.jsx(SX,{children:"Already have an account?"}),z.jsx(TX,{onClick:()=>t("/login"),children:"Sign in"})]}),z.jsx(bX,{})]}),z.jsxs(OX,{children:[z.jsx(wX,{src:"src/assets/logo.png",alt:"Calmly Company's logo"}),z.jsx(IX,{src:"src/assets/catti_register.svg",alt:"An illustration of a cat saying 'Hi!'"}),z.jsx(RX,{children:"let your stress drop"})]})]})},MX=_.p`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
@@ -4047,7 +4047,7 @@ font-size: 16px;
 }
 &:active{
    color: blue; 
-`,kX=()=>{const e=Jt();return k.useEffect(()=>{e(fn("bgDefault"))},[e]),z.jsxs(QX,{children:[z.jsxs(zX,{children:[z.jsx(BX,{}),z.jsxs(HX,{children:[z.jsx(KX,{children:"Do not have an account?"}),z.jsx(qX,{to:"/register",children:"Sign up"})]})]}),z.jsx(mF,{src:"../src/assets/catti_login.svg"})]})};var yF={exports:{}};/*!
+`,kX=()=>{const e=Jt();return k.useEffect(()=>{e(fn("bgDefault"))},[e]),z.jsxs(QX,{children:[z.jsxs(zX,{children:[z.jsx(BX,{}),z.jsxs(HX,{children:[z.jsx(KX,{children:"Do not have an account?"}),z.jsx(qX,{to:"/register",children:"Sign up"})]})]}),z.jsx(mF,{src:"../src/assets/catti_login.svg",alt:"An illustration of a cat with a halo floating above its head"})]})};var yF={exports:{}};/*!
 	Copyright (c) 2018 Jed Watson.
 	Licensed under the MIT License (MIT), see
 	http://jedwatson.github.io/classnames
@@ -4822,7 +4822,7 @@ font-size: 16px;
 }
 &:active{
    color: blue; 
-`,zOe=()=>{const e=Jt();return k.useEffect(()=>{e(fn("bgDefault"))},[e]),z.jsxs(FOe,{children:[z.jsxs($Oe,{children:[z.jsx(NOe,{}),z.jsxs(UOe,{children:[z.jsx(WOe,{children:"Do not have an account?"}),z.jsx(QOe,{to:"/register",children:"Sign up"})]})]}),z.jsx(mF,{src:"../src/assets/catti_forgot.svg"})]})},HOe=_.div`
+`,zOe=()=>{const e=Jt();return k.useEffect(()=>{e(fn("bgDefault"))},[e]),z.jsxs(FOe,{children:[z.jsxs($Oe,{children:[z.jsx(NOe,{}),z.jsxs(UOe,{children:[z.jsx(WOe,{children:"Do not have an account?"}),z.jsx(QOe,{to:"/register",children:"Sign up"})]})]}),z.jsx(mF,{src:"../src/assets/catti_forgot.svg",alt:"An illustration of a cat looking confused, symbolizing forgetting a password"})]})},HOe=_.div`
   width: 100vw;
   height: 100vh;
   display: flex;
