@@ -19,6 +19,7 @@ const StyledImg = styled.img`
 `;
 
 export const Nav = styled.nav`
+  z-index: 1000;
   height: 50px;
   font-family: "Outfit";
   font-style: normal;

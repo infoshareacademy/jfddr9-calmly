@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { updateBg } from "../../store/slice";
 import { useDispatch } from "react-redux";
+import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 // const Background = styled.div`
 //   width: 100vw;
@@ -91,6 +92,7 @@ export const Tips = () => {
 
   return (
     <>
+      <PinnedSmallLogo />
       {show ? (
         <Wrapper>
           <div>{tips[generatedRandomNumber]}</div>
