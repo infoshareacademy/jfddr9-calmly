@@ -109,8 +109,11 @@ export const RegisterPage = () => {
         <Register />
       </LeftCardWrapper>
       <RightCardWrapper>
-        <LogoMain src="src/assets/logo.png" />
-        <Graphic src="src/assets/catti_register.svg" />
+        <LogoMain src="src/assets/logo.png" alt="Calmly Company's logo" />
+        <Graphic
+          src="src/assets/catti_register.svg"
+          alt="An illustration of a cat saying 'Hi!'"
+        />
         <TextFooter>let your stress drop</TextFooter>
       </RightCardWrapper>
     </MainWrapper>
