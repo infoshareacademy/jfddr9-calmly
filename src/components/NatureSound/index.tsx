@@ -3,6 +3,7 @@ import { CustomAudioPlayer } from "../AudioPlayer";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateBg } from "../../store/slice";
+import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 import soundRain from "../../assets/natureSounds/Rain.mp3";
 import imgRain from "../../assets/natureIcons/Rain.svg";
@@ -119,6 +120,7 @@ export const NatureSound = () => {
 
   return (
     <>
+      <PinnedSmallLogo />
       <ToggleButtonContainer>
         {items.map((item) => (
           <ToggleButton

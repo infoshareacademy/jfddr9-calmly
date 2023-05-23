@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
 import { signOut, updateAuthStateChanged } from "./store/authSlice";
-
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./api/firebase";
 
@@ -50,7 +49,7 @@ function App() {
         : bg === "bgSupport"
         ? "linear-gradient(114.94deg, #F6C59C 1.8%, #E3B4AB 35.2%, #B3B4EF 84.75%);"
         : bg === "bgRevert"
-        ? "linear-gradient(336deg, rgba(137, 141, 230, 1) 0%, rgba(243, 194, 160, 1) 90%)"
+        ? "linear-gradient(42.34deg, #5658EE 26.19%, #A7A8EE 89.5%, #F6C59C 138.15%);"
         : bg === "bgQuiz"
         ? "linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);"
         : bg === "bgQuiz2"
