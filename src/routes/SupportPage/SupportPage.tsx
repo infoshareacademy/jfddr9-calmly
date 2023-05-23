@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import * as Styled from "./SupportPage.styles";
 import { useEffect } from "react";
 import { updateBg } from "../../store/slice";
+import { Navigation } from "../../components/Navigation";
 
 export const SupportPage = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export const SupportPage = () => {
   }, [dispatch]);
   return (
     <Styled.Background>
+      <Navigation src="src/assets/logo-white.png" />
       <Styled.Wrapper>
         <Styled.WrapperLeft>
           <h2>Are you in a crisis?</h2>

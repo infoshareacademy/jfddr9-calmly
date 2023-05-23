@@ -1,12 +1,25 @@
 import { auth } from "../../api/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 import styled from "styled-components";
 
 interface NavLinkProps {
   isActive: boolean;
 }
+
+const HamburgerButton = styled.img`
+  position: absolute;
+  top: 55px;
+  right: 40px;
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 950px) {
+    display: block;
+  }
+`;
 
 const StyledLogo = styled.div`
   position: absolute;
@@ -18,22 +31,29 @@ const StyledImg = styled.img`
   cursor: pointer;
 `;
 
-export const Nav = styled.nav`
+export const Nav = styled.nav<{ isOpenMenu: boolean }>`
   z-index: 1000;
   height: 50px;
   font-family: "Outfit";
   font-style: normal;
   font-size: 20px;
-  line-height: 30px;
   align-items: center;
   text-align: center;
   color: #ffffff;
   display: flex;
   gap: 40px;
-
   position: absolute;
   top: 45px;
   right: 40px;
+
+  @media (max-width: 950px) {
+    position: absolute;
+    top: 95px;
+    padding: 20px;
+    height: auto;
+    border-radius: 10px;
+    display: ${(props) => (props.isOpenMenu ? "block" : "none")};
+  }
 `;
 
 export const NavLink = styled.a<NavLinkProps>`
@@ -50,6 +70,11 @@ export const NavLink = styled.a<NavLinkProps>`
     transition: 0.1s ease-in;
     opacity: 0.9;
     color: #797bec;
+  }
+
+  @media (max-width: 950px) {
+    display: block;
+    padding-bottom: 20px;
   }
 `;
 
@@ -68,6 +93,7 @@ export const ButtonLogOut = styled.button`
   font-weight: 400;
   font-size: 20px;
   padding: 18px 18px 20px;
+  margin: 0 auto;
 
   &:hover {
     transition: 0.3s ease-in;
@@ -93,11 +119,14 @@ export const Navigation = ({ src }: any) => {
   const location = useLocation();
 
   const isFeelBetterPage = location.pathname === "/feelbetter";
-  console.log(`isFeelBetter ${isFeelBetterPage}`);
   const isSupportPage = location.pathname === "/support";
-  console.log(`isSupport ${isSupportPage}`);
   const isContactPage = location.pathname === "/contact";
-  console.log(`isContactPage ${isContactPage}`);
+
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
+  };
 
   return (
     <>
@@ -106,7 +135,7 @@ export const Navigation = ({ src }: any) => {
           <StyledImg src={src} alt="Calmly Logo" />
         </a>
       </StyledLogo>
-      <Nav>
+      <Nav isOpenMenu={isOpenMenu}>
         <NavLink
           isActive={isFeelBetterPage}
           onClick={() => navigate("/feelbetter")}
@@ -121,6 +150,7 @@ export const Navigation = ({ src }: any) => {
         </NavLink>
         <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
       </Nav>
+      <HamburgerButton src="src/assets/icon-menu.svg" onClick={toggleMenu} />
     </>
   );
 };
