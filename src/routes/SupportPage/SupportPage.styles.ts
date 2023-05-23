@@ -23,32 +23,34 @@ export const Wrapper = styled.div`
 `;
 
 export const WrapperLeft = styled.div`
-align-self: flex-start;
-height: 100%;
-width: 50%;
-text-align: left;
-display: flex;
-flex-direction: column;
+  align-self: flex-start;
+  height: 100%;
+  width: 50%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 
-& h2 {
+  & h2 {
     text-transform: uppercase;
     font-size: 24px;
     font-weight: 700;
-    margin-b
-}
-
-& p {
+  }
+  & h3 {
+    font-weight: 400;
+    font-size: 22px;
+  }
+  & p {
     font-size: 44px;
     font-weight: 700;
     line-height: 55px;
     margin: 0;
-}
+  }
 
-& span {
-   color: #797bec;
-   font-size: 44px;
-   font-weight: 700;
-}
+  & span {
+    color: #797bec;
+    font-size: 44px;
+    font-weight: 700;
+  }
 `;
 
 export const WrapperRight = styled.div`
