@@ -257,7 +257,7 @@ export const Dropdown = () => {
         <div style={{ display: "flex", justifyContent: "center" }}>
           {isLoading ? (
             <StyledDivBox>
-              <LoaderComponent />
+              <LoaderComponent key={category} />
             </StyledDivBox>
           ) : (
             <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
