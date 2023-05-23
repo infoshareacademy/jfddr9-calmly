@@ -76,7 +76,10 @@ export const ForgotPasswordPage = () => {
           <NavBarLink to="/register">Sign up</NavBarLink>
         </FooterWrapper>
       </LeftCardWrapper>
-      <GraphicsCard src="../src/assets/catti_forgot.svg" />
+      <GraphicsCard
+        src="../src/assets/catti_forgot.svg"
+        alt="An illustration of a cat looking confused, symbolizing forgetting a password"
+      />
     </MainWrapper>
   );
 };
