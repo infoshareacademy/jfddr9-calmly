@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { Tooltip } from "react-tooltip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import { faLungs } from "@fortawesome/free-solid-svg-icons";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
+import { faCloudSun } from "@fortawesome/free-solid-svg-icons";
 
 import { updateBg } from "../store/slice";
 import { useDispatch } from "react-redux";
@@ -124,35 +131,90 @@ export const FeelBetter = () => {
             <StepButton onClick={() => setStep(step - 1)} disabled={step === 1}>
               {"<"}
             </StepButton>
+            <Tooltip
+              style={{
+                fontFamily: "Outfit",
+                fontStyle: "normal",
+                fontWeight: "500",
+              }}
+              id="my-tooltip-music"
+            />
             <StyledStepButton
+              data-tooltip-id="my-tooltip-music"
+              data-tooltip-content="Calming Music"
+              data-tooltip-place="bottom"
               currentStep={step === 1}
               onClick={() => setStep(1)}
             >
-              1
+              <FontAwesomeIcon icon={faMusic} />
             </StyledStepButton>
+            <Tooltip
+              style={{
+                fontFamily: "Outfit",
+                fontStyle: "normal",
+                fontWeight: "500",
+              }}
+              id="my-tooltip-breathe"
+            />
             <StyledStepButton
+              data-tooltip-id="my-tooltip-breathe"
+              data-tooltip-content="Breathing Exercise"
+              data-tooltip-place="bottom"
               currentStep={step === 2}
               onClick={() => setStep(2)}
             >
-              2
+              <FontAwesomeIcon icon={faLungs} />
             </StyledStepButton>
+            <Tooltip
+              style={{
+                fontFamily: "Outfit",
+                fontStyle: "normal",
+                fontWeight: "500",
+              }}
+              id="my-tooltip-animal"
+            />
             <StyledStepButton
+              data-tooltip-id="my-tooltip-animal"
+              data-tooltip-content="Cute Animal Pictures"
+              data-tooltip-place="bottom"
               currentStep={step === 3}
               onClick={() => setStep(3)}
             >
-              3
+              <FontAwesomeIcon icon={faPaw} />
             </StyledStepButton>
+            <Tooltip
+              style={{
+                fontFamily: "Outfit",
+                fontStyle: "normal",
+                fontWeight: "500",
+              }}
+              id="my-tooltip-weather"
+            />
             <StyledStepButton
+              data-tooltip-id="my-tooltip-weather"
+              data-tooltip-content="Relaxing Sounds"
+              data-tooltip-place="bottom"
               currentStep={step === 4}
               onClick={() => setStep(4)}
             >
-              4
+              <FontAwesomeIcon icon={faCloudSun} />
             </StyledStepButton>
+            <Tooltip
+              style={{
+                fontFamily: "Outfit",
+                fontStyle: "normal",
+                fontWeight: "500",
+              }}
+              id="my-tooltip-tips"
+            />
             <StyledStepButton
+              data-tooltip-id="my-tooltip-tips"
+              data-tooltip-content="Additional Tips"
+              data-tooltip-place="bottom"
               currentStep={step === 5}
               onClick={() => setStep(5)}
             >
-              5
+              <FontAwesomeIcon icon={faComment} />
             </StyledStepButton>
             <StepButton onClick={() => setStep(step + 1)}>{">"}</StepButton>
           </StepperContainer>
