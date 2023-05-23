@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { PinnedSmallLogo } from "../PinnedSmallLogo";
+import sound from "../../assets/Sound.svg";
 
 const AudioContainer = styled.div`
   display: flex;
@@ -8,6 +9,10 @@ const AudioContainer = styled.div`
   justify-content: center;
   background-color: white;
   border-radius: 50px;
+  padding: 6px;
+  @media only screen and (min-width: 500px) and (max-width: 1580px) {
+    padding: 3px;
+  }
 `;
 
 const PlayButton = styled.button`
@@ -52,18 +57,18 @@ const ProgressSlider = styled.input`
   }
 
   &::-webkit-progress-value {
-    height: 3px;
+    heigth: 3px;
     color: #797bec;
   }
 `;
 
-const VolumeIcon = styled.i`
-  font-size: 24px;
-  color: #797bec;
+const VolumeIcon = styled.img`
+  height: 24px;
+  margin-right: 8px;
 `;
 
 const VolumeSlider = styled.input`
-  width: 60px;
+  width: 70px;
   height: 10px;
   background: white;
   -webkit-appearance: none;
@@ -152,9 +157,12 @@ export const CustomAudioPlayer = ({ src }: any) => {
           onChange={handleProgressChange}
         />
 
-        <VolumeIcon onClick={() => setShowVolume(showVolume ? false : true)}>
-          🔊
-        </VolumeIcon>
+        <VolumeIcon
+          onClick={() => setShowVolume(showVolume ? false : true)}
+          src={sound}
+          alt="sound"
+        />
+
         {showVolume && (
           <VolumeSlider
             type="range"

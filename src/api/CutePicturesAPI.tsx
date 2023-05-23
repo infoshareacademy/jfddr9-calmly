@@ -20,14 +20,20 @@ const StyledAnimalButton = styled.button`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 25px;
   text-align: center;
-  padding: 5px 40px;
-
+  height: 41px;
+  width: 217px;
   &:hover {
-    background: #52526b;
-    color: #ffff;
+    background: white;
+    transition: 0.2s;
+  }
+  @media only screen and (min-width: 500px) and (max-width: 1580px) {
+    font-size: 20px;
+    height: 35px;
+    width: 200px;
+    margin: -5px auto;
   }
 `;
 
@@ -35,20 +41,20 @@ const StyledNewPicButton = styled.button`
   background: rgba(255, 255, 255, 0.45);
   color: #797bec;
   border: transparent;
-  border-radius: 50px;
+  border-radius: 100px;
   cursor: pointer;
   margin-bottom: 20px;
   font-family: "Outfit";
   font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 25px;
   text-align: center;
-  padding: 2px 10px;
+  padding: 12px 8px;
 
   &:hover {
-    background: #52526b;
-    color: #ffff;
+    background: white;
+    transition: 0.2s;
   }
 `;
 
@@ -65,7 +71,7 @@ const StyledCategoryButton = styled.button`
   font-size: 20px;
   line-height: 25px;
   text-align: center;
-  padding: 5px 40px;
+  padding: 6px 40px;
 
   &:hover {
     background: #52526b;
@@ -82,6 +88,10 @@ const StyledImg = styled.img`
   padding: 20px;
   border-radius: 24px;
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+  @media only screen and (min-width: 500px) and (max-width: 1580px) {
+    max-width: 1200px;
+    height: 370px;
+  }
 `;
 
 export const CutePictures = () => {
@@ -214,7 +224,7 @@ export const Dropdown = () => {
       >
         <div>
           <StyledNewPicButton onClick={() => getCutePicture(category)}>
-            generate new picture
+            NEW
           </StyledNewPicButton>
           <div
             style={{

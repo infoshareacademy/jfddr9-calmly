@@ -27,8 +27,8 @@ const ToggleButtonContainer = styled.div`
 const ToggleButton = styled.button<{ isActive: boolean }>`
   position: relative;
   transition: 0.2s linear;
-  width: 175px;
-  height: 355px;
+  width: 140px;
+  height: 280px;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: 8px 15px 25px rgba(0, 0, 0, 0.25);
   border-radius: 150px;
@@ -45,9 +45,9 @@ const ToggleButton = styled.button<{ isActive: boolean }>`
 
 const Circle = styled.span<{ isActive: boolean }>`
   position: absolute;
-  bottom: 50%;
+  bottom: 52%;
   width: 88%;
-  height: 155px;
+  height: 125px;
 
   border-radius: 100%;
   background-color: ${(props) => (props.isActive ? "#797BEC" : "#B3B4EF")};
