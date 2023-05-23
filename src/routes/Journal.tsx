@@ -9,6 +9,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
+  Dot,
 } from "recharts";
 import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
@@ -16,12 +18,7 @@ import { LoaderComponent } from "../components/Loader";
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
 
-const ChartContainer = styled.div`
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  margin-bottom: 20px;
-`;
+const ChartContainer = styled.div``;
 
 export const Journal = () => {
   const { authUser }: any = useSelector((state) => state);
@@ -113,7 +110,7 @@ export const Journal = () => {
     }
   };
 
-  const renderCustomTick = (tickProps: any) => {
+  const renderCustomTick: any = (tickProps: any) => {
     const { x, y, payload } = tickProps;
     const isFirstTick = payload.index === 0;
     const isLastTick = payload.index === displayedData.length - 1;
@@ -142,15 +139,23 @@ export const Journal = () => {
       lines.push(line);
     }
 
+    const maxTicks = 7;
+
+    const stepSize = Math.ceil(displayedData.length / maxTicks);
+    const shouldSkip = payload.index % stepSize !== 0;
+
+    if (shouldSkip) {
+      return null; // Skip rendering this tick
+    }
+
     return (
       <g transform={`translate(${x},${y})`}>
         {lines.map((line, index) => (
           <text
+            style={{ wordBreak: "break-all" }}
             key={index}
             x={0}
             y={10}
-            display={"block"}
-            height={20}
             dy={index === 0 ? verticalOffset : 0}
             textAnchor={isFirstTick ? "right" : isLastTick ? "end" : "middle"}
             fill="#666"
@@ -267,22 +272,24 @@ export const Journal = () => {
         {!isDisplayDays && (
           <button onClick={() => backToDaysDisplay()}>Back to days</button>
         )}
-        <LineChart width={800} height={300} data={displayedData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
-          <YAxis />
-          <Tooltip />
-          <Tooltip labelFormatter={(label) => `Date: ${label}`} />
-          <Tooltip
-            formatter={(value, name) => [
-              value,
-              name === "score" ? "Score" : "Mood",
-            ]}
-          />
-          <Legend />
-          <Line type="monotone" dataKey="score" stroke="#8884d8" />
-          <Line type="monotone" dataKey="mood" stroke="#82ca9d" />
-        </LineChart>
+        <ResponsiveContainer width="90%" height={300}>
+          <LineChart data={displayedData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
+            <YAxis />
+            <Tooltip />
+            <Tooltip labelFormatter={(label) => `Date: ${label}`} />
+            <Tooltip
+              formatter={(value, name) => [
+                value,
+                name === "score" ? "Score" : "Mood",
+              ]}
+            />
+            <Legend />
+            <Line type="monotone" dataKey="score" stroke="#8884d8" />
+            <Line type="monotone" dataKey="mood" stroke="#82ca9d" />
+          </LineChart>
+        </ResponsiveContainer>
       </ChartContainer>
       <button onClick={backData} disabled={entryCounter === 7 ? true : false}>
         Back
