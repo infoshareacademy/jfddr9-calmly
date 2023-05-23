@@ -75,12 +75,24 @@ const StyledCategoryButton = styled.button`
 
 const StyledImg = styled.img`
   max-width: 1500px;
+  min-width: 500px;
   height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
   background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 24px;
+  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+`;
+
+const StyledDivBox = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.8);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
 `;
 
@@ -123,16 +135,14 @@ export const Dropdown = () => {
 
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgDefault")); //upewnienie się, że tło jest odpowiednie
+  dispatch(updateBg("bgDefault"));
 
   useEffect(() => {
     getCutePicture("Dog");
   }, []);
 
   const getCutePicture = (animal: string) => {
-    console.log(animal);
     if (animal === "Dog") {
-      console.log("step 1");
       const url = `${API_URL_DOG}images/search?limit=1`;
 
       fetch(url, {
@@ -144,7 +154,6 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           let imagesData = data;
           imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
@@ -154,10 +163,9 @@ export const Dropdown = () => {
           });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else if (animal === "Cat") {
-      console.log("step 2");
       const url = `${API_URL_CAT}images/search?limit=1`;
 
       fetch(url, {
@@ -169,19 +177,18 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           let imagesData = data;
           imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Cat");
             setIsOpen(false);
+            setIsLoading(false);
           });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else if (animal === "Fox") {
-      console.log("step 3");
       const url = API_URL_FOX;
 
       fetch(url, {})
@@ -189,13 +196,13 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           setImg(data.image);
           setCategory("Fox");
           setIsOpen(false);
+          setIsLoading(false);
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     }
   };
@@ -249,7 +256,9 @@ export const Dropdown = () => {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {isLoading ? (
-            <LoaderComponent />
+            <StyledDivBox>
+              <LoaderComponent key={category} />
+            </StyledDivBox>
           ) : (
             <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
           )}
