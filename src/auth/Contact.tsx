@@ -5,67 +5,179 @@ import { updateBg } from "../store/slice";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
 import { Navigation } from "../components/Navigation";
+import ball from "../assets/Ellipse 29.svg";
 
+const StyledImage = styled.img`
+  position: absolute;
+  overflow: hidden;
+`;
+
+const Obraz = styled(StyledImage)`
+  height: 430px;
+  top: 360px;
+  left: 260px;
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    top: 160px;
+    left: 100px;
+  }
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    top: 220px;
+    left: 140px;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    top: 280px;
+    left: 190px;
+  }
+`;
+
+const ObrazTu = styled(StyledImage)`
+  height: 540px;
+  top: 80px;
+  left: 980px;
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    top: 50px;
+    left: 550px;
+  }
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    top: 60px;
+    left: 600px;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    top: 70px;
+    left: 800px;
+  }
+`;
+
+const ObrazTri = styled(StyledImage)`
+  height: 255px;
+  top: 130px;
+  left: 580px;
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    top: 80px;
+    left: 350px;
+  }
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    top: 100px;
+    left: 400px;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    top: 120px;
+    left: 500px;
+  }
+`;
+
+// const ObrazFor = styled(StyledImage)`
+//   height: 880px;
+//   top: 500px;
+//   left: 860px;
+// `;
 const Body = styled.body`
-  max-height: 100vh;
-  background: url(/src/assets/vectorXd.png) 100% 100% / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 768px) {
+  justify-content: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  @media only screen and (min-width: 1250px) and (max-width: 1480px) {
     background-color: linear-gradient(
       141.59deg,
       #f6c59c 11.57%,
       #e3b4ab 53.27%,
       #b3b4ef 123.37%
     );
-    background: none;
   }
 `;
 const MainDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  margin-top: 200px;
-  @media (max-width: 768px) {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: stretch;
+flex-wrap: nowrap;
+}
+
+@media only screen and (min-width: 1251px) and (max-width: 1480px) {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 `;
 const Menu = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-const LeftDiv = styled.div`
-  max-width: 26%;
+  z-index: 2;
+  margin: 0px 25px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.32) 65px 65px 100px;
+  backdrop-filter: blur(37.5px);
+  border-radius: 50%;
+  width: 45vw;
+  height: 45vw;
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
-  margin-left: 120px;
-  @media (max-width: 768px) {
-    display: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::before {
+    position: absolute;
+    left: 250px;
+    top: 55px;
+    background-image: url("../assets/Ellipse 29.svg");
+    z-index: 1;
+    content: "";
+    width: 100px;
+    height: 100px;
+  }
+  @media only screen and (min-width: 500px) and (max-width: 1251px) {
+    background: none;
+    width: 42vw;
+    height: 42vw;
+    border: none;
+    box-shadow: none;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    background: none;
+    width: 46vw;
+    height: 46vw;
   }
 `;
-const RigthDiv = styled.div`
-  max-width: 40%;
-  margin-right: 100px;
+
+const MenuContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+`;
+
+const Content = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const Authors = styled.p`
-  margin-top: 40px;
-  text-align: left;
+const Authors = styled.a`
+  width: 19vw;
+  margin: 20px 0 0 0;
+  text-align: justify;
   color: white;
   font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 300;
+    margin: 10px 26px 0 0;
+    text-align: right;
+  }
+`;
+const Feedback = styled.p`
+  width: 18vw;
+  text-align: center;
+  color: white;
+  font-weight: 500;
   font-size: 22px;
   line-height: 30px;
 `;
@@ -77,8 +189,7 @@ const GetInTouch = styled.p`
   margin-bottom: 0;
 `;
 const Input = styled.input`
-  max-width: 600px;
-  min-width: 400px;
+  width: 18vw;
   margin-bottom: 12px;
   border: none;
   border-radius: 10px;
@@ -88,17 +199,21 @@ const Input = styled.input`
     font-weight: 400;
     font-size: 16px;
   }
-  // &:focus {
-  //   color: pink;
-  // }
-  // &:valid {
-  //   color: red;
-  // }
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    margin-bottom: 3px;
+    padding: 9px;
+  }
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    margin-bottom: 4px;
+    padding: 12px;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    margin-bottom: 4px;
+    padding: 10px;
+  }
 `;
-//////////////////////////////////////////////// naprawić inputy ////////////////////////////////////////////////////////
 const TextArea = styled.textarea`
-  max-width: 600px;
-  min-width: 400px;
+  width: 18vw;
   max-height: 150px;
   min-height: 140px;
   border: none;
@@ -112,6 +227,18 @@ const TextArea = styled.textarea`
     font-weight: 300;
     font-size: 16px;
   }
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    margin-bottom: 3px;
+    padding: 9px;
+  }
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    margin-bottom: 4px;
+    padding: 12px;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    margin-bottom: 2px;
+    padding: 10px;
+  }
 `;
 const SubmitButton = styled.button`
   background-color: #797bec;
@@ -121,14 +248,50 @@ const SubmitButton = styled.button`
   padding: 14px;
   font-size: 20px;
   font-weight: 600;
+  margin: 25px 0;
   &:hover {
     background-color: #7072d8;
+  }
+  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    padding: 8px;
+    font-weight: 500;
+    background-color: #9697e1;
+    color: white;
+    :hover {
+      background-color: #b9baed;
+      color: white;
+    }
+  }
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    padding: 10px;
+    font-weight: 500;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    padding: 8px;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #9697e1;
+    color: white;
+    :hover {
+      background-color: #b9baed;
+      color: white;
+    }
   }
 `;
 const Hr = styled.hr`
   border: solid 4px white;
-  width: 115px;
-  margin: -8px 0 55px 0;
+  width: 85px;
+  margin: -8px 0 40px 0;
+  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+    width: 75px;
+    border: solid 3px white;
+    margin: -8px 0 25px 0;
+  }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    width: 65px;
+    border: solid 2px white;
+    margin: -8px 0 18px 0;
+  }
 `;
 const Form = styled.form`
   display: flex;
@@ -143,7 +306,7 @@ export function Contact() {
   }, [dispatch]);
 
   const [thankYou, setThankYou] = useState(true);
-  const [kontent, setKontent] = useState("Get in touch");
+  const [kontent, setKontent] = useState("Let's talk");
   const [content, setContent] = useState({
     email: "",
     name: "",
@@ -158,7 +321,6 @@ export function Contact() {
   };
   const handleFeedback = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("wtf");
     addDoc(collection(db, "feedback"), {
       email: content.email,
       name: content.name,
@@ -179,83 +341,65 @@ export function Contact() {
 
   return (
     <Body>
+      <Obraz src={ball} />
+      <ObrazTu src={ball} />
+      <ObrazTri src={ball} />
+      {/* <ObrazFor src={ball}/> */}
+
       <MainDiv>
         <Navigation src="src/assets/logo-white.png" />
         <Menu>
-          <LeftDiv>
-            <Authors>
-              was created by a group of beginner programmers:{" "}
-              <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
-            </Authors>
-          </LeftDiv>
-          {thankYou ? (
-            <RigthDiv>
-              <GetInTouch>{kontent}</GetInTouch>
-              <Hr />
-              <Form>
-                <Input
-                  placeholder="Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={name}
-                  onChange={handleInputChange}
-                ></Input>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={handleInputChange}
-                ></Input>
-                <TextArea
-                  placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-                  name="message"
-                  id="message"
-                  value={message}
-                  onChange={handleInputChange}
-                ></TextArea>
-                <SubmitButton onClick={handleFeedback} type="submit">
-                  SUBMIT
-                </SubmitButton>
-              </Form>
-            </RigthDiv>
-          ) : (
-            <RigthDiv>
-              <GetInTouch>{kontent}</GetInTouch>
-              <Hr style={{ width: "115px" }} />
-              <Authors>We will do our best to improve Calmly</Authors>
-              <Form style={{ visibility: "hidden" }}>
-                <Input
-                  placeholder="Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={name}
-                  onChange={handleInputChange}
-                ></Input>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={handleInputChange}
-                ></Input>
-                <TextArea
-                  placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
-                  name="message"
-                  id="message"
-                  value={message}
-                  onChange={handleInputChange}
-                ></TextArea>
-                <SubmitButton onClick={handleFeedback} type="submit">
-                  SUBMIT
-                </SubmitButton>
-              </Form>
-            </RigthDiv>
-          )}
+          <MenuContent>
+            {thankYou ? (
+              <Authors>
+                <b>Calmly</b> was created by a group of beginner programmers:{" "}
+                <b>Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid</b>
+              </Authors>
+            ) : (
+              <Authors></Authors>
+            )}
+            {thankYou ? (
+              <Content>
+                <GetInTouch>{kontent}</GetInTouch>
+                <Hr />
+                <Form>
+                  <Input
+                    placeholder="Name"
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={name}
+                    onChange={handleInputChange}
+                  ></Input>
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={handleInputChange}
+                  ></Input>
+                  <TextArea
+                    placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                    name="message"
+                    id="message"
+                    value={message}
+                    onChange={handleInputChange}
+                  ></TextArea>
+                  <SubmitButton onClick={handleFeedback} type="submit">
+                    SUBMIT
+                  </SubmitButton>
+                </Form>
+              </Content>
+            ) : (
+              <Content style={{ justifyContent: "center" }}>
+                <GetInTouch style={{ textAlign: "center" }}>
+                  {kontent}
+                </GetInTouch>
+                <Feedback>We will do our best to improve Calmly</Feedback>
+              </Content>
+            )}
+          </MenuContent>
         </Menu>
       </MainDiv>
     </Body>

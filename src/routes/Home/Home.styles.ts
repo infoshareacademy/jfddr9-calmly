@@ -46,7 +46,7 @@ export const WrapperContent = styled.div`
 `;
 
 export const WrapperText = styled.div`
-  width: 400px;
+  width: 600px;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ export const WrapperButtons = styled.div`
 
 export const Header = styled.div`
   margin-top: 60px;
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 600;
   & span {
     font-weight: 700;
@@ -69,7 +69,7 @@ export const Header = styled.div`
 `;
 
 export const TextUnderHeader = styled.div`
-  font-size: 30px;
+  font-size: 34px;
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.7);
 
@@ -79,7 +79,8 @@ export const TextUnderHeader = styled.div`
 `;
 
 export const Paragraph = styled.p`
-  margin-bottom: 40px;
+  font-size: 20px;
+  margin-bottom: 44px;
   padding-right: 70px;
   text-align: justify;
 `;
@@ -111,6 +112,7 @@ export const Paragraph = styled.p`
 // `;
 
 export const Button = styled.button`
+  font-size: 18px;
   border: none;
   cursor: pointer;
   width: 150px;
@@ -122,12 +124,14 @@ export const Button = styled.button`
   align-items: center;
   color: #fff;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
+  padding: 24px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transition: 0.3s ease-in;
     opacity: 0.9;
-    transform: scale(103%);
+    transform: scale(101%);
   }
 
   &:active {
