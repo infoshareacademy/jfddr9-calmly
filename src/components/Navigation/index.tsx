@@ -15,6 +15,7 @@ const HamburgerButton = styled.img`
   right: 40px;
   display: none;
   cursor: pointer;
+  height: 40px;
 
   @media (max-width: 950px) {
     display: block;
@@ -114,7 +115,7 @@ export const ButtonLogOut = styled.button`
   }
 `;
 
-export const Navigation = ({ src }: any) => {
+export const Navigation = ({ src }: any, { srcHamburger }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -150,7 +151,7 @@ export const Navigation = ({ src }: any) => {
         </NavLink>
         <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
       </Nav>
-      <HamburgerButton src="src/assets/icon-menu.svg" onClick={toggleMenu} />
+      <HamburgerButton src="src/assets/MenuPrpl.svg" onClick={toggleMenu} />
     </>
   );
 };
