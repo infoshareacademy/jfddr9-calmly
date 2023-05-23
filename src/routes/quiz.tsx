@@ -202,22 +202,22 @@ export function Quiz() {
         { answerText: "No", worth: 1 },
       ],
     },
-    {
-      questionText: "Finished",
-      answerOptions: [{ answerText: "Next", worth: 0 }],
-    },
+    // {
+    //   questionText: "Finished",
+    //   answerOptions: [{ answerText: "Next", worth: 0 }],
+    // },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showSurvey, setShowSurvey] = useState(false);
   const [score, setScore] = useState(0);
-  const [question0Worth, setQuestion0Worth] = useState(0);
-  const [question1Worth, setQuestion1Worth] = useState(0);
-  const [question2Worth, setQuestion2Worth] = useState(0);
-  const [question3Worth, setQuestion3Worth] = useState(0);
-  const [question4Worth, setQuestion4Worth] = useState(0);
-  const [question5Worth, setQuestion5Worth] = useState(0);
-  const [question6Worth, setQuestion6Worth] = useState(0);
+  const [question0Worth, setQuestion0Worth] = useState(1);
+  const [question1Worth, setQuestion1Worth] = useState(1);
+  const [question2Worth, setQuestion2Worth] = useState(1);
+  const [question3Worth, setQuestion3Worth] = useState(1);
+  const [question4Worth, setQuestion4Worth] = useState(1);
+  const [question5Worth, setQuestion5Worth] = useState(1);
+  const [question6Worth, setQuestion6Worth] = useState(1);
 
   const handleBackButton = () => {
     switch (currentQuestion) {
@@ -249,11 +249,25 @@ export function Quiz() {
         setScore(score - question5Worth);
         setCurrentQuestion(currentQuestion - 1);
         break;
-      case 7:
-        setScore(score - question6Worth);
-        setCurrentQuestion(currentQuestion - 1);
-        break;
+      // case 7:
+      //   setScore(score - question6Worth);
+      //   setCurrentQuestion(currentQuestion - 1);
+      //   break;
     }
+  };
+
+  const testScoreTotal = () => {
+    const total =
+      question0Worth +
+      question1Worth +
+      question2Worth +
+      question3Worth +
+      question4Worth +
+      question5Worth +
+      question6Worth;
+    setScore(total);
+    console.log(total);
+    console.log(question6Worth);
   };
 
   const handleAnswerOptionClick = (worth: number) => {
@@ -280,18 +294,20 @@ export function Quiz() {
         break;
       case 6:
         setQuestion6Worth(worth);
+        console.log(question6Worth);
         break;
-      case 7:
-        const total =
-          question0Worth +
-          question1Worth +
-          question2Worth +
-          question3Worth +
-          question4Worth +
-          question5Worth +
-          question6Worth;
-        setScore(total);
-        break;
+      // case 7:
+      // testScoreTotal();
+      // const total =
+      //   question0Worth +
+      //   question1Worth +
+      //   question2Worth +
+      //   question3Worth +
+      //   question4Worth +
+      //   question5Worth +
+      //   question6Worth;
+      // setScore(total);
+      // break;
     }
 
     const nextQuestion = currentQuestion + 1;
@@ -299,6 +315,7 @@ export function Quiz() {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowSurvey(true);
+      testScoreTotal();
     }
   };
   return (
