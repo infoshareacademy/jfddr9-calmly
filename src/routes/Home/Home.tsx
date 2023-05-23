@@ -16,7 +16,10 @@ export const Home = () => {
 
   return (
     <>
-      <Navigation src="src/assets/logo-violet.png"></Navigation>
+      <Navigation
+        src="src/assets/logo-violet.png"
+        alt="Calmly company's logo in violet colour"
+      ></Navigation>
       <Styled.Wrapper>
         <>
           <Styled.WrapperContent>
