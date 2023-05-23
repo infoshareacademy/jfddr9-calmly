@@ -85,6 +85,17 @@ const StyledImg = styled.img`
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
 `;
 
+const StyledDivBox = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+`;
+
 export const CutePictures = () => {
   return (
     <>
@@ -245,7 +256,9 @@ export const Dropdown = () => {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {isLoading ? (
-            <LoaderComponent />
+            <StyledDivBox>
+              <LoaderComponent />
+            </StyledDivBox>
           ) : (
             <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
           )}
