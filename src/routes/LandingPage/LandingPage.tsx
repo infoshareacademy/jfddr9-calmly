@@ -18,7 +18,7 @@ export const LandingPage = () => {
   return (
     <Styled.Wrapper>
       <Styled.WrapperContent>
-        <Styled.Logo src="src/assets/logo.png" />
+        <Styled.Logo src="src/assets/logo.png" alt="Calmly company's logo" />
         <Styled.TextUnderLogo>let your stress drop</Styled.TextUnderLogo>
         <Styled.Paragraph>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi,

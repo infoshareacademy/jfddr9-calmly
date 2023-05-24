@@ -115,7 +115,7 @@ export const Button = styled.button`
   font-size: 18px;
   border: none;
   cursor: pointer;
-  width: 150px;
+  width: 180px;
   height: 36px;
   border-radius: 50px;
   background: #797bec;

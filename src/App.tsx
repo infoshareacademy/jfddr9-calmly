@@ -46,6 +46,8 @@ function App() {
         ? "white url('src/assets/h page.png') center center / cover no-repeat fixed;"
         : bg === "bgSupport"
         ? "linear-gradient(114.94deg, #F6C59C 1.8%, #E3B4AB 35.2%, #B3B4EF 84.75%);"
+        : bg === "bgRadial"
+        ? " radial-gradient(128.47% 128.47% at 49.2% -13.33%, #E3B4AB 4.44%, #797BEC 100%);"
         : bg === "bgRevert"
         ? "linear-gradient(42.34deg, #5658EE 26.19%, #A7A8EE 89.5%, #F6C59C 138.15%);"
         : bg === "bgQuiz"

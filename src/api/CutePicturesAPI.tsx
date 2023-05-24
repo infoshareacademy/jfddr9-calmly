@@ -20,14 +20,20 @@ const StyledAnimalButton = styled.button`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 25px;
   text-align: center;
-  padding: 5px 40px;
-
+  height: 41px;
+  width: 217px;
   &:hover {
-    background: #52526b;
-    color: #ffff;
+    background: white;
+    transition: 0.2s;
+  }
+  @media only screen and (min-width: 500px) and (max-width: 1580px) {
+    font-size: 20px;
+    height: 35px;
+    width: 200px;
+    margin: -5px auto;
   }
 `;
 
@@ -35,20 +41,20 @@ const StyledNewPicButton = styled.button`
   background: rgba(255, 255, 255, 0.45);
   color: #797bec;
   border: transparent;
-  border-radius: 50px;
+  border-radius: 100px;
   cursor: pointer;
   margin-bottom: 20px;
   font-family: "Outfit";
   font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 25px;
   text-align: center;
-  padding: 2px 10px;
+  padding: 12px 8px;
 
   &:hover {
-    background: #52526b;
-    color: #ffff;
+    background: white;
+    transition: 0.2s;
   }
 `;
 
@@ -65,7 +71,7 @@ const StyledCategoryButton = styled.button`
   font-size: 20px;
   line-height: 25px;
   text-align: center;
-  padding: 5px 40px;
+  padding: 6px 40px;
 
   &:hover {
     background: #52526b;
@@ -75,12 +81,28 @@ const StyledCategoryButton = styled.button`
 
 const StyledImg = styled.img`
   max-width: 1500px;
+  min-width: 500px;
   height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
   background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 24px;
+  box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+  @media only screen and (min-width: 500px) and (max-width: 1580px) {
+    max-width: 1200px;
+    height: 370px;
+  }
+`;
+
+const StyledDivBox = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.8);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
 `;
 
@@ -123,16 +145,14 @@ export const Dropdown = () => {
 
   const dispatch = useDispatch();
 
-  dispatch(updateBg("bgDefault")); //upewnienie się, że tło jest odpowiednie
+  dispatch(updateBg("bgDefault"));
 
   useEffect(() => {
     getCutePicture("Dog");
   }, []);
 
   const getCutePicture = (animal: string) => {
-    console.log(animal);
     if (animal === "Dog") {
-      console.log("step 1");
       const url = `${API_URL_DOG}images/search?limit=1`;
 
       fetch(url, {
@@ -144,7 +164,6 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           let imagesData = data;
           imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
@@ -154,10 +173,9 @@ export const Dropdown = () => {
           });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else if (animal === "Cat") {
-      console.log("step 2");
       const url = `${API_URL_CAT}images/search?limit=1`;
 
       fetch(url, {
@@ -169,19 +187,18 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           let imagesData = data;
           imagesData.map(function (imageData: { url: string }) {
             setImg(imageData.url);
             setCategory("Cat");
             setIsOpen(false);
+            setIsLoading(false);
           });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else if (animal === "Fox") {
-      console.log("step 3");
       const url = API_URL_FOX;
 
       fetch(url, {})
@@ -189,13 +206,13 @@ export const Dropdown = () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           setImg(data.image);
           setCategory("Fox");
           setIsOpen(false);
+          setIsLoading(false);
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     }
   };
@@ -214,7 +231,7 @@ export const Dropdown = () => {
       >
         <div>
           <StyledNewPicButton onClick={() => getCutePicture(category)}>
-            generate new picture
+            NEW
           </StyledNewPicButton>
           <div
             style={{
@@ -249,7 +266,9 @@ export const Dropdown = () => {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {isLoading ? (
-            <LoaderComponent />
+            <StyledDivBox>
+              <LoaderComponent key={category} />
+            </StyledDivBox>
           ) : (
             <StyledImg src={img} alt="A picture of either a dog, cat or fox" />
           )}
