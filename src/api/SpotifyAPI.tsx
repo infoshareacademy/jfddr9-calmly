@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { SpotifyTrack } from "../components/SpotifyTrack";
 import { LoaderComponent } from "../components/Loader";
-// import { useDispatch } from 'react-redux';
-// import { updateBg } from '../store/slice';
+import { useDispatch } from "react-redux";
+import { updateBg } from "../store/slice";
 
 const client_id = "18d4de0e32314d02b42308e9357cbb2e"; // client id
 const client_secret = "b286a9f61c344b79b96eaee2c58c3b68"; // secret
@@ -45,11 +45,11 @@ export const SpotifyAPI = () => {
   const [list, setList] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(updateBg('bgRadial'));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(updateBg("bgRadial"));
+  }, [dispatch]);
 
   useEffect(() => {
     fetch("https://accounts.spotify.com/api/token", {

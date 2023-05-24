@@ -20,7 +20,7 @@ export const AreYou = (props: AreYouProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateBg("bgDefault"));
+    dispatch(updateBg("bgWhite"));
   }, [dispatch]);
 
   return (
