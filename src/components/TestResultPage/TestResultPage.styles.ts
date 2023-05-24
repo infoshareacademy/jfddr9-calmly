@@ -14,19 +14,13 @@ export const Background = styled.div`
   background-repeat: no-repeat;
   position: absolute;
   top: -50px;
-`;
-
-export const Img = styled.img`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 150px;
+  transform: scaleX(-1);
 `;
 
 export const WrapperContent = styled.div`
   position: absolute;
   bottom: 50px;
-  left: 80px;
+  right: 40px;
   width: 550px;
   display: flex;
   flex-direction: column;
@@ -40,7 +34,7 @@ export const Text = styled.div`
   color: #797bec;
   font-size: 60px;
   font-weight: 600;
-  text-align: left;
+  text-align: right;
   padding-right: 70px;
   line-height: 70px;
 `;
@@ -59,6 +53,7 @@ export const SmallerText = styled.div`
 export const WrapperButtons = styled.div`
   display: flex;
   gap: 15px;
+  text-align: right;
 `;
 
 export const Button = styled.button`
@@ -84,11 +79,4 @@ export const Button = styled.button`
     transition: 0.1s ease-in;
     transform: scale(99%);
   }
-`;
-
-export const ImgMozg = styled.img`
-  width: 400px;
-  position: absolute;
-  right: 165px;
-  bottom: 0px;
 `;
