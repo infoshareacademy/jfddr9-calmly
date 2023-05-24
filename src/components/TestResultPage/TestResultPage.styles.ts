@@ -24,7 +24,7 @@ export const WrapperContent = styled.div`
   width: 550px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   height: 400px;
 `;
@@ -48,12 +48,16 @@ export const SmallerText = styled.div`
   color: #797bec;
   font-size: 16px;
   margin-bottom: 32px;
+  align-items: center;
+  text-align: right;
+  padding-right: 70px;
 `;
 
 export const WrapperButtons = styled.div`
   display: flex;
   gap: 15px;
   text-align: right;
+  padding-right: 70px;
 `;
 
 export const Button = styled.button`
