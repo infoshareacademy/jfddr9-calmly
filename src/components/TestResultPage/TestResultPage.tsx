@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as Styled from "./TestResultPage.styles";
+import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 interface TestResultPageProps {
   stressLevel: "middle" | "low" | "high";
@@ -11,7 +12,7 @@ export const TestResultPage = ({ stressLevel }: TestResultPageProps) => {
     <Styled.Wrapper>
       <Styled.Background />
 
-      <Styled.Img src="src/assets/logo-white.png"></Styled.Img>
+      <PinnedSmallLogo />
       <Styled.WrapperContent>
         <Styled.Text>
           Your stress level is in the <Styled.Span>{stressLevel}</Styled.Span>{" "}
@@ -26,7 +27,6 @@ export const TestResultPage = ({ stressLevel }: TestResultPageProps) => {
           <Styled.Button onClick={() => navigate("/home")}>Home</Styled.Button>
         </Styled.WrapperButtons>
       </Styled.WrapperContent>
-      <Styled.ImgMozg src="src/assets/mózg 1.png" />
     </Styled.Wrapper>
   );
 };
