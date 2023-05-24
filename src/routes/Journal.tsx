@@ -10,7 +10,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Dot,
 } from "recharts";
 import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
@@ -35,6 +34,21 @@ export const Journal = () => {
   const [entryCounter, setEntryCounter] = useState(maxDataEntries);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  };
+
+  const [dateValue, setDateValue] = useState(
+    formatDate(new Date()).slice(0, 10)
+  );
+  const [displayType, setDisplayType] = useState("daily");
   // const [responsiveData, setResponsiveData] = useState([]);
 
   if (windowWidth > 768) {
@@ -48,16 +62,6 @@ export const Journal = () => {
   } else if (windowWidth <= 415 && windowWidth > 100) {
     maxDataEntries = 3;
   }
-
-  const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
-  };
 
   const dispatch = useDispatch();
 
@@ -85,6 +89,7 @@ export const Journal = () => {
         setData(entries);
         const days: any = dataToDays(entries);
         setDaysData(days);
+        setDateValue(days[days.length - 1].date);
         if (days.length <= maxDataEntries) {
           setDisplayedData(days);
           setEntryCounter(maxDataEntries);
@@ -133,7 +138,9 @@ export const Journal = () => {
 
   const goToDay = (line: string) => {
     console.log(line);
-    if (isDisplayDays) {
+    setDateValue(line);
+
+    if (displayType === "detailed") {
       const dayStartIndex = data.findIndex(
         (item: any) => item.date.slice(0, 10) === line
       );
@@ -148,6 +155,22 @@ export const Journal = () => {
         );
         setEntryCounter(dayStartIndex + maxDataEntries);
         setIsDisplayDays(false);
+      }
+    } else {
+      const dayStartIndex = daysData.findIndex(
+        (item: any) => item.date === line
+      );
+      console.log(dayStartIndex);
+      if (dayStartIndex + maxDataEntries > daysData.length) {
+        setDisplayedData(daysData.slice(dayStartIndex, daysData.length));
+        setEntryCounter(daysData.length);
+        setIsDisplayDays(true);
+      } else {
+        setDisplayedData(
+          daysData.slice(dayStartIndex, dayStartIndex + maxDataEntries)
+        );
+        setEntryCounter(dayStartIndex + maxDataEntries);
+        setIsDisplayDays(true);
       }
     }
   };
@@ -252,7 +275,7 @@ export const Journal = () => {
             fill="#666"
             fontSize={12}
             cursor={"pointer"}
-            onClick={() => goToDay(line)}
+            onClick={() => (isDisplayDays ? goToDay(line) : null)}
           >
             {line}
           </text>
@@ -426,6 +449,18 @@ export const Journal = () => {
       >
         Next
       </button>
+      <input
+        type="date"
+        value={dateValue}
+        onChange={(e) => goToDay(e.target.value)}
+      />
+      <select
+        value={displayType}
+        onChange={(e) => setDisplayType(e.target.value)}
+      >
+        <option value={"daily"}>Daily</option>
+        <option value={"detailed"}>Detailed</option>
+      </select>
     </>
   ) : (
     <LoaderComponent />
