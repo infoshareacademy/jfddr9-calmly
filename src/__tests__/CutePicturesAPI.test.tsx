@@ -14,5 +14,9 @@
 //   //   });
 // });
 
+test("examples of some things", () => {
+  expect(2 + 2).toEqual(4);
+});
+
 // TO DO NEEDS REDUX CONTEXT
 // could not find react-redux context value; please ensure the component is wrapped in a <Provider>
