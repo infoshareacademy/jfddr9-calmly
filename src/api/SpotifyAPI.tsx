@@ -28,11 +28,16 @@ const StyledButtonText = styled.span`
 `;
 
 const StyledLoadButton = styled.button`
+  cursor: pointer;
   width: 217px;
   height: 41px;
   background: rgba(255, 255, 255, 0.45);
   border-radius: 50px;
   border: none;
+  &:hover {
+    background: white;
+    transition: 0.2s;
+  }
 `;
 
 export const SpotifyAPI = () => {

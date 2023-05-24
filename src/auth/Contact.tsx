@@ -13,27 +13,90 @@ const StyledImage = styled.img`
 `;
 
 const Obraz = styled(StyledImage)`
-  height: 430px;
-  top: 360px;
-  left: 260px;
+  height: 310px;
+  top: 520px;
+  left: 600px;
+  animation: moving 30s infinite normal backwards;
+  @keyframes moving {
+    50% {
+      transform: scale(1.2);
+      left: 170px;
+      top: 460px;
+    }
+    0%,
+    100% {
+      top: 520px;
+      left: 600px;
+    }
+  }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
-    top: 160px;
-    left: 100px;
+    top: 120px;
+    left: 120px;
+    @keyframes moving {
+      50% {
+        transform: scale(1.2);
+        left: 10px;
+        top: 10px;
+      }
+      0%,
+      100% {
+        top: 120px;
+        left: 120px;
+      }
+    }
   }
   @media only screen and (min-width: 1581px) and (max-width: 1680px) {
-    top: 220px;
-    left: 140px;
+    top: 120px;
+    left: 120px;
+    @keyframes moving {
+      50% {
+        transform: scale(1.2);
+        left: 10px;
+        top: 10px;
+      }
+      0%,
+      100% {
+        top: 120px;
+        left: 120px;
+      }
+    }
   }
   @media only screen and (min-width: 1251px) and (max-width: 1580px) {
-    top: 280px;
-    left: 190px;
+    top: 310px;
+    left: 390px;
+    @keyframes moving {
+      50% {
+        transform: scale(1.2);
+        left: 100px;
+        top: 310px;
+      }
+      0%,
+      100% {
+        top: 310px;
+        left: 390px;
+      }
+    }
   }
 `;
 
 const ObrazTu = styled(StyledImage)`
-  height: 540px;
-  top: 80px;
-  left: 980px;
+  height: 440px;
+  top: 70px;
+  left: 920px;
+  animation: movingOne 30s infinite normal backwards;
+
+  @keyframes movingOne {
+    50% {
+      transform: scale(1.2);
+      left: 1250px;
+      top: 280px;
+    }
+    0%,
+    100% {
+      top: 70px;
+      left: 920px;
+    }
+  }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
     top: 50px;
     left: 550px;
@@ -44,14 +107,39 @@ const ObrazTu = styled(StyledImage)`
   }
   @media only screen and (min-width: 1251px) and (max-width: 1580px) {
     top: 70px;
-    left: 800px;
+    left: 700px;
+    @keyframes movingOne {
+      50% {
+        transform: scale(1.2);
+        left: 1000px;
+        top: 210px;
+      }
+      0%,
+      100% {
+        top: 70px;
+        left: 800px;
+      }
+    }
   }
 `;
 
 const ObrazTri = styled(StyledImage)`
-  height: 255px;
-  top: 130px;
-  left: 580px;
+  height: 220px;
+  top: 150px;
+  left: 660px;
+  animation: movingTri 30s infinite normal backwards;
+  @keyframes movingTri {
+    50% {
+      transform: scale(1.2);
+      left: 380px;
+      top: 100px;
+    }
+    0%,
+    100% {
+      top: 150px;
+      left: 660px;
+    }
+  }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
     top: 80px;
     left: 350px;
@@ -66,11 +154,6 @@ const ObrazTri = styled(StyledImage)`
   }
 `;
 
-// const ObrazFor = styled(StyledImage)`
-//   height: 880px;
-//   top: 500px;
-//   left: 860px;
-// `;
 const Body = styled.body`
   display: flex;
   flex-direction: column;
@@ -85,6 +168,15 @@ const Body = styled.body`
       #e3b4ab 53.27%,
       #b3b4ef 123.37%
     );
+    @media only screen and (min-width: 500px) and (max-width: 1250px) {
+      background-color: linear-gradient(
+        141.59deg,
+        #f6c59c 11.57%,
+        #e3b4ab 53.27%,
+        #b3b4ef 123.37%
+      );
+      background-repeat: no-repeat;
+    }
   }
 `;
 const MainDiv = styled.div`
@@ -95,7 +187,7 @@ align-items: stretch;
 flex-wrap: nowrap;
 }
 
-@media only screen and (min-width: 1251px) and (max-width: 1480px) {
+@media only screen and (min-width: 1281px) and (max-width: 1480px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,14 +218,14 @@ const Menu = styled.div`
     width: 100px;
     height: 100px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1251px) {
+  @media only screen and (min-width: 500px) and (max-width: 1280px) {
     background: none;
     width: 42vw;
     height: 42vw;
     border: none;
     box-shadow: none;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
     background: none;
     width: 46vw;
     height: 46vw;
@@ -145,7 +237,7 @@ const MenuContent = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+  @media only screen and (min-width: 500px) and (max-width: 1280px) {
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -165,7 +257,7 @@ const Authors = styled.a`
   font-weight: 400;
   font-size: 17px;
   line-height: 24px;
-  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+  @media only screen and (min-width: 500px) and (max-width: 1280px) {
     font-size: 14px;
     line-height: 18px;
     font-weight: 300;
@@ -199,7 +291,7 @@ const Input = styled.input`
     font-weight: 400;
     font-size: 16px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+  @media only screen and (min-width: 500px) and (max-width: 1280px) {
     margin-bottom: 3px;
     padding: 9px;
   }
@@ -207,7 +299,7 @@ const Input = styled.input`
     margin-bottom: 4px;
     padding: 12px;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
     margin-bottom: 4px;
     padding: 10px;
   }
@@ -227,7 +319,7 @@ const TextArea = styled.textarea`
     font-weight: 300;
     font-size: 16px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+  @media only screen and (min-width: 500px) and (max-width: 1280px) {
     margin-bottom: 3px;
     padding: 9px;
   }
@@ -235,7 +327,7 @@ const TextArea = styled.textarea`
     margin-bottom: 4px;
     padding: 12px;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
     margin-bottom: 2px;
     padding: 10px;
   }
@@ -252,7 +344,7 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #7072d8;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1250px) {
+  @media only screen and (min-width: 500px) and (max-width: 1280px) {
     padding: 8px;
     font-weight: 500;
     background-color: #9697e1;
@@ -266,7 +358,7 @@ const SubmitButton = styled.button`
     padding: 10px;
     font-weight: 500;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
     padding: 8px;
     font-weight: 600;
     font-size: 18px;
@@ -287,7 +379,7 @@ const Hr = styled.hr`
     border: solid 3px white;
     margin: -8px 0 25px 0;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
     width: 65px;
     border: solid 2px white;
     margin: -8px 0 18px 0;
