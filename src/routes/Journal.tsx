@@ -30,7 +30,6 @@ const ChartContainer = styled.div`
   padding-block: 20px;
 `;
 
-let responsiveData: any = [];
 let maxDataEntries = 7;
 
 export const Journal = () => {
