@@ -105,7 +105,7 @@ export const FeelBetter = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateBg("bgDefault"));
+    dispatch(updateBg("bgRadial"));
   }, [dispatch]);
 
   const handleStepChange = () => {

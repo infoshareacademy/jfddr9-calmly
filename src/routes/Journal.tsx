@@ -17,7 +17,18 @@ import { LoaderComponent } from "../components/Loader";
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
 
-const ChartContainer = styled.div``;
+const ChartContainer = styled.div`
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 18px;
+  padding-right: 25px;
+  padding-block: 20px;
+`;
 
 let responsiveData: any = [];
 let maxDataEntries = 7;
@@ -418,11 +429,25 @@ export const Journal = () => {
         {!isDisplayDays && (
           <button onClick={() => backToDaysDisplay()}>Back to days</button>
         )}
-        <ResponsiveContainer width="90%" height={300}>
-          <LineChart key={responsiveData} data={displayedData}>
+        <ResponsiveContainer width="90%" height={500}>
+          <LineChart data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
-            <YAxis />
+            <YAxis
+              domain={[0, 20]}
+              tickCount={3}
+              tickFormatter={(value) => {
+                if (value === 0) {
+                  return "Low";
+                } else if (value >= 8 && value <= 12) {
+                  return "Mid";
+                } else if (value > 12) {
+                  return "High";
+                } else {
+                  return "";
+                }
+              }}
+            />
             <Tooltip />
             <Tooltip labelFormatter={(label) => `Date: ${label}`} />
             <Tooltip
@@ -432,8 +457,13 @@ export const Journal = () => {
               ]}
             />
             <Legend />
-            <Line type="monotone" dataKey="score" stroke="#8884d8" />
-            <Line type="monotone" dataKey="mood" stroke="#82ca9d" />
+            <Line
+              type="monotone"
+              dataKey="score"
+              stroke="#797BEC"
+              strokeWidth={3}
+            />
+            <Line type="monotone" dataKey="mood" stroke="#F231AA" />
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
