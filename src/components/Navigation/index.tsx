@@ -115,7 +115,7 @@ export const ButtonLogOut = styled.button`
   }
 `;
 
-export const Navigation = ({ src }: any, { srcHamburger }: any) => {
+export const Navigation = ({ src, srcHamburger }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -151,7 +151,8 @@ export const Navigation = ({ src }: any, { srcHamburger }: any) => {
         </NavLink>
         <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
       </Nav>
-      <HamburgerButton src="src/assets/MenuPrpl.svg" onClick={toggleMenu} />
+      {console.log(`srcHamburger: ${srcHamburger}`)}
+      <HamburgerButton src={srcHamburger} onClick={toggleMenu} />
     </>
   );
 };
