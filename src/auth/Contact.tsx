@@ -436,8 +436,6 @@ export function Contact() {
       <Obraz src={ball} />
       <ObrazTu src={ball} />
       <ObrazTri src={ball} />
-      {/* <ObrazFor src={ball}/> */}
-
       <MainDiv>
         <Navigation src="src/assets/logo-white.png" />
         <Menu>
@@ -472,7 +470,7 @@ export function Contact() {
                     onChange={handleInputChange}
                   ></Input>
                   <TextArea
-                    placeholder="Tell us more about your feelings and observations and what we can do to improve Calmly"
+                    placeholder="Tell us more about your experience with Calmly"
                     name="message"
                     id="message"
                     value={message}

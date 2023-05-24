@@ -12,14 +12,14 @@ const StyledBoxDiv = styled.div`
   background: #ffffff;
   box-shadow: 20px 25px 35px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  padding: 50px 100px;
+  padding: 20px 60px;
   width: 807px;
   height: 298px;
   margin: 0 auto;
   gap: 20px;
 
   @media (max-width: 1010px) {
-    padding: 120px 50px;
+    padding: 30px 50px;
   }
   @media (max-width: 910px) {
     width: 407px;
@@ -69,9 +69,11 @@ const StyledAnswerButton = styled.button`
     background: #797bec;
     color: #ffff;
   }
-
-  @media (max-width: 515px) {
+  @media (max-width: 1550px) {
     font-size: 24px;
+  }
+  @media (max-width: 515px) {
+    font-size: 22px;
   }
   @media (max-width: 375px) {
     font-size: 14px;
@@ -109,7 +111,6 @@ const StyledBackButton = styled.button`
     background: #797bec;
     color: #ffff;
   }
-
   @media (max-width: 375px) {
     font-size: 14px;
   }
@@ -125,7 +126,9 @@ const StyledStaticQuestionSpan = styled.span`
   font-style: normal;
   font-weight: 600;
   font-size: 64px;
-
+  @media (max-width: 1550px) {
+    font-size: 48px;
+  }
   @media (max-width: 910px) {
     font-size: 32px;
   }

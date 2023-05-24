@@ -3,7 +3,6 @@ import * as Styled from "./SupportPage.styles";
 import { useEffect } from "react";
 import { updateBg } from "../../store/slice";
 import { Navigation } from "../../components/Navigation";
-
 export const SupportPage = () => {
   const dispatch = useDispatch();
 
