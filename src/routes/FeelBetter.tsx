@@ -18,6 +18,7 @@ import { Tips } from "../components/Tips/Tips";
 
 import { AreYou } from "../components/AreYou/AreYou";
 import { NatureSound } from "../components/NatureSound";
+import { useNavigate } from "react-router-dom";
 
 const fadeIn = keyframes`
   from {
@@ -103,6 +104,7 @@ export const FeelBetter = () => {
   const [step, setStep] = useState(1);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(updateBg("bgDefault"));
@@ -111,6 +113,7 @@ export const FeelBetter = () => {
   const handleStepChange = () => {
     setStep(1);
   };
+  step === 0 && navigate("/home");
 
   return (
     <StyledDiv>
@@ -128,9 +131,7 @@ export const FeelBetter = () => {
             </StyledStep>
           </StyledStepContainer>
           <StepperContainer>
-            <StepButton onClick={() => setStep(step - 1)} disabled={step === 1}>
-              {"<"}
-            </StepButton>
+            <StepButton onClick={() => setStep(step - 1)}>{"<"}</StepButton>
             <Tooltip
               style={{
                 fontFamily: "Outfit",

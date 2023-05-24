@@ -14,11 +14,18 @@ export const Home = () => {
     dispatch(updateBg("bgHome"));
   }, [dispatch]);
 
+  const isUserLogged = authUser.fullName;
+
+  console.log("isUserLoged", isUserLogged);
+
+  isUserLogged == null ? navigate("/") : navigate("/home");
+
   return (
     <>
       <Navigation
         src="src/assets/logo-violet.png"
         alt="Calmly company's logo in violet colour"
+        srcHamburger="src/assets/MenuPrpl.svg"
       ></Navigation>
       <Styled.Wrapper>
         <>
@@ -31,10 +38,11 @@ export const Home = () => {
                 Let your <span>stress</span> drop
               </Styled.TextUnderHeader>
               <Styled.Paragraph>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi,
-                facilis officia velit facere libero reprehenderit! Perspiciatis
-                saepe illum repellat labore? Deleniti atque ex qui? Consequatur
-                obcaecati repellat quod tempore perspiciatis.
+                Calmly offers an interactive toolkit that will measure your
+                stress and provide the necessary tools to brighten your day. Our
+                mission is to help you feel better, focus on your needs and try
+                to live here-and-now. Complete these few steps and enjoy our
+                tips to improve your well-being
               </Styled.Paragraph>
               <Styled.WrapperButtons>
                 <Styled.Button onClick={() => navigate("/quiz")}>
