@@ -18,7 +18,9 @@ export const Home = () => {
 
   console.log("isUserLoged", isUserLogged);
 
-  isUserLogged == null ? navigate("/") : navigate("/home");
+  useEffect(() => {
+    isUserLogged == null ? navigate("/") : navigate("/home");
+  }, []);
 
   return (
     <>
