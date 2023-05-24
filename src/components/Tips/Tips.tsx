@@ -17,14 +17,14 @@ import { PinnedSmallLogo } from "../PinnedSmallLogo";
 //     #b3b4ef 123.37%
 //   );
 // `;
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 40px;
-  font-weight: 600;
-  color: white;
-`;
+// const Div = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   font-size: 40px;
+//   font-weight: 600;
+//   color: white;
+// `;
 
 const Button = styled.button`
   background: white;
@@ -45,6 +45,8 @@ const Button = styled.button`
 `;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   background: #fff;
   width: 60%;
   max-width: 800px;
@@ -64,8 +66,6 @@ const Wrapper = styled.div`
 `;
 
 export const Tips = () => {
-  const [show, setShow] = useState(false);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -84,9 +84,9 @@ export const Tips = () => {
     "Clean up your place",
     "Talk with your friend",
     "Do something for others",
-    "Invite your friends and make a small party!",
+    "Invite some friends and make a small party!",
     "Make your own vision board",
-    "Take a social media break",
+    "Take a break from social media",
     "Smile at first person you meet",
     "Visit animals at the shelter",
     "Pay someone a compliment",
@@ -97,34 +97,33 @@ export const Tips = () => {
     "Help a family member with a task",
     "Donate a necessity to people in need",
     "Have a meaningful conversation with someone close",
-    "Show someone your gratitude for being on your side",
+    "Show someone gratitude for being on your side",
     "Try a new way to be more eco friendly",
     "Become a volunteer",
     "Take care of yourself (your diet, health, body and mind)",
     "Take a nap",
-    "Increase your creativity: write a poem, create a painting, make a sculpture ",
+    "Increase your creativity: write a poem, create a painting, make a sculpture",
     "Hug someone important for you",
     "Hug your pet",
     "Treat yourself",
   ];
 
-  const generatedRandomNumber = Math.floor(Math.random() * 10);
+  let generatedRandomNumber = Math.floor(Math.random() * tips.length);
+  const [tipValue, setTipValue] = useState(tips[generatedRandomNumber]);
 
-  const onClickShow = () => setShow((prev) => !prev);
+  const newGeneratedTip = () => {
+    let num = Math.floor(Math.random() * tips.length);
+    console.log(num);
+    setTipValue(tips[num]);
+  };
 
   return (
     <>
       <PinnedSmallLogo />
-      {show ? (
-        <Wrapper>
-          <div>{tips[generatedRandomNumber]}</div>
-        </Wrapper>
-      ) : (
-        <Div>
-          Do something for yourself
-          <Button onClick={onClickShow}>start</Button>
-        </Div>
-      )}
+      <Wrapper>
+        <div id="tips">{tipValue}</div>
+        <Button onClick={newGeneratedTip}>New Tip</Button>
+      </Wrapper>
     </>
   );
 };
