@@ -1,13 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export type AuthStateType = {
+  fullName: string | null;
+  uid: string | null;
+};
+
+// type PayloadAction = { fullName: string; id: string }
 
 export const authSlice = createSlice({
   name: "authUser",
   initialState: {
     fullName: null,
     uid: null,
-  },
+  } as AuthStateType,
   reducers: {
-    updateAuthStateChanged: (state, action) => {
+    updateAuthStateChanged: (
+      state,
+      action: PayloadAction<{ fullName: string; id: string }>
+    ) => {
       const { fullName, id } = action.payload;
       state.fullName = fullName;
       state.uid = id;

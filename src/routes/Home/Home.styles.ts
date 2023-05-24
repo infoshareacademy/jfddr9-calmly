@@ -52,7 +52,7 @@ export const WrapperButtons = styled.div`
 
 export const Header = styled.div`
   margin-top: 60px;
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 600;
   color: #e3b4ab;
   & span {
@@ -61,8 +61,7 @@ export const Header = styled.div`
 `;
 
 export const TextUnderHeader = styled.div`
-  font-size: 34px;
-  margin-top: 10px;
+  font-size: 30px;
   color: #797bec;
   font-weight: 200;
 
@@ -72,8 +71,9 @@ export const TextUnderHeader = styled.div`
 `;
 
 export const Paragraph = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 44px;
+  margin-top: 44px;
   padding-right: 70px;
   text-align: justify;
   @media (max-width: 1750px) {
@@ -102,7 +102,9 @@ export const Button = styled.button`
   font-weight: 600;
   margin-bottom: 40px;
   font-size: 16px;
+  letter-spacing: 1px;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Outfit", sans-serif;
 
   &:hover {
     transition: 0.3s ease-in;

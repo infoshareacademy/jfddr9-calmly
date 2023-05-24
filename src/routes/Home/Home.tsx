@@ -40,11 +40,12 @@ export const Home = () => {
                 Let your <span>stress</span> drop
               </Styled.TextUnderHeader>
               <Styled.Paragraph>
-                Calmly offers an interactive toolkit that will measure your
-                stress and provide the necessary tools to brighten your day. Our
-                mission is to help you feel better, focus on your needs and try
-                to live here-and-now. Complete these few steps and enjoy our
-                tips to improve your well-being
+                Let's begin by exploring a few steps that can help you create a
+                sense of comfort and ease. Our healing journey includes relaxing
+                music, breathing exercises, therapy with your favorite animals
+                and sounds of nature. Lastly, you will see some additional
+                suggestions to enhance your well-being and promote a positive
+                mindset.
               </Styled.Paragraph>
               <Styled.WrapperButtons>
                 <Styled.Button onClick={() => navigate("/quiz")}>
