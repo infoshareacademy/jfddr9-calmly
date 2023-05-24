@@ -122,19 +122,19 @@ type NavigationProps = {
   srcHamburger: string;
   alt: string;
 };
-type AuthStateType = {
-  fullName: string | null;
-  uid: string | null;
-};
+// type AuthStateType = {
+//   fullName: string | null;
+//   uid: string | null;
+// };
 
 export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //   const { authUser }: any = useSelector((state) => state);
-  const { authUser } = useSelector(
-    (state: { authUser: AuthStateType }) => state
-  );
+  const { authUser }: any = useSelector((state) => state);
+  //   const { authUser } = useSelector(
+  //     (state: { authUser: AuthStateType }) => state
+  //   );
   console.log("authUser", authUser);
 
   const showButton = authUser.fullName != null;
