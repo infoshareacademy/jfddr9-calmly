@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { CustomAudioPlayer } from "../AudioPlayer";
-import { useDispatch } from "react-redux";
-import { updateBg } from "../../store/slice";
-import { useEffect } from "react";
+// import { useDispatch } from 'react-redux';
+// import { updateBg } from '../../store/slice';
+// import { useEffect } from 'react';
 
 const StyledDiv = styled.div`
   padding: 20px;
@@ -62,11 +62,11 @@ type SpotifyTrackType = {
 };
 
 export const SpotifyTrack = ({ track }: { track: SpotifyTrackType }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(updateBg("bgRadial"));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(updateBg("bgRadial"));
+  // }, [dispatch]);
 
   return (
     <StyledDiv>
