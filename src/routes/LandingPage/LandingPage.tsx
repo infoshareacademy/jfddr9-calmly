@@ -33,6 +33,9 @@ export const LandingPage = () => {
           <Styled.Button onClick={() => navigate("/login")}>
             SIGN IN
           </Styled.Button>
+          <Styled.Button onClick={() => navigate("/feelbetter")}>
+            FEEL BETTER
+          </Styled.Button>
         </Styled.WrapperButtons>
       </Styled.WrapperContent>
     </Styled.Wrapper>

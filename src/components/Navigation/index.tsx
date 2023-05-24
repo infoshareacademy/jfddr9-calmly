@@ -1,6 +1,7 @@
 import { auth } from "../../api/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import styled from "styled-components";
@@ -15,6 +16,7 @@ const HamburgerButton = styled.img`
   right: 40px;
   display: none;
   cursor: pointer;
+  height: 40px;
 
   @media (max-width: 950px) {
     display: block;
@@ -114,9 +116,13 @@ export const ButtonLogOut = styled.button`
   }
 `;
 
-export const Navigation = ({ src }: any) => {
+export const Navigation = ({ src, srcHamburger }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { authUser }: any = useSelector((state) => state);
+
+  const showButton = authUser.fullName != null;
 
   const isFeelBetterPage = location.pathname === "/feelbetter";
   const isSupportPage = location.pathname === "/support";
@@ -148,9 +154,12 @@ export const Navigation = ({ src }: any) => {
         <NavLink isActive={isContactPage} onClick={() => navigate("/contact")}>
           Contact
         </NavLink>
-        <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
+        {showButton && (
+          <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
+        )}
       </Nav>
-      <HamburgerButton src="src/assets/icon-menu.svg" onClick={toggleMenu} />
+      {console.log(`srcHamburger: ${srcHamburger}`)}
+      <HamburgerButton src={srcHamburger} onClick={toggleMenu} />
     </>
   );
 };

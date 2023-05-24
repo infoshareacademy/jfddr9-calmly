@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   font-family: "Outfit", sans-serif;
+
+  @media (max-width: 950px) {
+    background-attachment: fixed;
+  }
 `;
 
 // export const LogoWhite = styled.img`
