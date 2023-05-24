@@ -15,6 +15,36 @@ export const Background = styled.div`
   position: absolute;
   top: -50px;
   transform: scaleX(-1);
+
+  @media (max-width: 1450px) {
+    background-size: 120%;
+  }
+
+  @media (max-width: 1150px) {
+    background-size: 140%;
+  }
+
+  @media (max-width: 1000px) {
+    background-size: 175%;
+  }
+
+  @media (max-width: 800px) {
+    background-size: 200%;
+  }
+
+  @media (max-width: 650px) {
+    background-size: 280%;
+  }
+
+  @media (max-width: 500px) {
+    top: -20px;
+    background-size: 350%;
+  }
+
+  @media (max-width: 380px) {
+    top: 0px;
+    background-size: 200%;
+  }
 `;
 
 export const WrapperContent = styled.div`
@@ -28,6 +58,23 @@ export const WrapperContent = styled.div`
   justify-content: center;
   height: 400px;
   padding-right: 70px;
+
+  @media (max-width: 800px) {
+    align-items: center;
+    padding-right: 0px;
+    right: 0px;
+    width: auto;
+    margin: 40px;
+  }
+
+  @media (max-width: 500px) {
+    margin: 0px;
+  }
+
+  @media (max-width: 380px) {
+    margin: 0px;
+    bottom: 200px;
+  }
 
   @media (min-width: 2000px) {
     height: 600px;
@@ -49,6 +96,10 @@ export const Text = styled.div`
   font-weight: 600;
   text-align: right;
   line-height: 70px;
+
+  @media (max-width: 800px) {
+    text-align: center;
+  }
 
   @media (min-width: 2000px) {
     font-size: 80px;
