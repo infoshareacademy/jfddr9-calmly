@@ -12,7 +12,10 @@ export const SupportPage = () => {
   }, [dispatch]);
   return (
     <Styled.Background>
-      <Navigation src="src/assets/logo-white.png" />
+      <Navigation
+        src="src/assets/logo-white.png"
+        srcHamburger="src/assets/MenuWhite.svg"
+      />
       <Styled.Wrapper>
         <Styled.WrapperLeft>
           <h2>Are you in a crisis?</h2>
