@@ -14,12 +14,18 @@ export const Home = () => {
     dispatch(updateBg("bgHome"));
   }, [dispatch]);
 
+  const isUserLogged = authUser.fullName;
+
+  console.log("isUserLoged", isUserLogged);
+
+  isUserLogged == null ? navigate("/") : navigate("/home");
+
   return (
     <>
       <Navigation
         src="src/assets/logo-violet.png"
         alt="Calmly company's logo in violet colour"
-        srcHamburger="src/assets/logo-violet.png"
+        srcHamburger="src/assets/MenuPrpl.svg"
       ></Navigation>
       <Styled.Wrapper>
         <>

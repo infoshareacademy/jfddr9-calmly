@@ -1,6 +1,7 @@
 import { auth } from "../../api/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import styled from "styled-components";
@@ -119,6 +120,10 @@ export const Navigation = ({ src, srcHamburger }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { authUser }: any = useSelector((state) => state);
+
+  const showButton = authUser.fullName != null;
+
   const isFeelBetterPage = location.pathname === "/feelbetter";
   const isSupportPage = location.pathname === "/support";
   const isContactPage = location.pathname === "/contact";
@@ -149,7 +154,9 @@ export const Navigation = ({ src, srcHamburger }: any) => {
         <NavLink isActive={isContactPage} onClick={() => navigate("/contact")}>
           Contact
         </NavLink>
-        <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
+        {showButton && (
+          <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
+        )}
       </Nav>
       {console.log(`srcHamburger: ${srcHamburger}`)}
       <HamburgerButton src={srcHamburger} onClick={toggleMenu} />

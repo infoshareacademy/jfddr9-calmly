@@ -77,9 +77,6 @@ function App() {
 
   console.log(reduxStore.bg.text);
 
-  // const user = useSelector((state) => state.user)
-  // console.log("state", {user})
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
