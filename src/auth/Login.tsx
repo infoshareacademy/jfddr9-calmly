@@ -83,12 +83,11 @@ margin-top: 15px;
 
 &:hover,
 &:focus{
-   color: blue; 
+  color: blue;
 }
 &:active{
-   color: blue; 
+  color: blue;
 `;
-//do zmiany focus i active
 
 const ButtonLogin = styled.button`
   cursor: pointer;

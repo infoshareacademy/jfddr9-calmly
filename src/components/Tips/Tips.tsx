@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { updateBg } from "../../store/slice";
 import { useDispatch } from "react-redux";
-import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 // const Background = styled.div`
 //   width: 100vw;
@@ -119,7 +118,6 @@ export const Tips = () => {
 
   return (
     <>
-      <PinnedSmallLogo />
       <Wrapper>
         <div id="tips">{tipValue}</div>
         <Button onClick={newGeneratedTip}>New Tip</Button>
