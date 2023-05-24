@@ -8,7 +8,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { useEffect, useState } from "react";
@@ -20,14 +19,58 @@ import { updateBg } from "../store/slice";
 const ChartContainer = styled.div`
   width: 90%;
   margin: auto;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   background-color: white;
   border-radius: 18px;
-  padding-right: 25px;
   padding-block: 20px;
+  padding-right: 50px;
+  box-sizing: border-box;
+`;
+
+const NavigationContainer = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const DateInput = styled.input`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const Select = styled.select`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const StyledStepButton = styled.button`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background-color: rgb(255, 255, 255, 0.45);
+  color: #797bec;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
 `;
 
 let maxDataEntries = 7;
@@ -146,11 +189,11 @@ export const Journal = () => {
     }
   }, [maxDataEntries]);
 
-  const goToDay = (line: string) => {
+  const goToDay = (line: string, mode: string) => {
     console.log(line);
     setDateValue(line);
 
-    if (displayType === "detailed") {
+    if (mode === "detailed") {
       const dayStartIndex = data.findIndex(
         (item: any) => item.date.slice(0, 10) === line
       );
@@ -189,21 +232,39 @@ export const Journal = () => {
     const nextEntryCounter = entryCounter + maxDataEntries;
     if (isDisplayDays) {
       if (nextEntryCounter <= daysData.length) {
-        setDisplayedData(daysData.slice(entryCounter, nextEntryCounter));
-        setEntryCounter(nextEntryCounter);
-      } else {
-        setDisplayedData(
-          daysData.slice(daysData.length - maxDataEntries, daysData.length)
+        const newDisplayedData: any = daysData.slice(
+          entryCounter,
+          nextEntryCounter
         );
+        setDisplayedData(newDisplayedData);
+        setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date);
+      } else {
+        const newDisplayedData: any = daysData.slice(
+          daysData.length - maxDataEntries,
+          daysData.length
+        );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter); // ??
+        setDateValue(newDisplayedData[0].date);
       }
     } else {
       if (nextEntryCounter <= data.length) {
-        setDisplayedData(data.slice(entryCounter, nextEntryCounter));
+        const newDisplayedData: any = data.slice(
+          entryCounter,
+          nextEntryCounter
+        );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       } else {
-        setDisplayedData(data.slice(data.length - maxDataEntries, data.length));
+        const newDisplayedData: any = data.slice(
+          data.length - maxDataEntries,
+          data.length
+        );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter); // ??
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       }
     }
   };
@@ -211,25 +272,35 @@ export const Journal = () => {
   const backData = () => {
     if (isDisplayDays) {
       if (entryCounter - maxDataEntries < maxDataEntries) {
-        setDisplayedData(daysData.slice(0, maxDataEntries));
+        const newDisplayedData: any = daysData.slice(0, maxDataEntries);
+        setDisplayedData(newDisplayedData);
         setEntryCounter(maxDataEntries);
+        setDateValue(newDisplayedData[0].date);
       } else {
         const nextEntryCounter = entryCounter - maxDataEntries;
-        setDisplayedData(
-          daysData.slice(nextEntryCounter - maxDataEntries, nextEntryCounter)
+        const newDisplayedData: any = daysData.slice(
+          nextEntryCounter - maxDataEntries,
+          nextEntryCounter
         );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date);
       }
     } else {
       if (entryCounter - maxDataEntries < maxDataEntries) {
+        const newDisplayedData: any = data.slice(0, maxDataEntries);
         setDisplayedData(data.slice(0, maxDataEntries));
         setEntryCounter(maxDataEntries);
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       } else {
         const nextEntryCounter = entryCounter - displayedData.length;
-        setDisplayedData(
-          data.slice(nextEntryCounter - maxDataEntries, nextEntryCounter)
+        const newDisplayedData: any = data.slice(
+          nextEntryCounter - maxDataEntries,
+          nextEntryCounter
         );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       }
     }
   };
@@ -285,7 +356,12 @@ export const Journal = () => {
             fill="#666"
             fontSize={12}
             cursor={"pointer"}
-            onClick={() => (isDisplayDays ? goToDay(line) : null)}
+            onClick={() => {
+              if (isDisplayDays) {
+                setDisplayType("detailed");
+                goToDay(line, "detailed");
+              }
+            }}
           >
             {line}
           </text>
@@ -381,29 +457,27 @@ export const Journal = () => {
   console.log(entryCounter);
   console.log(data);
 
-  const backToDaysDisplay = () => {
-    setIsDisplayDays(true);
-    // const days: any = dataToDays(data);
-    // if (days.length <= 7) {
-    //   setDisplayedData(days);
-    //   setEntryCounter(7);
-    // } else {
-    //   setDisplayedData(days.slice(days.length - 7, days.length));
-    //   setEntryCounter(days.length);
-    // }
-    // setDisplayedData(days);
-    // setEntryCounter(7);
+  // const backToDaysDisplay = () => {
+  //   setIsDisplayDays(true);
+  //   // const days: any = dataToDays(data);
+  //   // if (days.length <= 7) {
+  //   //   setDisplayedData(days);
+  //   //   setEntryCounter(7);
+  //   // } else {
+  //   //   setDisplayedData(days.slice(days.length - 7, days.length));
+  //   //   setEntryCounter(days.length);
+  //   // }
+  //   // setDisplayedData(days);
+  //   // setEntryCounter(7);
 
-    if (daysData.length <= maxDataEntries) {
-      setDisplayedData(daysData);
-      setEntryCounter(maxDataEntries);
-    } else {
-      setDisplayedData(
-        daysData.slice(daysData.length - maxDataEntries, daysData.length)
-      );
-      setEntryCounter(daysData.length);
-    }
-  };
+  //   if (daysData.length <= maxDataEntries) {
+  //     setDisplayedData(daysData);
+  //     setEntryCounter(maxDataEntries);
+  //   } else {
+  //     setDisplayedData(daysData.slice(daysData.length - maxDataEntries, daysData.length));
+  //     setEntryCounter(daysData.length);
+  //   }
+  // };
 
   let daysOrData = isDisplayDays ? daysData : data;
 
@@ -425,9 +499,8 @@ export const Journal = () => {
   return data.length !== 0 ? (
     <>
       <ChartContainer>
-        {!isDisplayDays && (
-          <button onClick={() => backToDaysDisplay()}>Back to days</button>
-        )}
+        {/* {!isDisplayDays && <button onClick={() => backToDaysDisplay()}>Back to days</button>} */}
+
         <ResponsiveContainer width="90%" height={500}>
           <LineChart data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -455,7 +528,7 @@ export const Journal = () => {
                 name === "score" ? "Score" : "Mood",
               ]}
             />
-            <Legend />
+            {/* <Legend /> */}
             <Line
               type="monotone"
               dataKey="score"
@@ -466,30 +539,42 @@ export const Journal = () => {
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
-      <button
-        onClick={backData}
-        disabled={entryCounter === maxDataEntries ? true : false}
-      >
-        Back
-      </button>
-      <button
-        onClick={nextData}
-        disabled={entryCounter >= daysOrData.length ? true : false}
-      >
-        Next
-      </button>
-      <input
-        type="date"
-        value={dateValue}
-        onChange={(e) => goToDay(e.target.value)}
-      />
-      <select
-        value={displayType}
-        onChange={(e) => setDisplayType(e.target.value)}
-      >
-        <option value={"daily"}>Daily</option>
-        <option value={"detailed"}>Detailed</option>
-      </select>
+      <NavigationContainer>
+        <ButtonsContainer>
+          <StyledStepButton
+            onClick={backData}
+            disabled={entryCounter === maxDataEntries ? true : false}
+          >
+            {"<"}
+          </StyledStepButton>
+          <StyledStepButton
+            onClick={nextData}
+            disabled={entryCounter >= daysOrData.length ? true : false}
+          >
+            {">"}
+          </StyledStepButton>
+        </ButtonsContainer>
+
+        <DateInput
+          type="date"
+          value={dateValue}
+          onChange={(e) => {
+            goToDay(e.target.value, displayType);
+          }}
+        />
+        <Select
+          value={displayType}
+          onChange={(e) => {
+            setDisplayType(e.target.value);
+            console.log(e.target.value);
+            setIsDisplayDays(e.target.value === "daily" ? true : false);
+            goToDay(dateValue, e.target.value);
+          }}
+        >
+          <option value={"daily"}>Daily</option>
+          <option value={"detailed"}>Detailed</option>
+        </Select>
+      </NavigationContainer>
     </>
   ) : (
     <LoaderComponent />
