@@ -71,10 +71,10 @@ export const WrapperContent = styled.div`
     margin: 0px;
   }
 
-  @media (max-width: 380px) {
-    margin: 0px;
-    bottom: 200px;
-  }
+  // @media (max-width: 380px) {
+  //   margin: 0px;
+  //   bottom: 200px;
+  // }
 
   @media (min-width: 2000px) {
     height: 600px;

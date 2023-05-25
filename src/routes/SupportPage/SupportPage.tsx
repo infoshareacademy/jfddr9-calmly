@@ -15,6 +15,7 @@ export const SupportPage = () => {
       <Navigation
         src="src/assets/logo-white.png"
         srcHamburger="src/assets/MenuWhite.svg"
+        alt="Calmly company's logo in white colour"
       />
       <Styled.Wrapper>
         <Styled.WrapperLeft>

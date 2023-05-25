@@ -27,12 +27,16 @@ const StyledBoxDiv = styled.div`
     height: 328px;
   }
   @media (max-width: 515px) {
+    padding: 60px 50px;
     width: 267px;
     height: 330px;
   }
   @media (max-width: 375px) {
     width: 167px;
     height: 210px;
+  }
+  @media (max-width: 270px) {
+    padding: 60px 10px;
   }
 `;
 
@@ -127,15 +131,12 @@ const StyledStaticQuestionSpan = styled.span`
   font-weight: 600;
   font-size: 64px;
 
-  @media (max-width: 910px) {
-    font-size: 32px;
+  @media (max-width: 1010px) {
+    font-size: 0px;
   }
-  @media (max-width: 515px) {
-    font-size: 24px;
-  }
-  @media (max-width: 375px) {
+
+  @media (min-width: 2000px) {
     top: 25%;
-    font-size: 18px;
   }
 `;
 
