@@ -81,7 +81,9 @@ interface Item {
 }
 
 export const NatureSound = () => {
-  const [currentSound, setCurrentSound] = useState<string | null>(null);
+  const [currentSound, setCurrentSound] = useState<string | undefined>(
+    undefined
+  );
   const [isVisible, setIsVisible] = useState(false);
 
   const [items, setItems] = useState<Array<Item>>([
@@ -102,7 +104,7 @@ export const NatureSound = () => {
     const updatedItems = items.map((item) => {
       if (item.id === id) {
         let newActive = !item.isActive;
-        let newSoundSource = newActive ? soundSource : null;
+        let newSoundSource = newActive ? soundSource : undefined;
         let newIsVisible = newActive ? true : false;
         setCurrentSound(newSoundSource);
         setIsVisible(newIsVisible);
