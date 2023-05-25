@@ -26,7 +26,10 @@ import { useDispatch } from "react-redux";
 // `;
 
 const Button = styled.button`
-  background: white;
+  position: absolute;
+  margin-top: 20px;
+  top: 48vh;
+  background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
