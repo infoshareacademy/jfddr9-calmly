@@ -68,6 +68,11 @@ const DateInput = styled.input`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.68);
+  padding: 14px;
+  border-radius: 8px;
+  border: 0;
+  color: #797bec;
 `;
 
 const Select = styled.select`
@@ -75,6 +80,11 @@ const Select = styled.select`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.68);
+  padding: 8px;
+  border-radius: 8px;
+  border: 0;
+  color: #797bec;
 `;
 
 const StyledStepButton = styled.button`
@@ -245,6 +255,10 @@ export const Journal = () => {
       }
     }
   }, [maxDataEntries]);
+
+  useEffect(() => {
+    dispatch(updateBg("bgJournal"));
+  }, [dispatch]);
 
   const goToDay = (line: string, mode: string, whichDate: number) => {
     console.log(line);
