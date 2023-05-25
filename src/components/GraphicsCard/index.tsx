@@ -41,7 +41,11 @@ const ParagraphGraphicCard = styled.p`
   color: #797bec;
 `;
 
-export const GraphicsCard = ({ src }: any) => {
+type GraphicsCardProps = {
+  src: string;
+  alt: string;
+};
+export const GraphicsCard = ({ src }: GraphicsCardProps) => {
   return (
     <GraphicCardWrapper>
       <LogoMain src="src/assets/logo.png" />
