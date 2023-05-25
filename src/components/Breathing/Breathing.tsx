@@ -111,12 +111,10 @@ export function Breathing() {
     dispatch(updateBg("bgCircle"));
   }, [dispatch]);
 
-  //zmiana samego tła
-
   const handleClick = () => {
     setState(!state);
     setDark(!dark);
-    dispatch(updateBreathing()); //uruchomienie animacji tła
+    dispatch(updateBreathing());
     setInhale(inhale);
     setInstru((is) => !is);
     setVisible(true);
