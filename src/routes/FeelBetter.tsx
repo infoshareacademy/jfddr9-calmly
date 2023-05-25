@@ -18,7 +18,7 @@ import { Tips } from "../components/Tips/Tips";
 
 import { AreYou } from "../components/AreYou/AreYou";
 import { NatureSound } from "../components/NatureSound";
-
+import { PinnedSmallLogo } from "../components/PinnedSmallLogo";
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -114,6 +114,7 @@ export const FeelBetter = () => {
 
   return (
     <StyledDiv>
+      <PinnedSmallLogo />
       {step === 6 ? (
         <AreYou stepReset={handleStepChange} />
       ) : (
