@@ -10,6 +10,9 @@ import ball from "../assets/Ellipse 29.svg";
 const StyledImage = styled.img`
   position: absolute;
   overflow: hidden;
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const Obraz = styled(StyledImage)`
@@ -29,23 +32,27 @@ const Obraz = styled(StyledImage)`
       left: 600px;
     }
   }
+  @media only screen and (max-width: 500px) {
+    animation: none;
+  }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
-    top: 120px;
-    left: 120px;
+    opacity: 0.6;
+    top: 140px;
+    left: 140px;
     @keyframes moving {
       50% {
         transform: scale(1.2);
-        left: 10px;
-        top: 10px;
+        left: 100px;
+        top: 100px;
       }
       0%,
       100% {
-        top: 120px;
-        left: 120px;
+        top: 140px;
+        left: 140px;
       }
     }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     top: 120px;
     left: 120px;
     @keyframes moving {
@@ -98,10 +105,24 @@ const ObrazTu = styled(StyledImage)`
     }
   }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    opacity: 0.5;
+    height: 100px;
     top: 50px;
     left: 550px;
+    @keyframes movingOne {
+      50% {
+        transform: scale(1.2);
+        left: 620px;
+        top: 90px;
+      }
+      0%,
+      100% {
+        top: 50px;
+        left: 550px;
+      }
+    }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     top: 60px;
     left: 600px;
   }
@@ -141,14 +162,27 @@ const ObrazTri = styled(StyledImage)`
     }
   }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    opacity: 0.45;
     top: 80px;
     left: 350px;
+    @keyframes movingTri {
+      50% {
+        transform: scale(1.2);
+        left: 460px;
+        top: 100px;
+      }
+      0%,
+      100% {
+        top: 80px;
+        left: 350px;
+      }
+    }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     top: 100px;
     left: 400px;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1251px) {
     top: 120px;
     left: 500px;
   }
@@ -161,7 +195,8 @@ const Body = styled.body`
   justify-content: center;
   height: 100vh;
   background-repeat: no-repeat;
-  @media only screen and (min-width: 1250px) and (max-width: 1480px) {
+
+  @media only screen and (min-width: 1250px) {
     background-color: linear-gradient(
       141.59deg,
       #f6c59c 11.57%,
@@ -180,14 +215,13 @@ const Body = styled.body`
   }
 `;
 const MainDiv = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: stretch;
-flex-wrap: nowrap;
-}
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
 
-@media only screen and (min-width: 1281px) and (max-width: 1480px) {
+  @media only screen and (min-width: 1281px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,13 +230,10 @@ flex-wrap: nowrap;
 const Menu = styled.div`
   z-index: 2;
   margin: 0px 25px;
-  background: rgba(255, 255, 255, 0.35);
   border: 1px solid rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.32) 65px 65px 100px;
   backdrop-filter: blur(37.5px);
   border-radius: 50%;
-  width: 45vw;
-  height: 45vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -218,14 +249,13 @@ const Menu = styled.div`
     width: 100px;
     height: 100px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
     background: none;
-    width: 42vw;
-    height: 42vw;
     border: none;
     box-shadow: none;
+    backdrop-filter: none;
   }
-  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) {
     background: none;
     width: 46vw;
     height: 46vw;
@@ -237,16 +267,23 @@ const MenuContent = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
+    width: 80vw;
+    margin-top: 160px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
   }
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 1280px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Authors = styled.a`
@@ -257,12 +294,13 @@ const Authors = styled.a`
   font-weight: 400;
   font-size: 17px;
   line-height: 24px;
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
-    font-size: 14px;
+  @media only screen and (max-width: 1280px) {
+    width: 65vw;
+    font-size: 16px;
     line-height: 18px;
     font-weight: 300;
     margin: 10px 26px 0 0;
-    text-align: right;
+    text-align: center;
   }
 `;
 const Feedback = styled.p`
@@ -279,6 +317,9 @@ const GetInTouch = styled.p`
   color: white;
   text-align: left;
   margin-bottom: 0;
+  @media only screen and (max-width: 820px) {
+    font-size: 34px;
+  }
 `;
 const Input = styled.input`
   width: 18vw;
@@ -291,11 +332,12 @@ const Input = styled.input`
     font-weight: 400;
     font-size: 16px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
-    margin-bottom: 3px;
-    padding: 9px;
+  @media only screen and (max-width: 1280px) {
+    width: 60vw;
+    margin-bottom: 8px;
+    padding: 10px;
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     margin-bottom: 4px;
     padding: 12px;
   }
@@ -319,11 +361,12 @@ const TextArea = styled.textarea`
     font-weight: 300;
     font-size: 16px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
+    width: 60vw;
     margin-bottom: 3px;
     padding: 9px;
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     margin-bottom: 4px;
     padding: 12px;
   }
@@ -354,7 +397,7 @@ const SubmitButton = styled.button`
       color: white;
     }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     padding: 10px;
     font-weight: 500;
   }
@@ -374,7 +417,7 @@ const Hr = styled.hr`
   border: solid 4px white;
   width: 85px;
   margin: -8px 0 40px 0;
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     width: 75px;
     border: solid 3px white;
     margin: -8px 0 25px 0;
