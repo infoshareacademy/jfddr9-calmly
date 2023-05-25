@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
 
 import { Navigation } from "../components/Navigation";
+import { Score } from "../components/Score/Score";
 
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
@@ -42,10 +43,15 @@ const StatisticsAndNavContainer = styled.div`
 `;
 
 const StatisticsContainer = styled.div`
-  width: 30%;
-  min-height: 200px;
+  min-width: 370px;
+  height: 370px;
   background-color: white;
   border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 `;
 
 const NavigationContainer = styled.nav`
@@ -54,6 +60,7 @@ const NavigationContainer = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   gap: 10px;
 `;
@@ -61,6 +68,7 @@ const NavigationContainer = styled.nav`
 const ButtonsContainer = styled.div`
   display: flex;
   gap: 10px;
+  align-items: center;
 `;
 
 const DateInput = styled.input`
@@ -110,6 +118,18 @@ const StyledLabel = styled.label`
   margin-right: auto;
 `;
 
+const StyledMoods = styled.div`
+  width: 88px;
+  height: 30px;
+  background: rgba(217, 217, 217, 0.3);
+  border-radius: 50px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #797bec;
+`;
+
 let maxDataEntries: any = 7;
 
 export const Journal = () => {
@@ -123,15 +143,15 @@ export const Journal = () => {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  if (windowWidth > 768) {
+  if (windowWidth > 1165) {
     maxDataEntries = 7;
-  } else if (windowWidth <= 768 && windowWidth > 650) {
+  } else if (windowWidth <= 1165 && windowWidth > 1000) {
     maxDataEntries = 6;
-  } else if (windowWidth <= 650 && windowWidth > 520) {
+  } else if (windowWidth <= 1000 && windowWidth > 830) {
     maxDataEntries = 5;
-  } else if (windowWidth <= 520 && windowWidth > 415) {
+  } else if (windowWidth <= 830 && windowWidth > 680) {
     maxDataEntries = 4;
-  } else if (windowWidth <= 415 && windowWidth > 100) {
+  } else if (windowWidth <= 680 && windowWidth > 100) {
     maxDataEntries = 3;
   }
 
@@ -184,15 +204,15 @@ export const Journal = () => {
         setDaysData(days);
         setDateValue(days[days.length - 1].date);
         console.log(windowWidth);
-        if (windowWidth > 768) {
+        if (windowWidth > 1165) {
           maxDataEntries = 7;
-        } else if (windowWidth <= 768 && windowWidth > 650) {
+        } else if (windowWidth <= 1165 && windowWidth > 1000) {
           maxDataEntries = 6;
-        } else if (windowWidth <= 650 && windowWidth > 520) {
+        } else if (windowWidth <= 1000 && windowWidth > 830) {
           maxDataEntries = 5;
-        } else if (windowWidth <= 520 && windowWidth > 415) {
+        } else if (windowWidth <= 830 && windowWidth > 680) {
           maxDataEntries = 4;
-        } else if (windowWidth <= 415 && windowWidth > 100) {
+        } else if (windowWidth <= 680 && windowWidth > 100) {
           maxDataEntries = 3;
         }
         console.log(maxDataEntries);
@@ -442,15 +462,15 @@ export const Journal = () => {
       <g transform={`translate(${x},${y})`}>
         {lines.map((line, index) => (
           <text
-            style={{ wordBreak: "break-all" }}
             key={index}
+            fontWeight={"bold"}
             x={0}
             y={10}
             dy={index === 0 ? verticalOffset : 0}
             textAnchor={isFirstTick ? "right" : isLastTick ? "end" : "middle"}
-            fill="#666"
-            fontSize={12}
-            cursor={"pointer"}
+            fill="#797bec"
+            fontSize={maxDataEntries !== 3 ? 16 : 12}
+            cursor={isDisplayDays ? "pointer" : "initial"}
             onClick={() => {
               if (isDisplayDays) {
                 setDisplayType("detailed");
@@ -591,6 +611,29 @@ export const Journal = () => {
   //console.log(responsiveData);
   console.log(maxDataEntries);
 
+  let sum = 0;
+  for (let i = 0; i < displayedData.length; i++) {
+    sum += displayedData[i].score;
+  }
+  const avg = sum / displayedData.length;
+  console.log(avg);
+
+  const moodCount: any = {};
+  for (let i = 0; i < displayedData.length; i++) {
+    const moods = displayedData[i].mood;
+    for (let j = 0; j < moods.length; j++) {
+      const mood = moods[j];
+      moodCount[mood] = (moodCount[mood] || 0) + 1;
+    }
+  }
+
+  const sortedMoods = Object.keys(moodCount).sort(
+    (a, b) => moodCount[b] - moodCount[a]
+  );
+  const top3Moods = sortedMoods.slice(0, 3);
+
+  console.log(top3Moods);
+
   return data.length !== 0 ? (
     <>
       <Navigation
@@ -672,7 +715,9 @@ export const Journal = () => {
       </ChartContainer>
 
       <StatisticsAndNavContainer>
-        <StatisticsContainer>a</StatisticsContainer>
+        <StatisticsContainer>
+          <Score kontent={avg.toFixed(2)} />
+        </StatisticsContainer>
         <NavigationContainer>
           <ButtonsContainer>
             {displayType !== "custom" && (
@@ -737,7 +782,14 @@ export const Journal = () => {
             </Select>
           </ButtonsContainer>
         </NavigationContainer>
-        <StatisticsContainer>a</StatisticsContainer>
+        <StatisticsContainer>
+          <h3 style={{ color: "#797bec" }}>
+            Most frequently chosen moods from displayed data
+          </h3>
+          <StyledMoods>{top3Moods[0]}</StyledMoods>
+          <StyledMoods>{top3Moods[1]}</StyledMoods>
+          <StyledMoods>{top3Moods[2]}</StyledMoods>
+        </StatisticsContainer>
       </StatisticsAndNavContainer>
     </>
   ) : (
