@@ -25,9 +25,11 @@ import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 
 import { SupportPage } from "./routes/SupportPage/SupportPage";
+import { RootState } from "./store/store";
 
 function App() {
-  const reduxStore: any = useSelector((state) => state);
+  // const reduxStore: any = useSelector((state) => state);
+  const reduxStore = useSelector((state: RootState) => state);
 
   const dispatch = useDispatch();
 

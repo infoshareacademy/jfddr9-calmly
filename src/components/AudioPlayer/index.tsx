@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useRef, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useRef, useState } from "react";
 import styled from "styled-components";
 import sound from "../../assets/Sound.svg";
 
@@ -104,31 +104,59 @@ export const CustomAudioPlayer = ({ src }: CustomAudioPlayerProps) => {
 
   const audioElement = useRef<HTMLAudioElement>(null);
 
-  const togglePlay = (event: any) => {
-    const audio = event.target.parentNode.querySelector("audio");
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
+  // const togglePlay = (event: any) => {
+  //   const audio = event.target.parentNode.querySelector("audio");
+  //   if (isPlaying) {
+  //     audio.pause();
+  //   } else {
+  //     audio.play();
+  //   }
+  //   setIsPlaying(!isPlaying);
+  // };
+
+  const togglePlay = () => {
+    if (audioElement.current) {
+      if (isPlaying) {
+        audioElement.current.pause();
+      } else {
+        audioElement.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
-  const handleTimeUpdate = (event: any) => {
-    setCurrentTime(event.target.currentTime);
+  // const handleTimeUpdate = (event: any) => {
+  //   setCurrentTime(event.target.currentTime);
+  // };
+
+  const handleTimeUpdate = () => {
+    if (audioElement.current) {
+      setCurrentTime(audioElement.current.currentTime);
+    }
   };
 
-  const handleDurationChange = (event: any) => {
-    setDuration(event.target.duration);
+  // const handleDurationChange = (event: any) => {
+  //   setDuration(event.target.duration);
+  // };
+  const handleDurationChange = () => {
+    if (audioElement.current) {
+      setDuration(audioElement.current.duration);
+    }
   };
 
-  const handleProgressChange = (event: any) => {
-    const newTime = event.target.value;
-    event.target.parentNode.querySelector("audio").currentTime = newTime;
-    setCurrentTime(newTime);
+  // const handleProgressChange = (event: any) => {
+  //   const newTime = event.target.value;
+  //   event.target.parentNode.querySelector("audio").currentTime = newTime;
+  //   setCurrentTime(newTime);
+  // };
+  const handleProgressChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newTime = Number(event.target.value);
+    if (audioElement.current) {
+      audioElement.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
   };
 
-  // ChangeEvent<HTMLInputElement>
   const handleVolumeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const newVolume = Number(event.target.value);
     // const audioElement = event.target.parentNode?.querySelector("audio");

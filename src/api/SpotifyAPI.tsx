@@ -14,7 +14,12 @@ let token = "";
 const StyledTracksContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 80%;
+  height: 90%;
+
+  @media (max-width: 810px) {
+    flex-direction: column;
+    justify-content: space-around;
+  }
 `;
 
 const StyledButtonText = styled.span`
@@ -34,9 +39,14 @@ const StyledLoadButton = styled.button`
   background: rgba(255, 255, 255, 0.45);
   border-radius: 50px;
   border: none;
+  margin-top: 70px;
   &:hover {
     background: white;
     transition: 0.2s;
+  }
+
+  @media (max-width: 810px) {
+    margin-top: 30px;
   }
 `;
 
@@ -128,10 +138,7 @@ export const SpotifyAPI = () => {
             <SpotifyTrack track={tracks[list + 1]} />
             <SpotifyTrack track={tracks[list + 2]} />
           </StyledTracksContainer>
-          <StyledLoadButton
-            onClick={() => setList(list + 3)}
-            style={{ marginTop: "70px" }}
-          >
+          <StyledLoadButton onClick={() => setList(list + 3)}>
             <StyledButtonText>load next songs</StyledButtonText>
           </StyledLoadButton>
         </>
