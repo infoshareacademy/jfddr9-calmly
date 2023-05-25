@@ -61,6 +61,15 @@ function App() {
         ? "linear-gradient(180.17deg, #5C5DE3 0%, #8A8CEE 58.41%, #D1D2FA 74.25%);"
         : bg === "bgViolet"
         ? "linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%);"
+        : bg === "bgStep5"
+        ? `radial-gradient(
+          circle,
+          rgba(255, 255, 255, 1) 13%,
+          rgba(173, 175, 242, 1) 28%,
+          rgba(145, 131, 238, 1) 49%,
+          rgba(44, 69, 186, 1) 68%,
+          rgba(44, 122, 214, 1) 100%
+        )`
         : bg === "bgCircle"
         ? `radial-gradient(
           circle,
