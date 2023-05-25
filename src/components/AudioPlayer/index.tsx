@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
 import styled from "styled-components";
 import sound from "../../assets/Sound.svg";
 
@@ -102,6 +102,8 @@ export const CustomAudioPlayer = ({ src }: CustomAudioPlayerProps) => {
 
   const [showVolume, setShowVolume] = useState(false);
 
+  const audioElement = useRef<HTMLAudioElement>(null);
+
   const togglePlay = (event: any) => {
     const audio = event.target.parentNode.querySelector("audio");
     if (isPlaying) {
@@ -126,10 +128,14 @@ export const CustomAudioPlayer = ({ src }: CustomAudioPlayerProps) => {
     setCurrentTime(newTime);
   };
 
-  const handleVolumeChange = (event: any) => {
-    const newVolume = event.target.value;
-    event.target.parentNode.querySelector("audio").volume = newVolume;
-    setVolume(newVolume);
+  // ChangeEvent<HTMLInputElement>
+  const handleVolumeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const newVolume = Number(event.target.value);
+    // const audioElement = event.target.parentNode?.querySelector("audio");
+    if (audioElement.current) {
+      audioElement.current.volume = newVolume;
+      setVolume(newVolume);
+    }
   };
 
   const formatTime = (time: number) => {
@@ -144,6 +150,7 @@ export const CustomAudioPlayer = ({ src }: CustomAudioPlayerProps) => {
         <PlayButton onClick={togglePlay}>{isPlaying ? "❚❚" : "▶"}</PlayButton>
 
         <audio
+          ref={audioElement}
           src={src}
           onTimeUpdate={handleTimeUpdate}
           onDurationChange={handleDurationChange}

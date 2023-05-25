@@ -4,11 +4,13 @@ import * as Styled from "./Home.styles";
 import { useEffect } from "react";
 import { updateBg } from "../../store/slice";
 import { Navigation } from "../../components/Navigation";
+import { RootState } from "../../store/store";
 
 export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authUser }: any = useSelector((state) => state);
+  // const { authUser }: any = useSelector((state) => state);
+  const authUser = useSelector((state: RootState) => state.authUser);
 
   useEffect(() => {
     dispatch(updateBg("bgHome"));

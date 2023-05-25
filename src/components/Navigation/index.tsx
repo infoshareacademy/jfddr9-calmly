@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import styled from "styled-components";
+import { RootState } from "../../store/store";
 
 const HamburgerButton = styled.img`
   position: absolute;
@@ -23,10 +24,17 @@ const StyledLogo = styled.div`
   position: absolute;
   top: 35px;
   left: 70px;
+  @media (max-width: 950px) {
+    top: 55px;
+    left: 25px;
+  }
 `;
 const StyledImg = styled.img`
   height: 80px;
   cursor: pointer;
+  @media (max-width: 950px) {
+    height: 30px;
+  }
 `;
 
 export const Nav = styled.nav<{ isOpenMenu: boolean }>`
@@ -45,8 +53,10 @@ export const Nav = styled.nav<{ isOpenMenu: boolean }>`
   right: 40px;
 
   @media (max-width: 950px) {
+    background-color: white;
     position: absolute;
     top: 95px;
+    color: #797bec;
     padding: 20px;
     height: auto;
     border-radius: 10px;
@@ -97,6 +107,7 @@ export const ButtonLogOut = styled.button`
     transition: 0.3s ease-in;
     opacity: 0.9;
     transform: scale(103%);
+    color: #797bec;
   }
 
   &:active {
@@ -104,11 +115,9 @@ export const ButtonLogOut = styled.button`
     transform: scale(99%);
     color: #797bec;
   }
-
-  &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
+  @media (max-width: 950px) {
     color: #797bec;
+    background: rgb(121 123 236 / 8%);
   }
 `;
 
@@ -131,7 +140,8 @@ export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { authUser }: any = useSelector((state) => state);
+  const authUser = useSelector((state: RootState) => state.authUser);
+  //   const { authUser }: any = useSelector((state) => state);
   //   const { authUser } = useSelector(
   //     (state: { authUser: AuthStateType }) => state
   //   );

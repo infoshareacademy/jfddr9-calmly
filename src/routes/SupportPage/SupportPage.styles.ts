@@ -1,32 +1,34 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-  width: 100vw;
-  height: 100vh;
+  text-align: center;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
+  align-items: center;
+  @media only screen (max-width: 1250px) {
+    flex-direction: column;
+  }
 `;
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   font-family: Outfit, sans-serif;
-  width: 80%;
-  max-width: 1000px;
-  height: 350px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 24px;
   box-shadow: 8px 8px 20px -7px rgba(66, 68, 90, 1);
-  display: flex;
-  position: relative;
-  padding: 50px;
+  padding: 25px;
+  justify-content: center;
+  align-items: center;
+  margin: 100px 200px 0;
+  @media only screen and (max-width: 1250px) {
+    flex-direction: column;
+    background: none;
+    box-shadow: none;
+  }
 `;
 
 export const WrapperLeft = styled.div`
-  align-self: flex-start;
-  height: 100%;
-  width: 50%;
-  text-align: left;
   display: flex;
   flex-direction: column;
 
@@ -39,27 +41,53 @@ export const WrapperLeft = styled.div`
     font-weight: 400;
     font-size: 22px;
   }
-  & p {
+  & a {
     font-size: 44px;
     font-weight: 700;
     line-height: 55px;
     margin: 0;
   }
-
   & span {
     color: #797bec;
     font-size: 44px;
     font-weight: 700;
   }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    a {
+      font-size: 40px;
+    }
+    h3 {
+      font-size: 18px;
+    }
+    span {
+      font-size: 36px;
+    }
+    h2 {
+      font-size: 22px;
+    }
+  }
+
+  @media only screen and (max-width: 1250px) {
+    margin: 0 150px;
+    a {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 30px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    span {
+      font-size: 28px;
+    }
+    h2 {
+      font-size: 25px;
+    }
+  }
 `;
 
 export const WrapperRight = styled.div`
-  height: 100%;
-  width: 30%;
-  margin-left: 150px;
   display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Img = styled.img`
@@ -68,4 +96,8 @@ export const Img = styled.img`
   position: absolute;
   right: 100px;
   bottom: 50px;
+  @media only screen and (max-width: 1250px) {
+    height: 30px;
+    width: 100px;
+  }
 `;
