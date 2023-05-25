@@ -30,45 +30,42 @@ const Button = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  height: 60px;
-  width: 120px;
-  border-radius: 30px;
+  height: 220px;
+  width: 220px;
+  border-radius: 999px;
   color: #797bec;
-  box-shadow: 19px 25px 31px -16px rgba(66, 68, 90, 1);
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 20px;
+  padding-top: 24px;
+  font-size: 24px;
   margin-top: 24px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: transparent;
   width: 60%;
   max-width: 800px;
   height: 270px;
   border-radius: 16px;
   font-size: 50px;
   color: #797bec;
-  box-shadow: 19px 25px 31px -16px rgba(66, 68, 90, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-
-  & div {
-    padding-inline: 30px;
-  }
 `;
 
 export const Tips = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateBg("bgDefault"));
+    dispatch(updateBg("bgStep5"));
   }, [dispatch]);
 
   const tips = [
