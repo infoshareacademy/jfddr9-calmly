@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
 import { LoaderComponent } from "../components/Loader";
-import { PinnedSmallLogo } from "../components/PinnedSmallLogo";
 
 const API_URL_CAT = `https://api.thecatapi.com/v1/`;
 const API_URL_DOG = `https://api.thedogapi.com/v1/`;
@@ -219,7 +218,6 @@ export const Dropdown = () => {
 
   return (
     <>
-      <PinnedSmallLogo />
       <div
         style={{
           display: "flex",
