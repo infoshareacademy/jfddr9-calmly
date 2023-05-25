@@ -13,7 +13,11 @@ import { Contact } from "./auth/Contact";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { LoaderComponent } from "./components/Loader";
-import { signOut, updateAuthStateChanged } from "./store/authSlice";
+import {
+  AuthStateType,
+  signOut,
+  updateAuthStateChanged,
+} from "./store/authSlice";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./api/firebase";
 
@@ -86,8 +90,11 @@ function App() {
         const docRef = doc(db, `users/${uid}`);
         getDoc(docRef)
           .then((userData) => {
-            const userNewData = userData.data();
-            console.log(userNewData);
+            const userNewData = {
+              ...userData.data(),
+              uid,
+            } as AuthStateType;
+            console.warn(userNewData);
             dispatch(updateAuthStateChanged(userNewData));
             navigate("/home");
             setIsLoading(false);
