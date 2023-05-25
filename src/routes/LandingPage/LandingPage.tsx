@@ -34,6 +34,12 @@ export const LandingPage = () => {
             SIGN IN
           </Styled.Button>
         </Styled.WrapperButtons>
+        <Styled.Button
+          style={{ fontWeight: 400, opacity: 0.5 }}
+          onClick={() => navigate("/feelbetter")}
+        >
+          FEEL BETTER
+        </Styled.Button>
       </Styled.WrapperContent>
     </Styled.Wrapper>
   );
