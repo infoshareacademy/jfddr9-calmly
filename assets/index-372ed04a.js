@@ -4592,9 +4592,16 @@ This typically indicates that your device does not have a healthy Internet conne
   position: absolute;
   top: 35px;
   left: 70px;
+  @media (max-width: 950px) {
+    top: 55px;
+    left: 25px;
+  }
 `,Mre=Z.img`
   height: 80px;
   cursor: pointer;
+  @media (max-width: 950px) {
+    height: 30px;
+  }
 `,Dre=Z.nav`
   z-index: 1000;
   height: 50px;
@@ -4611,8 +4618,10 @@ This typically indicates that your device does not have a healthy Internet conne
   right: 40px;
 
   @media (max-width: 950px) {
+    background-color: white;
     position: absolute;
     top: 95px;
+    color: #797bec;
     padding: 20px;
     height: auto;
     border-radius: 10px;
@@ -4659,6 +4668,7 @@ This typically indicates that your device does not have a healthy Internet conne
     transition: 0.3s ease-in;
     opacity: 0.9;
     transform: scale(103%);
+    color: #797bec;
   }
 
   &:active {
@@ -4666,11 +4676,9 @@ This typically indicates that your device does not have a healthy Internet conne
     transform: scale(99%);
     color: #797bec;
   }
-
-  &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
+  @media (max-width: 950px) {
     color: #797bec;
+    background: rgb(121 123 236 / 8%);
   }
 `,mT=({src:e,srcHamburger:t})=>{const n=Bi(),r=Gu(),i=Xd(C=>C.authUser);console.log("authUser",i);const o=i.fullName!=null,s=r.pathname==="/feelbetter",a=r.pathname==="/support",f=r.pathname==="/contact",[v,E]=K.useState(!1),x=()=>{E(!v)};return Q.jsxs(Q.Fragment,{children:[Q.jsx(Rre,{children:Q.jsx("a",{onClick:()=>n("/home"),children:Q.jsx(Mre,{src:e,alt:"Calmly Logo"})})}),Q.jsxs(Dre,{isOpenMenu:v,children:[Q.jsx(ub,{isActive:s,onClick:()=>n("/feelbetter"),children:"Let's feel better"}),Q.jsx(ub,{isActive:a,onClick:()=>n("/support"),children:"Support"}),Q.jsx(ub,{isActive:f,onClick:()=>n("/contact"),children:"Contact"}),o&&Q.jsx(Are,{onClick:()=>a_(wh),children:"Log out"})]}),console.log(`srcHamburger: ${t}`),Q.jsx(Ire,{src:t,onClick:x})]})},Vre=()=>{const e=gn(),t=Bi(),n=Xd(i=>i.authUser);K.useEffect(()=>{e(Rn("bgHome"))},[e]);const r=n.fullName;return console.log("isUserLoged",r),K.useEffect(()=>{r==null?t("/"):t("/home")},[]),Q.jsxs(Q.Fragment,{children:[Q.jsx(mT,{src:"src/assets/logo-violet.png",alt:"Calmly company's logo in violet colour",srcHamburger:"src/assets/MenuPrpl.svg"}),Q.jsx(IJ,{children:Q.jsx(Q.Fragment,{children:Q.jsx(RJ,{children:Q.jsxs(MJ,{children:[Q.jsxs(AJ,{children:["Hi, ",Q.jsxs("span",{children:[n.fullName,"!"]})]}),Q.jsxs(VJ,{children:["Let your ",Q.jsx("span",{children:"stress"})," drop"]}),Q.jsx(LJ,{children:"Let's begin by exploring a few steps that can help you create a sense of comfort and ease. Our healing journey includes relaxing music, breathing exercises, therapy with your favorite animals and sounds of nature. Lastly, you will see some additional suggestions to enhance your well-being and promote a positive mindset."}),Q.jsxs(DJ,{children:[Q.jsx(qM,{onClick:()=>t("/quiz"),children:"START TEST"}),Q.jsx(qM,{onClick:()=>t("/journal"),children:"JOURNAL"})]})]})})})})]})},yT={"auth/invalid-email":"E-mail is invalid","auth/weak-password":"Password should be at least 6 characters","auth/email-already-in-use":"Account registered for this e-mail is already in use","auth/user-not-found":"User account does not exist","auth/wrong-password":"Provided wrong password","auth/network-request-failed":"Something went wrong... Check your internet connection."},Lre=Z.p`
   font-style: normal;
@@ -5361,14 +5369,14 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   background: #ffffff;
   box-shadow: 20px 25px 35px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  padding: 50px 100px;
+  padding: 20px 60px;
   width: 807px;
   height: 298px;
   margin: 0 auto;
   gap: 20px;
 
   @media (max-width: 1010px) {
-    padding: 120px 50px;
+    padding: 30px 50px;
   }
   @media (max-width: 910px) {
     width: 407px;
@@ -5418,9 +5426,11 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     background: #797bec;
     color: #ffff;
   }
-
-  @media (max-width: 515px) {
+  @media (max-width: 1550px) {
     font-size: 24px;
+  }
+  @media (max-width: 515px) {
+    font-size: 22px;
   }
   @media (max-width: 375px) {
     font-size: 14px;
@@ -5454,7 +5464,6 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     background: #797bec;
     color: #ffff;
   }
-
   @media (max-width: 375px) {
     font-size: 14px;
   }
@@ -5834,7 +5843,7 @@ flex-wrap: nowrap;
 `,kIe=Z.form`
   display: flex;
   flex-direction: column;
-`;function qIe(){const e=gn();K.useEffect(()=>{e(Rn("bgRevert"))},[e]);const[t,n]=K.useState(!0),[r,i]=K.useState("Let's talk"),[o,s]=K.useState({email:"",name:"",message:""}),{email:a,name:f,message:v}=o,E=C=>{s({...o,[C.target.name]:C.target.value})},x=C=>{C.preventDefault(),Sre(lre(Cu,"feedback"),{email:o.email,name:o.name,message:o.message}).then(()=>{console.log("Wszystko OK"),s({email:"",name:"",message:""}),n(!1),i("Thank you!")}).catch(P=>console.error("Something went wrong",P))};return Q.jsxs($Ie,{children:[Q.jsx(jIe,{src:Xb}),Q.jsx(NIe,{src:Xb}),Q.jsx(BIe,{src:Xb}),Q.jsxs(FIe,{children:[Q.jsx(mT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg",alt:"Calmly company's logo in white colour"}),Q.jsx(UIe,{children:Q.jsxs(WIe,{children:[t?Q.jsxs(J2,{children:[Q.jsx("b",{children:"Calmly"})," was created by a group of beginner programmers:"," ",Q.jsx("b",{children:"Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid"})]}):Q.jsx(J2,{}),t?Q.jsxs(G2,{children:[Q.jsx(Y2,{children:r}),Q.jsx(KIe,{}),Q.jsxs(kIe,{children:[Q.jsx(X2,{placeholder:"Name",type:"text",name:"name",id:"name",value:f,onChange:E}),Q.jsx(X2,{placeholder:"Email",type:"email",name:"email",id:"email",value:a,onChange:E}),Q.jsx(QIe,{placeholder:"Tell us more about your feelings and observations and what we can do to improve Calmly",name:"message",id:"message",value:v,onChange:E}),Q.jsx(HIe,{onClick:x,type:"submit",children:"SUBMIT"})]})]}):Q.jsxs(G2,{style:{justifyContent:"center"},children:[Q.jsx(Y2,{style:{textAlign:"center"},children:r}),Q.jsx(zIe,{children:"We will do our best to improve Calmly"})]})]})})]})]})}const Tw=_3({name:"authUser",initialState:{fullName:null,uid:null,email:null},reducers:{updateAuthStateChanged:(e,t)=>{const{fullName:n,id:r,email:i}=t.payload;e.fullName=n,e.uid=r,e.email=i,console.warn(t.payload),console.log(e.fullName)},signOut:e=>{e.fullName=null,e.uid=null,e.email=null,console.log(e.fullName)}}}),{updateAuthStateChanged:GIe,signOut:JIe}=Tw.actions;console.log(Tw);const YIe=Tw.reducer,XIe=Z.p`
+`;function qIe(){const e=gn();K.useEffect(()=>{e(Rn("bgRevert"))},[e]);const[t,n]=K.useState(!0),[r,i]=K.useState("Let's talk"),[o,s]=K.useState({email:"",name:"",message:""}),{email:a,name:f,message:v}=o,E=C=>{s({...o,[C.target.name]:C.target.value})},x=C=>{C.preventDefault(),Sre(lre(Cu,"feedback"),{email:o.email,name:o.name,message:o.message}).then(()=>{console.log("Wszystko OK"),s({email:"",name:"",message:""}),n(!1),i("Thank you!")}).catch(P=>console.error("Something went wrong",P))};return Q.jsxs($Ie,{children:[Q.jsx(jIe,{src:Xb}),Q.jsx(NIe,{src:Xb}),Q.jsx(BIe,{src:Xb}),Q.jsxs(FIe,{children:[Q.jsx(mT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg",alt:"Calmly company's logo in white colour"}),Q.jsx(UIe,{children:Q.jsxs(WIe,{children:[t?Q.jsxs(J2,{children:[Q.jsx("b",{children:"Calmly"})," was created by a group of beginner programmers:"," ",Q.jsx("b",{children:"Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid"})]}):Q.jsx(J2,{}),t?Q.jsxs(G2,{children:[Q.jsx(Y2,{children:r}),Q.jsx(KIe,{}),Q.jsxs(kIe,{children:[Q.jsx(X2,{placeholder:"Name",type:"text",name:"name",id:"name",value:f,onChange:E}),Q.jsx(X2,{placeholder:"Email",type:"email",name:"email",id:"email",value:a,onChange:E}),Q.jsx(QIe,{placeholder:"Tell us more about your experience with Calmly",name:"message",id:"message",value:v,onChange:E}),Q.jsx(HIe,{onClick:x,type:"submit",children:"SUBMIT"})]})]}):Q.jsxs(G2,{style:{justifyContent:"center"},children:[Q.jsx(Y2,{style:{textAlign:"center"},children:r}),Q.jsx(zIe,{children:"We will do our best to improve Calmly"})]})]})})]})]})}const Tw=_3({name:"authUser",initialState:{fullName:null,uid:null,email:null},reducers:{updateAuthStateChanged:(e,t)=>{const{fullName:n,id:r,email:i}=t.payload;e.fullName=n,e.uid=r,e.email=i,console.warn(t.payload),console.log(e.fullName)},signOut:e=>{e.fullName=null,e.uid=null,e.email=null,console.log(e.fullName)}}}),{updateAuthStateChanged:GIe,signOut:JIe}=Tw.actions;console.log(Tw);const YIe=Tw.reducer,XIe=Z.p`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
@@ -5951,28 +5960,30 @@ font-size: 16px;
 &:active{
    color: blue; 
 `,cRe=()=>{const e=gn();return K.useEffect(()=>{e(Rn("bgDefault"))},[e]),Q.jsxs(oRe,{children:[Q.jsxs(sRe,{children:[Q.jsx(iRe,{}),Q.jsxs(aRe,{children:[Q.jsx(lRe,{children:"Do not have an account?"}),Q.jsx(uRe,{to:"/register",children:"Sign up"})]})]}),Q.jsx(aU,{src:"../src/assets/catti_forgot.svg",alt:"An illustration of a cat looking confused, symbolizing forgetting a password"})]})},fRe=Z.div`
-  width: 100vw;
-  height: 100vh;
+  text-align: center;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
+  align-items: center;
+  @media only screen (max-width: 1250px) {
+    flex-direction: column;
+  }
 `,dRe=Z.div`
+  display: flex;
+  flex-direction: row;
   font-family: Outfit, sans-serif;
-  width: 80%;
-  max-width: 1000px;
-  height: 350px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 24px;
   box-shadow: 8px 8px 20px -7px rgba(66, 68, 90, 1);
-  display: flex;
-  position: relative;
-  padding: 50px;
+  padding: 25px;
+  justify-content: center;
+  align-items: center;
+  margin: 100px 200px 0;
+  @media only screen and (max-width: 1250px) {
+    flex-direction: column;
+    background: none;
+    box-shadow: none;
+  }
 `,hRe=Z.div`
-  align-self: flex-start;
-  height: 100%;
-  width: 50%;
-  text-align: left;
   display: flex;
   flex-direction: column;
 
@@ -5985,32 +5996,62 @@ font-size: 16px;
     font-weight: 400;
     font-size: 22px;
   }
-  & p {
+  & a {
     font-size: 44px;
     font-weight: 700;
     line-height: 55px;
     margin: 0;
   }
-
   & span {
     color: #797bec;
     font-size: 44px;
     font-weight: 700;
   }
+  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+    a {
+      font-size: 40px;
+    }
+    h3 {
+      font-size: 18px;
+    }
+    span {
+      font-size: 36px;
+    }
+    h2 {
+      font-size: 22px;
+    }
+  }
+
+  @media only screen and (max-width: 1250px) {
+    margin: 0 150px;
+    a {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 30px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    span {
+      font-size: 28px;
+    }
+    h2 {
+      font-size: 25px;
+    }
+  }
 `,pRe=Z.div`
-  height: 100%;
-  width: 30%;
-  margin-left: 150px;
   display: flex;
-  align-items: center;
-  justify-content: center;
 `;Z.img`
   height: 40px;
   width: 120px;
   position: absolute;
   right: 100px;
   bottom: 50px;
-`;const gRe=()=>{const e=gn();return K.useEffect(()=>{e(Rn("bgSupport"))},[e]),Q.jsxs(fRe,{children:[Q.jsx(mT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg",alt:"Calmly company's logo in white colour"}),Q.jsxs(dRe,{children:[Q.jsxs(hRe,{children:[Q.jsx("h2",{children:"Are you in a crisis?"}),Q.jsx("p",{children:"If you need help or psychological support, please call:"}),Q.jsx("span",{children:"+48 123 456 789"}),Q.jsx("h3",{children:"free 24/7 support at your fingertips"})]}),Q.jsx(pRe,{children:Q.jsx("img",{src:"src/assets/Texting.png"})})]})]})};function mRe(){const e=Xd(s=>s),t=gn(),[n,r]=K.useState(!0),i=Bi(),o=cH`
+  @media only screen and (max-width: 1250px) {
+    height: 30px;
+    width: 100px;
+  }
+`;const gRe=()=>{const e=gn();return K.useEffect(()=>{e(Rn("bgSupport"))},[e]),Q.jsxs(fRe,{children:[Q.jsx(mT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg",alt:"Calmly company's logo in white colour"}),Q.jsxs(dRe,{children:[Q.jsxs(hRe,{children:[Q.jsx("h2",{children:"Are you in a crisis?"}),Q.jsx("a",{children:"If you need help or psychological support, please call:"}),Q.jsx("span",{children:"PL +48 800 70 2222"}),Q.jsx("span",{children:"EN 116 123"}),Q.jsx("h3",{children:"free 24/7 support at your fingertips"})]}),Q.jsx(pRe,{children:Q.jsx("img",{src:"src/assets/sadcat.png"})})]})]})};function mRe(){const e=Xd(s=>s),t=gn(),[n,r]=K.useState(!0),i=Bi(),o=cH`
   body {
     background: ${({bg:s})=>s==="bgDefault"?"linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);":s==="bgHome"?"white":s==="bgSupport"?"linear-gradient(114.94deg, #F6C59C 1.8%, #E3B4AB 35.2%, #B3B4EF 84.75%);":s==="bgRadial"?" radial-gradient(128.47% 128.47% at 49.2% -13.33%, #E3B4AB 4.44%, #797BEC 100%);":s==="bgRevert"?"linear-gradient(42.34deg, #5658EE 26.19%, #A7A8EE 89.5%, #F6C59C 138.15%);":s==="bgQuiz"?"linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);":s==="bgQuiz2"?"linear-gradient(180.17deg, #5C5DE3 0%, #8A8CEE 58.41%, #D1D2FA 74.25%);":s==="bgViolet"?"linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%);":s==="bgStep5"?`radial-gradient(
           circle,
