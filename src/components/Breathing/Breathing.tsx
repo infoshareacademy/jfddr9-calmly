@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBg, updateBreathing } from "../../store/slice";
-import { PinnedSmallLogo } from "../PinnedSmallLogo";
 
 const MainDiv = styled.div`
   height: 100%;
@@ -126,7 +125,6 @@ export function Breathing() {
 
   return (
     <>
-      <PinnedSmallLogo />
       <MainDiv>
         <MainCircle state={state}>
           <InstructionDiv>

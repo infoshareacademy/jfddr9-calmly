@@ -4,6 +4,7 @@ import { updateBg } from "../store/slice";
 import styled from "styled-components";
 
 import { SurveyComponent } from "../components/MultiSelectQuiz/multiselectquiz";
+import { PinnedSmallLogo } from "../components/PinnedSmallLogo";
 
 const StyledBoxDiv = styled.div`
   display: flex;
@@ -323,6 +324,7 @@ export function Quiz() {
   };
   return (
     <>
+      <PinnedSmallLogo />
       {showSurvey ? (
         <SurveyComponent score={score} />
       ) : (

@@ -20,8 +20,6 @@ import { db } from "./api/firebase";
 import { auth } from "./api/firebase";
 import { ForgotPasswordPage } from "./routes/ForgotPasswordPage";
 
-import { Tips } from "./components/Tips/Tips";
-
 import { SupportPage } from "./routes/SupportPage/SupportPage";
 
 function App() {
@@ -45,7 +43,8 @@ function App() {
       bg === "bgDefault"
         ? "linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);"
         : bg === "bgHome"
-        ? "white url('src/assets/h page.png') center center / cover no-repeat fixed;"
+        ? // ? "white url('src/assets/h page.png') center center / cover no-repeat fixed;"
+          "white"
         : bg === "bgSupport"
         ? "linear-gradient(114.94deg, #F6C59C 1.8%, #E3B4AB 35.2%, #B3B4EF 84.75%);"
         : bg === "bgRadial"
@@ -122,7 +121,6 @@ function App() {
           <Route path={"/"} element={<LandingPage />} />
           <Route path={"/contact"} element={<Contact />} />
           <Route path={"/journal"} element={<Journal />} />
-          <Route path={"/tips"} element={<Tips />} />
           <Route path={"/support"} element={<SupportPage />} />
         </Routes>
       )}

@@ -1,6 +1,7 @@
 import { auth } from "../../api/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import styled from "styled-components";
@@ -15,6 +16,7 @@ const HamburgerButton = styled.img`
   right: 40px;
   display: none;
   cursor: pointer;
+  height: 40px;
 
   @media (max-width: 950px) {
     display: block;
@@ -25,10 +27,17 @@ const StyledLogo = styled.div`
   position: absolute;
   top: 35px;
   left: 70px;
+  @media (max-width: 950px) {
+    top: 55px;
+    left: 25px;
+  }
 `;
 const StyledImg = styled.img`
   height: 80px;
   cursor: pointer;
+  @media (max-width: 950px) {
+    height: 30px;
+  }
 `;
 
 export const Nav = styled.nav<{ isOpenMenu: boolean }>`
@@ -47,8 +56,10 @@ export const Nav = styled.nav<{ isOpenMenu: boolean }>`
   right: 40px;
 
   @media (max-width: 950px) {
+    background-color: white;
     position: absolute;
     top: 95px;
+    color: #797bec;
     padding: 20px;
     height: auto;
     border-radius: 10px;
@@ -99,6 +110,7 @@ export const ButtonLogOut = styled.button`
     transition: 0.3s ease-in;
     opacity: 0.9;
     transform: scale(103%);
+    color: #797bec;
   }
 
   &:active {
@@ -106,17 +118,19 @@ export const ButtonLogOut = styled.button`
     transform: scale(99%);
     color: #797bec;
   }
-
-  &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
+  @media (max-width: 950px) {
     color: #797bec;
+    background: rgb(121 123 236 / 8%);
   }
 `;
 
-export const Navigation = ({ src }: any) => {
+export const Navigation = ({ src, srcHamburger }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { authUser }: any = useSelector((state) => state);
+
+  const showButton = authUser.fullName != null;
 
   const isFeelBetterPage = location.pathname === "/feelbetter";
   const isSupportPage = location.pathname === "/support";
@@ -148,9 +162,12 @@ export const Navigation = ({ src }: any) => {
         <NavLink isActive={isContactPage} onClick={() => navigate("/contact")}>
           Contact
         </NavLink>
-        <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
+        {showButton && (
+          <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
+        )}
       </Nav>
-      <HamburgerButton src="src/assets/icon-menu.svg" onClick={toggleMenu} />
+      {console.log(`srcHamburger: ${srcHamburger}`)}
+      <HamburgerButton src={srcHamburger} onClick={toggleMenu} />
     </>
   );
 };

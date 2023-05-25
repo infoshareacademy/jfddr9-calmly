@@ -437,7 +437,10 @@ export function Contact() {
       <ObrazTu src={ball} />
       <ObrazTri src={ball} />
       <MainDiv>
-        <Navigation src="src/assets/logo-white.png" />
+        <Navigation
+          src="src/assets/logo-white.png"
+          srcHamburger="src/assets/MenuWhite.svg"
+        />
         <Menu>
           <MenuContent>
             {thankYou ? (

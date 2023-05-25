@@ -48,7 +48,7 @@ export const SpotifyAPI = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateBg("bgDefault"));
+    dispatch(updateBg("bgRadial"));
   }, [dispatch]);
 
   useEffect(() => {

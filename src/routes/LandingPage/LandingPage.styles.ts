@@ -51,7 +51,10 @@ export const Button = styled.div`
   align-items: center;
   color: #fff;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
+  margin-bottom: 40px;
+  font-size: 16px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transition: 0.3s ease-in;

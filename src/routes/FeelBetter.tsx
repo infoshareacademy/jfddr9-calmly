@@ -18,7 +18,9 @@ import { Tips } from "../components/Tips/Tips";
 
 import { AreYou } from "../components/AreYou/AreYou";
 import { NatureSound } from "../components/NatureSound";
+import { useNavigate } from "react-router-dom";
 import { PinnedSmallLogo } from "../components/PinnedSmallLogo";
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -103,124 +105,126 @@ export const FeelBetter = () => {
   const [step, setStep] = useState(1);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(updateBg("bgDefault"));
+    dispatch(updateBg("bgRadial"));
   }, [dispatch]);
 
   const handleStepChange = () => {
     setStep(1);
   };
+  step === 0 && navigate("/home");
 
   return (
-    <StyledDiv>
+    <>
       <PinnedSmallLogo />
-      {step === 6 ? (
-        <AreYou stepReset={handleStepChange} />
-      ) : (
-        <>
-          <StyledStepContainer>
-            <StyledStep key={step}>
-              {step === 1 && <SpotifyAPI />}
-              {step === 2 && <Breathing />}
-              {step === 3 && <CutePictures />}
-              {step === 4 && <NatureSound />}
-              {step === 5 && <Tips />}
-            </StyledStep>
-          </StyledStepContainer>
-          <StepperContainer>
-            <StepButton onClick={() => setStep(step - 1)} disabled={step === 1}>
-              {"<"}
-            </StepButton>
-            <Tooltip
-              style={{
-                fontFamily: "Outfit",
-                fontStyle: "normal",
-                fontWeight: "500",
-              }}
-              id="my-tooltip-music"
-            />
-            <StyledStepButton
-              data-tooltip-id="my-tooltip-music"
-              data-tooltip-content="Calming Music"
-              data-tooltip-place="bottom"
-              currentStep={step === 1}
-              onClick={() => setStep(1)}
-            >
-              <FontAwesomeIcon icon={faMusic} />
-            </StyledStepButton>
-            <Tooltip
-              style={{
-                fontFamily: "Outfit",
-                fontStyle: "normal",
-                fontWeight: "500",
-              }}
-              id="my-tooltip-breathe"
-            />
-            <StyledStepButton
-              data-tooltip-id="my-tooltip-breathe"
-              data-tooltip-content="Breathing Exercise"
-              data-tooltip-place="bottom"
-              currentStep={step === 2}
-              onClick={() => setStep(2)}
-            >
-              <FontAwesomeIcon icon={faLungs} />
-            </StyledStepButton>
-            <Tooltip
-              style={{
-                fontFamily: "Outfit",
-                fontStyle: "normal",
-                fontWeight: "500",
-              }}
-              id="my-tooltip-animal"
-            />
-            <StyledStepButton
-              data-tooltip-id="my-tooltip-animal"
-              data-tooltip-content="Cute Animal Pictures"
-              data-tooltip-place="bottom"
-              currentStep={step === 3}
-              onClick={() => setStep(3)}
-            >
-              <FontAwesomeIcon icon={faPaw} />
-            </StyledStepButton>
-            <Tooltip
-              style={{
-                fontFamily: "Outfit",
-                fontStyle: "normal",
-                fontWeight: "500",
-              }}
-              id="my-tooltip-weather"
-            />
-            <StyledStepButton
-              data-tooltip-id="my-tooltip-weather"
-              data-tooltip-content="Relaxing Sounds"
-              data-tooltip-place="bottom"
-              currentStep={step === 4}
-              onClick={() => setStep(4)}
-            >
-              <FontAwesomeIcon icon={faCloudSun} />
-            </StyledStepButton>
-            <Tooltip
-              style={{
-                fontFamily: "Outfit",
-                fontStyle: "normal",
-                fontWeight: "500",
-              }}
-              id="my-tooltip-tips"
-            />
-            <StyledStepButton
-              data-tooltip-id="my-tooltip-tips"
-              data-tooltip-content="Additional Tips"
-              data-tooltip-place="bottom"
-              currentStep={step === 5}
-              onClick={() => setStep(5)}
-            >
-              <FontAwesomeIcon icon={faComment} />
-            </StyledStepButton>
-            <StepButton onClick={() => setStep(step + 1)}>{">"}</StepButton>
-          </StepperContainer>
-        </>
-      )}
-    </StyledDiv>
+      <StyledDiv>
+        {step === 6 ? (
+          <AreYou stepReset={handleStepChange} />
+        ) : (
+          <>
+            <StyledStepContainer>
+              <StyledStep key={step}>
+                {step === 1 && <SpotifyAPI />}
+                {step === 2 && <Breathing />}
+                {step === 3 && <CutePictures />}
+                {step === 4 && <NatureSound />}
+                {step === 5 && <Tips />}
+              </StyledStep>
+            </StyledStepContainer>
+            <StepperContainer>
+              <StepButton onClick={() => setStep(step - 1)}>{"<"}</StepButton>
+              <Tooltip
+                style={{
+                  fontFamily: "Outfit",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                }}
+                id="my-tooltip-music"
+              />
+              <StyledStepButton
+                data-tooltip-id="my-tooltip-music"
+                data-tooltip-content="Calming Music"
+                data-tooltip-place="bottom"
+                currentStep={step === 1}
+                onClick={() => setStep(1)}
+              >
+                <FontAwesomeIcon icon={faMusic} />
+              </StyledStepButton>
+              <Tooltip
+                style={{
+                  fontFamily: "Outfit",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                }}
+                id="my-tooltip-breathe"
+              />
+              <StyledStepButton
+                data-tooltip-id="my-tooltip-breathe"
+                data-tooltip-content="Breathing Exercise"
+                data-tooltip-place="bottom"
+                currentStep={step === 2}
+                onClick={() => setStep(2)}
+              >
+                <FontAwesomeIcon icon={faLungs} />
+              </StyledStepButton>
+              <Tooltip
+                style={{
+                  fontFamily: "Outfit",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                }}
+                id="my-tooltip-animal"
+              />
+              <StyledStepButton
+                data-tooltip-id="my-tooltip-animal"
+                data-tooltip-content="Cute Animal Pictures"
+                data-tooltip-place="bottom"
+                currentStep={step === 3}
+                onClick={() => setStep(3)}
+              >
+                <FontAwesomeIcon icon={faPaw} />
+              </StyledStepButton>
+              <Tooltip
+                style={{
+                  fontFamily: "Outfit",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                }}
+                id="my-tooltip-weather"
+              />
+              <StyledStepButton
+                data-tooltip-id="my-tooltip-weather"
+                data-tooltip-content="Relaxing Sounds"
+                data-tooltip-place="bottom"
+                currentStep={step === 4}
+                onClick={() => setStep(4)}
+              >
+                <FontAwesomeIcon icon={faCloudSun} />
+              </StyledStepButton>
+              <Tooltip
+                style={{
+                  fontFamily: "Outfit",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                }}
+                id="my-tooltip-tips"
+              />
+              <StyledStepButton
+                data-tooltip-id="my-tooltip-tips"
+                data-tooltip-content="Additional Tips"
+                data-tooltip-place="bottom"
+                currentStep={step === 5}
+                onClick={() => setStep(5)}
+              >
+                <FontAwesomeIcon icon={faComment} />
+              </StyledStepButton>
+              <StepButton onClick={() => setStep(step + 1)}>{">"}</StepButton>
+            </StepperContainer>
+          </>
+        )}
+      </StyledDiv>
+    </>
   );
 };

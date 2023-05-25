@@ -4,49 +4,39 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   font-family: "Outfit", sans-serif;
+  background-image: url("src/assets/grl_home.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Outfit", sans-serif;
 `;
 
-// export const LogoWhite = styled.img`
-//   position: absolute;
-//   width: 250px;
-//   height: 78.95px;
-//   left: 100px;
-//   top: 116px;
-// `;
-
-// export const Nav = styled.nav`
-//   width: 100%;
-//   height: 50px;
-//   font-family: "Outfit";
-//   font-style: normal;
-//   font-size: 12px;
-//   line-height: 30px;
-//   align-items: center;
-//   text-align: center;
-//   color: #ffffff;
+// export const WrapperContent = styled.div`
 //   display: flex;
-//   gap: 40px;
-
-//   & a {
-//     font-size: 20px;
-//     font-weight: 500;
-//     cursor: pointer;
-//   }
+//   flex-direction: column;
+//   align-items: center;
+//   width: 600px;
+//   position: absolute;
+//   top: 130px;
+//   right: 250px;
+//   color: white;
 // `;
 
 export const WrapperContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 600px;
-  position: absolute;
-  top: 130px;
-  right: 250px;
-  color: white;
+  margin-left: 110px;
+  color: #797bec;
 `;
 
 export const WrapperText = styled.div`
-  width: 600px;
+  width: 900px;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
@@ -57,12 +47,14 @@ export const WrapperButtons = styled.div`
   width: 100%;
   display: flex;
   gap: 30px;
+  flex-wrap: wrap;
 `;
 
 export const Header = styled.div`
   margin-top: 60px;
   font-size: 48px;
   font-weight: 600;
+  color: #e3b4ab;
   & span {
     font-weight: 700;
   }
@@ -71,10 +63,11 @@ export const Header = styled.div`
 export const TextUnderHeader = styled.div`
   font-size: 34px;
   margin-top: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #797bec;
+  font-weight: 200;
 
   & span {
-    color: rgb(255, 255, 255);
+    font-weight: 500;
   }
 `;
 
@@ -83,59 +76,69 @@ export const Paragraph = styled.p`
   margin-bottom: 44px;
   padding-right: 70px;
   text-align: justify;
+  @media (max-width: 1750px) {
+    max-width: 700px;
+  }
+  @media (max-width: 1550px) {
+    max-width: 500px;
+  }
+  @media (max-width: 1350px) {
+    max-width: 400px;
+  }
 `;
 
-// export const ButtonLogOut = styled.button`
-//   cursor: pointer;
-//   border: none;
-//   width: 105px;
-//   height: 34px;
-//   border-radius: 50px;
-//   background: rgba(255, 255, 255, 0.5);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   color: #fff;
-//   font-weight: 500;
-//   font-size: 18px;
-
-//   &:hover {
-//     transition: 0.3s ease-in;
-//     opacity: 0.9;
-//     transform: scale(103%);
-//   }
-
-//   &:active {
-//     transition: 0.1s ease-in;
-//     transform: scale(99%);
-//   }
-// `;
-
 export const Button = styled.button`
-  font-size: 18px;
-  border: none;
   cursor: pointer;
   width: 180px;
-  height: 36px;
+  height: 56px;
   border-radius: 50px;
+  border: none;
   background: #797bec;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
   text-transform: uppercase;
-  font-weight: 500;
-  padding: 24px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  font-size: 16px;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transition: 0.3s ease-in;
     opacity: 0.9;
-    transform: scale(101%);
+    transform: scale(103%);
   }
 
   &:active {
     transition: 0.1s ease-in;
     transform: scale(99%);
   }
+
+  // font-size: 18px;
+  // border: none;
+  // cursor: pointer;
+  // width: 180px;
+  // height: 36px;
+  // border-radius: 50px;
+  // background: #797bec;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // color: #fff;
+  // text-transform: uppercase;
+  // font-weight: 500;
+  // padding: 24px;
+  // box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+
+  // &:hover {
+  //   transition: 0.3s ease-in;
+  //   opacity: 0.9;
+  //   transform: scale(101%);
+  // }
+
+  // &:active {
+  //   transition: 0.1s ease-in;
+  //   transform: scale(99%);
+  // }
 `;
