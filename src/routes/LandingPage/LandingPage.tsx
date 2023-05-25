@@ -21,10 +21,11 @@ export const LandingPage = () => {
         <Styled.Logo src="src/assets/logo.png" alt="Calmly company's logo" />
         <Styled.TextUnderLogo>let your stress drop</Styled.TextUnderLogo>
         <Styled.Paragraph>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi,
-          facilis officia velit facere libero reprehenderit! Perspiciatis saepe
-          illum repellat labore? Deleniti atque ex qui? Consequatur obcaecati
-          repellat quod tempore perspiciatis.
+          Calmly offers an interactive toolkit that will measure your stress and
+          provide the necessary tools to brighten your day. Our mission is to
+          help you feel better, focus on your needs and try to live
+          here-and-now. Complete these few steps and enjoy our tips to improve
+          your well-being.
         </Styled.Paragraph>
         <Styled.WrapperButtons>
           <Styled.Button onClick={() => navigate("/register")}>

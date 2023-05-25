@@ -54,7 +54,9 @@ export const Button = styled.div`
   font-weight: 600;
   margin-bottom: 40px;
   font-size: 16px;
+  letter-spacing: 1px;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Outfit", sans-serif;
 
   &:hover {
     transition: 0.3s ease-in;

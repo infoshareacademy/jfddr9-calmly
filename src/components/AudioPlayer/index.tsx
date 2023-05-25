@@ -91,8 +91,10 @@ const VolumeSlider = styled.input`
     margin-top: -4px;
   }
 `;
-
-export const CustomAudioPlayer = ({ src }: any) => {
+type CustomAudioPlayerProps = {
+  src: string | undefined;
+};
+export const CustomAudioPlayer = ({ src }: CustomAudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -130,7 +132,7 @@ export const CustomAudioPlayer = ({ src }: any) => {
     setVolume(newVolume);
   };
 
-  const formatTime = (time: any) => {
+  const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
