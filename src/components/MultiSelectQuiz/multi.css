@@ -74,6 +74,18 @@
   border-radius: 100px;
 }
 
+.sd-btn--action:not(:disabled):hover {
+  background: #3d3f80;
+}
+
+.sd-btn:not(:disabled):focus {
+  box-shadow: 0 0 0 1px rgb(224, 58, 58);
+}
+
+.sd-input:focus {
+  box-shadow: 0 0 0 2px transparent;
+}
+
 .sv-string-viewer.sv-string-viewer {
   font-family: "Outfit";
   font-style: normal;

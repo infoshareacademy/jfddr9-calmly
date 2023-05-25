@@ -71,6 +71,8 @@ import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../../api/firebase";
 import { useSelector } from "react-redux";
 import { TestResultPage } from "../TestResultPage/TestResultPage";
+// import { AuthStateType } from "../../store/authSlice";
+import { RootState } from "../../store/store";
 
 class CustomChoiceItem extends ReactSurveyElement {
   isChecked: boolean | undefined;
@@ -116,7 +118,7 @@ ReactElementFactory.Instance.registerElement("custom-choice-item", (props) => {
 export function SurveyComponent({ score }: { score: number }) {
   const [isDone, setIsDone] = useState(false);
 
-  const { authUser }: any = useSelector((state) => state);
+  const authUser = useSelector((state: RootState) => state.authUser);
 
   const dispatch = useDispatch();
 
@@ -131,7 +133,7 @@ export function SurveyComponent({ score }: { score: number }) {
 
     const currentDate = new Date();
 
-    const docRef = doc(db, "journal", authUser.uid);
+    const docRef = doc(db, "journal", authUser.uid ?? "");
 
     console.log(result.multiselect);
 

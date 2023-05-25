@@ -5,10 +5,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import styled from "styled-components";
-
-interface NavLinkProps {
-  isActive: boolean;
-}
+import { RootState } from "../../store/store";
 
 const HamburgerButton = styled.img`
   position: absolute;
@@ -58,7 +55,7 @@ export const Nav = styled.nav<{ isOpenMenu: boolean }>`
   }
 `;
 
-export const NavLink = styled.a<NavLinkProps>`
+export const NavLink = styled.a<{ isActive: boolean }>`
   font-size: 20px;
   font-family: "Outfit";
   font-weight: ${({ isActive }) => (isActive ? "700" : "300")};
@@ -116,11 +113,31 @@ export const ButtonLogOut = styled.button`
   }
 `;
 
-export const Navigation = ({ src, srcHamburger }: any) => {
+// type AuthStateType = {
+//     fullName: string | null;
+//     uid: string | null;
+//   }
+
+type NavigationProps = {
+  src: string;
+  srcHamburger: string;
+  alt: string;
+};
+// type AuthStateType = {
+//   fullName: string | null;
+//   uid: string | null;
+// };
+
+export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { authUser }: any = useSelector((state) => state);
+  const authUser = useSelector((state: RootState) => state.authUser);
+  //   const { authUser }: any = useSelector((state) => state);
+  //   const { authUser } = useSelector(
+  //     (state: { authUser: AuthStateType }) => state
+  //   );
+  console.log("authUser", authUser);
 
   const showButton = authUser.fullName != null;
 
