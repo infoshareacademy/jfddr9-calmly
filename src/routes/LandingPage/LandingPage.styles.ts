@@ -69,3 +69,31 @@ export const Button = styled.div`
     transform: scale(99%);
   }
 `;
+
+export const ButtonSmaller = styled.div`
+  cursor: pointer;
+  width: 150px;
+  height: 36px;
+  border-radius: 50px;
+  background: #797bec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 40px;
+  font-size: 16px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    transition: 0.3s ease-in;
+    opacity: 0.9;
+    transform: scale(103%);
+  }
+
+  &:active {
+    transition: 0.1s ease-in;
+    transform: scale(99%);
+  }
+`;
