@@ -32,6 +32,10 @@ const ChartContainer = styled.div`
   padding-block: 20px;
   padding-right: 50px;
   box-sizing: border-box;
+
+  @media (max-width: 1160px) {
+    margin-top: 140px;
+  }
 `;
 
 const StatisticsAndNavContainer = styled.div`
@@ -39,7 +43,13 @@ const StatisticsAndNavContainer = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
+
+  @media (max-width: 1160px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const StatisticsContainer = styled.div`
@@ -52,6 +62,10 @@ const StatisticsContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 1160px) {
+    order: 2;
+  }
 `;
 
 const NavigationContainer = styled.nav`
@@ -63,6 +77,10 @@ const NavigationContainer = styled.nav`
   justify-content: center;
 
   gap: 10px;
+
+  @media (max-width: 1160px) {
+    order: 1;
+  }
 `;
 
 const ButtonsContainer = styled.div`
@@ -572,43 +590,8 @@ export const Journal = () => {
   console.log(entryCounter);
   console.log(data);
 
-  // const backToDaysDisplay = () => {
-  //   setIsDisplayDays(true);
-  //   // const days: any = dataToDays(data);
-  //   // if (days.length <= 7) {
-  //   //   setDisplayedData(days);
-  //   //   setEntryCounter(7);
-  //   // } else {
-  //   //   setDisplayedData(days.slice(days.length - 7, days.length));
-  //   //   setEntryCounter(days.length);
-  //   // }
-  //   // setDisplayedData(days);
-  //   // setEntryCounter(7);
-
-  //   if (daysData.length <= maxDataEntries) {
-  //     setDisplayedData(daysData);
-  //     setEntryCounter(maxDataEntries);
-  //   } else {
-  //     setDisplayedData(daysData.slice(daysData.length - maxDataEntries, daysData.length));
-  //     setEntryCounter(daysData.length);
-  //   }
-  // };
-
   let daysOrData = isDisplayDays ? daysData : data;
 
-  // if (windowWidth > 768) {
-  //   responsiveData = displayedData;
-  // } else if (windowWidth <= 768 && windowWidth > 650) {
-  //   responsiveData = displayedData.slice(0, -1);
-  // } else if (windowWidth <= 650 && windowWidth > 520) {
-  //   responsiveData = displayedData.slice(0, -2);
-  // } else if (windowWidth <= 520 && windowWidth > 415) {
-  //   responsiveData = displayedData.slice(0, -3);
-  // } else if (windowWidth <= 415 && windowWidth > 100) {
-  //   responsiveData = displayedData.slice(0, -4);
-  // }
-
-  //console.log(responsiveData);
   console.log(maxDataEntries);
 
   let sum = 0;
@@ -796,24 +779,3 @@ export const Journal = () => {
     <LoaderComponent />
   );
 };
-
-// const data = [
-//   { name: 'January', uv: 4000, pv: 2400, amt: 2400 },
-//   { name: 'February', uv: 3000, pv: 1398, amt: 2210 },
-//   { name: 'March', uv: 2000, pv: 9800, amt: 2290 },
-//   { name: 'April', uv: 2780, pv: 3908, amt: 2000 },
-//   { name: 'May', uv: 1890, pv: 4800, amt: 2181 },
-//   { name: 'June', uv: 2390, pv: 3800, amt: 2500 },
-//   { name: 'July', uv: 3490, pv: 4300, amt: 2100 },
-// ];
-
-// export const Journal = () => (
-//   <LineChart width={500} height={300} data={data}>
-//     <CartesianGrid strokeDasharray="3 3" />
-//     <XAxis dataKey="name" />
-//     <YAxis />
-//     <Tooltip />
-//     <Legend />
-//     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-//   </LineChart>
-// );
