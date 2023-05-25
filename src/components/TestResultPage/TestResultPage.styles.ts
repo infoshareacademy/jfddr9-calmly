@@ -101,6 +101,11 @@ export const Text = styled.div`
     text-align: center;
   }
 
+  @media (max-width: 300px) {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
   @media (min-width: 2000px) {
     font-size: 80px;
     line-height: 90px;
@@ -131,12 +136,20 @@ export const SmallerText = styled.div`
   @media (min-width: 3000px) {
     font-size: 25px;
   }
+
+  @media (max-width: 300px) {
+    font-size: 10px;
+  }
 `;
 
 export const WrapperButtons = styled.div`
   display: flex;
   gap: 15px;
   text-align: right;
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+  }
 `;
 
 export const Button = styled.button`
@@ -161,6 +174,11 @@ export const Button = styled.button`
   &:active {
     transition: 0.1s ease-in;
     transform: scale(99%);
+  }
+
+  @media (max-width: 200px) {
+    width: 100px;
+    font-size: 10px;
   }
 
   @media (min-width: 2000px) {
