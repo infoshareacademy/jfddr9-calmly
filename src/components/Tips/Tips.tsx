@@ -17,6 +17,15 @@ import { PinnedSmallLogo } from "../PinnedSmallLogo";
 //     #b3b4ef 123.37%
 //   );
 // `;
+
+const Background = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Div = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,28 +40,32 @@ const Button = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  height: 60px;
-  width: 120px;
-  border-radius: 30px;
+  height: 220px;
+  width: 220px;
+  border-radius: 999px;
   color: #797bec;
-  box-shadow: 19px 25px 31px -16px rgba(66, 68, 90, 1);
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   align-items: center;
   justify-content: center;
+  padding-top: 24px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 64px;
   margin-top: 24px;
+
+  & span {
+    font-size: 24px;
+  }
 `;
 
 const Wrapper = styled.div`
-  background: #fff;
   width: 60%;
   max-width: 800px;
   height: 270px;
   border-radius: 16px;
   font-size: 50px;
   color: #797bec;
-  box-shadow: 19px 25px 31px -16px rgba(66, 68, 90, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +126,7 @@ export const Tips = () => {
   const onClickShow = () => setShow((prev) => !prev);
 
   return (
-    <>
+    <Background>
       <PinnedSmallLogo />
       {show ? (
         <Wrapper>
@@ -121,10 +134,11 @@ export const Tips = () => {
         </Wrapper>
       ) : (
         <Div>
-          Do something for yourself
-          <Button onClick={onClickShow}>start</Button>
+          <Button onClick={onClickShow}>
+            treat yourself<span>Next Tip</span>
+          </Button>
         </Div>
       )}
-    </>
+    </Background>
   );
 };

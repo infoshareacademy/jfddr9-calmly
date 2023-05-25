@@ -45,14 +45,31 @@ const StyledStep = styled.div`
   align-items: center;
 `;
 
-const StyledDiv = styled.div`
+type StyledDivProps = {
+  step: number;
+};
+
+const StyledDiv = styled.div<StyledDivProps>`
   margin: auto;
-  width: 90vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) =>
+    props.step === 5 ? "rgb(255, 255, 255)" : null};
+  background: ${(props) =>
+    props.step === 5
+      ? `radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 13%,
+    rgba(173, 175, 242, 1) 28%,
+    rgba(145, 131, 238, 1) 49%,
+    rgba(44, 69, 186, 1) 68%,
+    rgba(44, 122, 214, 1) 100%
+  )`
+      : null};
 `;
 
 const StepperContainer = styled.div`
@@ -113,7 +130,7 @@ export const FeelBetter = () => {
   };
 
   return (
-    <StyledDiv>
+    <StyledDiv step={step}>
       {step === 6 ? (
         <AreYou stepReset={handleStepChange} />
       ) : (
