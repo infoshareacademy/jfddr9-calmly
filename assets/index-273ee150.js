@@ -1326,7 +1326,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   display: flex;
   justify-content: center;
   padding: 40px;
-`,cJ=()=>{const[e,t]=K.useState(null),[n,r]=K.useState(!1),[i,o]=K.useState([{id:1,isActive:!1,imgSource:JG,soundSource:GG},{id:2,isActive:!1,imgSource:XG,soundSource:YG},{id:3,isActive:!1,imgSource:ZG,soundSource:_G},{id:4,isActive:!1,imgSource:tJ,soundSource:eJ},{id:5,isActive:!1,imgSource:rJ,soundSource:nJ},{id:6,isActive:!1,imgSource:oJ,soundSource:iJ}]),s=gn();K.useEffect(()=>{s(Rn("bgViolet"))},[s]);const a=(f,v)=>{const E=i.map(x=>{if(x.id===f){let C=!x.isActive,P=C?v:null,b=!!C;return t(P),r(b),console.log(n),{...x,isActive:C}}else return{...x,isActive:!1}});o(E)};return Q.jsxs(Q.Fragment,{children:[Q.jsx(sJ,{children:i.map(f=>Q.jsx(aJ,{isActive:f.isActive,onClick:()=>a(f.id,f.soundSource),children:Q.jsx(lJ,{isActive:f.isActive,children:Q.jsx(uJ,{src:f.imgSource})})},f.id))}),n?Q.jsxs(KM,{style:{visibility:"visible"},children:[Q.jsx(PP,{src:e},e)," "]}):Q.jsx(KM,{style:{visibility:"hidden"},children:Q.jsx(PP,{src:e},e)})]})},fJ="/assets/logo-white-9a05e00f.png",dJ=Z.div`
+`,cJ=()=>{const[e,t]=K.useState(void 0),[n,r]=K.useState(!1),[i,o]=K.useState([{id:1,isActive:!1,imgSource:JG,soundSource:GG},{id:2,isActive:!1,imgSource:XG,soundSource:YG},{id:3,isActive:!1,imgSource:ZG,soundSource:_G},{id:4,isActive:!1,imgSource:tJ,soundSource:eJ},{id:5,isActive:!1,imgSource:rJ,soundSource:nJ},{id:6,isActive:!1,imgSource:oJ,soundSource:iJ}]),s=gn();K.useEffect(()=>{s(Rn("bgViolet"))},[s]);const a=(f,v)=>{const E=i.map(x=>{if(x.id===f){let C=!x.isActive,P=C?v:void 0,b=!!C;return t(P),r(b),console.log(n),{...x,isActive:C}}else return{...x,isActive:!1}});o(E)};return Q.jsxs(Q.Fragment,{children:[Q.jsx(sJ,{children:i.map(f=>Q.jsx(aJ,{isActive:f.isActive,onClick:()=>a(f.id,f.soundSource),children:Q.jsx(lJ,{isActive:f.isActive,children:Q.jsx(uJ,{src:f.imgSource})})},f.id))}),n?Q.jsxs(KM,{style:{visibility:"visible"},children:[Q.jsx(PP,{src:e},e)," "]}):Q.jsx(KM,{style:{visibility:"hidden"},children:Q.jsx(PP,{src:e},e)})]})},fJ="/assets/logo-white-9a05e00f.png",dJ=Z.div`
   position: absolute;
   top: 30px;
   left: 40px;
@@ -1437,7 +1437,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   font-weight: 600;
   margin-bottom: 40px;
   font-size: 16px;
+  letter-spacing: 1px;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Outfit", sans-serif;
 
   &:hover {
     transition: 0.3s ease-in;
@@ -1449,7 +1451,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     transition: 0.1s ease-in;
     transform: scale(99%);
   }
-`,TJ=()=>{const e=Bi(),t=gn();return K.useEffect(()=>{t(Rn("bgLandingPage"))},[t]),Q.jsx(EJ,{children:Q.jsxs(PJ,{children:[Q.jsx(bJ,{src:"src/assets/logo.png",alt:"Calmly company's logo"}),Q.jsx(OJ,{children:"let your stress drop"}),Q.jsx(SJ,{children:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, facilis officia velit facere libero reprehenderit! Perspiciatis saepe illum repellat labore? Deleniti atque ex qui? Consequatur obcaecati repellat quod tempore perspiciatis."}),Q.jsxs(xJ,{children:[Q.jsx(U0,{onClick:()=>e("/register"),children:"SIGN UP"}),Q.jsx(U0,{onClick:()=>e("/login"),children:"SIGN IN"})]}),Q.jsx(U0,{style:{fontWeight:400,opacity:.5},onClick:()=>e("/feelbetter"),children:"FEEL BETTER"})]})})},wJ=Z.div`
+`,TJ=()=>{const e=Bi(),t=gn();return K.useEffect(()=>{t(Rn("bgLandingPage"))},[t]),Q.jsx(EJ,{children:Q.jsxs(PJ,{children:[Q.jsx(bJ,{src:"src/assets/logo.png",alt:"Calmly company's logo"}),Q.jsx(OJ,{children:"let your stress drop"}),Q.jsx(SJ,{children:"Calmly offers an interactive toolkit that will measure your stress and provide the necessary tools to brighten your day. Our mission is to help you feel better, focus on your needs and try to live here-and-now. Complete these few steps and enjoy our tips to improve your well-being."}),Q.jsxs(xJ,{children:[Q.jsx(U0,{onClick:()=>e("/register"),children:"SIGN UP"}),Q.jsx(U0,{onClick:()=>e("/login"),children:"SIGN IN"})]}),Q.jsx(U0,{style:{fontWeight:400,opacity:.6},onClick:()=>e("/feelbetter"),children:"FEEL BETTER"})]})})},wJ=Z.div`
   width: 100%;
   height: 100%;
   font-family: "Outfit", sans-serif;
@@ -1482,15 +1484,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   flex-wrap: wrap;
 `,DJ=Z.div`
   margin-top: 60px;
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 600;
   color: #e3b4ab;
   & span {
     font-weight: 700;
   }
 `,AJ=Z.div`
-  font-size: 34px;
-  margin-top: 10px;
+  font-size: 30px;
   color: #797bec;
   font-weight: 200;
 
@@ -1498,8 +1499,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     font-weight: 500;
   }
 `,VJ=Z.p`
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 44px;
+  margin-top: 44px;
   padding-right: 70px;
   text-align: justify;
   @media (max-width: 1750px) {
@@ -1526,7 +1528,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   font-weight: 600;
   margin-bottom: 40px;
   font-size: 16px;
+  letter-spacing: 1px;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Outfit", sans-serif;
 
   &:hover {
     transition: 0.3s ease-in;
@@ -4645,7 +4649,7 @@ This typically indicates that your device does not have a healthy Internet conne
     opacity: 0.9;
     color: #797bec;
   }
-`,yT=({src:e,srcHamburger:t})=>{const n=Bi(),r=Gu(),{authUser:i}=Xd(C=>C),o=i.fullName!=null,s=r.pathname==="/feelbetter",a=r.pathname==="/support",f=r.pathname==="/contact",[v,E]=K.useState(!1),x=()=>{E(!v)};return Q.jsxs(Q.Fragment,{children:[Q.jsx(Ire,{children:Q.jsx("a",{onClick:()=>n("/home"),children:Q.jsx(Rre,{src:e,alt:"Calmly Logo"})})}),Q.jsxs(Mre,{isOpenMenu:v,children:[Q.jsx(cb,{isActive:s,onClick:()=>n("/feelbetter"),children:"Let's feel better"}),Q.jsx(cb,{isActive:a,onClick:()=>n("/support"),children:"Support"}),Q.jsx(cb,{isActive:f,onClick:()=>n("/contact"),children:"Contact"}),o&&Q.jsx(Dre,{onClick:()=>s_(wh),children:"Log out"})]}),console.log(`srcHamburger: ${t}`),Q.jsx(wre,{src:t,onClick:x})]})},Are=()=>{const e=gn(),t=Bi(),{authUser:n}=Xd(i=>i);K.useEffect(()=>{e(Rn("bgHome"))},[e]);const r=n.fullName;return console.log("isUserLoged",r),K.useEffect(()=>{r==null?t("/"):t("/home")},[]),Q.jsxs(Q.Fragment,{children:[Q.jsx(yT,{src:"src/assets/logo-violet.png",alt:"Calmly company's logo in violet colour",srcHamburger:"src/assets/MenuPrpl.svg"}),Q.jsx(wJ,{children:Q.jsx(Q.Fragment,{children:Q.jsx(IJ,{children:Q.jsxs(RJ,{children:[Q.jsxs(DJ,{children:["Hi, ",Q.jsxs("span",{children:[n.fullName,"!"]})]}),Q.jsxs(AJ,{children:["Let your ",Q.jsx("span",{children:"stress"})," drop"]}),Q.jsx(VJ,{children:"Calmly offers an interactive toolkit that will measure your stress and provide the necessary tools to brighten your day. Our mission is to help you feel better, focus on your needs and try to live here-and-now. Complete these few steps and enjoy our tips to improve your well-being"}),Q.jsxs(MJ,{children:[Q.jsx(qM,{onClick:()=>t("/quiz"),children:"START TEST"}),Q.jsx(qM,{onClick:()=>t("/journal"),children:"JOURNAL"})]})]})})})})]})},vT={"auth/invalid-email":"E-mail is invalid","auth/weak-password":"Password should be at least 6 characters","auth/email-already-in-use":"Account registered for this e-mail is already in use","auth/user-not-found":"User account does not exist","auth/wrong-password":"Provided wrong password","auth/network-request-failed":"Something went wrong... Check your internet connection."},Vre=Z.p`
+`,yT=({src:e,srcHamburger:t})=>{const n=Bi(),r=Gu(),{authUser:i}=Xd(C=>C);console.log("authUser",i);const o=i.fullName!=null,s=r.pathname==="/feelbetter",a=r.pathname==="/support",f=r.pathname==="/contact",[v,E]=K.useState(!1),x=()=>{E(!v)};return Q.jsxs(Q.Fragment,{children:[Q.jsx(Ire,{children:Q.jsx("a",{onClick:()=>n("/home"),children:Q.jsx(Rre,{src:e,alt:"Calmly Logo"})})}),Q.jsxs(Mre,{isOpenMenu:v,children:[Q.jsx(cb,{isActive:s,onClick:()=>n("/feelbetter"),children:"Let's feel better"}),Q.jsx(cb,{isActive:a,onClick:()=>n("/support"),children:"Support"}),Q.jsx(cb,{isActive:f,onClick:()=>n("/contact"),children:"Contact"}),o&&Q.jsx(Dre,{onClick:()=>s_(wh),children:"Log out"})]}),console.log(`srcHamburger: ${t}`),Q.jsx(wre,{src:t,onClick:x})]})},Are=()=>{const e=gn(),t=Bi(),{authUser:n}=Xd(i=>i);K.useEffect(()=>{e(Rn("bgHome"))},[e]);const r=n.fullName;return console.log("isUserLoged",r),K.useEffect(()=>{r==null?t("/"):t("/home")},[]),Q.jsxs(Q.Fragment,{children:[Q.jsx(yT,{src:"src/assets/logo-violet.png",alt:"Calmly company's logo in violet colour",srcHamburger:"src/assets/MenuPrpl.svg"}),Q.jsx(wJ,{children:Q.jsx(Q.Fragment,{children:Q.jsx(IJ,{children:Q.jsxs(RJ,{children:[Q.jsxs(DJ,{children:["Hi, ",Q.jsxs("span",{children:[n.fullName,"!"]})]}),Q.jsxs(AJ,{children:["Let your ",Q.jsx("span",{children:"stress"})," drop"]}),Q.jsx(VJ,{children:"Let's begin by exploring a few steps that can help you create a sense of comfort and ease. Our healing journey includes relaxing music, breathing exercises, therapy with your favorite animals and sounds of nature. Lastly, you will see some additional suggestions to enhance your well-being and promote a positive mindset."}),Q.jsxs(MJ,{children:[Q.jsx(qM,{onClick:()=>t("/quiz"),children:"START TEST"}),Q.jsx(qM,{onClick:()=>t("/journal"),children:"JOURNAL"})]})]})})})})]})},vT={"auth/invalid-email":"E-mail is invalid","auth/weak-password":"Password should be at least 6 characters","auth/email-already-in-use":"Account registered for this e-mail is already in use","auth/user-not-found":"User account does not exist","auth/wrong-password":"Provided wrong password","auth/network-request-failed":"Something went wrong... Check your internet connection."},Vre=Z.p`
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -5806,7 +5810,7 @@ flex-wrap: nowrap;
 `,KIe=Z.form`
   display: flex;
   flex-direction: column;
-`;function kIe(){const e=gn();K.useEffect(()=>{e(Rn("bgRevert"))},[e]);const[t,n]=K.useState(!0),[r,i]=K.useState("Let's talk"),[o,s]=K.useState({email:"",name:"",message:""}),{email:a,name:f,message:v}=o,E=C=>{s({...o,[C.target.name]:C.target.value})},x=C=>{C.preventDefault(),Ore(are(Cu,"feedback"),{email:o.email,name:o.name,message:o.message}).then(()=>{console.log("Wszystko OK"),s({email:"",name:"",message:""}),n(!1),i("Thank you!")}).catch(P=>console.error("Something went wrong",P))};return Q.jsxs(BIe,{children:[Q.jsx(LIe,{src:_b}),Q.jsx(jIe,{src:_b}),Q.jsx(NIe,{src:_b}),Q.jsxs($Ie,{children:[Q.jsx(yT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg"}),Q.jsx(FIe,{children:Q.jsxs(UIe,{children:[t?Q.jsxs(J2,{children:[Q.jsx("b",{children:"Calmly"})," was created by a group of beginner programmers:"," ",Q.jsx("b",{children:"Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid"})]}):Q.jsx(J2,{}),t?Q.jsxs(G2,{children:[Q.jsx(Y2,{children:r}),Q.jsx(HIe,{}),Q.jsxs(KIe,{children:[Q.jsx(X2,{placeholder:"Name",type:"text",name:"name",id:"name",value:f,onChange:E}),Q.jsx(X2,{placeholder:"Email",type:"email",name:"email",id:"email",value:a,onChange:E}),Q.jsx(zIe,{placeholder:"Tell us more about your feelings and observations and what we can do to improve Calmly",name:"message",id:"message",value:v,onChange:E}),Q.jsx(QIe,{onClick:x,type:"submit",children:"SUBMIT"})]})]}):Q.jsxs(G2,{style:{justifyContent:"center"},children:[Q.jsx(Y2,{style:{textAlign:"center"},children:r}),Q.jsx(WIe,{children:"We will do our best to improve Calmly"})]})]})})]})]})}const ww=_3({name:"authUser",initialState:{fullName:null,uid:null},reducers:{updateAuthStateChanged:(e,t)=>{const{fullName:n,id:r}=t.payload;e.fullName=n,e.uid=r,console.log(e.fullName)},signOut:e=>{e.fullName=null,e.uid=null,console.log(e.fullName)}}}),{updateAuthStateChanged:qIe,signOut:GIe}=ww.actions;console.log(ww);const JIe=ww.reducer,YIe=Z.p`
+`;function kIe(){const e=gn();K.useEffect(()=>{e(Rn("bgRevert"))},[e]);const[t,n]=K.useState(!0),[r,i]=K.useState("Let's talk"),[o,s]=K.useState({email:"",name:"",message:""}),{email:a,name:f,message:v}=o,E=C=>{s({...o,[C.target.name]:C.target.value})},x=C=>{C.preventDefault(),Ore(are(Cu,"feedback"),{email:o.email,name:o.name,message:o.message}).then(()=>{console.log("Wszystko OK"),s({email:"",name:"",message:""}),n(!1),i("Thank you!")}).catch(P=>console.error("Something went wrong",P))};return Q.jsxs(BIe,{children:[Q.jsx(LIe,{src:_b}),Q.jsx(jIe,{src:_b}),Q.jsx(NIe,{src:_b}),Q.jsxs($Ie,{children:[Q.jsx(yT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg",alt:"Calmly company's logo in white colour"}),Q.jsx(FIe,{children:Q.jsxs(UIe,{children:[t?Q.jsxs(J2,{children:[Q.jsx("b",{children:"Calmly"})," was created by a group of beginner programmers:"," ",Q.jsx("b",{children:"Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid"})]}):Q.jsx(J2,{}),t?Q.jsxs(G2,{children:[Q.jsx(Y2,{children:r}),Q.jsx(HIe,{}),Q.jsxs(KIe,{children:[Q.jsx(X2,{placeholder:"Name",type:"text",name:"name",id:"name",value:f,onChange:E}),Q.jsx(X2,{placeholder:"Email",type:"email",name:"email",id:"email",value:a,onChange:E}),Q.jsx(zIe,{placeholder:"Tell us more about your feelings and observations and what we can do to improve Calmly",name:"message",id:"message",value:v,onChange:E}),Q.jsx(QIe,{onClick:x,type:"submit",children:"SUBMIT"})]})]}):Q.jsxs(G2,{style:{justifyContent:"center"},children:[Q.jsx(Y2,{style:{textAlign:"center"},children:r}),Q.jsx(WIe,{children:"We will do our best to improve Calmly"})]})]})})]})]})}const ww=_3({name:"authUser",initialState:{fullName:null,uid:null,email:null},reducers:{updateAuthStateChanged:(e,t)=>{console.warn(t.payload),e={...e,...t.payload},console.log(e.fullName)},signOut:e=>{e.fullName=null,e.uid=null,e.email=null,console.log(e.fullName)}}}),{updateAuthStateChanged:qIe,signOut:GIe}=ww.actions;console.log(ww);const JIe=ww.reducer,YIe=Z.p`
   font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
@@ -5982,7 +5986,7 @@ font-size: 16px;
   position: absolute;
   right: 100px;
   bottom: 50px;
-`;const pRe=()=>{const e=gn();return K.useEffect(()=>{e(Rn("bgSupport"))},[e]),Q.jsxs(cRe,{children:[Q.jsx(yT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg"}),Q.jsxs(fRe,{children:[Q.jsxs(dRe,{children:[Q.jsx("h2",{children:"Are you in a crisis?"}),Q.jsx("p",{children:"If you need help or psychological support, please call:"}),Q.jsx("span",{children:"+48 123 456 789"}),Q.jsx("h3",{children:"free 24/7 support at your fingertips"})]}),Q.jsx(hRe,{children:Q.jsx("img",{src:"src/assets/Texting.png"})})]})]})};function gRe(){const e=Xd(s=>s),t=gn(),[n,r]=K.useState(!0),i=Bi(),o=cH`
+`;const pRe=()=>{const e=gn();return K.useEffect(()=>{e(Rn("bgSupport"))},[e]),Q.jsxs(cRe,{children:[Q.jsx(yT,{src:"src/assets/logo-white.png",srcHamburger:"src/assets/MenuWhite.svg",alt:"Calmly company's logo in white colour"}),Q.jsxs(fRe,{children:[Q.jsxs(dRe,{children:[Q.jsx("h2",{children:"Are you in a crisis?"}),Q.jsx("p",{children:"If you need help or psychological support, please call:"}),Q.jsx("span",{children:"+48 123 456 789"}),Q.jsx("h3",{children:"free 24/7 support at your fingertips"})]}),Q.jsx(hRe,{children:Q.jsx("img",{src:"src/assets/Texting.png"})})]})]})};function gRe(){const e=Xd(s=>s),t=gn(),[n,r]=K.useState(!0),i=Bi(),o=cH`
   body {
     background: ${({bg:s})=>s==="bgDefault"?"linear-gradient(141.59deg, #f6c59c 11.57%, #e3b4ab 53.27%, #b3b4ef 123.37%);":s==="bgHome"?"white":s==="bgSupport"?"linear-gradient(114.94deg, #F6C59C 1.8%, #E3B4AB 35.2%, #B3B4EF 84.75%);":s==="bgRadial"?" radial-gradient(128.47% 128.47% at 49.2% -13.33%, #E3B4AB 4.44%, #797BEC 100%);":s==="bgRevert"?"linear-gradient(42.34deg, #5658EE 26.19%, #A7A8EE 89.5%, #F6C59C 138.15%);":s==="bgQuiz"?"linear-gradient(180deg, #B3B4EF 5.3%, #797BEC 106.76%);":s==="bgQuiz2"?"linear-gradient(180.17deg, #5C5DE3 0%, #8A8CEE 58.41%, #D1D2FA 74.25%);":s==="bgViolet"?"linear-gradient(51.96deg, rgba(227, 180, 171, 0.55) -7.91%, rgba(179, 180, 239, 0.55) 54.86%, rgba(121, 123, 236, 0.55) 98.75%);":s==="bgCircle"?`radial-gradient(
           circle,
@@ -5994,4 +5998,4 @@ font-size: 16px;
         ${({animation:s})=>s?"animation-play-state: running;":"animation-play-state: paused;"}
 
   }
-`;return console.log(e.bg.text),K.useEffect(()=>{o_(wh,s=>{if(s){const a=s.uid,f=yu(Cu,`users/${a}`);oU(f).then(v=>{const E=v.data();console.log(E),t(qIe(E)),i("/home"),r(!1)}).catch(v=>console.error(v))}else t(GIe()),i("/"),r(!1)})},[]),Q.jsxs(Q.Fragment,{children:[Q.jsx(o,{bg:e.bg.text,animation:e.bg.breathingAnimation}),n?Q.jsx(uv,{}):Q.jsxs(r7,{children:[Q.jsx(_r,{path:"/home",element:Q.jsx(Are,{})}),Q.jsx(_r,{path:"/register",element:Q.jsx(qre,{})}),Q.jsx(_r,{path:"/login",element:Q.jsx(cie,{})}),Q.jsx(_r,{path:"/forgotPassword",element:Q.jsx(uRe,{})}),Q.jsx(_r,{path:"/quiz",element:Q.jsx(VIe,{})}),Q.jsx(_r,{path:"/feelbetter",element:Q.jsx(CJ,{})}),Q.jsx(_r,{path:"/",element:Q.jsx(TJ,{})}),Q.jsx(_r,{path:"/contact",element:Q.jsx(kIe,{})}),Q.jsx(_r,{path:"/journal",element:Q.jsx(fIe,{})}),Q.jsx(_r,{path:"/support",element:Q.jsx(pRe,{})})]})]})}const mRe=q3({bg:tG,authUser:JIe}),yRe=Hq({reducer:mRe});Zb.createRoot(document.getElementById("root")).render(Q.jsx(Y.StrictMode,{children:Q.jsx(WH,{store:yRe,children:Q.jsx(l7,{children:Q.jsx(gRe,{})})})}));
+`;return console.log(e.bg.text),K.useEffect(()=>{o_(wh,s=>{if(s){const a=s.uid,f=yu(Cu,`users/${a}`);oU(f).then(v=>{const E={...v.data(),uid:a};console.warn(E),t(qIe(E)),i("/home"),r(!1)}).catch(v=>console.error(v))}else t(GIe()),i("/"),r(!1)})},[]),Q.jsxs(Q.Fragment,{children:[Q.jsx(o,{bg:e.bg.text,animation:e.bg.breathingAnimation}),n?Q.jsx(uv,{}):Q.jsxs(r7,{children:[Q.jsx(_r,{path:"/home",element:Q.jsx(Are,{})}),Q.jsx(_r,{path:"/register",element:Q.jsx(qre,{})}),Q.jsx(_r,{path:"/login",element:Q.jsx(cie,{})}),Q.jsx(_r,{path:"/forgotPassword",element:Q.jsx(uRe,{})}),Q.jsx(_r,{path:"/quiz",element:Q.jsx(VIe,{})}),Q.jsx(_r,{path:"/feelbetter",element:Q.jsx(CJ,{})}),Q.jsx(_r,{path:"/",element:Q.jsx(TJ,{})}),Q.jsx(_r,{path:"/contact",element:Q.jsx(kIe,{})}),Q.jsx(_r,{path:"/journal",element:Q.jsx(fIe,{})}),Q.jsx(_r,{path:"/support",element:Q.jsx(pRe,{})})]})]})}const mRe=q3({bg:tG,authUser:JIe}),yRe=Hq({reducer:mRe});Zb.createRoot(document.getElementById("root")).render(Q.jsx(Y.StrictMode,{children:Q.jsx(WH,{store:yRe,children:Q.jsx(l7,{children:Q.jsx(gRe,{})})})}));
