@@ -73,7 +73,7 @@ const StyledStepButton = styled.button`
   text-align: center;
 `;
 
-let maxDataEntries = 7;
+let maxDataEntries: any = 7;
 
 export const Journal = () => {
   const { authUser }: any = useSelector((state) => state);
@@ -84,9 +84,21 @@ export const Journal = () => {
   const [daysData, setDaysData] = useState([]);
   const [displayedData, setDisplayedData]: any[] = useState<any>([]);
 
-  const [entryCounter, setEntryCounter] = useState(maxDataEntries);
-
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  if (windowWidth > 768) {
+    maxDataEntries = 7;
+  } else if (windowWidth <= 768 && windowWidth > 650) {
+    maxDataEntries = 6;
+  } else if (windowWidth <= 650 && windowWidth > 520) {
+    maxDataEntries = 5;
+  } else if (windowWidth <= 520 && windowWidth > 415) {
+    maxDataEntries = 4;
+  } else if (windowWidth <= 415 && windowWidth > 100) {
+    maxDataEntries = 3;
+  }
+
+  const [entryCounter, setEntryCounter] = useState(maxDataEntries);
 
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
@@ -106,18 +118,6 @@ export const Journal = () => {
   );
   const [displayType, setDisplayType] = useState("daily");
   // const [responsiveData, setResponsiveData] = useState([]);
-
-  if (windowWidth > 768) {
-    maxDataEntries = 7;
-  } else if (windowWidth <= 768 && windowWidth > 650) {
-    maxDataEntries = 6;
-  } else if (windowWidth <= 650 && windowWidth > 520) {
-    maxDataEntries = 5;
-  } else if (windowWidth <= 520 && windowWidth > 415) {
-    maxDataEntries = 4;
-  } else if (windowWidth <= 415 && windowWidth > 100) {
-    maxDataEntries = 3;
-  }
 
   const dispatch = useDispatch();
 
@@ -146,6 +146,19 @@ export const Journal = () => {
         const days: any = dataToDays(entries);
         setDaysData(days);
         setDateValue(days[days.length - 1].date);
+        console.log(windowWidth);
+        if (windowWidth > 768) {
+          maxDataEntries = 7;
+        } else if (windowWidth <= 768 && windowWidth > 650) {
+          maxDataEntries = 6;
+        } else if (windowWidth <= 650 && windowWidth > 520) {
+          maxDataEntries = 5;
+        } else if (windowWidth <= 520 && windowWidth > 415) {
+          maxDataEntries = 4;
+        } else if (windowWidth <= 415 && windowWidth > 100) {
+          maxDataEntries = 3;
+        }
+        console.log(maxDataEntries);
         if (days.length <= maxDataEntries) {
           setDisplayedData(days);
           setEntryCounter(maxDataEntries);
@@ -167,27 +180,31 @@ export const Journal = () => {
   }, []);
 
   useEffect(() => {
-    if (isDisplayDays) {
-      if (daysData.length <= maxDataEntries) {
-        setDisplayedData(daysData);
-        setEntryCounter(maxDataEntries);
+    if (displayType !== "custom") {
+      if (isDisplayDays) {
+        if (daysData.length <= maxDataEntries) {
+          setDisplayedData(daysData);
+          setEntryCounter(maxDataEntries);
+        } else {
+          setDisplayedData(
+            daysData.slice(daysData.length - maxDataEntries, daysData.length)
+          );
+          setEntryCounter(daysData.length);
+        }
       } else {
-        setDisplayedData(
-          daysData.slice(daysData.length - maxDataEntries, daysData.length)
-        );
-        setEntryCounter(daysData.length);
-      }
-    } else {
-      if (data.length <= maxDataEntries) {
-        setDisplayedData(data);
-        setEntryCounter(maxDataEntries);
-      } else {
-        const line = displayedData[0].date;
-        const dayStartIndex = data.findIndex((item: any) => item.date === line);
-        setDisplayedData(
-          data.slice(dayStartIndex, dayStartIndex + maxDataEntries)
-        );
-        setEntryCounter(dayStartIndex + maxDataEntries);
+        if (data.length <= maxDataEntries) {
+          setDisplayedData(data);
+          setEntryCounter(maxDataEntries);
+        } else {
+          const line = displayedData[0].date;
+          const dayStartIndex = data.findIndex(
+            (item: any) => item.date === line
+          );
+          setDisplayedData(
+            data.slice(dayStartIndex, dayStartIndex + maxDataEntries)
+          );
+          setEntryCounter(dayStartIndex + maxDataEntries);
+        }
       }
     }
   }, [maxDataEntries]);
@@ -228,15 +245,22 @@ export const Journal = () => {
         setIsDisplayDays(true);
       }
     } else {
-      console.log(daysData);
       const dayStartIndex = daysData.findIndex(
         (item: any) => item.date === line
       );
       const dayEndIndex = daysData.findIndex(
         (item: any) => item.date === customDateValue
       );
-      setDisplayedData(daysData.slice(dayStartIndex, dayEndIndex + 1));
-      setIsDisplayDays(true);
+      console.log(daysData);
+      if (dayStartIndex + maxDataEntries > daysData.length) {
+        setDisplayedData(daysData.slice(dayStartIndex, daysData.length));
+        //setEntryCounter(daysData.length);
+        setIsDisplayDays(true);
+      } else {
+        setDisplayedData(daysData.slice(dayStartIndex, dayEndIndex + 1));
+        //setEntryCounter(dayStartIndex + maxDataEntries);
+        setIsDisplayDays(true);
+      }
     }
   };
 
@@ -514,7 +538,7 @@ export const Journal = () => {
         {/* {!isDisplayDays && <button onClick={() => backToDaysDisplay()}>Back to days</button>} */}
 
         <ResponsiveContainer width="90%" height={500}>
-          <LineChart data={displayedData}>
+          <LineChart key={maxDataEntries} data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="date"
