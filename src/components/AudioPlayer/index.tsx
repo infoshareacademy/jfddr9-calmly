@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { PinnedSmallLogo } from "../PinnedSmallLogo";
 import sound from "../../assets/Sound.svg";
 
 const AudioContainer = styled.div`
@@ -139,7 +138,6 @@ export const CustomAudioPlayer = ({ src }: any) => {
 
   return (
     <>
-      <PinnedSmallLogo />
       <AudioContainer>
         <PlayButton onClick={togglePlay}>{isPlaying ? "❚❚" : "▶"}</PlayButton>
 
