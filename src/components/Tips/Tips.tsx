@@ -3,62 +3,59 @@ import styled from "styled-components";
 import { updateBg } from "../../store/slice";
 import { useDispatch } from "react-redux";
 
-// const Background = styled.div`
-//   width: 100vw;
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background: linear-gradient(
-//     141.59deg,
-//     #f6c59c 11.57%,
-//     #e3b4ab 53.27%,
-//     #b3b4ef 123.37%
-//   );
-// `;
-// const Div = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   font-size: 40px;
-//   font-weight: 600;
-//   color: white;
-// `;
-
 const Button = styled.button`
-  background: white;
+  background-color: white;
+  color: #797bec;
   border: none;
-  outline: none;
+  border-radius: 24px;
   cursor: pointer;
-  height: 220px;
-  width: 220px;
-  border-radius: 999px;
-  color: #797bec;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  padding-top: 24px;
-  font-size: 24px;
-  margin-top: 24px;
+  z-index: 999;
+  height: 41px;
+  width: 217px;
+  margin-bottom: 12px;
+  font-weigth: 400;
+  font-size: 20px;
+  font-family: "Outfit", sans-serif;
+  background-color: #ffffff84;
+  &:hover {
+    transition: 0.5s;
+    background-color: white;
+  }
 `;
-
 const Wrapper = styled.div`
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  background: transparent;
-  width: 60%;
-  max-width: 800px;
-  height: 270px;
-  border-radius: 16px;
-  font-size: 50px;
+  align-items: flex-end;
+`;
+const Dividi = styled.p`
+  font-weight: 600;
+  text-transform: lowercase;
+  font-size: 22px;
   color: #797bec;
+`;
+const ButtonDiv = styled.div`
+  z-index: 999;
+  text-align: center;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 700;
+  flex-direction: column;
+  align-items: center;
+`;
+const MainDivv = styled.div`
+  z-index: 998;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Tips = () => {
@@ -88,7 +85,7 @@ export const Tips = () => {
     "Pay someone a compliment",
     "Pay yourself a compliment",
     "Forgive yourself for your mistakes",
-    "Think about people who could need your help and try to do something for them",
+    "Think about people who could need your help and try do it",
     "Visit or call your old friend",
     "Help a family member with a task",
     "Donate a necessity to people in need",
@@ -116,8 +113,12 @@ export const Tips = () => {
   return (
     <>
       <Wrapper>
-        <div id="tips">{tipValue}</div>
-        <Button onClick={newGeneratedTip}>New Tip</Button>
+        <MainDivv>
+          <Dividi id="tips">{tipValue}</Dividi>
+        </MainDivv>
+        <ButtonDiv>
+          <Button onClick={newGeneratedTip}>New Tip</Button>
+        </ButtonDiv>
       </Wrapper>
     </>
   );
