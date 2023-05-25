@@ -5203,10 +5203,10 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     margin: 0px;
   }
 
-  @media (max-width: 380px) {
-    margin: 0px;
-    bottom: 200px;
-  }
+  // @media (max-width: 380px) {
+  //   margin: 0px;
+  //   bottom: 200px;
+  // }
 
   @media (min-width: 2000px) {
     height: 600px;
@@ -5352,12 +5352,16 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     height: 328px;
   }
   @media (max-width: 515px) {
+    padding: 60px 50px;
     width: 267px;
     height: 330px;
   }
   @media (max-width: 375px) {
     width: 167px;
     height: 210px;
+  }
+  @media (max-width: 270px) {
+    padding: 60px 10px;
   }
 `,IIe=Z.div`
   font-family: "Outfit";
@@ -5442,15 +5446,12 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   font-weight: 600;
   font-size: 64px;
 
-  @media (max-width: 910px) {
-    font-size: 32px;
+  @media (max-width: 1010px) {
+    font-size: 0px;
   }
-  @media (max-width: 515px) {
-    font-size: 24px;
-  }
-  @media (max-width: 375px) {
+
+  @media (min-width: 2000px) {
     top: 25%;
-    font-size: 18px;
   }
 `;function VIe(){const e=gn();K.useEffect(()=>{e(Rn("bgQuiz"))},[e]);const t=[{questionText:"Rate your physical effort today?",answerOptions:[{answerText:"Low",worth:3},{answerText:"Average",worth:2},{answerText:"High",worth:1}]},{questionText:"Do you feel hungry?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"Does your job require you to spend more than 6 hours in a sitting position?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"How many cups of coffee have you drunk today?",answerOptions:[{answerText:"0 cups",worth:4},{answerText:"1-2 cups",worth:3},{answerText:"3-4 cups",worth:2},{answerText:"5-6 cups",worth:1}]},{questionText:"How many liters of water have you drunk today?",answerOptions:[{answerText:"Less than 8 cups",worth:4},{answerText:"8 cups (1.7 liters)",worth:3},{answerText:"12 cups (2.7 Liters)",worth:2},{answerText:"16 cups (3.7 Liters)",worth:1}]},{questionText:"How many hours of sleep did you get today?",answerOptions:[{answerText:"4 hours or less",worth:3},{answerText:"Between 4 and 8 hours",worth:2},{answerText:"More than 8 hours",worth:1}]},{questionText:"Do you use stimulants (smoking, drinking alcohol)?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]}],[n,r]=K.useState(0),[i,o]=K.useState(!1),[s,a]=K.useState(0),[f,v]=K.useState(1),[E,x]=K.useState(1),[C,P]=K.useState(1),[b,u]=K.useState(1),[d,g]=K.useState(1),[l,c]=K.useState(1),[h,y]=K.useState(1),m=()=>{switch(n){default:break;case 0:break;case 1:a(s-f),r(n-1);break;case 2:a(s-E),r(n-1);break;case 3:a(s-C),r(n-1);break;case 4:a(s-b),r(n-1);break;case 5:a(s-d),r(n-1);break;case 6:a(s-l),r(n-1);break}},p=()=>{const D=f+E+C+b+d+l+h;a(D),console.log(D),console.log(h)},S=D=>{switch(n){default:break;case 0:v(D);break;case 1:x(D);break;case 2:P(D);break;case 3:u(D);break;case 4:g(D);break;case 5:c(D);break;case 6:y(D),console.log(h);break}const V=n+1;V<t.length?r(V):(o(!0),p())};return Q.jsxs(Q.Fragment,{children:[Q.jsx(uS,{}),i?Q.jsx(TIe,{score:s}):Q.jsxs(wIe,{className:"app",children:[Q.jsx(AIe,{children:"How are you feeling today?"}),Q.jsx("div",{className:"question-section",children:Q.jsx(IIe,{className:"question-text",children:t[n].questionText})}),Q.jsx(MIe,{className:"answer-section",children:t[n].answerOptions.map((D,V)=>Q.jsx(RIe,{onClick:()=>S(D.worth),children:D.answerText},V))}),n!=0?Q.jsx(DIe,{onClick:m,children:"Back"}):Q.jsx("div",{})]})]})}const _b="/assets/Ellipse 29-a6648b7f.svg",Tw=Z.img`
   position: absolute;
