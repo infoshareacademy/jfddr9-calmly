@@ -13,6 +13,8 @@ import {
 import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
 
+import { Navigation } from "../components/Navigation";
+
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
 
@@ -31,11 +33,28 @@ const ChartContainer = styled.div`
   box-sizing: border-box;
 `;
 
+const StatisticsAndNavContainer = styled.div`
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const StatisticsContainer = styled.div`
+  width: 30%;
+  min-height: 200px;
+  background-color: white;
+  border-radius: 18px;
+`;
+
 const NavigationContainer = styled.nav`
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+
   gap: 10px;
 `;
 
@@ -71,6 +90,14 @@ const StyledStepButton = styled.button`
   font-size: 20px;
   line-height: 25px;
   text-align: center;
+`;
+
+const StyledLabel = styled.label`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: auto;
 `;
 
 let maxDataEntries: any = 7;
@@ -219,7 +246,7 @@ export const Journal = () => {
     }
   }, [maxDataEntries]);
 
-  const goToDay = (line: string, mode: string) => {
+  const goToDay = (line: string, mode: string, whichDate: number) => {
     console.log(line);
 
     if (mode === "detailed") {
@@ -255,12 +282,20 @@ export const Journal = () => {
         setIsDisplayDays(true);
       }
     } else {
-      const dayStartIndex = daysData.findIndex(
-        (item: any) => item.date === line
-      );
-      const dayEndIndex = daysData.findIndex(
-        (item: any) => item.date === customDateValue
-      );
+      let dayStartIndex = 0;
+      let dayEndIndex = 0;
+      if (whichDate === 0) {
+        dayStartIndex = daysData.findIndex((item: any) => item.date === line);
+        dayEndIndex = daysData.findIndex(
+          (item: any) => item.date === customDateValue
+        );
+      } else {
+        dayStartIndex = daysData.findIndex(
+          (item: any) => item.date === dateValue
+        );
+        dayEndIndex = daysData.findIndex((item: any) => item.date === line);
+      }
+
       console.log(daysData);
       if (dayStartIndex + maxDataEntries > daysData.length) {
         setDisplayedData(daysData.slice(dayStartIndex, daysData.length));
@@ -405,7 +440,7 @@ export const Journal = () => {
             onClick={() => {
               if (isDisplayDays) {
                 setDisplayType("detailed");
-                goToDay(line, "detailed");
+                goToDay(line, "detailed", 0);
               }
             }}
           >
@@ -544,6 +579,11 @@ export const Journal = () => {
 
   return data.length !== 0 ? (
     <>
+      <Navigation
+        src="src/assets/logo-white.png"
+        srcHamburger="src/assets/MenuWhite.svg"
+        alt="Calmly company's logo in white colour"
+      />
       <ChartContainer>
         {/* {!isDisplayDays && <button onClick={() => backToDaysDisplay()}>Back to days</button>} */}
 
@@ -570,15 +610,41 @@ export const Journal = () => {
                 }
               }}
             />
-            <Tooltip />
+            {displayType === "custom" && (
+              <Tooltip
+                labelStyle={{ color: "green" }}
+                itemStyle={{ color: "#797BEC" }}
+                formatter={(value: any, name) => {
+                  //console.log(value);
+                  let formattedValue = value;
+                  if (typeof value !== "number") {
+                    formattedValue = value.join(" ~ ");
+                  }
+                  return [formattedValue, name === "score" ? "Score" : "Mood"];
+                }}
+                labelFormatter={function (value) {
+                  //console.log(name);
+                  return `Date: ${value}`;
+                }}
+              />
+            )}
             {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
-            {/* <Tooltip formatter={(value, name) => [value, name === 'score' ? 'Score' : 'Mood']} /> */}
-            <Tooltip
-              formatter={(value, name) => [
-                value,
-                name === "score" ? "Score" : "Mood",
-              ]}
-            />
+            {displayType !== "custom" && (
+              <Tooltip
+                formatter={(value: any, name) => {
+                  //console.log(value);
+                  let formattedValue = value;
+                  if (typeof value !== "number") {
+                    formattedValue = value.join(" ~ ");
+                  }
+                  return [formattedValue, name === "score" ? "Score" : "Mood"];
+                }}
+              />
+            )}
+            {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
+            {/* <Tooltip
+              formatter={(value, name) => [value, name === 'score' ? 'Score' : name === 'mood' ? 'Mood' : 'Date']}
+            /> */}
             {/* <Legend /> */}
             <Line
               type="monotone"
@@ -586,68 +652,79 @@ export const Journal = () => {
               stroke="#797BEC"
               strokeWidth={3}
             />
-            <Line type="monotone" dataKey="mood" stroke="#F231AA" />
+            <Line type="monotone" dataKey="mood" stroke="#797BEC" />
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
-      <NavigationContainer>
-        <ButtonsContainer>
-          <StyledStepButton
-            onClick={backData}
-            disabled={entryCounter === maxDataEntries ? true : false}
-          >
-            {"<"}
-          </StyledStepButton>
-          <StyledStepButton
-            onClick={nextData}
-            disabled={entryCounter >= daysOrData.length ? true : false}
-          >
-            {">"}
-          </StyledStepButton>
-        </ButtonsContainer>
-        <ButtonsContainer>
-          <DateInput
-            type="date"
-            value={dateValue}
-            onChange={(e) => {
-              setDateValue(e.target.value);
-              goToDay(e.target.value, displayType);
-            }}
-          />
-          {displayType === "custom" && (
+
+      <StatisticsAndNavContainer>
+        <StatisticsContainer>a</StatisticsContainer>
+        <NavigationContainer>
+          <ButtonsContainer>
+            {displayType !== "custom" && (
+              <StyledStepButton
+                onClick={backData}
+                disabled={entryCounter === maxDataEntries ? true : false}
+              >
+                {"<"}
+              </StyledStepButton>
+            )}
             <DateInput
               type="date"
-              value={customDateValue}
+              value={dateValue}
               onChange={(e) => {
-                setCustomDateValue(e.target.value);
-                goToDay(e.target.value, displayType);
+                setDateValue(e.target.value);
+                goToDay(e.target.value, displayType, 0);
               }}
             />
-          )}
-        </ButtonsContainer>
+            {displayType === "custom" && (
+              <DateInput
+                type="date"
+                value={customDateValue}
+                onChange={(e) => {
+                  setCustomDateValue(e.target.value);
+                  goToDay(e.target.value, displayType, 1);
+                }}
+              />
+            )}
+            {displayType !== "custom" && (
+              <StyledStepButton
+                onClick={nextData}
+                disabled={entryCounter >= daysOrData.length ? true : false}
+              >
+                {">"}
+              </StyledStepButton>
+            )}
+          </ButtonsContainer>
 
-        <Select
-          value={displayType}
-          onChange={(e) => {
-            const firstDisplayedDate = displayedData[0].date.slice(0, 10);
-            if (e.target.value === "custom") {
-              setDisplayType(e.target.value);
-              setDateValue(firstDisplayedDate);
-              setIsDisplayDays(true);
-              goToDay(firstDisplayedDate, e.target.value);
-            } else {
-              setDisplayType(e.target.value);
-              console.log(e.target.value);
-              setIsDisplayDays(e.target.value === "daily" ? true : false);
-              goToDay(dateValue, e.target.value);
-            }
-          }}
-        >
-          <option value={"daily"}>Daily</option>
-          <option value={"detailed"}>Detailed</option>
-          <option value={"custom"}>Custom</option>
-        </Select>
-      </NavigationContainer>
+          <ButtonsContainer>
+            <StyledLabel htmlFor="select">View: </StyledLabel>
+            <Select
+              name="select"
+              value={displayType}
+              onChange={(e) => {
+                const firstDisplayedDate = displayedData[0].date.slice(0, 10);
+                if (e.target.value === "custom") {
+                  setDisplayType(e.target.value);
+                  setDateValue(firstDisplayedDate);
+                  setIsDisplayDays(true);
+                  goToDay(firstDisplayedDate, e.target.value, 0);
+                } else {
+                  setDisplayType(e.target.value);
+                  console.log(e.target.value);
+                  setIsDisplayDays(e.target.value === "daily" ? true : false);
+                  goToDay(dateValue, e.target.value, 0);
+                }
+              }}
+            >
+              <option value={"daily"}>Daily</option>
+              <option value={"detailed"}>Detailed</option>
+              <option value={"custom"}>Custom</option>
+            </Select>
+          </ButtonsContainer>
+        </NavigationContainer>
+        <StatisticsContainer>a</StatisticsContainer>
+      </StatisticsAndNavContainer>
     </>
   ) : (
     <LoaderComponent />
