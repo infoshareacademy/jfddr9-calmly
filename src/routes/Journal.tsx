@@ -587,7 +587,6 @@ export const Journal = () => {
               strokeWidth={3}
             />
             <Line type="monotone" dataKey="mood" stroke="#F231AA" />
-            <Line type="monotone" dataKey="date" stroke="#F231AA" />
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
