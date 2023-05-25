@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import styled from "styled-components";
+import { RootState } from "../../store/store";
 
 const HamburgerButton = styled.img`
   position: absolute;
@@ -131,7 +132,8 @@ export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { authUser }: any = useSelector((state) => state);
+  const authUser = useSelector((state: RootState) => state.authUser);
+  //   const { authUser }: any = useSelector((state) => state);
   //   const { authUser } = useSelector(
   //     (state: { authUser: AuthStateType }) => state
   //   );
