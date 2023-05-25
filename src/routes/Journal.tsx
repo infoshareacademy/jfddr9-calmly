@@ -101,6 +101,9 @@ export const Journal = () => {
   const [dateValue, setDateValue] = useState(
     formatDate(new Date()).slice(0, 10)
   );
+  const [customDateValue, setCustomDateValue] = useState(
+    formatDate(new Date()).slice(0, 10)
+  );
   const [displayType, setDisplayType] = useState("daily");
   // const [responsiveData, setResponsiveData] = useState([]);
 
@@ -191,7 +194,6 @@ export const Journal = () => {
 
   const goToDay = (line: string, mode: string) => {
     console.log(line);
-    setDateValue(line);
 
     if (mode === "detailed") {
       const dayStartIndex = data.findIndex(
@@ -209,7 +211,7 @@ export const Journal = () => {
         setEntryCounter(dayStartIndex + maxDataEntries);
         setIsDisplayDays(false);
       }
-    } else {
+    } else if (mode === "daily") {
       const dayStartIndex = daysData.findIndex(
         (item: any) => item.date === line
       );
@@ -225,6 +227,16 @@ export const Journal = () => {
         setEntryCounter(dayStartIndex + maxDataEntries);
         setIsDisplayDays(true);
       }
+    } else {
+      console.log(daysData);
+      const dayStartIndex = daysData.findIndex(
+        (item: any) => item.date === line
+      );
+      const dayEndIndex = daysData.findIndex(
+        (item: any) => item.date === customDateValue
+      );
+      setDisplayedData(daysData.slice(dayStartIndex, dayEndIndex + 1));
+      setIsDisplayDays(true);
     }
   };
 
@@ -504,7 +516,11 @@ export const Journal = () => {
         <ResponsiveContainer width="90%" height={500}>
           <LineChart data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
+            <XAxis
+              dataKey="date"
+              tick={renderCustomTick}
+              interval={displayType === "custom" ? 1 : 0}
+            />
             <YAxis
               domain={[0, 20]}
               tickCount={3}
@@ -554,25 +570,47 @@ export const Journal = () => {
             {">"}
           </StyledStepButton>
         </ButtonsContainer>
+        <ButtonsContainer>
+          <DateInput
+            type="date"
+            value={dateValue}
+            onChange={(e) => {
+              setDateValue(e.target.value);
+              goToDay(e.target.value, displayType);
+            }}
+          />
+          {displayType === "custom" && (
+            <DateInput
+              type="date"
+              value={customDateValue}
+              onChange={(e) => {
+                setCustomDateValue(e.target.value);
+                goToDay(e.target.value, displayType);
+              }}
+            />
+          )}
+        </ButtonsContainer>
 
-        <DateInput
-          type="date"
-          value={dateValue}
-          onChange={(e) => {
-            goToDay(e.target.value, displayType);
-          }}
-        />
         <Select
           value={displayType}
           onChange={(e) => {
-            setDisplayType(e.target.value);
-            console.log(e.target.value);
-            setIsDisplayDays(e.target.value === "daily" ? true : false);
-            goToDay(dateValue, e.target.value);
+            const firstDisplayedDate = displayedData[0].date.slice(0, 10);
+            if (e.target.value === "custom") {
+              setDisplayType(e.target.value);
+              setDateValue(firstDisplayedDate);
+              setIsDisplayDays(true);
+              goToDay(firstDisplayedDate, e.target.value);
+            } else {
+              setDisplayType(e.target.value);
+              console.log(e.target.value);
+              setIsDisplayDays(e.target.value === "daily" ? true : false);
+              goToDay(dateValue, e.target.value);
+            }
           }}
         >
           <option value={"daily"}>Daily</option>
           <option value={"detailed"}>Detailed</option>
+          <option value={"custom"}>Custom</option>
         </Select>
       </NavigationContainer>
     </>
