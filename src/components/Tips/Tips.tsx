@@ -50,8 +50,8 @@ const MainDivv = styled.div`
   bottom: 0;
   left: 0;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 205px;
+  height: 205px;
   background-color: white;
   display: flex;
   justify-content: center;
