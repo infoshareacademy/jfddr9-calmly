@@ -5556,6 +5556,9 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
 `;function NIe(){const e=gn();K.useEffect(()=>{e(Rn("bgQuiz"))},[e]);const t=[{questionText:"Rate your physical effort today?",answerOptions:[{answerText:"Low",worth:3},{answerText:"Average",worth:2},{answerText:"High",worth:1}]},{questionText:"Do you feel hungry?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"Does your job require you to spend more than 6 hours in a sitting position?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]},{questionText:"How many cups of coffee have you drunk today?",answerOptions:[{answerText:"0 cups",worth:4},{answerText:"1-2 cups",worth:3},{answerText:"3-4 cups",worth:2},{answerText:"5-6 cups",worth:1}]},{questionText:"How many liters of water have you drunk today?",answerOptions:[{answerText:"Less than 8 cups",worth:4},{answerText:"8 cups (1.7 liters)",worth:3},{answerText:"12 cups (2.7 Liters)",worth:2},{answerText:"16 cups (3.7 Liters)",worth:1}]},{questionText:"How many hours of sleep did you get today?",answerOptions:[{answerText:"4 hours or less",worth:3},{answerText:"Between 4 and 8 hours",worth:2},{answerText:"More than 8 hours",worth:1}]},{questionText:"Do you use stimulants (smoking, drinking alcohol)?",answerOptions:[{answerText:"Yes",worth:2},{answerText:"No",worth:1}]}],[n,r]=K.useState(0),[i,o]=K.useState(!1),[s,a]=K.useState(0),[f,v]=K.useState(1),[E,x]=K.useState(1),[C,P]=K.useState(1),[b,c]=K.useState(1),[d,g]=K.useState(1),[l,u]=K.useState(1),[h,y]=K.useState(1),m=()=>{switch(n){default:break;case 0:break;case 1:a(s-f),r(n-1);break;case 2:a(s-E),r(n-1);break;case 3:a(s-C),r(n-1);break;case 4:a(s-b),r(n-1);break;case 5:a(s-d),r(n-1);break;case 6:a(s-l),r(n-1);break}},p=()=>{const D=f+E+C+b+d+l+h;a(D),console.log(D),console.log(h)},S=D=>{switch(n){default:break;case 0:v(D);break;case 1:x(D);break;case 2:P(D);break;case 3:c(D);break;case 4:g(D);break;case 5:u(D);break;case 6:y(D),console.log(h);break}const V=n+1;V<t.length?r(V):(o(!0),p())};return Q.jsxs(Q.Fragment,{children:[Q.jsx(lS,{}),i?Q.jsx(RIe,{score:s}):Q.jsxs(MIe,{className:"app",children:[Q.jsx(jIe,{children:"How are you feeling today?"}),Q.jsx("div",{className:"question-section",children:Q.jsx(DIe,{className:"question-text",children:t[n].questionText})}),Q.jsx(VIe,{className:"answer-section",children:t[n].answerOptions.map((D,V)=>Q.jsx(AIe,{onClick:()=>S(D.worth),children:D.answerText},V))}),n!=0?Q.jsx(LIe,{onClick:m,children:"Back"}):Q.jsx("div",{})]})]})}const Xb="/assets/Ellipse 29-a6648b7f.svg",Sw=Z.img`
   position: absolute;
   overflow: hidden;
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 `,BIe=Z(Sw)`
   height: 310px;
   top: 520px;
@@ -5573,19 +5576,23 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
       left: 600px;
     }
   }
+  @media only screen and (max-width: 500px) {
+    animation: none;
+  }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
-    top: 120px;
-    left: 120px;
+    opacity: 0.6;
+    top: 140px;
+    left: 140px;
     @keyframes moving {
       50% {
         transform: scale(1.2);
-        left: 10px;
-        top: 10px;
+        left: 100px;
+        top: 100px;
       }
       0%,
       100% {
-        top: 120px;
-        left: 120px;
+        top: 140px;
+        left: 140px;
       }
     }
   }
@@ -5640,8 +5647,22 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     }
   }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    opacity: 0.5;
+    height: 100px;
     top: 50px;
     left: 550px;
+    @keyframes movingOne {
+      50% {
+        transform: scale(1.2);
+        left: 620px;
+        top: 90px;
+      }
+      0%,
+      100% {
+        top: 50px;
+        left: 550px;
+      }
+    }
   }
   @media only screen and (min-width: 1581px) and (max-width: 1680px) {
     top: 60px;
@@ -5681,8 +5702,21 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     }
   }
   @media only screen and (min-width: 500px) and (max-width: 1250px) {
+    opacity: 0.45;
     top: 80px;
     left: 350px;
+    @keyframes movingTri {
+      50% {
+        transform: scale(1.2);
+        left: 460px;
+        top: 100px;
+      }
+      0%,
+      100% {
+        top: 80px;
+        left: 350px;
+      }
+    }
   }
   @media only screen and (min-width: 1581px) and (max-width: 1680px) {
     top: 100px;
@@ -5699,6 +5733,7 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
   justify-content: center;
   height: 100vh;
   background-repeat: no-repeat;
+
   @media only screen and (min-width: 1250px) and (max-width: 1480px) {
     background-color: linear-gradient(
       141.59deg,
@@ -5717,14 +5752,13 @@ Click the button below to add a new entry.`,noEntriesReadonlyText:"There are no 
     }
   }
 `,WIe=Z.div`
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: stretch;
-flex-wrap: nowrap;
-}
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
 
-@media only screen and (min-width: 1281px) and (max-width: 1480px) {
+  @media only screen and (min-width: 1281px) and (max-width: 1480px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -5732,13 +5766,10 @@ flex-wrap: nowrap;
 `,zIe=Z.div`
   z-index: 2;
   margin: 0px 25px;
-  background: rgba(255, 255, 255, 0.35);
   border: 1px solid rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.32) 65px 65px 100px;
   backdrop-filter: blur(37.5px);
   border-radius: 50%;
-  width: 45vw;
-  height: 45vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5754,12 +5785,11 @@ flex-wrap: nowrap;
     width: 100px;
     height: 100px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
     background: none;
-    width: 42vw;
-    height: 42vw;
     border: none;
     box-shadow: none;
+    backdrop-filter: none;
   }
   @media only screen and (min-width: 1281px) and (max-width: 1580px) {
     background: none;
@@ -5771,14 +5801,21 @@ flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
+    width: 80vw;
+    margin-top: 160px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
   }
 `,G2=Z.div`
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 1280px) {
+    justify-content: center;
+    align-items: center;
+  }
 `,J2=Z.a`
   width: 19vw;
   margin: 20px 0 0 0;
@@ -5787,12 +5824,13 @@ flex-wrap: nowrap;
   font-weight: 400;
   font-size: 17px;
   line-height: 24px;
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
-    font-size: 14px;
+  @media only screen and (max-width: 1280px) {
+    width: 65vw;
+    font-size: 16px;
     line-height: 18px;
     font-weight: 300;
     margin: 10px 26px 0 0;
-    text-align: right;
+    text-align: center;
   }
 `,HIe=Z.p`
   width: 18vw;
@@ -5807,6 +5845,9 @@ flex-wrap: nowrap;
   color: white;
   text-align: left;
   margin-bottom: 0;
+  @media only screen and (max-width: 820px) {
+    font-size: 34px;
+  }
 `,X2=Z.input`
   width: 18vw;
   margin-bottom: 12px;
@@ -5818,9 +5859,10 @@ flex-wrap: nowrap;
     font-weight: 400;
     font-size: 16px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
-    margin-bottom: 3px;
-    padding: 9px;
+  @media only screen and (max-width: 1280px) {
+    width: 60vw;
+    margin-bottom: 8px;
+    padding: 10px;
   }
   @media only screen and (min-width: 1581px) and (max-width: 1680px) {
     margin-bottom: 4px;
@@ -5845,7 +5887,8 @@ flex-wrap: nowrap;
     font-weight: 300;
     font-size: 16px;
   }
-  @media only screen and (min-width: 500px) and (max-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
+    width: 60vw;
     margin-bottom: 3px;
     padding: 9px;
   }
