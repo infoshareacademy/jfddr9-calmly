@@ -206,6 +206,16 @@ export const Journal = () => {
           setEntryCounter(dayStartIndex + maxDataEntries);
         }
       }
+    } else {
+      if (daysData.length <= maxDataEntries) {
+        setDisplayedData(daysData);
+        setEntryCounter(maxDataEntries);
+      } else {
+        setDisplayedData(
+          daysData.slice(daysData.length - maxDataEntries, daysData.length)
+        );
+        setEntryCounter(daysData.length);
+      }
     }
   }, [maxDataEntries]);
 
@@ -561,7 +571,8 @@ export const Journal = () => {
               }}
             />
             <Tooltip />
-            <Tooltip labelFormatter={(label) => `Date: ${label}`} />
+            {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
+            {/* <Tooltip formatter={(value, name) => [value, name === 'score' ? 'Score' : 'Mood']} /> */}
             <Tooltip
               formatter={(value, name) => [
                 value,
@@ -576,6 +587,7 @@ export const Journal = () => {
               strokeWidth={3}
             />
             <Line type="monotone" dataKey="mood" stroke="#F231AA" />
+            <Line type="monotone" dataKey="date" stroke="#F231AA" />
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
