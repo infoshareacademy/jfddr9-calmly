@@ -52,7 +52,7 @@ const Obraz = styled(StyledImage)`
       }
     }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     top: 120px;
     left: 120px;
     @keyframes moving {
@@ -122,7 +122,7 @@ const ObrazTu = styled(StyledImage)`
       }
     }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     top: 60px;
     left: 600px;
   }
@@ -178,11 +178,11 @@ const ObrazTri = styled(StyledImage)`
       }
     }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     top: 100px;
     left: 400px;
   }
-  @media only screen and (min-width: 1251px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1251px) {
     top: 120px;
     left: 500px;
   }
@@ -196,7 +196,7 @@ const Body = styled.body`
   height: 100vh;
   background-repeat: no-repeat;
 
-  @media only screen and (min-width: 1250px) and (max-width: 1480px) {
+  @media only screen and (min-width: 1250px) {
     background-color: linear-gradient(
       141.59deg,
       #f6c59c 11.57%,
@@ -221,7 +221,7 @@ const MainDiv = styled.div`
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @media only screen and (min-width: 1281px) and (max-width: 1480px) {
+  @media only screen and (min-width: 1281px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -255,7 +255,7 @@ const Menu = styled.div`
     box-shadow: none;
     backdrop-filter: none;
   }
-  @media only screen and (min-width: 1281px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1281px) {
     background: none;
     width: 46vw;
     height: 46vw;
@@ -337,7 +337,7 @@ const Input = styled.input`
     margin-bottom: 8px;
     padding: 10px;
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     margin-bottom: 4px;
     padding: 12px;
   }
@@ -366,7 +366,7 @@ const TextArea = styled.textarea`
     margin-bottom: 3px;
     padding: 9px;
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     margin-bottom: 4px;
     padding: 12px;
   }
@@ -397,7 +397,7 @@ const SubmitButton = styled.button`
       color: white;
     }
   }
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     padding: 10px;
     font-weight: 500;
   }
@@ -417,7 +417,7 @@ const Hr = styled.hr`
   border: solid 4px white;
   width: 85px;
   margin: -8px 0 40px 0;
-  @media only screen and (min-width: 1581px) and (max-width: 1680px) {
+  @media only screen and (min-width: 1581px) {
     width: 75px;
     border: solid 3px white;
     margin: -8px 0 25px 0;
