@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Logo = styled.img`
   width: 480px;
+
+  @media (max-width: 1300px) {
+    width: 50vw;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -15,6 +19,16 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-family: "Outfit", sans-serif;
+
+  @media (max-width: 1300px) {
+    background-size: 0%;
+    background: linear-gradient(
+      141.59deg,
+      #f6c59c 11.57%,
+      #e3b4ab 53.27%,
+      #b3b4ef 123.37%
+    );
+  }
 `;
 export const WrapperContent = styled.div`
   display: flex;
@@ -23,16 +37,34 @@ export const WrapperContent = styled.div`
   width: 500px;
   margin-left: 110px;
   color: #797bec;
+
+  @media (max-width: 1300px) {
+    width: 80vw;
+    margin-left: 0;
+    margin 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px
+  }
 `;
 
 export const WrapperButtons = styled.div`
   display: flex;
   gap: 30px;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 export const TextUnderLogo = styled.div`
   margin-bottom: 80px;
   margin-top: -10px;
+
+  @media (max-width: 1300px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const Paragraph = styled.p`
@@ -68,6 +100,16 @@ export const Button = styled.div`
     transition: 0.1s ease-in;
     transform: scale(99%);
   }
+
+  @media (max-width: 450px) {
+    margin-bottom: 30px;
+    width: 60vw;
+  }
+
+  @media (max-width: 375px) {
+    margin-bottom: 20px;
+    height: 30px;
+  }
 `;
 
 export const ButtonSmaller = styled.div`
@@ -95,5 +137,13 @@ export const ButtonSmaller = styled.div`
   &:active {
     transition: 0.1s ease-in;
     transform: scale(99%);
+  }
+
+  @media (max-width: 450px) {
+    width: 60vw;
+  }
+
+  @media (max-width: 375px) {
+    height: 30px;
   }
 `;

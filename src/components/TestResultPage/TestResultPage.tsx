@@ -22,7 +22,7 @@ export const TestResultPage = ({ stressLevel }: TestResultPageProps) => {
         {/* buttons container */}
         <Styled.WrapperButtons>
           <Styled.Button onClick={() => navigate("/feelbetter")}>
-            Let's feel better!
+            Lets feel better!
           </Styled.Button>
           <Styled.Button onClick={() => navigate("/home")}>Home</Styled.Button>
         </Styled.WrapperButtons>

@@ -47,7 +47,6 @@ const StyledNewPicButton = styled.button`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 25px;
   text-align: center;
   padding: 12px 8px;
 
@@ -68,13 +67,20 @@ const StyledCategoryButton = styled.button`
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 25px;
   text-align: center;
   padding: 6px 40px;
 
   &:hover {
-    background: #52526b;
-    color: #ffff;
+    background: white;
+    transition: 0.2s;
+  }
+
+  @media (max-width: 400px) {
+    padding: 6px 30px;
+  }
+
+  @media (max-width: 350px) {
+    margin: 5px;
   }
 `;
 
@@ -88,9 +94,19 @@ const StyledImg = styled.img`
   padding: 20px;
   border-radius: 24px;
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
-  @media only screen and (min-width: 500px) and (max-width: 1580px) {
+  @media only screen and (min-width: 1200px) and (max-width: 1580px) {
     max-width: 1200px;
     height: 370px;
+  }
+  @media only screen and (min-width: 550px) and (max-width: 1200px) {
+    max-width: 550px;
+    height: 350px;
+  }
+  @media (max-width: 550px) {
+    padding: 10px;
+    max-width: 300px;
+    min-width: 50px;
+    height: 200px;
   }
 `;
 
@@ -103,6 +119,16 @@ const StyledDivBox = styled.div`
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
+`;
+
+const StyledDogCatFoxCategoryButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media (max-width: 350px) {
+    flex-direction: column;
+  }
 `;
 
 export const CutePictures = () => {
@@ -229,7 +255,7 @@ export const Dropdown = () => {
       >
         <div>
           <StyledNewPicButton onClick={() => getCutePicture(category)}>
-            NEW
+            new
           </StyledNewPicButton>
           <div
             style={{
@@ -242,13 +268,7 @@ export const Dropdown = () => {
               animals
             </StyledAnimalButton>
             {isOpen && (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                }}
-              >
+              <StyledDogCatFoxCategoryButton>
                 {list.map((item) => (
                   <div>
                     <StyledCategoryButton
@@ -258,7 +278,7 @@ export const Dropdown = () => {
                     </StyledCategoryButton>
                   </div>
                 ))}
-              </div>
+              </StyledDogCatFoxCategoryButton>
             )}
           </div>
         </div>
