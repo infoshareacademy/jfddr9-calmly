@@ -27,9 +27,9 @@ export const Home = () => {
   return (
     <>
       <Navigation
-        src="src/assets/logo-violet.png"
+        src="./src/assets/logo-violet.png"
         alt="Calmly company's logo in violet colour"
-        srcHamburger="src/assets/MenuPrpl.svg"
+        srcHamburger="./src/assets/MenuPrpl.svg"
       ></Navigation>
       <Styled.Wrapper>
         <>
