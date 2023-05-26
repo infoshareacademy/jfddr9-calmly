@@ -127,7 +127,7 @@ export const ForgotPassword = () => {
             id="email"
             placeholder="Email"
           />
-          <IconWrapper src="src/assets/formIcons/mail.svg" />
+          <IconWrapper src="/formIcons/mail.svg" />
         </InputWrapper>
         <ButtonForgotPassword>Send</ButtonForgotPassword>
       </FormForgotPassword>

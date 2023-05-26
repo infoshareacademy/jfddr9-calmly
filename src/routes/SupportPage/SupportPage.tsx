@@ -11,8 +11,8 @@ export const SupportPage = () => {
   return (
     <Styled.Background>
       <Navigation
-        src="src/assets/logo-white.png"
-        srcHamburger="src/assets/MenuWhite.svg"
+        src="/logo-white.png"
+        srcHamburger="/MenuWhite.svg"
         alt="Calmly logo in white colour"
       />
       <Styled.Wrapper>
@@ -24,7 +24,7 @@ export const SupportPage = () => {
           <h3>free 24/7 support at your fingertips</h3>
         </Styled.WrapperLeft>
         <Styled.WrapperRight>
-          <img src="src/assets/sadcat.png" />
+          <img src="/sadcat.png" />
         </Styled.WrapperRight>
       </Styled.Wrapper>
     </Styled.Background>

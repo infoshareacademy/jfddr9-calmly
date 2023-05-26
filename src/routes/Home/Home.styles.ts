@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   font-family: "Outfit", sans-serif;
-  background-image: url("src/assets/grl_home.png");
+  background-image: url("/grl_home.png");
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: right;
