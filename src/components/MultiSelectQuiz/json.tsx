@@ -42,6 +42,13 @@ export const json = {
       type: "text",
       name: "customOption",
       title: "optional custom feelings",
+      requiredErrorText: "Too many characters",
+      validators: [
+        {
+          type: "answercount",
+        },
+      ],
+      maxLength: 50,
     },
   ],
   showQuestionNumbers: false,
