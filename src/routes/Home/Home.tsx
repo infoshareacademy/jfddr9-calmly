@@ -29,8 +29,6 @@ export const Home = () => {
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      console.log(window.innerWidth);
-
       if (window.innerWidth < 1200) {
         setIsSizeSmall(true);
       } else {
@@ -42,7 +40,6 @@ export const Home = () => {
   useEffect(() => {
     const shouldBeWhite = pathname === "/home" && isSizeSmall;
     setLogoSrc(shouldBeWhite ? "/logo-white.png" : "/logo-violet.png");
-    console.warn(isSizeSmall);
   }, [pathname, isSizeSmall]);
 
   return (
