@@ -13,10 +13,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: white;
+
   padding: 185px;
   border-radius: 18px;
   align-items: center;
+  position: relative;
+  top: 30px;
 `;
 const ScoreP = styled.p`
   position: absolute;
@@ -118,6 +120,9 @@ export const Score: React.FC<ScoreProps> = ({ kontent }) => {
   return (
     <>
       <Wrapper>
+        <h3 style={{ color: "#797bec", position: "absolute", top: "-15px" }}>
+          Avarage score based on displayed data
+        </h3>
         <Circle1 src={elipse1} />
         <Circle2 src={elipse2} />
         <Circle3 src={elipse3} />

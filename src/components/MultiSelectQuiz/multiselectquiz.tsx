@@ -135,14 +135,29 @@ export function SurveyComponent({ score }: { score: number }) {
 
     const docRef = doc(db, "journal", authUser.uid ?? "");
 
-    console.log(result.multiselect);
+    console.log(result.customOption);
+
+    const customMood: string = result.customOption;
+
+    const isCustom = customMood ? true : false;
+
+    const objToSend = isCustom
+      ? {
+          date: Timestamp.fromDate(currentDate),
+          score: score,
+          mood: result.multiselect,
+          custom: result.customOption,
+        }
+      : {
+          date: Timestamp.fromDate(currentDate),
+          score: score,
+          mood: result.multiselect,
+        };
+
+    console.log(objToSend);
 
     updateDoc(docRef, {
-      entries: arrayUnion({
-        date: Timestamp.fromDate(currentDate),
-        score: score,
-        mood: result.multiselect,
-      }),
+      entries: arrayUnion(objToSend),
     }).then(() => console.log("update done"));
 
     setIsDone(true);
