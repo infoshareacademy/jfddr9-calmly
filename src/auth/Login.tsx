@@ -116,7 +116,7 @@ export const Login = ({ isPasswordHidden = false }) => {
     const password = form.password.value;
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((jwt) => {
+      .then(() => {
         form.reset();
       })
 
