@@ -27,9 +27,9 @@ export const Home = () => {
   return (
     <>
       <Navigation
-        src="./src/assets/logo-violet.png"
-        alt="Calmly company's logo in violet colour"
-        srcHamburger="./src/assets/MenuPrpl.svg"
+        src="/logo-violet.png"
+        alt="Calmly logo in violet colour"
+        srcHamburger="/MenuPrpl.svg"
       ></Navigation>
       <Styled.Wrapper>
         <>
@@ -42,7 +42,7 @@ export const Home = () => {
                 Let your <span>stress</span> drop
               </Styled.TextUnderHeader>
               <Styled.Paragraph>
-                Let's begin by exploring a few steps that can help you create a
+                Lets begin by exploring a few steps that can help you create a
                 sense of comfort and ease. Our healing journey includes relaxing
                 music, breathing exercises, therapy with your favorite animals
                 and sounds of nature. Lastly, you will see some additional

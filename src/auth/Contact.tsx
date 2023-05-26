@@ -441,7 +441,7 @@ export function Contact() {
   }, [dispatch]);
 
   const [thankYou, setThankYou] = useState(true);
-  const [kontent, setKontent] = useState("Let's talk");
+  const [kontent, setKontent] = useState("Lets talk");
   const [content, setContent] = useState({
     email: "",
     name: "",
@@ -483,14 +483,14 @@ export function Contact() {
         <Navigation
           src="src/assets/logo-white.png"
           srcHamburger="src/assets/MenuWhite.svg"
-          alt="Calmly company's logo in white colour"
+          alt="Calmly logo in white colour"
         />
         <Menu>
           <MenuContent>
             {thankYou ? (
               <Authors>
-                <b>Calmly</b> was created by a group of beginner programmers:{" "}
-                <b>Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid</b>
+                <b>Calmly</b> was created by a group of junior programmers:{" "}
+                <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
               </Authors>
             ) : (
               <Authors></Authors>
@@ -517,7 +517,7 @@ export function Contact() {
                     onChange={handleInputChange}
                   ></Input>
                   <TextArea
-                    placeholder="Tell us more about your experience with Calmly"
+                    placeholder="Tell us about your experience with Calmly"
                     name="message"
                     id="message"
                     value={message}

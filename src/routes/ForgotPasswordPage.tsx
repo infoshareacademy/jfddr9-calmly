@@ -77,7 +77,7 @@ export const ForgotPasswordPage = () => {
         </FooterWrapper>
       </LeftCardWrapper>
       <GraphicsCard
-        src="../src/assets/catti_forgot.svg"
+        src="/catti_forgot.svg"
         alt="An illustration of a cat looking confused, symbolizing forgetting a password"
       />
     </MainWrapper>

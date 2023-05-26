@@ -152,7 +152,7 @@ export const Register = ({ isPasswordHidden = false }) => {
               id="fullName"
               placeholder="Name"
             />
-            <IconWrapper src="src/assets/formIcons/user.svg" />
+            <IconWrapper src="/formIcons/user.svg" />
           </InputWrapper>
           <InputWrapper>
             <InputRegister
@@ -161,7 +161,7 @@ export const Register = ({ isPasswordHidden = false }) => {
               id="email"
               placeholder="Email"
             />
-            <IconWrapper src="src/assets/formIcons/mail.svg" />
+            <IconWrapper src="/formIcons/mail.svg" />
           </InputWrapper>
           {/* <select name="country">
           <option value={defaultCountry}></option>
@@ -177,7 +177,7 @@ export const Register = ({ isPasswordHidden = false }) => {
                 id="password"
                 placeholder="Password"
               />
-              <IconWrapper src="src/assets/formIcons/lock.svg" />
+              <IconWrapper src="/formIcons/lock.svg" />
             </InputWrapper>
           )}
         </AllInputsWrapper>

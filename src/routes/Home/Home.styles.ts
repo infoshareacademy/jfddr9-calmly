@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   font-family: "Outfit", sans-serif;
-  background-image: url("src/assets/grl_home.png");
+  background-image: url("/grl_home.png");
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: right;
@@ -14,6 +14,16 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-family: "Outfit", sans-serif;
+
+  @media (max-width: 1200px) {
+    background-size: 0%;
+    background: linear-gradient(
+      141.59deg,
+      #f6c59c 11.57%,
+      #e3b4ab 53.27%,
+      #b3b4ef 123.37%
+    );
+  }
 `;
 
 // export const WrapperContent = styled.div`
@@ -33,6 +43,11 @@ export const WrapperContent = styled.div`
   align-items: center;
   margin-left: 110px;
   color: #797bec;
+
+  @media (max-width: 1200px) {
+    margin-left: 0;
+    margin: 0 auto;
+  }
 `;
 
 export const WrapperText = styled.div`
@@ -41,6 +56,17 @@ export const WrapperText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (max-width: 1200px) {
+    width: auto;
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+  }
+
+  @media (max-width: 440px) {
+    width: 60vw;
+  }
 `;
 
 export const WrapperButtons = styled.div`
@@ -58,6 +84,11 @@ export const Header = styled.div`
   & span {
     font-weight: 700;
   }
+
+  @media (max-width: 440px) {
+    margin-top: 20px;
+    font-size: 33px;
+  }
 `;
 
 export const TextUnderHeader = styled.div`
@@ -67,6 +98,10 @@ export const TextUnderHeader = styled.div`
 
   & span {
     font-weight: 500;
+  }
+
+  @media (max-width: 440px) {
+    font-size: 15px;
   }
 `;
 
@@ -84,6 +119,16 @@ export const Paragraph = styled.p`
   }
   @media (max-width: 1350px) {
     max-width: 400px;
+  }
+
+  @media (max-width: 1200px) {
+    padding-right: 0;
+  }
+
+  @media (max-width: 440px) {
+    font-size: 9px;
+    margin-bottom: 24px;
+    margin-top: 24px;
   }
 `;
 
@@ -115,6 +160,12 @@ export const Button = styled.button`
   &:active {
     transition: 0.1s ease-in;
     transform: scale(99%);
+  }
+
+  @media (max-width: 440px) {
+    width: 60vw;
+    margin-bottom: 10px;
+    height: 36px;
   }
 
   // font-size: 18px;

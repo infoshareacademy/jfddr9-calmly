@@ -18,7 +18,7 @@ export const LandingPage = () => {
   return (
     <Styled.Wrapper>
       <Styled.WrapperContent>
-        <Styled.Logo src="src/assets/logo.png" alt="Calmly company's logo" />
+        <Styled.Logo src="/logo.png" alt="Calmly logo" />
         <Styled.TextUnderLogo>let your stress drop</Styled.TextUnderLogo>
         <Styled.Paragraph>
           Calmly offers an interactive toolkit that will measure your stress and

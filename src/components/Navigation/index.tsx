@@ -171,7 +171,7 @@ export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
           isActive={isFeelBetterPage}
           onClick={() => navigate("/feelbetter")}
         >
-          Let's feel better
+          Lets feel better
         </NavLink>
         <NavLink isActive={isSupportPage} onClick={() => navigate("/support")}>
           Support

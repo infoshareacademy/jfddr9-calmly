@@ -634,7 +634,7 @@ export const Journal = () => {
       <Navigation
         src="src/assets/logo-white.png"
         srcHamburger="src/assets/MenuWhite.svg"
-        alt="Calmly company's logo in white colour"
+        alt="Calmly logo in white colour"
       />
       <ChartContainer>
         {/* {!isDisplayDays && <button onClick={() => backToDaysDisplay()}>Back to days</button>} */}

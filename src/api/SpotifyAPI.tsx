@@ -139,7 +139,7 @@ export const SpotifyAPI = () => {
             <SpotifyTrack track={tracks[list + 2]} />
           </StyledTracksContainer>
           <StyledLoadButton onClick={() => setList(list + 3)}>
-            <StyledButtonText>load next songs</StyledButtonText>
+            <StyledButtonText>new songs</StyledButtonText>
           </StyledLoadButton>
         </>
       )}
