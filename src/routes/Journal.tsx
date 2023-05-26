@@ -8,11 +8,13 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { useEffect, useState } from "react";
 import { LoaderComponent } from "../components/Loader";
+
+import { Navigation } from "../components/Navigation";
+import { Score } from "../components/Score/Score";
 
 import styled from "styled-components";
 import { updateBg } from "../store/slice";
@@ -20,17 +22,133 @@ import { updateBg } from "../store/slice";
 const ChartContainer = styled.div`
   width: 90%;
   margin: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  background-color: white;
+  border-radius: 18px;
+  padding-block: 20px;
+  padding-right: 50px;
+  box-sizing: border-box;
+
+  @media (max-width: 1160px) {
+    margin-top: 140px;
+  }
+`;
+
+const StatisticsAndNavContainer = styled.div`
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  @media (max-width: 1160px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
+const StatisticsContainer = styled.div`
+  min-width: 370px;
+  height: 370px;
+  background-color: white;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  border-radius: 18px;
-  padding-right: 25px;
-  padding-block: 20px;
+  gap: 20px;
+
+  @media (max-width: 1160px) {
+    order: 2;
+  }
 `;
 
-let maxDataEntries = 7;
+const NavigationContainer = styled.nav`
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  @media (max-width: 1160px) {
+    order: 1;
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+const DateInput = styled.input`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.68);
+  padding: 14px;
+  border-radius: 8px;
+  border: 0;
+  color: #797bec;
+`;
+
+const Select = styled.select`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.68);
+  padding: 8px;
+  border-radius: 8px;
+  border: 0;
+  color: #797bec;
+`;
+
+const StyledStepButton = styled.button`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background-color: rgb(255, 255, 255, 0.45);
+  color: #797bec;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+`;
+
+const StyledLabel = styled.label`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: auto;
+`;
+
+const StyledMoods = styled.div`
+  width: 88px;
+  height: 30px;
+  background: rgba(217, 217, 217, 0.3);
+  border-radius: 50px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #797bec;
+`;
+
+let maxDataEntries: any = 7;
 
 export const Journal = () => {
   const { authUser }: any = useSelector((state) => state);
@@ -41,9 +159,21 @@ export const Journal = () => {
   const [daysData, setDaysData] = useState([]);
   const [displayedData, setDisplayedData]: any[] = useState<any>([]);
 
-  const [entryCounter, setEntryCounter] = useState(maxDataEntries);
-
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  if (windowWidth > 1165) {
+    maxDataEntries = 7;
+  } else if (windowWidth <= 1165 && windowWidth > 1000) {
+    maxDataEntries = 6;
+  } else if (windowWidth <= 1000 && windowWidth > 830) {
+    maxDataEntries = 5;
+  } else if (windowWidth <= 830 && windowWidth > 680) {
+    maxDataEntries = 4;
+  } else if (windowWidth <= 680 && windowWidth > 100) {
+    maxDataEntries = 3;
+  }
+
+  const [entryCounter, setEntryCounter] = useState(maxDataEntries);
 
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
@@ -58,20 +188,11 @@ export const Journal = () => {
   const [dateValue, setDateValue] = useState(
     formatDate(new Date()).slice(0, 10)
   );
+  const [customDateValue, setCustomDateValue] = useState(
+    formatDate(new Date()).slice(0, 10)
+  );
   const [displayType, setDisplayType] = useState("daily");
   // const [responsiveData, setResponsiveData] = useState([]);
-
-  if (windowWidth > 768) {
-    maxDataEntries = 7;
-  } else if (windowWidth <= 768 && windowWidth > 650) {
-    maxDataEntries = 6;
-  } else if (windowWidth <= 650 && windowWidth > 520) {
-    maxDataEntries = 5;
-  } else if (windowWidth <= 520 && windowWidth > 415) {
-    maxDataEntries = 4;
-  } else if (windowWidth <= 415 && windowWidth > 100) {
-    maxDataEntries = 3;
-  }
 
   const dispatch = useDispatch();
 
@@ -100,6 +221,19 @@ export const Journal = () => {
         const days: any = dataToDays(entries);
         setDaysData(days);
         setDateValue(days[days.length - 1].date);
+        console.log(windowWidth);
+        if (windowWidth > 1165) {
+          maxDataEntries = 7;
+        } else if (windowWidth <= 1165 && windowWidth > 1000) {
+          maxDataEntries = 6;
+        } else if (windowWidth <= 1000 && windowWidth > 830) {
+          maxDataEntries = 5;
+        } else if (windowWidth <= 830 && windowWidth > 680) {
+          maxDataEntries = 4;
+        } else if (windowWidth <= 680 && windowWidth > 100) {
+          maxDataEntries = 3;
+        }
+        console.log(maxDataEntries);
         if (days.length <= maxDataEntries) {
           setDisplayedData(days);
           setEntryCounter(maxDataEntries);
@@ -121,7 +255,33 @@ export const Journal = () => {
   }, []);
 
   useEffect(() => {
-    if (isDisplayDays) {
+    if (displayType !== "custom") {
+      if (isDisplayDays) {
+        if (daysData.length <= maxDataEntries) {
+          setDisplayedData(daysData);
+          setEntryCounter(maxDataEntries);
+        } else {
+          setDisplayedData(
+            daysData.slice(daysData.length - maxDataEntries, daysData.length)
+          );
+          setEntryCounter(daysData.length);
+        }
+      } else {
+        if (data.length <= maxDataEntries) {
+          setDisplayedData(data);
+          setEntryCounter(maxDataEntries);
+        } else {
+          const line = displayedData[0].date;
+          const dayStartIndex = data.findIndex(
+            (item: any) => item.date === line
+          );
+          setDisplayedData(
+            data.slice(dayStartIndex, dayStartIndex + maxDataEntries)
+          );
+          setEntryCounter(dayStartIndex + maxDataEntries);
+        }
+      }
+    } else {
       if (daysData.length <= maxDataEntries) {
         setDisplayedData(daysData);
         setEntryCounter(maxDataEntries);
@@ -131,26 +291,17 @@ export const Journal = () => {
         );
         setEntryCounter(daysData.length);
       }
-    } else {
-      if (data.length <= maxDataEntries) {
-        setDisplayedData(data);
-        setEntryCounter(maxDataEntries);
-      } else {
-        const line = displayedData[0].date;
-        const dayStartIndex = data.findIndex((item: any) => item.date === line);
-        setDisplayedData(
-          data.slice(dayStartIndex, dayStartIndex + maxDataEntries)
-        );
-        setEntryCounter(dayStartIndex + maxDataEntries);
-      }
     }
   }, [maxDataEntries]);
 
-  const goToDay = (line: string) => {
-    console.log(line);
-    setDateValue(line);
+  useEffect(() => {
+    dispatch(updateBg("bgJournal"));
+  }, [dispatch]);
 
-    if (displayType === "detailed") {
+  const goToDay = (line: string, mode: string, whichDate: number) => {
+    console.log(line);
+
+    if (mode === "detailed") {
       const dayStartIndex = data.findIndex(
         (item: any) => item.date.slice(0, 10) === line
       );
@@ -166,7 +317,7 @@ export const Journal = () => {
         setEntryCounter(dayStartIndex + maxDataEntries);
         setIsDisplayDays(false);
       }
-    } else {
+    } else if (mode === "daily") {
       const dayStartIndex = daysData.findIndex(
         (item: any) => item.date === line
       );
@@ -182,6 +333,31 @@ export const Journal = () => {
         setEntryCounter(dayStartIndex + maxDataEntries);
         setIsDisplayDays(true);
       }
+    } else {
+      let dayStartIndex = 0;
+      let dayEndIndex = 0;
+      if (whichDate === 0) {
+        dayStartIndex = daysData.findIndex((item: any) => item.date === line);
+        dayEndIndex = daysData.findIndex(
+          (item: any) => item.date === customDateValue
+        );
+      } else {
+        dayStartIndex = daysData.findIndex(
+          (item: any) => item.date === dateValue
+        );
+        dayEndIndex = daysData.findIndex((item: any) => item.date === line);
+      }
+
+      console.log(daysData);
+      if (dayStartIndex + maxDataEntries > daysData.length) {
+        setDisplayedData(daysData.slice(dayStartIndex, daysData.length));
+        //setEntryCounter(daysData.length);
+        setIsDisplayDays(true);
+      } else {
+        setDisplayedData(daysData.slice(dayStartIndex, dayEndIndex + 1));
+        //setEntryCounter(dayStartIndex + maxDataEntries);
+        setIsDisplayDays(true);
+      }
     }
   };
 
@@ -189,21 +365,39 @@ export const Journal = () => {
     const nextEntryCounter = entryCounter + maxDataEntries;
     if (isDisplayDays) {
       if (nextEntryCounter <= daysData.length) {
-        setDisplayedData(daysData.slice(entryCounter, nextEntryCounter));
-        setEntryCounter(nextEntryCounter);
-      } else {
-        setDisplayedData(
-          daysData.slice(daysData.length - maxDataEntries, daysData.length)
+        const newDisplayedData: any = daysData.slice(
+          entryCounter,
+          nextEntryCounter
         );
+        setDisplayedData(newDisplayedData);
+        setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date);
+      } else {
+        const newDisplayedData: any = daysData.slice(
+          daysData.length - maxDataEntries,
+          daysData.length
+        );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter); // ??
+        setDateValue(newDisplayedData[0].date);
       }
     } else {
       if (nextEntryCounter <= data.length) {
-        setDisplayedData(data.slice(entryCounter, nextEntryCounter));
+        const newDisplayedData: any = data.slice(
+          entryCounter,
+          nextEntryCounter
+        );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       } else {
-        setDisplayedData(data.slice(data.length - maxDataEntries, data.length));
+        const newDisplayedData: any = data.slice(
+          data.length - maxDataEntries,
+          data.length
+        );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter); // ??
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       }
     }
   };
@@ -211,25 +405,35 @@ export const Journal = () => {
   const backData = () => {
     if (isDisplayDays) {
       if (entryCounter - maxDataEntries < maxDataEntries) {
-        setDisplayedData(daysData.slice(0, maxDataEntries));
+        const newDisplayedData: any = daysData.slice(0, maxDataEntries);
+        setDisplayedData(newDisplayedData);
         setEntryCounter(maxDataEntries);
+        setDateValue(newDisplayedData[0].date);
       } else {
         const nextEntryCounter = entryCounter - maxDataEntries;
-        setDisplayedData(
-          daysData.slice(nextEntryCounter - maxDataEntries, nextEntryCounter)
+        const newDisplayedData: any = daysData.slice(
+          nextEntryCounter - maxDataEntries,
+          nextEntryCounter
         );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date);
       }
     } else {
       if (entryCounter - maxDataEntries < maxDataEntries) {
+        const newDisplayedData: any = data.slice(0, maxDataEntries);
         setDisplayedData(data.slice(0, maxDataEntries));
         setEntryCounter(maxDataEntries);
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       } else {
         const nextEntryCounter = entryCounter - displayedData.length;
-        setDisplayedData(
-          data.slice(nextEntryCounter - maxDataEntries, nextEntryCounter)
+        const newDisplayedData: any = data.slice(
+          nextEntryCounter - maxDataEntries,
+          nextEntryCounter
         );
+        setDisplayedData(newDisplayedData);
         setEntryCounter(nextEntryCounter);
+        setDateValue(newDisplayedData[0].date.slice(0, 10));
       }
     }
   };
@@ -276,16 +480,21 @@ export const Journal = () => {
       <g transform={`translate(${x},${y})`}>
         {lines.map((line, index) => (
           <text
-            style={{ wordBreak: "break-all" }}
             key={index}
+            fontWeight={"bold"}
             x={0}
             y={10}
             dy={index === 0 ? verticalOffset : 0}
             textAnchor={isFirstTick ? "right" : isLastTick ? "end" : "middle"}
-            fill="#666"
-            fontSize={12}
-            cursor={"pointer"}
-            onClick={() => (isDisplayDays ? goToDay(line) : null)}
+            fill="#797bec"
+            fontSize={maxDataEntries !== 3 ? 16 : 12}
+            cursor={isDisplayDays ? "pointer" : "initial"}
+            onClick={() => {
+              if (isDisplayDays) {
+                setDisplayType("detailed");
+                goToDay(line, "detailed", 0);
+              }
+            }}
           >
             {line}
           </text>
@@ -381,57 +590,51 @@ export const Journal = () => {
   console.log(entryCounter);
   console.log(data);
 
-  const backToDaysDisplay = () => {
-    setIsDisplayDays(true);
-    // const days: any = dataToDays(data);
-    // if (days.length <= 7) {
-    //   setDisplayedData(days);
-    //   setEntryCounter(7);
-    // } else {
-    //   setDisplayedData(days.slice(days.length - 7, days.length));
-    //   setEntryCounter(days.length);
-    // }
-    // setDisplayedData(days);
-    // setEntryCounter(7);
-
-    if (daysData.length <= maxDataEntries) {
-      setDisplayedData(daysData);
-      setEntryCounter(maxDataEntries);
-    } else {
-      setDisplayedData(
-        daysData.slice(daysData.length - maxDataEntries, daysData.length)
-      );
-      setEntryCounter(daysData.length);
-    }
-  };
-
   let daysOrData = isDisplayDays ? daysData : data;
 
-  // if (windowWidth > 768) {
-  //   responsiveData = displayedData;
-  // } else if (windowWidth <= 768 && windowWidth > 650) {
-  //   responsiveData = displayedData.slice(0, -1);
-  // } else if (windowWidth <= 650 && windowWidth > 520) {
-  //   responsiveData = displayedData.slice(0, -2);
-  // } else if (windowWidth <= 520 && windowWidth > 415) {
-  //   responsiveData = displayedData.slice(0, -3);
-  // } else if (windowWidth <= 415 && windowWidth > 100) {
-  //   responsiveData = displayedData.slice(0, -4);
-  // }
-
-  //console.log(responsiveData);
   console.log(maxDataEntries);
+
+  let sum = 0;
+  for (let i = 0; i < displayedData.length; i++) {
+    sum += displayedData[i].score;
+  }
+  const avg = sum / displayedData.length;
+  console.log(avg);
+
+  const moodCount: any = {};
+  for (let i = 0; i < displayedData.length; i++) {
+    const moods = displayedData[i].mood;
+    for (let j = 0; j < moods.length; j++) {
+      const mood = moods[j];
+      moodCount[mood] = (moodCount[mood] || 0) + 1;
+    }
+  }
+
+  const sortedMoods = Object.keys(moodCount).sort(
+    (a, b) => moodCount[b] - moodCount[a]
+  );
+  const top3Moods = sortedMoods.slice(0, 3);
+
+  console.log(top3Moods);
 
   return data.length !== 0 ? (
     <>
+      <Navigation
+        src="src/assets/logo-white.png"
+        srcHamburger="src/assets/MenuWhite.svg"
+        alt="Calmly company's logo in white colour"
+      />
       <ChartContainer>
-        {!isDisplayDays && (
-          <button onClick={() => backToDaysDisplay()}>Back to days</button>
-        )}
+        {/* {!isDisplayDays && <button onClick={() => backToDaysDisplay()}>Back to days</button>} */}
+
         <ResponsiveContainer width="90%" height={500}>
-          <LineChart data={displayedData}>
+          <LineChart key={maxDataEntries} data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tick={renderCustomTick} interval={0} />
+            <XAxis
+              dataKey="date"
+              tick={renderCustomTick}
+              interval={displayType === "custom" ? 1 : 0}
+            />
             <YAxis
               domain={[0, 20]}
               tickCount={3}
@@ -447,72 +650,132 @@ export const Journal = () => {
                 }
               }}
             />
-            <Tooltip />
-            <Tooltip labelFormatter={(label) => `Date: ${label}`} />
-            <Tooltip
-              formatter={(value, name) => [
-                value,
-                name === "score" ? "Score" : "Mood",
-              ]}
-            />
-            <Legend />
+            {displayType === "custom" && (
+              <Tooltip
+                labelStyle={{ color: "green" }}
+                itemStyle={{ color: "#797BEC" }}
+                formatter={(value: any, name) => {
+                  //console.log(value);
+                  let formattedValue = value;
+                  if (typeof value !== "number") {
+                    formattedValue = value.join(" ~ ");
+                  }
+                  return [formattedValue, name === "score" ? "Score" : "Mood"];
+                }}
+                labelFormatter={function (value) {
+                  //console.log(name);
+                  return `Date: ${value}`;
+                }}
+              />
+            )}
+            {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
+            {displayType !== "custom" && (
+              <Tooltip
+                formatter={(value: any, name) => {
+                  //console.log(value);
+                  let formattedValue = value;
+                  if (typeof value !== "number") {
+                    formattedValue = value.join(" ~ ");
+                  }
+                  return [formattedValue, name === "score" ? "Score" : "Mood"];
+                }}
+              />
+            )}
+            {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
+            {/* <Tooltip
+              formatter={(value, name) => [value, name === 'score' ? 'Score' : name === 'mood' ? 'Mood' : 'Date']}
+            /> */}
+            {/* <Legend /> */}
             <Line
               type="monotone"
               dataKey="score"
               stroke="#797BEC"
               strokeWidth={3}
             />
-            <Line type="monotone" dataKey="mood" stroke="#F231AA" />
+            <Line type="monotone" dataKey="mood" stroke="#797BEC" />
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
-      <button
-        onClick={backData}
-        disabled={entryCounter === maxDataEntries ? true : false}
-      >
-        Back
-      </button>
-      <button
-        onClick={nextData}
-        disabled={entryCounter >= daysOrData.length ? true : false}
-      >
-        Next
-      </button>
-      <input
-        type="date"
-        value={dateValue}
-        onChange={(e) => goToDay(e.target.value)}
-      />
-      <select
-        value={displayType}
-        onChange={(e) => setDisplayType(e.target.value)}
-      >
-        <option value={"daily"}>Daily</option>
-        <option value={"detailed"}>Detailed</option>
-      </select>
+
+      <StatisticsAndNavContainer>
+        <StatisticsContainer>
+          <Score kontent={avg.toFixed(2)} />
+        </StatisticsContainer>
+        <NavigationContainer>
+          <ButtonsContainer>
+            {displayType !== "custom" && (
+              <StyledStepButton
+                onClick={backData}
+                disabled={entryCounter === maxDataEntries ? true : false}
+              >
+                {"<"}
+              </StyledStepButton>
+            )}
+            <DateInput
+              type="date"
+              value={dateValue}
+              onChange={(e) => {
+                setDateValue(e.target.value);
+                goToDay(e.target.value, displayType, 0);
+              }}
+            />
+            {displayType === "custom" && (
+              <DateInput
+                type="date"
+                value={customDateValue}
+                onChange={(e) => {
+                  setCustomDateValue(e.target.value);
+                  goToDay(e.target.value, displayType, 1);
+                }}
+              />
+            )}
+            {displayType !== "custom" && (
+              <StyledStepButton
+                onClick={nextData}
+                disabled={entryCounter >= daysOrData.length ? true : false}
+              >
+                {">"}
+              </StyledStepButton>
+            )}
+          </ButtonsContainer>
+
+          <ButtonsContainer>
+            <StyledLabel htmlFor="select">View: </StyledLabel>
+            <Select
+              name="select"
+              value={displayType}
+              onChange={(e) => {
+                const firstDisplayedDate = displayedData[0].date.slice(0, 10);
+                if (e.target.value === "custom") {
+                  setDisplayType(e.target.value);
+                  setDateValue(firstDisplayedDate);
+                  setIsDisplayDays(true);
+                  goToDay(firstDisplayedDate, e.target.value, 0);
+                } else {
+                  setDisplayType(e.target.value);
+                  console.log(e.target.value);
+                  setIsDisplayDays(e.target.value === "daily" ? true : false);
+                  goToDay(dateValue, e.target.value, 0);
+                }
+              }}
+            >
+              <option value={"daily"}>Daily</option>
+              <option value={"detailed"}>Detailed</option>
+              <option value={"custom"}>Custom</option>
+            </Select>
+          </ButtonsContainer>
+        </NavigationContainer>
+        <StatisticsContainer>
+          <h3 style={{ color: "#797bec" }}>
+            Most frequently chosen moods from displayed data
+          </h3>
+          <StyledMoods>{top3Moods[0]}</StyledMoods>
+          <StyledMoods>{top3Moods[1]}</StyledMoods>
+          <StyledMoods>{top3Moods[2]}</StyledMoods>
+        </StatisticsContainer>
+      </StatisticsAndNavContainer>
     </>
   ) : (
     <LoaderComponent />
   );
 };
-
-// const data = [
-//   { name: 'January', uv: 4000, pv: 2400, amt: 2400 },
-//   { name: 'February', uv: 3000, pv: 1398, amt: 2210 },
-//   { name: 'March', uv: 2000, pv: 9800, amt: 2290 },
-//   { name: 'April', uv: 2780, pv: 3908, amt: 2000 },
-//   { name: 'May', uv: 1890, pv: 4800, amt: 2181 },
-//   { name: 'June', uv: 2390, pv: 3800, amt: 2500 },
-//   { name: 'July', uv: 3490, pv: 4300, amt: 2100 },
-// ];
-
-// export const Journal = () => (
-//   <LineChart width={500} height={300} data={data}>
-//     <CartesianGrid strokeDasharray="3 3" />
-//     <XAxis dataKey="name" />
-//     <YAxis />
-//     <Tooltip />
-//     <Legend />
-//     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-//   </LineChart>
-// );

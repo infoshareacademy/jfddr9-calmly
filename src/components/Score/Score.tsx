@@ -19,16 +19,16 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const ScoreP = styled.p`
-  position: fixed;
+  position: absolute;
   color: #797bec;
   font-size: 26px;
   font-weight: 600;
 `;
 const Circle = styled.img`
-  position: fixed;
+  position: absolute;
 `;
 const Circle1 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 45s infinite normal backwards;
   @keyframes rotate {
     0% {
@@ -40,7 +40,7 @@ const Circle1 = styled.img`
   }
 `;
 const Circle2 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 35s infinite normal backwards;
   @keyframes rotate {
     0% {
@@ -52,7 +52,7 @@ const Circle2 = styled.img`
   }
 `;
 const Circle3 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 45s infinite normal backwards;
   @keyframes rotate {
     0% {
@@ -64,7 +64,7 @@ const Circle3 = styled.img`
   }
 `;
 const Circle4 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 45s infinite normal backwards;
   @keyframes rotate {
     0% {
@@ -76,7 +76,7 @@ const Circle4 = styled.img`
   }
 `;
 const Circle5 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 35s infinite normal backwards;
   @keyframes rotate {
     0% {
@@ -88,7 +88,7 @@ const Circle5 = styled.img`
   }
 `;
 const Circle6 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 35s infinite normal backwards;
   @keyframes rotate {
     0% {
@@ -100,7 +100,7 @@ const Circle6 = styled.img`
   }
 `;
 const Circle7 = styled.img`
-  position: fixed;
+  position: absolute;
   animation: rotate 45s infinite normal backwards;
   @keyframes rotate {
     0% {
