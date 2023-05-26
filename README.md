@@ -1,4 +1,4 @@
-# Calmly by Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid
+# Calmly by Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid
 
 ## Application Description
 

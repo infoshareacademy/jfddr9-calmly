@@ -490,7 +490,7 @@ export function Contact() {
             {thankYou ? (
               <Authors>
                 <b>Calmly</b> was created by a group of junior programmers:{" "}
-                <b>Ania, Marietta, Nikoletta, Sylwia, Bartek and Dawid</b>
+                <b>Ania, Marietta, Nicoletta, Sylwia, Bartek and Dawid</b>
               </Authors>
             ) : (
               <Authors></Authors>
