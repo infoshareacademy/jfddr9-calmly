@@ -22,12 +22,7 @@ export const Wrapper = styled.div`
 
   @media (max-width: 1300px) {
     background-size: 0%;
-    background: linear-gradient(
-      141.59deg,
-      #f6c59c 11.57%,
-      #e3b4ab 53.27%,
-      #b3b4ef 123.37%
-    );
+    background: linear-gradient(243.18deg, #eebda3 0%, #9495ed 100%);
   }
 `;
 export const WrapperContent = styled.div`

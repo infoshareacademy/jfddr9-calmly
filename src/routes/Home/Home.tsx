@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Styled from "./Home.styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { updateBg } from "../../store/slice";
 import { Navigation } from "../../components/Navigation";
 import { RootState } from "../../store/store";
@@ -11,6 +11,9 @@ export const Home = () => {
   const navigate = useNavigate();
   // const { authUser }: any = useSelector((state) => state);
   const authUser = useSelector((state: RootState) => state.authUser);
+
+  const [logoSrc, setLogoSrc] = useState("");
+  const [isSizeSmall, setIsSizeSmall] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
     dispatch(updateBg("bgHome"));
@@ -22,12 +25,33 @@ export const Home = () => {
     isUserLogged == null ? navigate("/") : navigate("/home");
   }, []);
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      console.log(window.innerWidth);
+
+      if (window.innerWidth < 1200) {
+        setIsSizeSmall(true);
+      } else {
+        setIsSizeSmall(false);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const shouldBeWhite = pathname === "/home" && isSizeSmall;
+    setLogoSrc(shouldBeWhite ? "/logo-white.png" : "/logo-violet.png");
+    console.warn(isSizeSmall);
+  }, [pathname, isSizeSmall]);
+
   return (
     <>
       <Navigation
-        src="/logo-violet.png"
-        alt="Calmly logo in violet colour"
-        srcHamburger="/MenuPrpl.svg"
+        src={logoSrc}
+        // src={logoWhiteViolet}
+        alt="Calmly logo in violet colour and white"
+        srcHamburger="/MenuWhite.svg"
       ></Navigation>
       <Styled.Wrapper>
         <>
