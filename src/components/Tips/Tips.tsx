@@ -66,27 +66,26 @@ export const Tips = () => {
   }, [dispatch]);
 
   const tips = [
-    "Spend your last paycheck on Zalando!",
+    "Spend your last paycheck on Zalando",
     "Take a walk",
     "Meditate",
-    "Make your fav meal!",
-    "Read an inspiring book",
+    "Make your favourite meal",
+    "Read a book",
     "Water your plants",
     "Play with your pet",
-    "Watch your fav movie",
+    "Watch your favourite movie",
     "Clean up your place",
-    "Talk with your friend",
+    "Get in touch with your friends",
     "Do something for others",
-    "Invite some friends and make a small party!",
+    "Invite some friends and make a small party",
     "Make your own vision board",
     "Take a break from social media",
-    "Smile at first person you meet",
+    "Smile at the first person you meet",
     "Visit animals at the shelter",
-    "Pay someone a compliment",
-    "Pay yourself a compliment",
+    "Give someone a compliment",
+    "Give yourself a compliment",
     "Forgive yourself for your mistakes",
-    "Think about people who could need your help and try do it",
-    "Visit or call your old friend",
+    "Visit or call someone you havent spoken to in a while",
     "Help a family member with a task",
     "Donate a necessity to people in need",
     "Have a meaningful conversation with someone close",
@@ -96,7 +95,7 @@ export const Tips = () => {
     "Take care of yourself (your diet, health, body and mind)",
     "Take a nap",
     "Increase your creativity: write a poem, create a painting, make a sculpture",
-    "Hug someone important for you",
+    "Hug someone important to you",
     "Hug your pet",
     "Treat yourself",
   ];
@@ -117,7 +116,7 @@ export const Tips = () => {
           <Dividi id="tips">{tipValue}</Dividi>
         </MainDivv>
         <ButtonDiv>
-          <Button onClick={newGeneratedTip}>New Tip</Button>
+          <Button onClick={newGeneratedTip}>new tip</Button>
         </ButtonDiv>
       </Wrapper>
     </>

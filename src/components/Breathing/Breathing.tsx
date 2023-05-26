@@ -130,7 +130,7 @@ export function Breathing() {
           </InstructionDiv>
         </MainCircle>
         <ButtonDiv>
-          {display && <Information>Let's breath together</Information>}
+          {display && <Information>Lets breath together</Information>}
           <StartButton onClick={handleClick}>
             {dark ? "pause" : "start"}
           </StartButton>
