@@ -59,7 +59,7 @@ const StatisticsContainer = styled.div`
   border-radius: 18px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
 
@@ -210,6 +210,14 @@ export const Journal = () => {
       .then((userData) => {
         const serverEntries = userData.data()?.entries;
         const entries = serverEntries.map((entry: any) => {
+          if (entry.custom) {
+            return {
+              date: formatDate(new Date(entry.date.seconds * 1000)),
+              mood: entry.mood,
+              score: entry.score,
+              custom: entry.custom,
+            };
+          }
           return {
             date: formatDate(new Date(entry.date.seconds * 1000)),
             mood: entry.mood,
@@ -220,7 +228,7 @@ export const Journal = () => {
         setData(entries);
         const days: any = dataToDays(entries);
         setDaysData(days);
-        setDateValue(days[days.length - 1].date);
+        //setDateValue(days[days.length - 1].date);
         console.log(windowWidth);
         if (windowWidth > 1165) {
           maxDataEntries = 7;
@@ -237,11 +245,15 @@ export const Journal = () => {
         if (days.length <= maxDataEntries) {
           setDisplayedData(days);
           setEntryCounter(maxDataEntries);
+          setDateValue(days[0].date);
         } else {
-          setDisplayedData(
-            days.slice(days.length - maxDataEntries, days.length)
+          const newDisplayedData = days.slice(
+            days.length - maxDataEntries,
+            days.length
           );
+          setDisplayedData(newDisplayedData);
           setEntryCounter(days.length);
+          setDateValue(newDisplayedData[0].date);
         }
       })
 
@@ -636,14 +648,14 @@ export const Journal = () => {
               interval={displayType === "custom" ? 1 : 0}
             />
             <YAxis
-              domain={[0, 20]}
+              domain={[7, 21]}
               tickCount={3}
               tickFormatter={(value) => {
-                if (value === 0) {
+                if (value === 6) {
                   return "Low";
-                } else if (value >= 8 && value <= 12) {
+                } else if (value < 20) {
                   return "Mid";
-                } else if (value > 12) {
+                } else if (value >= 20) {
                   return "High";
                 } else {
                   return "";
@@ -674,10 +686,17 @@ export const Journal = () => {
                 formatter={(value: any, name) => {
                   //console.log(value);
                   let formattedValue = value;
-                  if (typeof value !== "number") {
+                  if (typeof value !== "number" && typeof value !== "string") {
                     formattedValue = value.join(" ~ ");
                   }
-                  return [formattedValue, name === "score" ? "Score" : "Mood"];
+                  return [
+                    formattedValue,
+                    name === "score"
+                      ? "Score"
+                      : name === "mood"
+                      ? "Mood"
+                      : "Custom",
+                  ];
                 }}
               />
             )}
@@ -693,6 +712,7 @@ export const Journal = () => {
               strokeWidth={3}
             />
             <Line type="monotone" dataKey="mood" stroke="#797BEC" />
+            <Line type="monotone" dataKey="custom" stroke="#797BEC" />
           </LineChart>
         </ResponsiveContainer>
       </ChartContainer>
@@ -766,7 +786,7 @@ export const Journal = () => {
           </ButtonsContainer>
         </NavigationContainer>
         <StatisticsContainer>
-          <h3 style={{ color: "#797bec" }}>
+          <h3 style={{ color: "#797bec", marginTop: "30px" }}>
             Most frequently chosen moods from displayed data
           </h3>
           <StyledMoods>{top3Moods[0]}</StyledMoods>
