@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-image: url("src/assets/feelingbetter esukt.png");
+  background-image: url("/feelingbetter esukt.png");
   background-repeat: no-repeat;
   background-position: right;
   background-size: cover;

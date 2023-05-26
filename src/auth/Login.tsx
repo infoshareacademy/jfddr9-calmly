@@ -141,7 +141,7 @@ export const Login = ({ isPasswordHidden = false }) => {
               id="email"
               placeholder="Email"
             />
-            <IconWrapper src="src/assets/formIcons/mail.svg" />
+            <IconWrapper src="/formIcons/mail.svg" />
           </InputWrapper>
           {!isPasswordHidden && (
             <InputWrapper>
@@ -151,7 +151,7 @@ export const Login = ({ isPasswordHidden = false }) => {
                 id="password"
                 placeholder="Password"
               />
-              <IconWrapper src="src/assets/formIcons/lock.svg" />
+              <IconWrapper src="/formIcons/lock.svg" />
             </InputWrapper>
           )}
         </AllInputsWrapper>

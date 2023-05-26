@@ -9,7 +9,7 @@ export const Logo = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  background-image: url("src/assets/g page.png");
+  background-image: url("/g page.png");
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: right;

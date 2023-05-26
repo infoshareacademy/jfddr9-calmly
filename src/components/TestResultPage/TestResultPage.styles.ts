@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 export const Background = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url("src/assets/Resultbackground.png");
+  background-image: url("/Resultbackground.png");
   background-size: 100%;
   background-repeat: no-repeat;
   position: absolute;

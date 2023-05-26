@@ -43,11 +43,7 @@ export const Home = () => {
 
   useEffect(() => {
     const shouldBeWhite = pathname === "/home" && isSizeSmall;
-    setLogoSrc(
-      shouldBeWhite
-        ? "./src/assets/logo-white.png"
-        : "./src/assets/logo-violet.png"
-    );
+    setLogoSrc(shouldBeWhite ? "/logo-white.png" : "/logo-violet.png");
     console.warn(isSizeSmall);
   }, [pathname, isSizeSmall]);
 
@@ -57,7 +53,7 @@ export const Home = () => {
         src={logoSrc}
         // src={logoWhiteViolet}
         alt="Calmly logo in violet colour and white"
-        srcHamburger="./src/assets/MenuWhite.svg"
+        srcHamburger="/MenuWhite.svg"
       ></Navigation>
       <Styled.Wrapper>
         <>
