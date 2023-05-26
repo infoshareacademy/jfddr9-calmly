@@ -135,8 +135,6 @@ export function SurveyComponent({ score }: { score: number }) {
 
     const docRef = doc(db, "journal", authUser.uid ?? "");
 
-    console.log(result.customOption);
-
     const customMood: string = result.customOption;
 
     const isCustom = customMood ? true : false;
@@ -154,11 +152,9 @@ export function SurveyComponent({ score }: { score: number }) {
           mood: result.multiselect,
         };
 
-    console.log(objToSend);
-
     updateDoc(docRef, {
       entries: arrayUnion(objToSend),
-    }).then(() => console.log("update done"));
+    }).catch((e) => console.error(e));
 
     setIsDone(true);
   });

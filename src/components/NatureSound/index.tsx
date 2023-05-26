@@ -108,7 +108,7 @@ export const NatureSound = () => {
         let newIsVisible = newActive ? true : false;
         setCurrentSound(newSoundSource);
         setIsVisible(newIsVisible);
-        console.log(isVisible);
+
         return { ...item, isActive: newActive };
       } else {
         return { ...item, isActive: false };

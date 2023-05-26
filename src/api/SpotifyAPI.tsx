@@ -97,7 +97,6 @@ export const SpotifyAPI = () => {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response.items);
         let tracksArray = response.items.map((track: any) => {
           return {
             url: track.track.external_urls.spotify,
@@ -112,7 +111,7 @@ export const SpotifyAPI = () => {
             previewUrl: track.track.preview_url,
           };
         });
-        console.log(tracksArray);
+
         tracksArray = shuffleArray(tracksArray);
         setTracks(tracksArray);
         setIsLoading(false);

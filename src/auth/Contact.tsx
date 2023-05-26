@@ -188,7 +188,7 @@ const ObrazTri = styled(StyledImage)`
   }
 `;
 
-const Body = styled.body`
+const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -462,7 +462,6 @@ export function Contact() {
       message: content.message,
     })
       .then(() => {
-        console.log("Wszystko OK");
         setContent({
           email: "",
           name: "",
@@ -481,8 +480,8 @@ export function Contact() {
       <ObrazTri src={ball} />
       <MainDiv>
         <Navigation
-          src="src/assets/logo-white.png"
-          srcHamburger="src/assets/MenuWhite.svg"
+          src="/logo-white.png"
+          srcHamburger="/MenuWhite.svg"
           alt="Calmly logo in white colour"
         />
         <Menu>

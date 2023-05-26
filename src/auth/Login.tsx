@@ -115,12 +115,9 @@ export const Login = ({ isPasswordHidden = false }) => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.warn(email, password);
-
     signInWithEmailAndPassword(auth, email, password)
-      .then((jwt) => {
+      .then(() => {
         form.reset();
-        console.log(jwt);
       })
 
       .catch((e: FirebaseError) => {

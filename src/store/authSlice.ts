@@ -28,20 +28,17 @@ export const authSlice = createSlice({
       state.fullName = fullName;
       state.uid = id;
       state.email = email;
-      console.warn(action.payload);
+
       // state = { ...state, ...action.payload };
-      console.log(state.fullName);
     },
     signOut: (state) => {
       state.fullName = null;
       state.uid = null;
       state.email = null;
-      console.log(state.fullName);
     },
   },
 });
 
 export const { updateAuthStateChanged, signOut } = authSlice.actions;
-console.log(authSlice);
 
 export const authReducer = authSlice.reducer;
