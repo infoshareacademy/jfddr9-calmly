@@ -21,10 +21,9 @@ npm run dev
 
 ### Functions
 
-- Sign up and log in
-- Custom audio player
 - Landing page: From this page the user can sign up, log in or navigate to the feel better activties
-- Home page: From here the user can naviagte to start the test and enter their journal
+- Sign up, log in and forgot password
+- Home page: From here the user can navigate to start the test and enter their journal
 - Test: The user will complete a two part test
   - Part 1 - User will be asked a collection of questions. Each questionhas a value and will calculate a total score at the end
   - Part 2 - User will choose 3 moods from the grid and an optional custom description that has a 50 character limit
@@ -32,7 +31,7 @@ npm run dev
   - Stepper 1: Calming music generator. 3 random songs will be generated from the spotify API and can be re-generated with the "new songs" button. Includes the custom audio player
   - Stepper 2: Breathing exercise. A inhale/exhale animation will start when the button is clicked
   - Stepper 3: Cute animal pictures. Random pictures of dogs/cats/foxes will be generated. The user can choose the category of animal with the "animals" button
-  - Stepper 4: Relxing nature sounds. 6 mp3 nature sounds that are played when the toggle is clicked. Includes the custom audio player
+  - Stepper 4: Relaxing nature sounds. 6 mp3 nature sounds that are played when the toggle is clicked. Includes the custom audio player
   - Stepper 5: Additional tips. Random tips will be generated at the click of the button
 - Journal:
   - Graph: Displays users test scores/moods on a time graph. The graphs view mode can be changed to daily, custom or detailed
@@ -58,6 +57,7 @@ npm run dev
   - Landing page
   - Feel Better Activities
   - Support Page
+  - Contact Page
 
 ### React Libraries Used:
 
