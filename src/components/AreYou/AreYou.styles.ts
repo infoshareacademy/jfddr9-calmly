@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-family: "Outfit", sans-serif;
+  @media only screen and (max-width: 1200px) {
+    background-image: none;
+    background: linear-gradient(243.18deg, #eebda3 0%, #9495ed 100%);
+  }
 `;
 export const WrapperContent = styled.div`
   display: flex;
@@ -19,16 +23,43 @@ export const WrapperContent = styled.div`
   width: 500px;
   margin-left: 110px;
   color: #797bec;
+
+  @media only screen and (max-width: 1150px) {
+    width: auto;
+    margin: 0 auto;
+  }
 `;
 
 export const WrapperButtons = styled.div`
   display: flex;
-  gap: 30px;
   flex-direction: column;
-  margin-top: 240px;
-`;
+  gap: 30px;
+  position: absolute;
+  left: 355px;
+  top: 400px;
 
-export const Text = styled.div`
+  @media only screen and (max-width: 1150px) {
+    display: flex;
+    flex-direction: column;
+    position: inherit;
+    justify-content: center;
+    flex-wrap: wrap;
+    left: 0;
+    top: 0;
+    margin-top: 185px;
+  }
+  @media only screen and (max-width: 550px) {
+    display: flex;
+    flex-direction: column;
+    position: inherit;
+    justify-content: center;
+    flex-wrap: wrap;
+    left: 0;
+    top: 0;
+    margin-top: 480px;
+  }
+`;
+export const Text = styled.a`
   position: absolute;
   width: 680px;
   height: 232px;
@@ -40,26 +71,32 @@ export const Text = styled.div`
   font-size: 92px;
   line-height: 122px;
   color: #ffffff;
+  @media only screen and (max-width: 1200px) {
+    width: auto; 
+    height: auto;
+    left: 0; 
+    top: 0; 
+    display: flex;
+    font-size: 78px;
+    margin-top: 80px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px; /
+  }
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   cursor: pointer;
   box-sizing: border-box;
-  padding: 10px;
-  border: 3px solid #ffffff;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: white;
+  color: #e3b4ab;
   border-radius: 50px;
-  color: white;
+  border: none;
   text-align: center;
   &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
-    transform: scale(103%);
-    background-color: white;
-    color: #e3b4ab;
-  }
-
-  &:active {
-    transition: 0.1s ease-in;
-    transform: scale(99%);
+    color: #9495ed;
   }
 `;
