@@ -269,8 +269,6 @@ export function Quiz() {
       question5Worth +
       question6Worth;
     setScore(total);
-    console.log(total);
-    console.log(question6Worth);
   };
 
   const handleAnswerOptionClick = (worth: number) => {
@@ -297,7 +295,7 @@ export function Quiz() {
         break;
       case 6:
         setQuestion6Worth(worth);
-        console.log(question6Worth);
+
         break;
       // case 7:
       // testScoreTotal();

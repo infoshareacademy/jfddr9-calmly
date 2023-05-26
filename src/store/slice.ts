@@ -13,7 +13,6 @@ export const slice = createSlice({
     },
     updateBreathing: (state) => {
       state.breathingAnimation = state.breathingAnimation ? false : true;
-      console.log(state.breathingAnimation);
     },
   },
 });

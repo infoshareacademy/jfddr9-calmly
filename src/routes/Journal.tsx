@@ -192,7 +192,6 @@ export const Journal = () => {
     formatDate(new Date()).slice(0, 10)
   );
   const [displayType, setDisplayType] = useState("daily");
-  // const [responsiveData, setResponsiveData] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -224,12 +223,11 @@ export const Journal = () => {
             score: entry.score,
           };
         });
-        console.log(entries);
+        //console.log(entries);
         setData(entries);
         const days: any = dataToDays(entries);
         setDaysData(days);
-        //setDateValue(days[days.length - 1].date);
-        console.log(windowWidth);
+
         if (windowWidth > 1165) {
           maxDataEntries = 7;
         } else if (windowWidth <= 1165 && windowWidth > 1000) {
@@ -241,7 +239,7 @@ export const Journal = () => {
         } else if (windowWidth <= 680 && windowWidth > 100) {
           maxDataEntries = 3;
         }
-        console.log(maxDataEntries);
+
         if (days.length <= maxDataEntries) {
           setDisplayedData(days);
           setEntryCounter(maxDataEntries);
@@ -311,13 +309,11 @@ export const Journal = () => {
   }, [dispatch]);
 
   const goToDay = (line: string, mode: string, whichDate: number) => {
-    console.log(line);
-
     if (mode === "detailed") {
       const dayStartIndex = data.findIndex(
         (item: any) => item.date.slice(0, 10) === line
       );
-      console.log(dayStartIndex);
+
       if (dayStartIndex + maxDataEntries > data.length) {
         setDisplayedData(data.slice(dayStartIndex, data.length));
         setEntryCounter(data.length);
@@ -333,7 +329,7 @@ export const Journal = () => {
       const dayStartIndex = daysData.findIndex(
         (item: any) => item.date === line
       );
-      console.log(dayStartIndex);
+
       if (dayStartIndex + maxDataEntries > daysData.length) {
         setDisplayedData(daysData.slice(dayStartIndex, daysData.length));
         setEntryCounter(daysData.length);
@@ -360,14 +356,13 @@ export const Journal = () => {
         dayEndIndex = daysData.findIndex((item: any) => item.date === line);
       }
 
-      console.log(daysData);
       if (dayStartIndex + maxDataEntries > daysData.length) {
         setDisplayedData(daysData.slice(dayStartIndex, daysData.length));
-        //setEntryCounter(daysData.length);
+
         setIsDisplayDays(true);
       } else {
         setDisplayedData(daysData.slice(dayStartIndex, dayEndIndex + 1));
-        //setEntryCounter(dayStartIndex + maxDataEntries);
+
         setIsDisplayDays(true);
       }
     }
@@ -455,10 +450,6 @@ export const Journal = () => {
     const isFirstTick = payload.index === 0;
     const isLastTick = payload.index === displayedData.length - 1;
 
-    // console.log(displayedData.length);
-    // console.log('first' + isFirstTick);
-    // console.log('last' + isLastTick);
-
     const tickText = payload.value.toString();
 
     // Define the maximum number of characters per line
@@ -478,15 +469,6 @@ export const Journal = () => {
       const line = tickText.slice(startIndex, endIndex);
       lines.push(line);
     }
-
-    // const maxTicks = 7;
-
-    // const stepSize = Math.ceil(displayedData.length / maxTicks);
-    // const shouldSkip = payload.index % stepSize !== 0;
-
-    // if (shouldSkip) {
-    //   return null; // Skip rendering this tick
-    // }
 
     return (
       <g transform={`translate(${x},${y})`}>
@@ -554,8 +536,6 @@ export const Journal = () => {
         depressed: 0,
       };
 
-      console.log(dayData);
-
       let scoreSum = 0;
       let moods: any = [];
 
@@ -578,9 +558,6 @@ export const Journal = () => {
         return moodNameWithValue[0];
       });
 
-      console.log(moods);
-      console.log(topThree);
-
       const score = parseFloat((scoreSum / dayData.length).toFixed(2));
 
       //console.log(dayData);
@@ -591,27 +568,19 @@ export const Journal = () => {
       };
     });
 
-    console.log(newDayData);
     //let date = entries[0].date.slice(0, 10);
     //console.log(date);
 
     return newDayData;
   };
 
-  console.log(displayedData);
-  console.log(entryCounter);
-  console.log(data);
-
   let daysOrData = isDisplayDays ? daysData : data;
-
-  console.log(maxDataEntries);
 
   let sum = 0;
   for (let i = 0; i < displayedData.length; i++) {
     sum += displayedData[i].score;
   }
   const avg = sum / displayedData.length;
-  console.log(avg);
 
   const moodCount: any = {};
   for (let i = 0; i < displayedData.length; i++) {
@@ -627,8 +596,6 @@ export const Journal = () => {
   );
   const top3Moods = sortedMoods.slice(0, 3);
 
-  console.log(top3Moods);
-
   return data.length !== 0 ? (
     <>
       <Navigation
@@ -637,8 +604,6 @@ export const Journal = () => {
         alt="Calmly logo in white colour"
       />
       <ChartContainer>
-        {/* {!isDisplayDays && <button onClick={() => backToDaysDisplay()}>Back to days</button>} */}
-
         <ResponsiveContainer width="90%" height={500}>
           <LineChart key={maxDataEntries} data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -667,7 +632,6 @@ export const Journal = () => {
                 labelStyle={{ color: "green" }}
                 itemStyle={{ color: "#797BEC" }}
                 formatter={(value: any, name) => {
-                  //console.log(value);
                   let formattedValue = value;
                   if (typeof value !== "number") {
                     formattedValue = value.join(" ~ ");
@@ -675,16 +639,14 @@ export const Journal = () => {
                   return [formattedValue, name === "score" ? "Score" : "Mood"];
                 }}
                 labelFormatter={function (value) {
-                  //console.log(name);
                   return `Date: ${value}`;
                 }}
               />
             )}
-            {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
+
             {displayType !== "custom" && (
               <Tooltip
                 formatter={(value: any, name) => {
-                  //console.log(value);
                   let formattedValue = value;
                   if (typeof value !== "number" && typeof value !== "string") {
                     formattedValue = value.join(" ~ ");
@@ -700,11 +662,7 @@ export const Journal = () => {
                 }}
               />
             )}
-            {/* <Tooltip labelFormatter={(label) => `Date: ${label}`} /> */}
-            {/* <Tooltip
-              formatter={(value, name) => [value, name === 'score' ? 'Score' : name === 'mood' ? 'Mood' : 'Date']}
-            /> */}
-            {/* <Legend /> */}
+
             <Line
               type="monotone"
               dataKey="score"
@@ -773,7 +731,7 @@ export const Journal = () => {
                   goToDay(firstDisplayedDate, e.target.value, 0);
                 } else {
                   setDisplayType(e.target.value);
-                  console.log(e.target.value);
+
                   setIsDisplayDays(e.target.value === "daily" ? true : false);
                   goToDay(dateValue, e.target.value, 0);
                 }

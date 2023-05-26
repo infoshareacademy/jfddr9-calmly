@@ -462,7 +462,6 @@ export function Contact() {
       message: content.message,
     })
       .then(() => {
-        console.log("Wszystko OK");
         setContent({
           email: "",
           name: "",

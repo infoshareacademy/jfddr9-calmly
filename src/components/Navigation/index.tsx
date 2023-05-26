@@ -145,7 +145,6 @@ export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
   //   const { authUser } = useSelector(
   //     (state: { authUser: AuthStateType }) => state
   //   );
-  console.log("authUser", authUser);
 
   const showButton = authUser.fullName != null;
 
@@ -183,7 +182,7 @@ export const Navigation = ({ src, srcHamburger }: NavigationProps) => {
           <ButtonLogOut onClick={() => signOut(auth)}>Log out</ButtonLogOut>
         )}
       </Nav>
-      {console.log(`srcHamburger: ${srcHamburger}`)}
+
       <HamburgerButton src={srcHamburger} onClick={toggleMenu} />
     </>
   );

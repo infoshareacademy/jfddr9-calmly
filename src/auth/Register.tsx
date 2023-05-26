@@ -116,7 +116,6 @@ export const Register = ({ isPasswordHidden = false }) => {
       .then((userCredential) => {
         form.reset();
         const userId = userCredential.user.uid;
-        console.log(userCredential);
 
         const docRef = doc(db, "users", userId);
         setDoc(docRef, {
@@ -124,14 +123,12 @@ export const Register = ({ isPasswordHidden = false }) => {
           fullName,
           // country,
           id: userId,
-        })
-          .then(() => console.log("udalo sie"))
-          .then(() => {
-            const docRef = doc(db, "journal", userId);
-            setDoc(docRef, {
-              entries: [],
-            }).then(() => console.log("udalo sie journal"));
+        }).then(() => {
+          const docRef = doc(db, "journal", userId);
+          setDoc(docRef, {
+            entries: [],
           });
+        });
       })
 
       .catch((e: FirebaseError) => {

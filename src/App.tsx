@@ -86,8 +86,6 @@ function App() {
   }
 `;
 
-  console.log(reduxStore.bg.text);
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -100,7 +98,7 @@ function App() {
               ...userData.data(),
               uid,
             } as AuthStateType;
-            console.warn(userNewData);
+
             dispatch(updateAuthStateChanged(userNewData));
             navigate("/home");
             setIsLoading(false);

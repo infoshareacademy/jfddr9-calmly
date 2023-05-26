@@ -18,8 +18,6 @@ export const Home = () => {
 
   const isUserLogged = authUser.fullName;
 
-  console.log("isUserLoged", isUserLogged);
-
   useEffect(() => {
     isUserLogged == null ? navigate("/") : navigate("/home");
   }, []);
