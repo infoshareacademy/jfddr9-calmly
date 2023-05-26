@@ -105,7 +105,6 @@ export const ForgotPassword = () => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         form.reset();
-        console.log("udalo sie!!!!!!!!");
       })
       .catch((e: FirebaseError) => {
         console.dir(e);

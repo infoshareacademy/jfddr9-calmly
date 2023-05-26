@@ -33,6 +33,8 @@ const ChartContainer = styled.div`
   padding-right: 50px;
   box-sizing: border-box;
 
+  margin-top: 50px;
+
   @media (max-width: 1160px) {
     margin-top: 140px;
   }
@@ -599,12 +601,15 @@ export const Journal = () => {
   return data.length !== 0 ? (
     <>
       <Navigation
-        src="src/assets/logo-white.png"
-        srcHamburger="src/assets/MenuWhite.svg"
+        src="/logo-white.png"
+        srcHamburger="/MenuWhite.svg"
         alt="Calmly logo in white colour"
       />
       <ChartContainer>
-        <ResponsiveContainer width="90%" height={500}>
+        <ResponsiveContainer
+          width="90%"
+          height={window.innerHeight > 1050 ? 400 : 300}
+        >
           <LineChart key={maxDataEntries} data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
@@ -616,7 +621,7 @@ export const Journal = () => {
               domain={[7, 21]}
               tickCount={3}
               tickFormatter={(value) => {
-                if (value === 6) {
+                if (value === 7) {
                   return "Low";
                 } else if (value < 20) {
                   return "Mid";
