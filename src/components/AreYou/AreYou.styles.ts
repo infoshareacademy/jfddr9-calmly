@@ -11,6 +11,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-family: "Outfit", sans-serif;
+
+  @media (max-width: 1000px) {
+    background: linear-gradient(
+      141.59deg,
+      #f6c59c 11.57%,
+      #e3b4ab 53.27%,
+      #b3b4ef 123.37%
+    );
+  }
 `;
 export const WrapperContent = styled.div`
   display: flex;
@@ -19,6 +28,11 @@ export const WrapperContent = styled.div`
   width: 500px;
   margin-left: 110px;
   color: #797bec;
+
+  @media (max-width: 1000px) {
+    margin: 0 auto;
+    width: auto;
+  }
 `;
 
 export const WrapperButtons = styled.div`
@@ -40,6 +54,20 @@ export const Text = styled.div`
   font-size: 92px;
   line-height: 122px;
   color: #ffffff;
+
+  @media only screen and (min-width: 950px) and (max-width: 1000px) {
+    font-size: 105px;
+    left: 0;
+    width: auto;
+  }
+  @media (max-width: 950px) {
+    left: 0;
+    width: auto;
+  }
+  @media (max-width: 620px) {
+    font-size: 70px;
+    line-height: 72px;
+  }
 `;
 
 export const Button = styled.div`
