@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+//   background-color: ${(props) => (props.logoWhiteViolet };
+
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -17,12 +19,7 @@ export const Wrapper = styled.div`
 
   @media (max-width: 1200px) {
     background-size: 0%;
-    background: linear-gradient(
-      141.59deg,
-      #f6c59c 11.57%,
-      #e3b4ab 53.27%,
-      #b3b4ef 123.37%
-    );
+    background: linear-gradient(243.18deg, #c0a9c1 0%, #8587ed 53.54%);
   }
 `;
 
