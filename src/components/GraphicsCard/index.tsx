@@ -48,7 +48,7 @@ type GraphicsCardProps = {
 export const GraphicsCard = ({ src }: GraphicsCardProps) => {
   return (
     <GraphicCardWrapper>
-      <LogoMain src="src/assets/logo.png" />
+      <LogoMain src="/logo.png" />
       <HeaderGraphicCard>welcome again</HeaderGraphicCard>
       <Graphic src={src} />
       <ParagraphGraphicCard>let your stress drop</ParagraphGraphicCard>
