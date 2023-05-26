@@ -1339,14 +1339,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   flex-direction: column;
   justify-content: center;
   font-family: "Outfit", sans-serif;
-
-  @media (max-width: 1000px) {
-    background: linear-gradient(
-      141.59deg,
-      #f6c59c 11.57%,
-      #e3b4ab 53.27%,
-      #b3b4ef 123.37%
-    );
+  @media only screen and (max-width: 1200px) {
+    background-image: none;
+    background: linear-gradient(243.18deg, #eebda3 0%, #9495ed 100%);
   }
 `,tJ=G.div`
   display: flex;
@@ -1356,16 +1351,39 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   margin-left: 110px;
   color: #797bec;
 
-  @media (max-width: 1000px) {
-    margin: 0 auto;
+  @media only screen and (max-width: 1150px) {
     width: auto;
+    margin: 0 auto;
   }
 `,nJ=G.div`
   display: flex;
-  gap: 30px;
   flex-direction: column;
-  margin-top: 240px;
-`,rJ=G.div`
+  gap: 30px;
+  position: absolute;
+  left: 355px;
+  top: 400px;
+
+  @media only screen and (max-width: 1150px) {
+    display: flex;
+    flex-direction: column;
+    position: inherit;
+    justify-content: center;
+    flex-wrap: wrap;
+    left: 0;
+    top: 0;
+    margin-top: 185px;
+  }
+  @media only screen and (max-width: 550px) {
+    display: flex;
+    flex-direction: column;
+    position: inherit;
+    justify-content: center;
+    flex-wrap: wrap;
+    left: 0;
+    top: 0;
+    margin-top: 480px;
+  }
+`,rJ=G.a`
   position: absolute;
   width: 680px;
   height: 232px;
@@ -1377,39 +1395,31 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   font-size: 92px;
   line-height: 122px;
   color: #ffffff;
-
-  @media only screen and (min-width: 950px) and (max-width: 1000px) {
-    font-size: 105px;
-    left: 0;
-    width: auto;
+  @media only screen and (max-width: 1200px) {
+    width: auto; 
+    height: auto;
+    left: 0; 
+    top: 0; 
+    display: flex;
+    font-size: 78px;
+    margin-top: 80px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px; /
   }
-  @media (max-width: 950px) {
-    left: 0;
-    width: auto;
-  }
-  @media (max-width: 620px) {
-    font-size: 70px;
-    line-height: 72px;
-  }
-`,U0=G.div`
+`,U0=G.button`
   cursor: pointer;
   box-sizing: border-box;
-  padding: 10px;
-  border: 3px solid #ffffff;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: white;
+  color: #e3b4ab;
   border-radius: 50px;
-  color: white;
+  border: none;
   text-align: center;
   &:hover {
-    transition: 0.3s ease-in;
-    opacity: 0.9;
-    transform: scale(103%);
-    background-color: white;
-    color: #e3b4ab;
-  }
-
-  &:active {
-    transition: 0.1s ease-in;
-    transform: scale(99%);
+    color: #9495ed;
   }
 `,iJ=e=>{const t=Bi(),n=()=>{e.stepReset(6)},r=mn();return K.useEffect(()=>{r(hn("bgWhite"))},[r]),z.jsx(eJ,{children:z.jsxs(tJ,{children:[z.jsx(rJ,{children:"Are you feeling better?"}),z.jsxs(nJ,{children:[z.jsx(U0,{onClick:()=>t("/home"),children:"Yes, I feel better!"}),z.jsx(U0,{onClick:n,children:"No, I need to do it again"}),z.jsx(U0,{onClick:()=>t("/support"),children:"No, I need help"})]})]})})},oJ="/assets/Rain-a8886d50.mp3",sJ="/assets/Rain-b939aabb.svg",aJ="/assets/Birds-a5f41cbe.mp3",lJ="/assets/Birds-bff1f728.svg",uJ="/assets/Fire-7ab4462b.mp3",cJ="/assets/Fire-6fab66d6.svg",fJ="/assets/Waves-da2a7e8e.mp3",dJ="/assets/Waves-972c0996.svg",hJ="/assets/Wind-f906d089.mp3",pJ="/assets/Wind-0b272415.svg",gJ="/assets/River-eae5f0e4.mp3",mJ="/assets/River-8b544ab9.svg",yJ=G.div`
   display: flex;
