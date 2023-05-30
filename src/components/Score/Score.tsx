@@ -9,6 +9,15 @@ import elipse6 from "../../assets/elipses/Ellipse 6.svg";
 import elipse7 from "../../assets/elipses/Ellipse 7.svg";
 import elipse9 from "../../assets/elipses/Ellipse 9.svg";
 
+const HeaderScore = styled.h3`
+  color: #797bec;
+  position: absolute;
+  top: -15px;
+  @media (max-width: 380px) {
+    font-size: 1em;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -19,6 +28,14 @@ const Wrapper = styled.div`
   align-items: center;
   position: relative;
   top: 30px;
+
+  @media (max-width: 380px) {
+    padding-inline: 140px;
+  }
+  @media (max-height: 775px) {
+    transform: scale(0.8);
+    top: -10px;
+  }
 `;
 const ScoreP = styled.p`
   position: absolute;
@@ -120,9 +137,7 @@ export const Score: React.FC<ScoreProps> = ({ kontent }) => {
   return (
     <>
       <Wrapper>
-        <h3 style={{ color: "#797bec", position: "absolute", top: "-15px" }}>
-          Avarage score based on displayed data
-        </h3>
+        <HeaderScore>Avarage score based on displayed data</HeaderScore>
         <Circle1 src={elipse1} />
         <Circle2 src={elipse2} />
         <Circle3 src={elipse3} />
