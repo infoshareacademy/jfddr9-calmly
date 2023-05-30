@@ -53,7 +53,7 @@ const StyledBottomDiv = styled.div`
   @media (max-width: 810px) {
     width: auto;
     flex-direction: row;
-    height: 30px;
+    height: 10px;
   }
   @media (max-width: 575px) {
     flex-direction: row;

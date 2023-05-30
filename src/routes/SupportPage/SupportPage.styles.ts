@@ -11,6 +11,7 @@ export const Background = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: row;
   font-family: Outfit, sans-serif;
@@ -20,7 +21,8 @@ export const Wrapper = styled.div`
   padding: 25px;
   justify-content: center;
   align-items: center;
-  margin: 100px 200px 0;
+  margin: auto;
+  margin-top: 200px;
   @media only screen and (max-width: 1250px) {
     flex-direction: column;
     background: none;
@@ -91,13 +93,7 @@ export const WrapperRight = styled.div`
 `;
 
 export const Img = styled.img`
-  height: 40px;
-  width: 120px;
-  position: absolute;
-  right: 100px;
-  bottom: 50px;
-  @media only screen and (max-width: 1250px) {
-    height: 30px;
-    width: 100px;
+  @media only screen and (max-width: 515px) {
+    width: 300px;
   }
 `;

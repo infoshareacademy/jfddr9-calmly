@@ -195,6 +195,7 @@ const Body = styled.div`
   justify-content: center;
   height: 100vh;
   background-repeat: no-repeat;
+  overflow: hidden;
 
   @media only screen and (min-width: 1250px) {
     background-color: linear-gradient(
