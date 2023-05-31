@@ -27,6 +27,10 @@ const LeftCardWrapper = styled.div`
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+
+  @media (max-width: 455px) {
+    padding: 0px 15px;
+  }
 `;
 
 const FooterWrapper = styled.div`

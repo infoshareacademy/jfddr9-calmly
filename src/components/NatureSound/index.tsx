@@ -21,6 +21,10 @@ const ToggleButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  @media (max-width: 1185px) {
+    position: relative;
+    top: 60px;
+  }
 `;
 
 const ToggleButton = styled.button<{ isActive: boolean }>`
@@ -40,6 +44,21 @@ const ToggleButton = styled.button<{ isActive: boolean }>`
   &:active {
     transform: scale(0.9);
   }
+
+  @media (max-width: 1185px) {
+    height: 240px;
+  }
+  @media (max-width: 592px) {
+    height: 200px;
+    width: 100px;
+  }
+  @media (max-width: 444px) {
+    height: 180px;
+    width: 80px;
+  }
+  @media (max-width: 370px) {
+    height: 140px;
+  }
 `;
 
 const Circle = styled.span<{ isActive: boolean }>`
@@ -58,6 +77,21 @@ const Circle = styled.span<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1185px) {
+    top: 10px;
+    transform: translateY(${(props) => (props.isActive ? "70%" : "0")});
+  }
+  @media (max-width: 592px) {
+    height: 100px;
+  }
+  @media (max-width: 444px) {
+    transform: translateY(${(props) => (props.isActive ? "100%" : "0")});
+    height: 75px;
+  }
+  @media (max-width: 370px) {
+    transform: translateY(${(props) => (props.isActive ? "60%" : "0")});
+  }
 `;
 
 const InnerCircle = styled.img`
@@ -71,6 +105,15 @@ const PlayerWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 40px;
+
+  @media (max-width: 1185px) {
+    position: relative;
+    top: 20px;
+  }
+
+  @media (max-height: 760px) {
+    margin-bottom: 40px;
+  }
 `;
 
 interface Item {

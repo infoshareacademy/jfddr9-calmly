@@ -10,6 +10,9 @@ const GraphicCardWrapper = styled.div`
   @media (max-width: 950px) {
     width: 445px;
   }
+  @media (max-width: 455px) {
+    width: 355px;
+  }
 `;
 const LogoMain = styled.img`
   width: 270px;
@@ -31,6 +34,10 @@ const Graphic = styled.img`
   width: 390px;
   height: 390px;
   margin: 0 auto 0;
+
+  @media (max-width: 455px) {
+    width: 355px;
+  }
 `;
 
 const ParagraphGraphicCard = styled.p`

@@ -25,19 +25,26 @@ const LeftCardWrapper = styled.div`
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+
   @media (max-width: 950px) {
     width: 325px;
+  }
+  @media (max-width: 445px) {
+    padding: 0 15px;
   }
 `;
 
 const RightCardWrapper = styled.div`
-  min-width: 445px;
-  max-width: 445px;
+  width: 445px;
   height: 688px;
   margin: 15px;
   background: rgba(255, 255, 255, 0.55);
   box-shadow: 15px 25px 25px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
+
+  @media (max-width: 445px) {
+    width: 355px;
+  }
 `;
 const NavWrapper = styled.div`
   display: flex;

@@ -9,7 +9,7 @@ export const SupportPage = () => {
     dispatch(updateBg("bgSupport"));
   }, [dispatch]);
   return (
-    <Styled.Background>
+    <>
       <Navigation
         src="/logo-white.png"
         srcHamburger="/MenuWhite.svg"
@@ -24,9 +24,9 @@ export const SupportPage = () => {
           <h3>free 24/7 support at your fingertips</h3>
         </Styled.WrapperLeft>
         <Styled.WrapperRight>
-          <img src="/sadcat.png" />
+          <Styled.Img src="/sadcat.png" />
         </Styled.WrapperRight>
       </Styled.Wrapper>
-    </Styled.Background>
+    </>
   );
 };

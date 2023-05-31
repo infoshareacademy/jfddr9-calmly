@@ -67,6 +67,11 @@ const StatisticsContainer = styled.div`
 
   @media (max-width: 1160px) {
     order: 2;
+    max-width: 370px;
+    min-width: 350px;
+  }
+  @media (max-height: 775px) {
+    height: 290px;
   }
 `;
 
@@ -85,7 +90,22 @@ const NavigationContainer = styled.nav`
   }
 `;
 
-const ButtonsContainer = styled.div`
+type ButtonsContainerType = {
+  primary?: string;
+};
+
+const ButtonsContainer = styled.div<ButtonsContainerType>`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  @media (max-width: 410px) {
+    flex-direction: ${(props) =>
+      props.primary === "custom" ? "column" : "row"};
+  }
+`;
+
+const ViewContainer = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
@@ -483,7 +503,7 @@ export const Journal = () => {
             dy={index === 0 ? verticalOffset : 0}
             textAnchor={isFirstTick ? "right" : isLastTick ? "end" : "middle"}
             fill="#797bec"
-            fontSize={maxDataEntries !== 3 ? 16 : 12}
+            fontSize={windowWidth >= 680 ? 16 : windowWidth >= 390 ? 12 : 10}
             cursor={isDisplayDays ? "pointer" : "initial"}
             onClick={() => {
               if (isDisplayDays) {
@@ -608,7 +628,13 @@ export const Journal = () => {
       <ChartContainer>
         <ResponsiveContainer
           width="90%"
-          height={window.innerHeight > 1050 ? 400 : 300}
+          height={
+            window.innerHeight > 1050
+              ? 400
+              : window.innerHeight > 880
+              ? 300
+              : 200
+          }
         >
           <LineChart key={maxDataEntries} data={displayedData}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -685,7 +711,7 @@ export const Journal = () => {
           <Score kontent={avg.toFixed(2)} />
         </StatisticsContainer>
         <NavigationContainer>
-          <ButtonsContainer>
+          <ButtonsContainer primary={displayType}>
             {displayType !== "custom" && (
               <StyledStepButton
                 onClick={backData}
@@ -722,7 +748,7 @@ export const Journal = () => {
             )}
           </ButtonsContainer>
 
-          <ButtonsContainer>
+          <ViewContainer>
             <StyledLabel htmlFor="select">View: </StyledLabel>
             <Select
               name="select"
@@ -746,7 +772,7 @@ export const Journal = () => {
               <option value={"detailed"}>Detailed</option>
               <option value={"custom"}>Custom</option>
             </Select>
-          </ButtonsContainer>
+          </ViewContainer>
         </NavigationContainer>
         <StatisticsContainer>
           <h3 style={{ color: "#797bec", marginTop: "30px" }}>

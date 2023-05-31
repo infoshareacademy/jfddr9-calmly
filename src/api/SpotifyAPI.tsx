@@ -15,10 +15,13 @@ const StyledTracksContainer = styled.div`
   display: flex;
   justify-content: space-between;
   height: 90%;
+  margin-bottom: 30px;
 
   @media (max-width: 810px) {
     flex-direction: column;
     justify-content: space-around;
+    margin-top: 80px;
+    margin-bottom: 45px;
   }
 `;
 
@@ -39,14 +42,10 @@ const StyledLoadButton = styled.button`
   background: rgba(255, 255, 255, 0.45);
   border-radius: 50px;
   border: none;
-  margin-top: 70px;
+
   &:hover {
     background: white;
     transition: 0.2s;
-  }
-
-  @media (max-width: 810px) {
-    margin-top: 30px;
   }
 `;
 

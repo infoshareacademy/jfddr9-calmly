@@ -61,7 +61,8 @@ const StepperContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  position: relative;
+  top: 80px;
   gap: 1px;
 `;
 
